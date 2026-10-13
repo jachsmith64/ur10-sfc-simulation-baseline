@@ -1,0 +1,14 @@
+{
+  "changed_existing": [
+    "pack_review.py",
+    "position_logging.py"
+  ],
+  "added": [
+    "check_review.py",
+    "run_short.py",
+    "short_prepare.py",
+    "short_report.py"
+  ],
+  "core_formulas_and_execution_unchanged": true,
+  "distinction": "Only position_logging.py changes a pre-existing simulation-related file. pack_review.py replaces an older packaging helper of the same name; it does not execute/integrate dynamics."
+}

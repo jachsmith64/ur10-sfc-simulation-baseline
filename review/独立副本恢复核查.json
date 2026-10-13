@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "full_payload_copied_and_verified": true,
+  "files": 554,
+  "recursive_destination_rejected": true,
+  "changed_payload_rejected": true,
+  "existing_directory_rejected": true,
+  "no_simulation": true,
+  "source_snapshot_unchanged": true,
+  "temporary_copy_removed_after_verification": true
+}

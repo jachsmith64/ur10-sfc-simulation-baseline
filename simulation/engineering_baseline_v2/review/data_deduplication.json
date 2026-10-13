@@ -1,0 +1,31 @@
+{
+  "run_ids": [
+    "20261012T123028491525Z_9f7f6d3a",
+    "20261012T123042308025Z_05af114f"
+  ],
+  "local_full_batches_preserved": true,
+  "rule": "Only packaging exact SHA-identical CSV files once. Both batches separately actually integrated. No cross-run simulation result reuse.",
+  "cases": {
+    "A0": {
+      "package_csv": "runs/20261012T123028491525Z_9f7f6d3a/csv_1ms/A0.csv",
+      "csv_sha256": "2ebd1abc2d7c6d22cfa3d896e6bc656f293233c753a6779e6b768e1e49814a50",
+      "same_data_in_second_run": "runs/20261012T123042308025Z_05af114f/csv_1ms/A0.csv",
+      "samples": 10000,
+      "signed_columns": 99
+    },
+    "Alinear": {
+      "package_csv": "runs/20261012T123028491525Z_9f7f6d3a/csv_1ms/Alinear.csv",
+      "csv_sha256": "14699832be8383f04c833fe71be5bb45b1351087185d0e821dd0c9b0b8b1e0ee",
+      "same_data_in_second_run": "runs/20261012T123042308025Z_05af114f/csv_1ms/Alinear.csv",
+      "samples": 10000,
+      "signed_columns": 99
+    },
+    "ASFC_strong": {
+      "package_csv": "runs/20261012T123028491525Z_9f7f6d3a/csv_1ms/ASFC_strong.csv",
+      "csv_sha256": "c88b8801c2b194f22db37b57347d33ad9d897068214ac720560b981f3dea5180",
+      "same_data_in_second_run": "runs/20261012T123042308025Z_05af114f/csv_1ms/ASFC_strong.csv",
+      "samples": 10000,
+      "signed_columns": 99
+    }
+  }
+}

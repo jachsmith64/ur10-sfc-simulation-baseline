@@ -1,0 +1,35 @@
+[
+  {
+    "index": 1,
+    "case_id": "construct_1__A0",
+    "controller": "A0",
+    "role": "construct",
+    "input_id": "d2489c4ed0406761079ce55fc37c0a728bd92c071bad00acede316b32d892715",
+    "status": "OK",
+    "n_steps_done": 10000,
+    "note": "",
+    "log_sha256": "3f9458ac5fe2b64450b3c0aadc248752575e683fc1c48ef6ae2b53ebd40dfd5a"
+  },
+  {
+    "index": 2,
+    "case_id": "PC__Alinear",
+    "controller": "Alinear",
+    "role": "formal",
+    "input_id": "d2489c4ed0406761079ce55fc37c0a728bd92c071bad00acede316b32d892715",
+    "status": "OK",
+    "n_steps_done": 10000,
+    "note": "",
+    "log_sha256": "824f8f4a29dd48ce04bd051af7b925b0400e058222848e1f683cbee370e49c60"
+  },
+  {
+    "index": 3,
+    "case_id": "PC__ASFC_strong",
+    "controller": "ASFC_strong",
+    "role": "formal",
+    "input_id": "d2489c4ed0406761079ce55fc37c0a728bd92c071bad00acede316b32d892715",
+    "status": "OK",
+    "n_steps_done": 10000,
+    "note": "",
+    "log_sha256": "f4ddbf2a955db7d96266d153cdb654a6a938ec2e1a72a26aeeb9b513e99e7012"
+  }
+]

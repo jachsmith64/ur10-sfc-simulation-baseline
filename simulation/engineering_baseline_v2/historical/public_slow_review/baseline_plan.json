@@ -1,0 +1,122 @@
+{
+  "source": "reference_old_S3/S3__A0.npz",
+  "source_sha256": "013d1bf9440766326e143bd9e3d1f1449333c536323aebbe1c27263773e1cd9f",
+  "source_channel": "effective_e_um",
+  "units": "um",
+  "platforms": [
+    {
+      "platform": "pre_rest",
+      "t0_s": 0.85,
+      "t1_s": 1.075,
+      "samples": 226,
+      "effective_median_um": -22.77985044865649,
+      "physical_median_um": -22.781983051251007,
+      "std_um": 3.494878023089601,
+      "qualification": "Outside cold<0.8s and chosen event supports; median of inherited A0 only."
+    },
+    {
+      "platform": "outbound",
+      "t0_s": 2.226,
+      "t1_s": 4.38,
+      "samples": 2155,
+      "effective_median_um": -22.602085397893656,
+      "physical_median_um": -23.179058019517917,
+      "std_um": 15.859568129387817,
+      "qualification": "Outside cold<0.8s and chosen event supports; median of inherited A0 only."
+    },
+    {
+      "platform": "return",
+      "t0_s": 5.943,
+      "t1_s": 8.667,
+      "samples": 2725,
+      "effective_median_um": -20.35438411468471,
+      "physical_median_um": -17.21911531399334,
+      "std_um": 17.41824136754271,
+      "qualification": "Outside cold<0.8s and chosen event supports; median of inherited A0 only."
+    },
+    {
+      "platform": "post_tail_short",
+      "t0_s": 9.95,
+      "t1_s": 9.999,
+      "samples": 50,
+      "effective_median_um": -20.447947285714974,
+      "physical_median_um": -20.560657495685696,
+      "std_um": 0.2579452996336415,
+      "qualification": "Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state."
+    }
+  ],
+  "levels_um": [
+    -22.77985044865649,
+    -22.602085397893656,
+    -20.35438411468471,
+    -20.447947285714974
+  ],
+  "connections_s": [
+    [
+      1.075,
+      2.226
+    ],
+    [
+      4.38,
+      5.943
+    ],
+    [
+      8.667,
+      9.95
+    ]
+  ],
+  "connection": "quintic smoothstep, analytic C2, no fitting within an event",
+  "noncausal": true,
+  "ordinary_or_event_waveform_fitted": false,
+  "tail_limitation": "Final representative is short and not proof of long-term drift stability. Its level nearly equals return; stop correction changes by only~0.094um.",
+  "event_windows": [
+    {
+      "event": "start",
+      "new_support_s": [
+        1.085,
+        2.226
+      ],
+      "core_s": [
+        1.2849583981754964,
+        1.926
+      ],
+      "source_shift_s": 0.0,
+      "peak_positive_um": 104.72006489626048,
+      "peak_negative_um": -26.27314409015274,
+      "core_original_preserved": true,
+      "note": "e_vib=A raw-b; preserves core sign/duration/shape, source noise may remain; leading50ms/trailing150ms joins only. Stop includes deceleration and >1s original tail; last150ms taper prevents FFT endpoint wrap."
+    },
+    {
+      "event": "turn",
+      "new_support_s": [
+        4.38,
+        5.943
+      ],
+      "core_s": [
+        4.58,
+        5.643
+      ],
+      "source_shift_s": -1.1190000000000002,
+      "peak_positive_um": 43.17546827697832,
+      "peak_negative_um": -112.14075854806272,
+      "core_original_preserved": true,
+      "note": "e_vib=A raw-b; preserves core sign/duration/shape, source noise may remain; leading50ms/trailing150ms joins only. Stop includes deceleration and >1s original tail; last150ms taper prevents FFT endpoint wrap."
+    },
+    {
+      "event": "stop",
+      "new_support_s": [
+        8.667,
+        9.999
+      ],
+      "core_s": [
+        8.797,
+        9.457756461197407
+      ],
+      "source_shift_s": -2.2439999999999998,
+      "peak_positive_um": 27.10142998203407,
+      "peak_negative_um": -31.00475383276868,
+      "core_original_preserved": true,
+      "note": "e_vib=A raw-b; preserves core sign/duration/shape, source noise may remain; leading50ms/trailing150ms joins only. Stop includes deceleration and >1s original tail; last150ms taper prevents FFT endpoint wrap."
+    }
+  ]
+}

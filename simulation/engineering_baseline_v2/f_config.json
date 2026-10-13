@@ -1,0 +1,24 @@
+{
+  "seed": 20261010,
+  "bias_scenario": "sampled_once",
+  "joint_tau_s": 0.1,
+  "remaining_tau_s": 0.03,
+  "static_remaining_std_um": 0.5,
+  "motion_rho": -0.21,
+  "joint_input_scale": [
+    1.33914,
+    1.2611,
+    1.32044,
+    1.32776,
+    1.3249,
+    1.33957
+  ],
+  "static_joint_scale": 0.05,
+  "background_mode": "C",
+  "version": "F-B-V1.3-integration-1",
+  "motion_rho_meaning": "mixing coefficient, not generated correlation",
+  "static_joint_scale_basis": "0.05 times C hold static std, NOT moving std",
+  "envelope": "B start smooth 0->1; fwd/turn/return 1; stop smooth 1->0",
+  "new_force_or_torque_clip": false,
+  "notes": "Reuse first F amplitudes without re-calibration. B schedule and n/r retained. Assumed frequency bands/static scale/strong-image-axis mapped to world Y."
+}

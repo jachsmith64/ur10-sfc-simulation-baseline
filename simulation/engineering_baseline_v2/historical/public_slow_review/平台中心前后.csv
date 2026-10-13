@@ -1,0 +1,25 @@
+﻿case_id,group,controller,platform,t0_s,t1_s,n,effective_median_um,physical_median_um,qualification
+old__A0,old,A0,pre_rest,0.85,1.075,226,-22.77985044865649,-22.781983051251007,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__A0,old,A0,outbound,2.226,4.38,2155,-22.602085397893656,-23.179058019517917,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__A0,old,A0,return,5.943,8.667,2725,-20.35438411468471,-17.21911531399334,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__A0,old,A0,post_tail_short,9.95,9.999,50,-20.447947285714974,-20.560657495685696,"Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state."
+new__A0,new,A0,pre_rest,0.85,1.075,226,0.09252200552922751,0.09087136426666476,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__A0,new,A0,outbound,2.226,4.38,2155,-0.21849188813760634,-0.7784247622877327,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__A0,new,A0,return,5.943,8.667,2725,-0.16725308749077072,2.9811399960555374,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__A0,new,A0,post_tail_short,9.95,9.999,50,0.08342098491154193,-0.029271820162213302,"Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state."
+old__Alinear,old,Alinear,pre_rest,0.85,1.075,226,-15.470294164418586,-14.366594378617537,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__Alinear,old,Alinear,outbound,2.226,4.38,2155,-15.263925674635637,-15.078383147709706,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__Alinear,old,Alinear,return,5.943,8.667,2725,-13.771958790653738,-12.150400015398244,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__Alinear,old,Alinear,post_tail_short,9.95,9.999,50,-13.867629548011685,-13.980786871523044,"Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state."
+new__Alinear,new,Alinear,pre_rest,0.85,1.075,226,-0.1356298393595523,0.9688931699169956,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__Alinear,new,Alinear,outbound,2.226,4.38,2155,-0.11221975493302949,0.06623141124428855,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__Alinear,new,Alinear,return,5.943,8.667,2725,-0.1206808473708243,1.471307505940267,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__Alinear,new,Alinear,post_tail_short,9.95,9.999,50,-0.10220181956288599,-0.2153526271475581,"Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state."
+old__ASFC_strong,old,ASFC_strong,pre_rest,0.85,1.075,226,-14.680667331387621,-13.120321924131595,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__ASFC_strong,old,ASFC_strong,outbound,2.226,4.38,2155,-14.860817680512062,-13.389868085827983,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__ASFC_strong,old,ASFC_strong,return,5.943,8.667,2725,-14.448683491707914,-12.383290351331011,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+old__ASFC_strong,old,ASFC_strong,post_tail_short,9.95,9.999,50,-12.858428431766766,-12.990901720646985,"Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state."
+new__ASFC_strong,new,ASFC_strong,pre_rest,0.85,1.075,226,0.6369699748765001,2.1900453024970012,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__ASFC_strong,new,ASFC_strong,outbound,2.226,4.38,2155,0.2937091394816793,1.7453204383954812,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__ASFC_strong,new,ASFC_strong,return,5.943,8.667,2725,-0.7754790891656427,1.26872872466266,Outside cold<0.8s and chosen event supports; median of inherited A0 only.
+new__ASFC_strong,new,ASFC_strong,post_tail_short,9.95,9.999,50,0.9052581634305668,0.7727848745503474,"Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state."

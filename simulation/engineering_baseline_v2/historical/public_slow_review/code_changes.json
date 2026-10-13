@@ -1,0 +1,18 @@
+{
+  "changed_existing": [
+    "position_logging.py",
+    "run_short.py",
+    "sweep.py"
+  ],
+  "added": [
+    "check_slow_review.py",
+    "input_acceptance.py",
+    "pack_slow.py",
+    "run_slow.py",
+    "slow_report.py",
+    "test_input_acceptance.py"
+  ],
+  "execution_change": "One optional frozen position correction added before existing anti-jitter compensation; core controller/dynamics/limits unchanged.",
+  "guard_change": "R026 validates generated and cached upstream results before dependent formal use.",
+  "old_originals_preserved": true
+}

@@ -1,0 +1,47 @@
+{
+  "windows": {
+    "full": [
+      0.0,
+      9.999
+    ],
+    "cold_initial": [
+      0.0,
+      0.8
+    ],
+    "pre_A_start": [
+      0.8,
+      1.2849583981754964
+    ],
+    "start": [
+      1.2849583981754964,
+      1.926
+    ],
+    "outbound_steady": [
+      2.226,
+      4.38
+    ],
+    "turn": [
+      4.58,
+      5.643
+    ],
+    "return_steady": [
+      5.943,
+      8.667
+    ],
+    "deceleration_stop": [
+      8.667,
+      9.999
+    ],
+    "after_cold_aux": [
+      0.8,
+      9.999
+    ]
+  },
+  "std_ddof": 0,
+  "full_statistics_include_cold": true,
+  "curve_mean_subtracted": false,
+  "curve_smoothed": false,
+  "curve_multiplied": false,
+  "public_improvement_not_attributed_to_SFC": true,
+  "offline_residual_diagnostic_not_actual_control": true
+}

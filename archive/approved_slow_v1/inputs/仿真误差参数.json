@@ -1,0 +1,1441 @@
+{
+  "schema": "V4.1 simplified measured-reference background",
+  "units": {
+    "joint_F": "rad",
+    "TCP_F": "m",
+    "time": "s"
+  },
+  "sources": {
+    "B": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\UR10_vibration_pretest\\UR10_SFC_CLEAN",
+    "C": "D:\\UR10_Data\\20261008_190952",
+    "path": "D:\\UR10_Data\\20261010_141616\\path_speed\\path-six"
+  },
+  "statistics": "ddof=0普通去均值标准差；先逐次，再重复等权，再速度等权。不将range用作概率边界",
+  "joints": {
+    "J1": {
+      "bias_center": {
+        "deg": {
+          "value": -0.000465,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J1-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": -8.11373e-06,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J1-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "trial_bias_range_deg": {
+        "value": [
+          -0.004651,
+          0.003462
+        ],
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J1-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J1-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J1-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次均值观测范围，非概率边界"
+      },
+      "trial_bias_range_rad": {
+        "value": [
+          -8.11704e-05,
+          6.04162e-05
+        ],
+        "unit": "rad",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J1-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J1-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J1-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "每个场景可固定选一个偏置，不逐步累计"
+      },
+      "std_between_trial_bias_deg": {
+        "value": 0.002857,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J1-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J1-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J1-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J1-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J1-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J1-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次间偏移，与试次内波动不同"
+      },
+      "static_demeaned_std": {
+        "deg": {
+          "value": 0.001273,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J1-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 2.22209e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J1-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J1-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "dynamic_demeaned_std": {
+        "deg": {
+          "value": 0.001781,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声"
+        },
+        "rad": {
+          "value": 3.10803e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声；deg×π/180"
+        }
+      },
+      "correlation_time": {
+        "value": 0.1,
+        "unit": "s",
+        "source": "假设",
+        "windows": [
+          "path-six-v1-r1:move直线内部窗",
+          "path-six-v1-r2:move直线内部窗",
+          "path-six-v3-r1:move直线内部窗",
+          "path-six-v3-r2:move直线内部窗",
+          "path-six-v5-r1:move直线内部窗"
+        ],
+        "applies": "可调连续有色背景；约0.1s保留粗连续性，不认证固有频率；与速度不强制成比例"
+      }
+    },
+    "J2": {
+      "bias_center": {
+        "deg": {
+          "value": -0.00252,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J2-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": -4.39895e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J2-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "trial_bias_range_deg": {
+        "value": [
+          -0.005157,
+          0.003241
+        ],
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J2-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J2-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J2-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次均值观测范围，非概率边界"
+      },
+      "trial_bias_range_rad": {
+        "value": [
+          -9.00055e-05,
+          5.65577e-05
+        ],
+        "unit": "rad",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J2-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J2-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J2-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "每个场景可固定选一个偏置，不逐步累计"
+      },
+      "std_between_trial_bias_deg": {
+        "value": 0.002224,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J2-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J2-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J2-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J2-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J2-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J2-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次间偏移，与试次内波动不同"
+      },
+      "static_demeaned_std": {
+        "deg": {
+          "value": 0.001459,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J2-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 2.54659e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J2-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J2-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "dynamic_demeaned_std": {
+        "deg": {
+          "value": 0.002791,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声"
+        },
+        "rad": {
+          "value": 4.87169e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声；deg×π/180"
+        }
+      },
+      "correlation_time": {
+        "value": 0.1,
+        "unit": "s",
+        "source": "假设",
+        "windows": [
+          "path-six-v1-r1:move直线内部窗",
+          "path-six-v1-r2:move直线内部窗",
+          "path-six-v3-r1:move直线内部窗",
+          "path-six-v3-r2:move直线内部窗",
+          "path-six-v5-r1:move直线内部窗"
+        ],
+        "applies": "可调连续有色背景；约0.1s保留粗连续性，不认证固有频率；与速度不强制成比例"
+      }
+    },
+    "J3": {
+      "bias_center": {
+        "deg": {
+          "value": 0.00172,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J3-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 3.00264e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J3-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "trial_bias_range_deg": {
+        "value": [
+          -0.003271,
+          0.00444
+        ],
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J3-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J3-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J3-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次均值观测范围，非概率边界"
+      },
+      "trial_bias_range_rad": {
+        "value": [
+          -5.70977e-05,
+          7.74891e-05
+        ],
+        "unit": "rad",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J3-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J3-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J3-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "每个场景可固定选一个偏置，不逐步累计"
+      },
+      "std_between_trial_bias_deg": {
+        "value": 0.00209,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J3-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J3-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J3-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J3-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J3-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J3-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次间偏移，与试次内波动不同"
+      },
+      "static_demeaned_std": {
+        "deg": {
+          "value": 0.001053,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J3-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 1.838e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J3-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J3-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "dynamic_demeaned_std": {
+        "deg": {
+          "value": 0.002993,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声"
+        },
+        "rad": {
+          "value": 5.22434e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声；deg×π/180"
+        }
+      },
+      "correlation_time": {
+        "value": 0.1,
+        "unit": "s",
+        "source": "假设",
+        "windows": [
+          "path-six-v1-r1:move直线内部窗",
+          "path-six-v1-r2:move直线内部窗",
+          "path-six-v3-r1:move直线内部窗",
+          "path-six-v3-r2:move直线内部窗",
+          "path-six-v5-r1:move直线内部窗"
+        ],
+        "applies": "可调连续有色背景；约0.1s保留粗连续性，不认证固有频率；与速度不强制成比例"
+      }
+    },
+    "J4": {
+      "bias_center": {
+        "deg": {
+          "value": -0.000387,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J4-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": -6.74729e-06,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J4-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "trial_bias_range_deg": {
+        "value": [
+          -0.00451,
+          0.003612
+        ],
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J4-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J4-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J4-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次均值观测范围，非概率边界"
+      },
+      "trial_bias_range_rad": {
+        "value": [
+          -7.87082e-05,
+          6.30443e-05
+        ],
+        "unit": "rad",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J4-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J4-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J4-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "每个场景可固定选一个偏置，不逐步累计"
+      },
+      "std_between_trial_bias_deg": {
+        "value": 0.002599,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J4-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J4-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J4-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J4-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J4-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J4-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次间偏移，与试次内波动不同"
+      },
+      "static_demeaned_std": {
+        "deg": {
+          "value": 0.001274,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J4-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 2.22396e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J4-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J4-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "dynamic_demeaned_std": {
+        "deg": {
+          "value": 0.004216,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声"
+        },
+        "rad": {
+          "value": 7.35852e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声；deg×π/180"
+        }
+      },
+      "correlation_time": {
+        "value": 0.1,
+        "unit": "s",
+        "source": "假设",
+        "windows": [
+          "path-six-v1-r1:move直线内部窗",
+          "path-six-v1-r2:move直线内部窗",
+          "path-six-v3-r1:move直线内部窗",
+          "path-six-v3-r2:move直线内部窗",
+          "path-six-v5-r1:move直线内部窗"
+        ],
+        "applies": "可调连续有色背景；约0.1s保留粗连续性，不认证固有频率；与速度不强制成比例"
+      }
+    },
+    "J5": {
+      "bias_center": {
+        "deg": {
+          "value": 3.5e-05,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J5-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 6.09547e-07,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J5-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "trial_bias_range_deg": {
+        "value": [
+          -0.003198,
+          0.002959
+        ],
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J5-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J5-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J5-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次均值观测范围，非概率边界"
+      },
+      "trial_bias_range_rad": {
+        "value": [
+          -5.58074e-05,
+          5.16421e-05
+        ],
+        "unit": "rad",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J5-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J5-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J5-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "每个场景可固定选一个偏置，不逐步累计"
+      },
+      "std_between_trial_bias_deg": {
+        "value": 0.001813,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J5-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J5-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J5-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J5-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J5-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J5-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次间偏移，与试次内波动不同"
+      },
+      "static_demeaned_std": {
+        "deg": {
+          "value": 0.001497,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J5-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 2.61241e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J5-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J5-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "dynamic_demeaned_std": {
+        "deg": {
+          "value": 0.002266,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声"
+        },
+        "rad": {
+          "value": 3.9553e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声；deg×π/180"
+        }
+      },
+      "correlation_time": {
+        "value": 0.1,
+        "unit": "s",
+        "source": "假设",
+        "windows": [
+          "path-six-v1-r1:move直线内部窗",
+          "path-six-v1-r2:move直线内部窗",
+          "path-six-v3-r1:move直线内部窗",
+          "path-six-v3-r2:move直线内部窗",
+          "path-six-v5-r1:move直线内部窗"
+        ],
+        "applies": "可调连续有色背景；约0.1s保留粗连续性，不认证固有频率；与速度不强制成比例"
+      }
+    },
+    "J6": {
+      "bias_center": {
+        "deg": {
+          "value": -0.00044,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J6-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": -7.67119e-06,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J6-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "trial_bias_range_deg": {
+        "value": [
+          -0.005685,
+          0.002157
+        ],
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J6-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J6-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J6-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次均值观测范围，非概率边界"
+      },
+      "trial_bias_range_rad": {
+        "value": [
+          -9.92287e-05,
+          3.76521e-05
+        ],
+        "unit": "rad",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J6-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J6-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J6-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "每个场景可固定选一个偏置，不逐步累计"
+      },
+      "std_between_trial_bias_deg": {
+        "value": 0.002422,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J6-a0p01-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p01-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p01-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p01-d+1-r02-move-to:hold后半段",
+          "pretest-J6-a0p05-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p05-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p05-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p05-d+1-r02-move-to:hold后半段",
+          "pretest-J6-a0p2-d-1-r01-move-to:hold后半段",
+          "pretest-J6-a0p2-d-1-r02-move-to:hold后半段",
+          "pretest-J6-a0p2-d+1-r01-move-to:hold后半段",
+          "pretest-J6-a0p2-d+1-r02-move-to:hold后半段"
+        ],
+        "applies": "试次间偏移，与试次内波动不同"
+      },
+      "static_demeaned_std": {
+        "deg": {
+          "value": 0.001097,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "pretest-J6-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似"
+        },
+        "rad": {
+          "value": 1.9144e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "pretest-J6-a0p01-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p01-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p05-d+1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d-1-r02-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r01-move-to:hold后半段",
+            "pretest-J6-a0p2-d+1-r02-move-to:hold后半段"
+          ],
+          "applies": "当前C姿态的保持窗量级；移用到长轨迹为近似；deg×π/180"
+        }
+      },
+      "dynamic_demeaned_std": {
+        "deg": {
+          "value": 0.002066,
+          "unit": "deg",
+          "source": "实测统计",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声"
+        },
+        "rad": {
+          "value": 3.60588e-05,
+          "unit": "rad",
+          "source": "近似换算",
+          "windows": [
+            "path-six-v1-r1:move直线内部窗",
+            "path-six-v1-r2:move直线内部窗",
+            "path-six-v3-r1:move直线内部窗",
+            "path-six-v3-r2:move直线内部窗",
+            "path-six-v5-r1:move直线内部窗"
+          ],
+          "applies": "默认1–5 mm/s常数；含直线窗内跟随变化，不能等同纯噪声；deg×π/180"
+        }
+      },
+      "correlation_time": {
+        "value": 0.1,
+        "unit": "s",
+        "source": "假设",
+        "windows": [
+          "path-six-v1-r1:move直线内部窗",
+          "path-six-v1-r2:move直线内部窗",
+          "path-six-v3-r1:move直线内部窗",
+          "path-six-v3-r2:move直线内部窗",
+          "path-six-v5-r1:move直线内部窗"
+        ],
+        "applies": "可调连续有色背景；约0.1s保留粗连续性，不认证固有频率；与速度不强制成比例"
+      }
+    }
+  },
+  "remaining_endpoint": {
+    "observable": "图像强观察方向，主要沿本批机器人基坐标+Z；并非三维机械真值",
+    "signed_center": {
+      "value": -0.14,
+      "unit": "um",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "图像减actual_TCP固定投影，再按强方向尺度换算；拟合数据自身偏置不可解释为绝对精度"
+    },
+    "demeaned_std": {
+      "value": 11.9,
+      "unit": "um",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "默认1–5 mm/s常数，约12 μm；速度差异证据不足"
+    },
+    "demeaned_std_m": {
+      "value": 1.186e-05,
+      "unit": "m",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "um×1e-6；反馈/评价统一"
+    },
+    "observed_range": {
+      "value": [
+        -39.5,
+        38.3
+      ],
+      "unit": "um",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "非峰值边界、非置信区间"
+    },
+    "correlation_time": {
+      "value": 0.03,
+      "unit": "s",
+      "source": "假设",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "连续有色背景可调默认；测量、几何、未校准时延也在剩余量内"
+    },
+    "mapping": {
+      "coefficients": [
+        [
+          -0.03936982900494084,
+          1.0679746165533943
+        ],
+        [
+          10.841168367308299,
+          -0.058112544471221765
+        ],
+        [
+          1067.521055705569,
+          707.2425271566923
+        ]
+      ],
+      "strong_image_axis": [
+        0.9999833306778093,
+        -0.005773938561780813
+      ],
+      "strong_robot_YZ_axis": [
+        -0.004200150673756351,
+        0.9999911793282565
+      ],
+      "strong_px_per_mm": 10.841418819237942,
+      "weak_px_per_mm": 1.067738913341019
+    },
+    "weak_direction": "弱方向已观察但尺度弱约1.07px/mm，保留px诊断，不作为主机械参数",
+    "unobserved": "三维X及完整姿态未独立测量；仿真若关闭这些分量是场景假设，不表示实测为零",
+    "transfer_to_B_Y": {
+      "value": true,
+      "unit": "scenario",
+      "source": "假设",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "B仅控制世界Y；将强方向量级移到B的任务法向Y是等效情景。禁止声称从实测标定出B世界Y误差。"
+    },
+    "encoder_remaining_correlation": {
+      "value": -0.21,
+      "unit": "dimensionless",
+      "source": "实测统计",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "速度等权的局部相关系数；两层不可默认为独立；5 mm/s仅一次，移用于F为近似"
+    },
+    "correlated_background_rule": {
+      "value": "r_noise = sigma_r * (rho*normalized_joint_background_TCP_fluctuation + sqrt(1-rho^2)*eta)",
+      "unit": "dimensionless",
+      "source": "假设",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "eta为连续单位std独立背景；相关项仅用生成的关节背景在名义姿态的运动学投影，不用含控制响应的全量q或任务误差。联合量级需基准核对；不重放完整实际运动"
+    }
+  },
+  "corner_background": {
+    "kind": "每次转弯触发的背景模板，不估概率",
+    "layer": "joint",
+    "additional_center_deg": {
+      "value": [
+        0.001216,
+        -0.000951,
+        0.005026,
+        0.00088,
+        -3.8e-05,
+        -0.004228
+      ],
+      "unit": "deg",
+      "source": "实测统计",
+      "windows": [
+        "path-six-v3-r1:corner minus 第一内部直线",
+        "path-six-v3-r2:corner minus 第一内部直线"
+      ],
+      "applies": "相对此前直线的均值差；6关节依次J1..J6"
+    },
+    "additional_center_rad": {
+      "value": [
+        2.12305e-05,
+        -1.65963e-05,
+        8.77143e-05,
+        1.5357e-05,
+        -6.5969e-07,
+        -7.37853e-05
+      ],
+      "unit": "rad",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v3-r1:corner minus 第一内部直线",
+        "path-six-v3-r2:corner minus 第一内部直线"
+      ],
+      "applies": "简化平滑包络，与实际姿态和方向相关"
+    },
+    "duration": {
+      "value": 1.35,
+      "unit": "s",
+      "source": "实测统计",
+      "windows": [
+        "path-six-v3-r1:corner minus 第一内部直线",
+        "path-six-v3-r2:corner minus 第一内部直线"
+      ],
+      "applies": "3 mm/s局部转弯窗口时间，不是精确轨迹圆弧用时"
+    },
+    "duration_speed_rule": {
+      "value": "duration_3mm_s*3/v_setting",
+      "unit": "s",
+      "source": "假设",
+      "windows": [
+        "path-six-v3-r1:corner minus 第一内部直线",
+        "path-six-v3-r2:corner minus 第一内部直线"
+      ],
+      "applies": "限1–5 mm/s和同几何场景；可按名义转弯进程直接触发"
+    },
+    "shape": {
+      "value": "0.5*(1-cos(2*pi*u)), u in [0,1]; peak=2*additional_center",
+      "unit": "dimensionless",
+      "source": "假设",
+      "windows": [
+        "path-six-v3-r1:corner minus 第一内部直线",
+        "path-six-v3-r2:corner minus 第一内部直线"
+      ],
+      "applies": "平均包络约等于均值差，离开转弯后恢复；不叠加完整实测q曲线"
+    },
+    "residual_turn_rule": "保留约12 μm普通剩余量，不另加完整转弯视觉总误差；第三直线偏移留诊断，不宣称消失"
+  },
+  "events": [
+    {
+      "name": "回程延后恢复",
+      "layer": "joint",
+      "joint": "J5",
+      "amplitude_deg": {
+        "value": -0.028,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J5-a0p05-d-1-r02-move-to:post_motion"
+        ],
+        "applies": "额外幅值，按post窗口最负actual-target减普通中心；归关节层"
+      },
+      "amplitude_rad": {
+        "value": -0.00048553,
+        "unit": "rad",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J5-a0p05-d-1-r02-move-to:post_motion"
+        ],
+        "applies": "deg×π/180"
+      },
+      "duration": {
+        "value": 0.3,
+        "unit": "s",
+        "source": "近似换算",
+        "windows": [
+          "pretest-J5-a0p05-d-1-r02-move-to:post_motion"
+        ],
+        "applies": "仅约0.3s post观测窗，不能推断长时间永久不闭合"
+      },
+      "shape": {
+        "value": "signed amplitude * (1-u), u in [0,1]",
+        "unit": "dimensionless",
+        "source": "假设",
+        "windows": [
+          "pretest-J5-a0p05-d-1-r02-move-to:post_motion"
+        ],
+        "applies": "命令回程结束后触发一段衰减斜坡；不留下新平台；不估发生概率"
+      },
+      "terminal_observed_delta_deg": {
+        "value": -0.005346,
+        "unit": "deg",
+        "source": "实测统计",
+        "windows": [
+          "pretest-J5-a0p05-d-1-r02-move-to:post最后0.1s"
+        ],
+        "applies": "窗口仍变化；不是最终稳态"
+      },
+      "residual_duplicate": false
+    }
+  ],
+  "selection_rules": {
+    "default": "C有符号偏差中心常数；静态/运动切换各自标准差；无可靠单调速度证据，普通幅值不拟合速度",
+    "noise": "连续OU或平滑多正弦情景；随机种子固定，各算法共用。tau为假设，不逐帧独立抽样，不按步累加固定偏置",
+    "dynamic": "moving std replaces static std; corner center is added once; event once; no replay of actual trajectory",
+    "return_phase": "所有回程1 mm/s；按return单独统计，不是3/5 mm/s重复",
+    "model": "B原Fd冻结背景在新C背景方案中默认关闭；不在本轮运行B/F或承诺SFC改善"
+  }
+}

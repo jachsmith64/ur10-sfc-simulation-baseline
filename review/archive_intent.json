@@ -1,0 +1,10 @@
+{
+  "source_zip_sha256": "9c7ad2986f1ced13b70058e7ade38ae64e9cef22cc26763df5b75e1297b5071a",
+  "repository": "https://github.com/jachsmith64/ur10-sfc-simulation-baseline",
+  "branch": "codex/archive/f-slow-correction-20261012",
+  "tag": "f-slow-correction-baseline-20261012",
+  "new_integrations": 0,
+  "robot_actions": 0,
+  "remote_status": "Pending; mark uploaded only after branch/tag/tree/content verification",
+  "reason_for_private_repository": "Existing UR10 remote mixes historical A/B; APF repository is a different simulation. No unique current F remote/archive. Dedicated private target follows the handoff fallback."
+}

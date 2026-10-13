@@ -1,0 +1,15 @@
+{
+  "A0_validation_window_s": [
+    0.8,
+    9.999
+  ],
+  "validation_RMSE_um": 2.0942887609806453,
+  "full_trajectory_with_cold_RMSE_um": 6.336490011012171,
+  "full_relative_RMS_error": 0.2745369514020281,
+  "cold_initial_peak_t_s": 0.037,
+  "cold_initial_peak_abs_um": 77.78853370829508,
+  "first800ms_Fd_abs_peak_N": 0.042117183143092415,
+  "last100ms_Fd_abs_peak_N": 0.29659264060346935,
+  "last100ms_response_abs_peak_um": 6.916155785491318,
+  "interpretation": "A0 reconstruction gate separately excludes inherited0-0.8s cold initialization. All full performance statistics and every figure retain that period; no state/warmup change. Inverse padding suppresses wrap, small early/tail force leakage remains and is measured here."
+}

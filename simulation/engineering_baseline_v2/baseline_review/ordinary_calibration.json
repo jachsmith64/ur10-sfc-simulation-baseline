@@ -1,0 +1,17 @@
+{
+  "g": 0.6634406421952753,
+  "A_target_P95_um": 50.24077905063275,
+  "S0_P95_um": 75.72761729578366,
+  "S1_P95_um": 50.40959645544809,
+  "history": [
+    {
+      "g": 0.6634406421952753,
+      "output_P95_um": 50.40959645544809,
+      "log": "outputs\\full_1ms\\calibration_1__A0.npz"
+    }
+  ],
+  "definition": "Equal average of P95(abs raw effective Y error) in outbound and return steady phases; no output recentering.",
+  "affects_fixed_bias": true,
+  "controller_parameters_unchanged": true,
+  "check_tolerance_relative": 0.1
+}

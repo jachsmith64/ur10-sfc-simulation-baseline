@@ -1,0 +1,4 @@
+﻿event,old_local_peak_um,new_local_peak_um,relative_peak_change,diagnostic_centered_shape_correlation,old_threshold_occupancy_s,new_threshold_occupancy_s,nominal_event_target_and_force_unchanged,note
+start,102.6142224181681,102.47730080267803,-0.001334333704075541,0.9999987866104552,0.617,0.617,True,Local median and correlation only diagnose shape; plotted outputs stay raw. Occupancy is not a physical event duration identification.
+turn,121.41339344634572,122.86169108163824,0.011928648019648103,0.9999377229704431,0.876,0.876,True,Local median and correlation only diagnose shape; plotted outputs stay raw. Occupancy is not a physical event duration identification.
+stop,53.79457079894567,53.73178602653684,-0.001167120984076342,0.9999955730835774,1.095,1.091,True,Local median and correlation only diagnose shape; plotted outputs stay raw. Occupancy is not a physical event duration identification.

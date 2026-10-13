@@ -1,0 +1,10 @@
+{
+  "pass_all": true,
+  "cases": 15,
+  "full_1ms_rows": 150000,
+  "phase_channel_metric_checks": 240,
+  "max_physical_plus_remaining_residual_um": 1.3884005056752358e-11,
+  "logical_frozen_input_ids_recomputed_without_simulator": true,
+  "requires_only_python_standard_library": true,
+  "images_or_meshes_required": false
+}

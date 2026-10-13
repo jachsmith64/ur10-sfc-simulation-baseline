@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><title>F预定慢纠偏</title><style>body{font-family:Microsoft YaHei,sans-serif;max-width:1100px;margin:28px auto;background:#f7f7f7;color:#222}section{background:white;padding:16px;margin:20px 0}img{width:100%}a{color:#1268a8}table{border-collapse:collapse}td,th{padding:8px;border:1px solid #bbb}</style>
+<h1>共同离线预定慢纠偏 · 当前工况抗抖对照</h1><p>3条新运行；原输入全部保留；先A0构造，再冻结共同位置纠偏，最后比较三方案。主图真实重新积分、未减均值。</p>
+<p><a href="简报.md">简报</a> · <a href="review/平台中心前后.csv">平台中心</a> · <a href="review/新旧分段指标.csv">分段指标</a> · <a href="review/抗抖代价_公共位置代价分列.csv">代价</a></p>
+<p>停后仅最后50ms短代表，不证明长期稳定。离线非因果假设不是在线漂移算法；初始非零纠偏及冷瞬态已保留。</p>
+<section><h2>physical Y同口径核对（全程，含冷初始化）</h2><table><tr><th>方案</th><th>标准差 μm</th><th>峰峰 μm</th><th>均值 μm</th></tr>
+<tr><td>无附加控制</td><td>28.46</td><td>199.80</td><td>1.33</td></tr>
+<tr><td>原线性</td><td>19.85</td><td>140.62</td><td>0.88</td></tr>
+<tr><td>强SFC</td><td>16.58</td><td>119.26</td><td>0.98</td></tr>
+</table><p>原始physical Y与effective Y分开统计；源头remaining及导数保留。</p></section>
+<section><img src="outputs/figures/03_新三方案_完整原始Y.png"></section>
+<section><img src="outputs/figures/01_旧A0与慢中心_诊断.png"></section>
+<section><img src="outputs/figures/02_公共预定纠偏及速度.png"></section>
+<section><img src="outputs/figures/04_新旧A0原始对照.png"></section>
+<section><img src="outputs/figures/05_去程沿程位置与原始Y.png"></section>
+<section><img src="outputs/figures/06_start_原始局部.png"></section>
+<section><img src="outputs/figures/06_turn_原始局部.png"></section>

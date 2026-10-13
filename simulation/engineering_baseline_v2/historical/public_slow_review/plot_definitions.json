@@ -1,0 +1,10 @@
+{
+  "global_y_limits_um": [
+    -136.65765815672248,
+    116.68600969654054
+  ],
+  "all_raw_comparison_axes_same": true,
+  "offline_residual_only_diagnostic": true,
+  "raw_case_curve_keys": "effective_e_um",
+  "no_curve_recenter_smooth_or_rescale": true
+}

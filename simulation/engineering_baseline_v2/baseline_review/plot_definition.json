@@ -1,0 +1,12 @@
+{
+  "raw_channel": "effective_e_um",
+  "same_full_and_local_y_limits_um": [
+    -148.07866234154866,
+    120.93386432769248
+  ],
+  "mean_subtracted": false,
+  "output_smoothed": false,
+  "output_multiplied": false,
+  "full_1ms_samples": true,
+  "cold_initialized_region_shown": true
+}

@@ -1,0 +1,83 @@
+{
+  "common_baseline_um": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "common_baseline_um"
+    ]
+  },
+  "common_delta_y_m": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "common_delta_y_m"
+    ]
+  },
+  "common_delta_y_dot_m_s": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "common_delta_y_dot_m_s"
+    ]
+  },
+  "common_delta_y_ddot_m_s2": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "common_delta_y_ddot_m_s2"
+    ]
+  },
+  "common_delta_q": {
+    "dtype": "float64",
+    "shape": [
+      10000,
+      6
+    ],
+    "columns": [
+      "common_delta_q_J1",
+      "common_delta_q_J2",
+      "common_delta_q_J3",
+      "common_delta_q_J4",
+      "common_delta_q_J5",
+      "common_delta_q_J6"
+    ]
+  },
+  "common_delta_q_dot": {
+    "dtype": "float64",
+    "shape": [
+      10000,
+      6
+    ],
+    "columns": [
+      "common_delta_q_dot_J1",
+      "common_delta_q_dot_J2",
+      "common_delta_q_dot_J3",
+      "common_delta_q_dot_J4",
+      "common_delta_q_dot_J5",
+      "common_delta_q_dot_J6"
+    ]
+  },
+  "common_delta_q_ddot": {
+    "dtype": "float64",
+    "shape": [
+      10000,
+      6
+    ],
+    "columns": [
+      "common_delta_q_ddot_J1",
+      "common_delta_q_ddot_J2",
+      "common_delta_q_ddot_J3",
+      "common_delta_q_ddot_J4",
+      "common_delta_q_ddot_J5",
+      "common_delta_q_ddot_J6"
+    ]
+  }
+}

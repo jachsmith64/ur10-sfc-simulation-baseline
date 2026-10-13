@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "baseline_derivative_error_um_s": 2.8241275984441927e-10,
+  "baseline_second_derivative_error_um_s2": 1.5195196212403062e-09,
+  "C2_endpoint_continuity": true,
+  "static_map_only": true,
+  "max_adjacent_common_command_step_rad": 3.8106070848327954e-09,
+  "initial_jump_is_separate_from_analytic_derivative": true,
+  "initial_common_position_step_rad": [
+    -3.219320907794433e-05,
+    -8.647589970272895e-06,
+    8.015760069498746e-06,
+    3.638287178624472e-06,
+    -5.343429757969549e-06,
+    1.5089751126870308e-21
+  ]
+}

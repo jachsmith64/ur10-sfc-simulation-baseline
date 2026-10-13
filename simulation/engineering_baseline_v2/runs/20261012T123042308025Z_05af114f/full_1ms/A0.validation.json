@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "samples": 10000,
+  "case_id": "A0",
+  "run_id": "20261012T123042308025Z_05af114f",
+  "data_sha256": "3f9458ac5fe2b64450b3c0aadc248752575e683fc1c48ef6ae2b53ebd40dfd5a",
+  "logical_arrays_sha256": "3764ec65059082f466a68487eead439c860595c1cef08d9d32225e8c3173b432",
+  "saturation_entries": {
+    "ctrl_saturation": 0,
+    "force_saturation": 0,
+    "joint_saturation": 0
+  }
+}

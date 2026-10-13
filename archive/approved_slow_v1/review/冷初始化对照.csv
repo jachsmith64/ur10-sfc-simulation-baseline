@@ -1,0 +1,7 @@
+﻿case_id,peak_t_s,peak_signed_um,is_A_start,public_initial_position_step
+old__A0,0.037,-77.78934632673983,False,False
+new__A0,0.035,-71.56365836896717,False,True
+old__Alinear,0.034,-55.800233514008426,False,False
+new__Alinear,0.033,-51.48229551876771,False,True
+old__ASFC_strong,0.036000000000000004,-25.254690488335505,False,False
+new__ASFC_strong,0.034,-23.33632521542284,False,True

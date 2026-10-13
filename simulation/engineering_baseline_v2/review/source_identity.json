@@ -1,0 +1,11 @@
+{
+  "source_root": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\F组_预定慢漂移补偿_20261012",
+  "source_version": "F10-PRESCHEDULED-SLOW-v1",
+  "source_freeze_sha256": "4179a4581375ebbf1de2629abe550d37752287ea78f3d313346cd449f27198a0",
+  "source_shared_input_id": "d2489c4ed0406761079ce55fc37c0a728bd92c071bad00acede316b32d892715",
+  "all_accepted_inputs_preserved": true,
+  "legacy_results_in": "historical/accepted_full_1ms",
+  "candidate_name": "F组理想执行基线_工程修复候选",
+  "new_execution_error_model": false,
+  "no_remote_publish": true
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "cases": 6,
+  "full_1ms_case_rows": 60000,
+  "new_integrations": 3,
+  "budget": 6,
+  "metric_checks": 108,
+  "event_checks": 36,
+  "max_physical_plus_remaining_residual_um": 1.3882228699912957e-11,
+  "source_and_public_input_ids_rebuilt": true,
+  "public_baseline_mapping_derivatives_recomputed": true,
+  "actual_final_commands_checked": true,
+  "requires_only_python_standard_library": true
+}

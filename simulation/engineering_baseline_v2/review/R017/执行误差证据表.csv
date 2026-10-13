@@ -1,0 +1,6 @@
+﻿phenomenon,source,window,current_coverage,missing_relation,constraints
+单关节微动的内部目标—实际角差、保持偏差与动作波动,D:/UR10_Data/20261008_190952/segments/pretest-*/capture_metadata.json；robot_states.csv既有capture提取,72试次，0.01/0.05/0.2deg，正负各2次；pre/move/hold后半/return/post,保持偏置/静态统计已入冻结六关节背景；本次微动动作差另列，当前动态std来自补测直线内窗；MuJoCo也有伺服跟随,总误差无法独立拆出补偿专属执行误差；目标是RTDE内部目标，不是每1ms外部补偿指令,可约束当前姿态/接口下观测量级与重复性；不能辨识1ms小补偿Kp/Kd、死区或回差
+弯曲往返的关节/TCP目标—实际及实际速度,D:/UR10_Data/20261010_141616/path_speed/path-six/*/matched_samples.csv,5个analyzed实测，1/3mm/s各2次、5mm/s1次；按有效同窗且RTDE时间去重,路径动作角差参与原动态背景量级；当前伺服含惯性/阻尼/耦合,moveL整路径不是总目标上每1ms叠加6关节微纠偏；姿态/轨迹不同，控制器内部目标≠外部发送流,可约束该路径下内部目标跟随量级/速度，不能移植为小补偿传递函数或精确执行增益
+视觉—编码器局部投影剩余,C组量化_V4.1_20261010/逐次明细/C逐次统计.json；补测matched_samples及path_report.py,主试次固定局部映射；补测host最近邻≤20ms有效对,已压缩进remaining等效输出项并冻结，频率/相关生成有假设,含相机、时间与二维投影影响，非纯机械柔性或补偿误差；A时间问题不推广成全部C无效,可描述投影观测，不能独立标定三维TCP或另加同样末端噪声
+tau/Kp同状态执行器增量几乎精确,position_execution.py；本轮full_1ms有符号tau_requested/qfrc_actuator/base_qfrc_actuator/tau_realized_increment,两批10秒1ms无饱和基线,已知同一仿射执行器在同一状态下增量相符；真实q需通过动力学推进,不能证明真实CB3小纠偏准确；实际q−final_ctrl是总跟踪差，不是补偿独有差,只验证模型内代数适配；未由现有C资料辨识真实小补偿执行关系
+公共慢纠偏幅值、强SFC快速换向与更新周期,review/R017/当前补偿与C覆盖关系.csv,本轮公共最大单关节约0.001845deg；全部实际值逐关节列出，另列初始阶跃,总位置目标共享名义伺服与机械动力学；原背景保持,多数公共量小于C最小0.01deg；部分抗抖峰落在C范围也不等于频率/同时多轴/更新周期覆盖,1ms外部命令下执行误差不能从8ms内部目标采样、moveJ/moveL重复动作直接辨识

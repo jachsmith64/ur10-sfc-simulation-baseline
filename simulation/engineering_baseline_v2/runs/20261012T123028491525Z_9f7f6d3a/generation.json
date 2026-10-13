@@ -1,0 +1,329 @@
+{
+  "version": "F10-IDEAL-EXECUTION-ENGINEERING-CANDIDATE-v2",
+  "generation_id": "cb03fec5b03103c4fe61f132ba0bd7bbb0442b88eee79bae67a87967078958aa",
+  "files": {
+    "analysis.py": {
+      "bytes": 24608,
+      "sha256": "5d40e17bc7e7acd4a11292e090c87229b7ff6d9e1a1f5f46125baaf8e767b7cb"
+    },
+    "assets_ur10e/assets/base_0.obj": {
+      "bytes": 593901,
+      "sha256": "b1e061f76549c4624a1b02a318f3f89abf433bacf8db87df4bc78600bf638891"
+    },
+    "assets_ur10e/assets/base_1.obj": {
+      "bytes": 674883,
+      "sha256": "b2f4490c8ff87b96e3aefd8213aa099b1a670148c91015df30a41a18f8711077"
+    },
+    "assets_ur10e/assets/forearm_0.obj": {
+      "bytes": 3136795,
+      "sha256": "ef05ffb2e6a09328fead79fbae4d410bb793204783b51088d7b055e1611a734c"
+    },
+    "assets_ur10e/assets/forearm_1.obj": {
+      "bytes": 1185944,
+      "sha256": "c973553e7c12433f6f127f82ebd4ba374969076dfc316d2b64f6cad8bbdef3e3"
+    },
+    "assets_ur10e/assets/forearm_2.obj": {
+      "bytes": 308758,
+      "sha256": "52e02d8be43c41ae1555ff8449fd8b8f2c74b9a3e875942942fdc48f239dbb7d"
+    },
+    "assets_ur10e/assets/forearm_3.obj": {
+      "bytes": 118019,
+      "sha256": "31de39bff4cf4f50445ccb11757a92fa4cdc3480e7040d93fc436169fad88512"
+    },
+    "assets_ur10e/assets/shoulder_0.obj": {
+      "bytes": 3585906,
+      "sha256": "1d1e3aa2be2547f8a78e7e859ba56b2d79dd82ddb3814fd74fdc8c503fcfdf88"
+    },
+    "assets_ur10e/assets/shoulder_1.obj": {
+      "bytes": 567609,
+      "sha256": "8c30affd9055c9dcd9fdc512fe90e5c38ed27f0e694405e087a7f161145fb2fb"
+    },
+    "assets_ur10e/assets/shoulder_2.obj": {
+      "bytes": 3792111,
+      "sha256": "6489b10352f0bf4eb06cbe23dcced4d2166e99286a52e4aa7b5c66ef1b9cdc51"
+    },
+    "assets_ur10e/assets/upperarm_0.obj": {
+      "bytes": 1005546,
+      "sha256": "53da85c35182317d322643e9ce3d5060f0285cf73b4017683f2d6053fc4772ec"
+    },
+    "assets_ur10e/assets/upperarm_1.obj": {
+      "bytes": 4025412,
+      "sha256": "b375f3dc3af32111cffba49e369a61b98004b53af9130bc3947b04c4c13a2f76"
+    },
+    "assets_ur10e/assets/upperarm_2.obj": {
+      "bytes": 5687950,
+      "sha256": "b5fdf68606eff08425ab8ff581771bfa047f6a6bff873b661ab8b11b06348af2"
+    },
+    "assets_ur10e/assets/upperarm_3.obj": {
+      "bytes": 133646,
+      "sha256": "42c853cafcadf17273389ae1c1adf6f61bd656d394f8e79dbbef045feed8decd"
+    },
+    "assets_ur10e/assets/wrist1_0.obj": {
+      "bytes": 575606,
+      "sha256": "af471f7a9146acc809edcec1ca8b9320a5f82e9ace13721c75d3a30f4d87fe7a"
+    },
+    "assets_ur10e/assets/wrist1_1.obj": {
+      "bytes": 3435406,
+      "sha256": "20ac04504ab2f29f2bf1cd3f54365ada3c2e197e6a8a69e0284b5881621cd2c2"
+    },
+    "assets_ur10e/assets/wrist1_2.obj": {
+      "bytes": 247828,
+      "sha256": "10d5ce19fead54d498eca570401b400dd50446a08c0f9b4dcf8bc054d33c717d"
+    },
+    "assets_ur10e/assets/wrist2_0.obj": {
+      "bytes": 890873,
+      "sha256": "06fee5fab4dfe411884bc4b088951ef89fa77a4f086fd289daaf1a9ba23f5223"
+    },
+    "assets_ur10e/assets/wrist2_1.obj": {
+      "bytes": 3715113,
+      "sha256": "df67f86532ccb11da7a75276bc3f467e52ecdf44a14bd80c60eefb5399a99c1e"
+    },
+    "assets_ur10e/assets/wrist2_2.obj": {
+      "bytes": 275684,
+      "sha256": "92ed9c1f6f9fc6cd4c81bf5a59c98bb90fe57229e4b0fc83a22bde41704d2509"
+    },
+    "assets_ur10e/assets/wrist3.obj": {
+      "bytes": 237170,
+      "sha256": "5fc54a2ef7a41b587a4161c0295a0dad2d6583d2d83dbf9ff7f18b72982deb81"
+    },
+    "assets_ur10e/scene.xml": {
+      "bytes": 888,
+      "sha256": "e47dc8e4089ee52930cece593abd5cf8f99d34a68aeb7a2d77917ff0e891c688"
+    },
+    "assets_ur10e/ur10e.xml": {
+      "bytes": 7083,
+      "sha256": "0767e3d3ec93c3db811fd411dc3ae7c78e26b5aae93cc87abd6e7ccd178086b0"
+    },
+    "background.py": {
+      "bytes": 4018,
+      "sha256": "12187db4d5dc915bbbd99a7a986876116c9669d8bb2a325deeed9ae49bbc1c0b"
+    },
+    "baseline_review/frozen_version.json": {
+      "bytes": 2150,
+      "sha256": "88c2858cea251ce21ae04d64aa1a37b27448a40fc9cc652b3fb89ead72d2b120"
+    },
+    "batch_identity.py": {
+      "bytes": 3503,
+      "sha256": "33e8446c89c87c498b983bd016121f893184863183c816965f664b7812d5bb89"
+    },
+    "check_review.py": {
+      "bytes": 4828,
+      "sha256": "f9fa25caf41775981fabd4ebccb8102b354d3dacdcf42210e0671b781358e795"
+    },
+    "check_slow_review.py": {
+      "bytes": 7591,
+      "sha256": "e3c9b81b3022281a2bd33fd7cb1e7cf5315c2da2b3567c71cde3893ef4c59295"
+    },
+    "config.py": {
+      "bytes": 14478,
+      "sha256": "ed485eb5d1405548ca6933956018b9de90213a5a49bcdcad5eea0958dc57e49e"
+    },
+    "controller.py": {
+      "bytes": 4114,
+      "sha256": "06dfaf313f5cc15e6ef5f4800bc08dfe2a9d7fb834a707bd06fd1432faa4dccd"
+    },
+    "disturbance.py": {
+      "bytes": 34061,
+      "sha256": "54c61908edeeea35051876c4932454949d6945b73e2ed7703d424580d25fb4f6"
+    },
+    "drift.py": {
+      "bytes": 25096,
+      "sha256": "dfcc60488efb18be0344f4e3f73f19bdf4d1d9a589837a2d5dabb2fdec9cdf0a"
+    },
+    "f_config.json": {
+      "bytes": 814,
+      "sha256": "5e5bd27a27ad7688ceac9a4a33bbb1fa514cf38384c6bd02c4fdf99fa3e35660"
+    },
+    "f_measurement.py": {
+      "bytes": 692,
+      "sha256": "e81485676984f74f27e870cb485990eb23b8987dc384b6ee7df88c7a347aaeb8"
+    },
+    "historical/public_slow_review/baseline_plan.json": {
+      "bytes": 4051,
+      "sha256": "183c8ea77c91cea50b08d0747e67eb0cb6afffacee7dc1d9f76081b990f81f8f"
+    },
+    "historical/public_slow_review/event_reconstruction.json": {
+      "bytes": 3164,
+      "sha256": "b6780c155e94310f27d7c215d7aa2c916836bd2c8abf5b1ee4bcb17098648f5e"
+    },
+    "historical/public_slow_review/event_targets.json": {
+      "bytes": 1627,
+      "sha256": "67932573e4eb24212b1a7493d757d744f93b2a15ed45bf53a27976cf4c383394"
+    },
+    "historical/public_slow_review/metric_windows.json": {
+      "bytes": 799,
+      "sha256": "96c58f757f87216e3b3f6f294200c3be371ee6560c327bdfaa613f8a63db1272"
+    },
+    "historical/public_slow_review/ordinary_calibration.json": {
+      "bytes": 550,
+      "sha256": "e868da298a24ae8c92367d265c3aba44ed5980fdaaddd9a3ec256efe6b45a42f"
+    },
+    "historical/public_slow_review/public_correction_acceptance.json": {
+      "bytes": 1377,
+      "sha256": "6d00bd978018dbe2aa09fab6f6cd7e9797a3316ffbf7fe65e2b62bf030eebba5"
+    },
+    "historical/public_slow_review/slow_frozen_version.json": {
+      "bytes": 1805,
+      "sha256": "4179a4581375ebbf1de2629abe550d37752287ea78f3d313346cd449f27198a0"
+    },
+    "historical/public_slow_review/static_mapping.json": {
+      "bytes": 8439,
+      "sha256": "519589c3743d197141ffe5628246e4db47c60fc0330b3a1dc8384c712b0602f7"
+    },
+    "historical/public_slow_review/trajectory.json": {
+      "bytes": 2117,
+      "sha256": "8d547635b0797973c8042a4cd5b0aed86383ea3cd8e6a58b71ab468259a3ce1e"
+    },
+    "input_acceptance.py": {
+      "bytes": 2401,
+      "sha256": "33591e64db0d7c3128ef69e499ae5f7a5e5dc4d16f1c9a24d229670aed7b115e"
+    },
+    "inputs/10秒轨迹与事件目标.csv": {
+      "bytes": 462760,
+      "sha256": "898a0ed67e71881238ef06dbd514e185ae3bc075900d2f637618afd1e499fd9c"
+    },
+    "inputs/event_candidates/Fd_event_1.csv": {
+      "bytes": 390588,
+      "sha256": "21e79ac207c85924b64cfee628390f7f5483ec975f075ef94ace69a6a5385796"
+    },
+    "inputs/Fd_event.csv": {
+      "bytes": 390588,
+      "sha256": "21e79ac207c85924b64cfee628390f7f5483ec975f075ef94ace69a6a5385796"
+    },
+    "inputs/Fd_zero.csv": {
+      "bytes": 198737,
+      "sha256": "121954876166443b2a81cdba19f9ec1c393d05275f0a87b8d54bdb33df27fde7"
+    },
+    "inputs/fixed_position_test_parameters.json": {
+      "bytes": 2019,
+      "sha256": "763d653cc546ad494e3531887e5bde8caf8a0164307ffd34396eb8c47af195f0"
+    },
+    "inputs/frozen_common.npz": {
+      "bytes": 1570305,
+      "sha256": "6edc39e5eb0ceb088f03531a66b2b7cbb8d573e501996ed08d7c14adbadde31a"
+    },
+    "inputs/frozen_common_full_1ms.csv": {
+      "bytes": 5282027,
+      "sha256": "d1032bdb0079248cfc8e056e03fef6cb6b5f05724668c8d6604b55c3b4dee1f2"
+    },
+    "inputs/old62s_common.npz": {
+      "bytes": 9651981,
+      "sha256": "25292816c7d2afc10c010cdf8becac0ee73010c98507759e118f6a7459c0e1f1"
+    },
+    "inputs/public_slow_correction.npz": {
+      "bytes": 576665,
+      "sha256": "df865a2da7416b1793d6d1ec45738986561998311e4dd8622b1177841a53a535"
+    },
+    "inputs/public_slow_full_1ms.csv": {
+      "bytes": 3534391,
+      "sha256": "4162534f4e5e9b29ae44d53c21bd2c81843c45549806df9af59647a054fb0cc0"
+    },
+    "inputs/仿真误差参数.json": {
+      "bytes": 62753,
+      "sha256": "5d97806644fed1daaa2f0b57c41f573049f1f41ca7810a4544f156cb87cbfa7c"
+    },
+    "inputs/首次F配置_只读追溯.json": {
+      "bytes": 1210,
+      "sha256": "05300b465e61ca72b876f8cbd84dc87d4a0fcedc4ffecc4048a7ea0c46fb02ed"
+    },
+    "pack_review.py": {
+      "bytes": 7294,
+      "sha256": "f7a91e9e65d4c4824527317fa8670cf4481e6ab7b64f05d0e3f992e03cec119e"
+    },
+    "pack_slow.py": {
+      "bytes": 7456,
+      "sha256": "852009e69a54ce9283f0d2dad46c1aed83ebea9a752613a73649e2efb9edb4d8"
+    },
+    "position_execution.py": {
+      "bytes": 5412,
+      "sha256": "58ab070cd10d65a12d4be65a3fcab99f27311bab569d02e958c28f88d5b3e9f9"
+    },
+    "position_logging.py": {
+      "bytes": 5711,
+      "sha256": "1a34ca9873fc862bc47de5c51cf26fcaf0622cd7868f6ad8c797fa2959002dd4"
+    },
+    "record.py": {
+      "bytes": 8530,
+      "sha256": "91fc91e87ca71bb8bc49b1e8e45c5a5ff4e3828ab51773174b2ecf68917ffe8b"
+    },
+    "run_report.py": {
+      "bytes": 13608,
+      "sha256": "ef05e6891fc55820a3cd7ce9734fc23ebad3bec32524bf0001b5703b953fdca4"
+    },
+    "run_short.py": {
+      "bytes": 11383,
+      "sha256": "6331e53d863774a7dab21217bf33831f91f4aba03bb9f041d52eab1c5f179953"
+    },
+    "run_slow.py": {
+      "bytes": 15168,
+      "sha256": "7b248afc1257a868b68043fa5e0d9ffe45d3d5db44960078a0e0017505e1b4fb"
+    },
+    "sfc.py": {
+      "bytes": 3933,
+      "sha256": "71bd97f7a74af3472951e48d2ceb902202b90a091118d94e2a67418cff5bbc76"
+    },
+    "short_prepare.py": {
+      "bytes": 12653,
+      "sha256": "3a7749de9cdf64062882392b06aef0da35bc18e4ea66b18d6eaf2b89e3e96b82"
+    },
+    "short_report.py": {
+      "bytes": 29559,
+      "sha256": "91f434cd255ddf9d3ca56a6057119c955584f02fd66c7583ecc0db141d89f153"
+    },
+    "sim_env.py": {
+      "bytes": 9093,
+      "sha256": "418d41bf2bd25384830e63672518781e46f64e7adca0f9cdf12dce824d27ea30"
+    },
+    "slow_report.py": {
+      "bytes": 25686,
+      "sha256": "eb6ad47d4ccc373c894731d0779e75f03a50cb2bc68a6ed96849bb88cd12ee5c"
+    },
+    "sweep.py": {
+      "bytes": 44407,
+      "sha256": "4db58e0c3beda8cdf5fb2c3d059872a1ad290acc0669c9947af05129db5c2879"
+    },
+    "test_engineering.py": {
+      "bytes": 8610,
+      "sha256": "51a281debd75952675318f62df0cbfe3d15f26f4597423d277a27c335eccaa44"
+    },
+    "test_input_acceptance.py": {
+      "bytes": 5128,
+      "sha256": "e33d9cc5feff30a636d1a3e5074bc0b061a57c6df1650c6d1ebfd91d45513db8"
+    }
+  },
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\kinli\\Documents\\Codex\\2026-10-02\\UR10_CB3_single_joint_pretest_local_acceptance\\.venv\\Scripts\\python.exe",
+    "numpy": "2.5.3",
+    "mujoco": "3.15.0",
+    "numpy_module": "C:\\Users\\kinli\\Documents\\Codex\\2026-10-02\\UR10_CB3_single_joint_pretest_local_acceptance\\.venv\\Lib\\site-packages\\numpy\\__init__.py",
+    "mujoco_module": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\F组首次接入_20261010\\.runtime\\mujoco\\__init__.py",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "dt_s": 0.001,
+    "control_update_steps": 1
+  },
+  "git": {
+    "root": {
+      "exit_code": 0,
+      "output": "C:/Users/kinli/Documents/ChatGPT/ur10实验",
+      "error": ""
+    },
+    "commit": {
+      "exit_code": 128,
+      "output": "HEAD",
+      "error": "fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'"
+    },
+    "status": {
+      "exit_code": 0,
+      "output": "?? .docx_review/\n?? .validation_deps/\n?? .vscode/\n?? .work/\n?? C组量化_V4.1_20261010/\n?? F位置执行_解包核验_20261012/\n?? F组10秒往返_精简文本核查_20261012.zip\n?? F组10秒往返_精简文本核查_20261012.zip.sha256.txt\n?? F组_10秒往返_A事件恢复_20261012/\n?? F组_B逻辑接入_20261010/\n?? F组_Y方向B一致性与事件准备_20261011/\n?? F组_位置执行等效测试_20261011/\n?? F组_理想执行基线_工程修复候选_20261012/\n?? F组_预定慢漂移补偿_20261012/\n?? F组位置伺服等效执行_20261012_GPT核查.zip\n?? F组位置伺服等效执行_20261012_zip校验.json\n?? F组位置伺服等效执行_20261012_交付核验.json\n?? F组位置执行_文本核查_20261012/\n?? F组位置执行_精简文本核查_20261012.zip\n?? F组持续问题库.md\n?? F组预定慢漂移补偿_精简文本核查_20261012.zip\n?? F组预定慢漂移补偿_精简文本核查_20261012.zip.sha256.txt\n?? F组首次接入_20261010/\n?? UR10_CB3_single_joint_pretest_v1.0.3_work/\n?? UR10_vibration_pretest/\n?? UR10_vibration_pretest_v1.code-workspace\n?? UR10振动分析_修改报告.md\n?? UR10离线分析_使用说明.md\n?? Y方向B一致性核查与事件准备_20261011.zip\n?? Y核查zip验收记录.json\n?? Y核查包验收_20261011/\n?? __pycache__/\n?? apply_preview_raw_patch.ps1\n?? audit_position_outputs.py\n?? batch_txt_clean_review.py\n?? batch_txt_full_analysis.py\n?? benchmark_position_storage.py\n?? build_engineering_f.py\n?? build_formal_f.py\n?? build_position_text_review.py\n?? build_position_work.py\n?? build_short_f.py\n?? build_slow_f.py\n?? build_y_audit.py\n?? build_y_review_docs.py\n?? c_group_git_commit_message_20261008.txt\n?? c_group_gitignore_before_20261008.txt\n?? c_group_preview_raw_patch_20261008/\n?? check_y_review_zip.py\n?? cleanup_190952_raw.ps1\n?? commit_c_group_git_20261008.ps1\n?? freeze_position_report_fix.py\n?? full_txt_analysis_B05_final/\n?? full_txt_analysis_B05_verified/\n?? full_txt_analysis_B05_中文图表/\n?? full_txt_analysis_B05_中文图表_v2/\n?? inspect_tcp_speed_spike_20261010.json\n?? inspect_tcp_speed_spike_20261010.py\n?? j4_speed_limit_update_20261010/\n?? locate_y_audit.py\n?? overview_c_stable_20261008/\n?? pack_position_review.py\n?? path_speed_guard_fix_20261010/\n?? path_speed_headroom_update_20261010/\n?? path_speed_update_20261009/\n?? position_storage_benchmark.npz\n?? prepare_position_docs.py\n?? prepare_preview_raw_patch.py\n?? python-3.12.10-amd64.exe\n?? python312-msi/\n?? raw_cleanup_190952_audit/\n?? requirements_txt_analysis.txt\n?? run_txt_full_analysis.cmd\n?? run_txt_full_analysis_cli.cmd\n?? save_c_group_git_20261008.ps1\n?? scout_short_f.py\n?? speak_lights_three_times.ps1\n?? supplement_position_delivery.py\n?? tests/\n?? ur10_analysis_launcher.py\n?? ur10实验.rar\n?? validation_autocorrect_result_folder/\n?? validation_clean_review_b05/\n?? validation_clean_review_b05_final/\n?? validation_clean_review_b05_v2/\n?? validation_cross_axis_b05/\n?? validation_dry_run/\n?? validation_full_b05/\n?? validation_full_b05_plots/\n?? validation_preview_path_fix/\n?? verify_position_delivery.py",
+      "error": ""
+    },
+    "dirty": true,
+    "note": "Parent repository has untracked F candidates. Actual source/assets hashes identify this implementation; Git HEAD alone is not this F version."
+  },
+  "inputs_are_explicitly_inherited": true,
+  "result_reuse": false,
+  "created_utc": "2026-10-12T12:30:29.115453+00:00",
+  "run_id": "20261012T123028491525Z_9f7f6d3a",
+  "retry_of": null
+}

@@ -1,0 +1,268 @@
+"""Exploratory path comparisons. Visual residuals are 2-D projections,
+not calibrated 3-D ground truth or an automatic update of the F model.
+"""
+from __future__ import annotations
+import math
+from pathlib import Path
+import numpy as np
+from .path_experiment import save_json
+from .recorder import write_csv
+
+LIMITATIONS = [
+    '视觉残差是图像平面投影，非独立标定的三维末端误差。',
+    '局部映射依据慢速RTDE实际TCP拟合，不能用它证明机器人绝对定位精度。',
+    '时间匹配使用宿主收到数据的单调时钟；曝光、传输延迟未独立标定，动态残差不可全部归因于机械误差。',
+    'actual_TCP_pose来自控制器编码器/运动学估计，不能独立观测末端弹性变形。',
+    '每速度仅两次，结果只支持初步重复性及当前位姿、负载、路径范围内的比较。',
+    '直线只有5 mm；若控制器没有达到匀速，不能将设定速度当作实际匀速。',
+]
+
+
+def number(row,key):
+    try:
+        v = float(row.get(key,''))
+        return v if math.isfinite(v) else np.nan
+    except (ValueError,TypeError):
+        return np.nan
+
+
+def phase_for(record,t):
+    for p in record.phases:
+        if p.start_s <= t <= p.end_s:
+            return p.label
+    return 'phase_gap'
+
+
+def align_frames(record,vision,robot_rows,path):
+    selected = [r for r in robot_rows if r.get('event_id') == record.segment_id]
+    selected.sort(key=lambda r:int(r['host_ns']))
+    if not selected:
+        raise ValueError('本次没有RTDE状态行；保存诊断，不伪造参考关节角')
+    times = np.array([int(r['host_ns']) for r in selected],dtype=np.int64)
+    result = []
+    for f in vision.frames:
+        # No cross-trial interpolation or unmarked filling of missing frames.
+        k = int(np.searchsorted(times,f.host_ns))
+        choices = [i for i in (k-1,k) if 0 <= i < len(times)]
+        k = min(choices,key=lambda i:abs(int(times[i])-f.host_ns))
+        r = selected[k]
+        row = {'frame_id':f.frame_id,'camera_host_ns':f.host_ns,
+            'rtde_host_ns':int(times[k]),'time_s':(f.host_ns-record.first_host_ns)/1e9,
+            'pair_gap_ms':abs(int(times[k])-f.host_ns)/1e6,
+            'signed_pair_gap_ms':(int(times[k])-f.host_ns)/1e6,
+            'robot_timestamp_s':r.get('robot_timestamp_s',''),
+            'visual_valid':int(f.valid),'corner_count':f.corner_count,
+            'centroid_x_px':f.centroid_x_px,'centroid_y_px':f.centroid_y_px,
+            'visual_scale':f.scale,'visual_rotation_deg':f.rotation_deg,
+            'detector_residual_px':f.residual_px,'drop_before':f.drop_before}
+        row['phase'] = phase_for(record,row['time_s'])
+        pose = [number(r,'actual_tcp_'+axis) for axis in ('x','y','z','rx','ry','rz')]
+        for prefix in ('actual_tcp','target_tcp','actual_tcp_speed','target_tcp_speed'):
+            for axis in ('x','y','z','rx','ry','rz'):
+                row[prefix+'_'+axis] = number(r,prefix+'_'+axis)
+        row['actual_tcp_speed_mm_s'] = np.linalg.norm([row['actual_tcp_speed_'+a] for a in ('x','y','z')])*1000
+        row['path_part'] = path.phase_at_pose(pose) if np.isfinite(pose).all() else 'unavailable'
+        for i in range(1,7):
+            for prefix in ('command_q','actual_q','actual_qd'):
+                key = f'{prefix}_J{i}_'+('deg_s' if prefix=='actual_qd' else 'deg')
+                row[key] = number(r,key)
+            row[f'q_error_J{i}_deg'] = row[f'actual_q_J{i}_deg']-row[f'command_q_J{i}_deg']
+        row['encoder_tcp_error_mm'] = np.linalg.norm([row['actual_tcp_'+a]-row['target_tcp_'+a] for a in ('x','y','z')])*1000
+        row['pair_valid'] = int(row['pair_gap_ms'] <= 20 and f.valid and np.isfinite(pose).all())
+        result.append(row)
+    return result
+
+
+def fit_mapping(rows,path):
+    sample = [r for r in rows if r['pair_valid'] and r['phase']=='move']
+    if len(sample) < 20:
+        return None
+    xy = np.array([[r['centroid_x_px'],r['centroid_y_px']] for r in sample])
+    yz = np.array([[(r['actual_tcp_y']-path.start[1])*1000,
+                   (r['actual_tcp_z']-path.start[2])*1000,1] for r in sample])
+    coefs,_,rank,_ = np.linalg.lstsq(yz,xy,rcond=None)
+    if rank < 3 or np.linalg.cond(yz) > 100 or np.linalg.cond(coefs[:2]) > 100:
+        return None
+    return {'frame':'robot_base_YZ_mm_to_full_image_px','coefficients':coefs.tolist(),
+        'fit_rms_px':float(np.sqrt(np.mean(np.sum((xy-yz@coefs)**2,axis=1)))),
+        'condition':float(np.linalg.cond(coefs[:2])),'training_frames':len(sample),
+        'source_segment':sample[0].get('segment_id'),
+        'source':'first_usable_1_mm_s_outward_RTDE_actual_TCP',
+        'fixed_across_speeds':True,'independent_metric_calibration':False,
+        'time_offset_calibrated':False}
+
+
+def add_residuals(rows,path,mapping):
+    matrix = np.asarray(mapping['coefficients']) if mapping else None
+    for r in rows:
+        for prefix in ('visual_minus_actual_projection','visual_minus_target_projection'):
+            r[prefix+'_x_px'] = r[prefix+'_y_px'] = r[prefix+'_norm_px'] = np.nan
+        if matrix is None or not r['pair_valid']:
+            continue
+        image = np.array([r['centroid_x_px'],r['centroid_y_px']])
+        for source, prefix in (('actual_tcp','visual_minus_actual_projection'),
+                               ('target_tcp','visual_minus_target_projection')):
+            yz = np.array([(r[source+'_y']-path.start[1])*1000,
+                           (r[source+'_z']-path.start[2])*1000,1.])
+            delta = image-yz@matrix
+            r[prefix+'_x_px'],r[prefix+'_y_px'] = delta
+            r[prefix+'_norm_px'] = np.linalg.norm(delta)
+
+
+def stats(values):
+    v = np.asarray(values,dtype=float)
+    v = v[np.isfinite(v)]
+    return {'count':len(v),'rms':float(np.sqrt(np.mean(v*v))) if len(v) else None,
+            'peak_abs':float(np.max(np.abs(v))) if len(v) else None,
+            'mean':float(np.mean(v)) if len(v) else None}
+
+
+def settling(rows,phase):
+    pre = [r for r in rows if r['visual_valid'] and r['phase']=='pre_motion']
+    hold = [r for r in rows if r['visual_valid'] and r['phase']==phase]
+    if len(pre)<3 or len(hold)<5:
+        return {'status':'insufficient_valid_frames','recovery_seconds':None}
+    points = lambda rr:np.array([[r['centroid_x_px'],r['centroid_y_px']] for r in rr])
+    p = points(pre)
+    noise = float(np.sqrt(np.mean(np.sum((p-np.mean(p,axis=0))**2,axis=1))))
+    threshold = max(3*noise,.05)
+    times = np.array([r['time_s'] for r in hold])
+    cloud = points(hold)
+    # Descriptive damping relative to the observed tail mean, not absolute arrival.
+    tail = np.median(cloud[times>=times[-1]-.5],axis=0)
+    deviation = np.linalg.norm(cloud-tail,axis=1)
+    recovery = None
+    for i in range(len(times)):
+        if times[-1]-times[i] < .5:
+            break
+        if np.sqrt(np.mean(deviation[i:]**2)) <= threshold:
+            recovery = float(times[i]-times[0])
+            break
+    return {'status':'recovered_in_window' if recovery is not None else 'not_recovered_in_observation_window',
+            'recovery_seconds':recovery,'observation_seconds':float(times[-1]-times[0]),
+            'baseline_rms_px':noise,'threshold_px':threshold,
+            'reference':'final_0.5s_median_image_position; not absolute target accuracy'}
+
+
+def analyze_trial(record,vision,robot_rows,path,speed,repeat,*,mapping,output):
+    output = Path(output)
+    output.mkdir(parents=True,exist_ok=True)
+    rows = align_frames(record,vision,robot_rows,path)
+    for r in rows:
+        r['segment_id'] = record.segment_id
+    if mapping is None and speed == 1:
+        mapping = fit_mapping(rows,path)
+    add_residuals(rows,path,mapping)
+    write_csv(output/'matched_samples.csv',rows,columns=tuple(rows[0]))
+    phases = {}
+    for name in ('pre_motion','move','hold','return','post_motion'):
+        rr = [r for r in rows if r['phase']==name and r['pair_gap_ms']<=20]
+        phases[name] = {'samples':len(rr),'joint_errors':{
+            f'J{i}':stats([r[f'q_error_J{i}_deg'] for r in rr]) for i in range(1,7)},
+            'encoder_tcp_error_mm':stats([r['encoder_tcp_error_mm'] for r in rr]),
+            'actual_speed_mm_s':stats([r['actual_tcp_speed_mm_s'] for r in rr]),
+            'visual_minus_actual_projection_px':stats([r['visual_minus_actual_projection_norm_px'] for r in rr]),
+            'visual_minus_target_projection_px':stats([r['visual_minus_target_projection_norm_px'] for r in rr])}
+    gaps = [r['pair_gap_ms'] for r in rows]
+    valid = [f for f in vision.frames if f.valid and f.points_px is not None]
+    margin = None
+    w,h = record.metadata.get('width',0),record.metadata.get('height',0)
+    if valid and w and h:
+        margin = min(min(float(np.min(f.points_px[:,0])),float(np.min(f.points_px[:,1])),
+                         w-1-float(np.max(f.points_px[:,0])),h-1-float(np.max(f.points_px[:,1]))) for f in valid)
+    warnings = []
+    if vision.valid_ratio < .99:
+        warnings.append('途中存在未完整识别棋盘格的帧，详见逐帧角点和有效标记')
+    if mapping is None:
+        warnings.append('局部投影映射不可用；视觉保留像素轨迹，不输出伪造的物理残差')
+    if max(gaps)>20:
+        warnings.append('部分相机帧与RTDE宿主时间间隔超过20 ms；保留行但不计入配对统计')
+    if record.missing_frames:
+        warnings.append(f'采集缺帧{record.missing_frames}，比例{record.dropped_ratio:.2%}')
+    report = {'segment_id':record.segment_id,'speed_mm_s':speed,'repeat':repeat,'status':'analyzed',
+        'synthetic':record.synthetic,'phases':phases,'valid_frame_ratio':vision.valid_ratio,
+        'min_board_margin_px':margin,'full_board_visible_every_analyzed_frame':vision.valid_count==vision.frame_count,
+        'pair_gap_max_ms':max(gaps),'pair_gap_p95_ms':float(np.percentile(gaps,95)),
+        'outward_settling':settling(rows,'hold'),'return_settling':settling(rows,'post_motion'),
+        'mapping':mapping,'quality_warnings':warnings,'limitations':LIMITATIONS,
+        'matched_samples':str(output/'matched_samples.csv')}
+    save_json(output/'report.json',report)
+    try:
+        plot_trial(output,rows,path)
+    except Exception as exc:
+        report['plot_warning'] = str(exc)
+        save_json(output/'report.json',report)
+    return report,mapping
+
+
+def plot_trial(output,rows,path):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    t = [r['time_s'] for r in rows]
+    fig,axes = plt.subplots(3,1,figsize=(10,9),sharex=True)
+    for i in range(1,7):
+        axes[0].plot(t,[r[f'q_error_J{i}_deg'] for r in rows],label=f'J{i}',linewidth=.7)
+    axes[0].set_ylabel('Actual - target q (deg)');axes[0].legend(ncol=6)
+    axes[1].plot(t,[r['actual_tcp_speed_mm_s'] for r in rows],label='Actual TCP speed')
+    axes[1].set_ylabel('Speed (mm/s)')
+    axes[2].plot(t,[r['visual_minus_actual_projection_norm_px'] for r in rows],label='Image - actual TCP projection')
+    axes[2].plot(t,[r['visual_minus_target_projection_norm_px'] for r in rows],label='Image - target TCP projection')
+    axes[2].set_ylabel('2D residual (px)');axes[2].set_xlabel('Host time since segment start (s)')
+    axes[2].legend()
+    for ax in axes:
+        ax.grid(alpha=.2)
+    fig.suptitle('Exploratory path response; exposure timing and 3D accuracy uncalibrated')
+    fig.tight_layout();fig.savefig(output/'response.png',dpi=150);plt.close(fig)
+    fig,ax = plt.subplots(figsize=(6,5))
+    valid = [r for r in rows if r['visual_valid']]
+    ax.plot([r['centroid_x_px'] for r in valid],[r['centroid_y_px'] for r in valid],linewidth=.8)
+    ax.invert_yaxis();ax.set_aspect('equal',adjustable='datalim')
+    ax.set_xlabel('Full image x (px)');ax.set_ylabel('Full image y (px)')
+    ax.set_title('Outward and return image trajectory');fig.tight_layout()
+    fig.savefig(output/'image_path.png',dpi=150);plt.close(fig)
+
+
+def summarize_batch(output,reports,path,mapping,*,test_only=False):
+    table = []
+    for report in reports:
+        move = report.get('phases',{}).get('move',{})
+        row = {'segment_id':report['segment_id'],'speed_mm_s':report['speed_mm_s'],
+               'repeat':report['repeat'],'status':report['status'],
+               'valid_frame_ratio':report.get('valid_frame_ratio'),
+               'actual_speed_peak_mm_s':move.get('actual_speed_mm_s',{}).get('peak_abs'),
+               'encoder_tcp_error_rms_mm':move.get('encoder_tcp_error_mm',{}).get('rms'),
+               'visual_residual_rms_px':move.get('visual_minus_actual_projection_px',{}).get('rms'),
+               'outward_recovery_s':report.get('outward_settling',{}).get('recovery_seconds')}
+        for i in range(1,7):
+            row[f'q_error_J{i}_rms_deg'] = move.get('joint_errors',{}).get(f'J{i}',{}).get('rms')
+            row[f'q_error_J{i}_peak_deg'] = move.get('joint_errors',{}).get(f'J{i}',{}).get('peak_abs')
+        table.append(row)
+    if table:
+        write_csv(output/'summary.csv',table,columns=tuple(table[0]))
+    repeat_comparisons = []
+    for speed in (1.,3.,5.):
+        pair = [r for r in table if r['speed_mm_s']==speed and r['status']=='analyzed']
+        if len(pair)!=2:
+            continue
+        result = {'speed_mm_s':speed,'comparison':'difference of summary RMS values, not full statistical repeatability'}
+        for key in ('encoder_tcp_error_rms_mm','visual_residual_rms_px',*[f'q_error_J{i}_rms_deg' for i in range(1,7)]):
+            a,b = pair[0].get(key),pair[1].get(key)
+            result[key+'_difference'] = None if a is None or b is None else b-a
+        repeat_comparisons.append(result)
+    save_json(output/'batch_report.json',{'test_only':test_only,'path':path.to_dict(),
+        'trials':reports,'repeat_comparisons':repeat_comparisons,
+        'fixed_mapping':mapping,'limitations':LIMITATIONS})
+    lines = ['# 路径视野试跑报告' if test_only else '# 路径速度对比报告','',
+        '六次速度顺序：1、3、5、1、3、5 mm/s；回程单独记录，不计入六次。',
+        '起点为点击运行时冻结的当前位姿；每次往返后处理并清理RAW。','',
+        '## 数据入口','', '- summary.csv：速度、关节误差、TCP编码器误差、二维视觉残差。',
+        '- batch_report.json：分阶段统计、恢复时间、初步重复性、映射与质量说明。',
+        '- 每次目录的matched_samples.csv：未隐藏时间间隔和无效帧的配对数据。',
+        '- vision/corners和各段时间戳：RAW删除后仍可重算几何和时间关系。','',
+        '## 解释范围','',*['- '+s for s in LIMITATIONS],'',
+        '## 每次运行','']
+    for r in reports:
+        lines.append(f"- {r['segment_id']}：{r['status']}；完整识别比例{r.get('valid_frame_ratio','未知')}；边缘余量{r.get('min_board_margin_px','未知')} px")
+        lines.extend('  - '+w for w in r.get('quality_warnings',[]))
+    (output/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')

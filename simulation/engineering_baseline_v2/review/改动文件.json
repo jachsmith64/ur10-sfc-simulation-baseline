@@ -1,0 +1,52 @@
+[
+  {
+    "file": "audit_execution_evidence.py",
+    "type": "added",
+    "sha256": "7cc538487d453dc6fe3297863a62cf056fbba7d464c6fcdc34655b79aac11478"
+  },
+  {
+    "file": "batch_identity.py",
+    "type": "added",
+    "sha256": "33e8446c89c87c498b983bd016121f893184863183c816965f664b7812d5bb89"
+  },
+  {
+    "file": "check_engineering_review.py",
+    "type": "added",
+    "sha256": "cc5f857e795972180d1632ddd9c128241a59b8f303edbf6c535004b7c91a3c2f"
+  },
+  {
+    "file": "finalize_review.py",
+    "type": "added",
+    "sha256": "0ab22da9cd48131490ccde4463fc65cc339f51878d83875889980058de5b56a5"
+  },
+  {
+    "file": "finish_delivery.py",
+    "type": "added",
+    "sha256": "6919cb79a5469587054a8662ce00548b2f9455c77fb89dfa521c058ee5d38e9b"
+  },
+  {
+    "file": "pack_engineering_review.py",
+    "type": "added",
+    "sha256": "bfb6bec3ea93a6259d41ddc9080415288f203a7769fc53f3d127383b025c59ab"
+  },
+  {
+    "file": "position_logging.py",
+    "type": "modified",
+    "sha256": "1a34ca9873fc862bc47de5c51cf26fcaf0622cd7868f6ad8c797fa2959002dd4"
+  },
+  {
+    "file": "run_report.py",
+    "type": "added",
+    "sha256": "ef05e6891fc55820a3cd7ce9734fc23ebad3bec32524bf0001b5703b953fdca4"
+  },
+  {
+    "file": "run_slow.py",
+    "type": "modified",
+    "sha256": "b91a146a1bd98972721cc832a382828c5f7c92574e0d6397b454bd97a0ed84ad"
+  },
+  {
+    "file": "test_engineering.py",
+    "type": "added",
+    "sha256": "3aae79b0386d7eca7042b613c665d68345e6bf329d9595f475bcf30328dd5b7f"
+  }
+]

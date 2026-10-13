@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "run_id": "20261012T123028491525Z_9f7f6d3a",
+  "generation_id": "cb03fec5b03103c4fe61f132ba0bd7bbb0442b88eee79bae67a87967078958aa",
+  "integrations_started": 3,
+  "cases": [
+    {
+      "passed": true,
+      "samples": 10000,
+      "case_id": "A0",
+      "run_id": "20261012T123028491525Z_9f7f6d3a",
+      "data_sha256": "3f9458ac5fe2b64450b3c0aadc248752575e683fc1c48ef6ae2b53ebd40dfd5a",
+      "logical_arrays_sha256": "3764ec65059082f466a68487eead439c860595c1cef08d9d32225e8c3173b432",
+      "saturation_entries": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "passed": true,
+      "samples": 10000,
+      "case_id": "Alinear",
+      "run_id": "20261012T123028491525Z_9f7f6d3a",
+      "data_sha256": "824f8f4a29dd48ce04bd051af7b925b0400e058222848e1f683cbee370e49c60",
+      "logical_arrays_sha256": "0b2bfe6aed7067d82345abba1cab6f2ddd8324e0cf0ff9d02941c1645e5d851b",
+      "saturation_entries": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "passed": true,
+      "samples": 10000,
+      "case_id": "ASFC_strong",
+      "run_id": "20261012T123028491525Z_9f7f6d3a",
+      "data_sha256": "f4ddbf2a955db7d96266d153cdb654a6a938ec2e1a72a26aeeb9b513e99e7012",
+      "logical_arrays_sha256": "ee4b61fd9a76944076a4e08ed39a9143a851921b8917411c93549d467fcc3df4",
+      "saturation_entries": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    }
+  ],
+  "accepted_before_report": true,
+  "success_rule": "All3: status/count/finite fields/shapes/sample timing/identities/common conditions checked"
+}

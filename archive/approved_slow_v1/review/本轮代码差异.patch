@@ -1,0 +1,803 @@
+--- /dev/null
++++ F10_public_slow/check_slow_review.py
+@@ -0,0 +1,105 @@
++"""Independent text audit: Python standard library only; no simulator or hardware imports."""
++from pathlib import Path
++import csv,json,hashlib,math,struct,statistics
++ROOT=Path(__file__).resolve().parent
++
++def read(p):return json.loads((ROOT/p).read_text(encoding='utf-8'))
++def rows(p):
++    with (ROOT/p).open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
++def floats(p):return [{k:float(v) for k,v in r.items()} for r in rows(p)]
++def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
++def packed(x,kind='d'):return struct.pack('<'+kind*len(x),*x)
++def stat(x):
++    mean=math.fsum(x)/len(x);a=sorted(map(abs,x));u=(len(a)-1)*.95;i=int(u);j=min(i+1,len(a)-1)
++    return dict(mean_um=mean,std_um=math.sqrt(math.fsum((v-mean)**2 for v in x)/len(x)),ptp_um=max(x)-min(x),raw_peak_abs_um=max(a),P95_abs_um=a[i]+(u-i)*(a[j]-a[i]))
++def baseline(t,plan):
++    levels=plan['levels_um'];b=levels[0];bd=bdd=0.
++    for j,(lo,hi) in enumerate(plan['connections_s']):
++        if t>hi:b=levels[j+1]
++        elif t>=lo:
++            T=hi-lo;u=(t-lo)/T;d=levels[j+1]-levels[j]
++            b=levels[j]+d*(10*u**3-15*u**4+6*u**5)
++            bd=d*(30*u*u-60*u**3+30*u**4)/T
++            bdd=d*(60*u-180*u*u+120*u*u*u)/(T*T)
++    return b,bd,bdd
++
++def main():
++    manifest=read('review/text_package_manifest.json')
++    for item in manifest['files']:
++        p=ROOT/item['path'];assert p.stat().st_size==item['bytes'] and sha(p)==item['sha256'],item['path']
++    fr=read('review/slow_frozen_version.json');source=read('baseline_review/frozen_version.json');g=fr['g']
++    assert g==source['g'] and fr['parameters']==source['parameters']
++    assert sha(ROOT/'baseline_review/frozen_version.json')==fr['source_version_sha256']
++    for name,h in read('review/slow_implementation_freeze.json').items():assert sha(ROOT/name)==h,name
++    inp=floats('inputs/frozen_common_full_1ms.csv');fd=floats('inputs/Fd_event.csv');pub=floats('inputs/public_slow_full_1ms.csv')
++    assert len(inp)==len(fd)==len(pub)==10000
++    assert sha(ROOT/'inputs/Fd_event.csv')==source['event_sha256']
++    h=hashlib.sha256()
++    fields={'t':1,'q':6,'phase':1,'dq':6,'dqd':6,'remaining':1,'remaining_dot':1}
++    for key,n in fields.items():
++        vals=[r[key if n==1 else key+'_J'+str(j+1)]*(g if key in ['dq','dqd','remaining','remaining_dot'] else 1.) for r in inp for j in range(n)]
++        h.update(key.encode());h.update(packed([int(v) for v in vals],'q') if key=='phase' else packed(vals))
++    h.update(source['event_sha256'].encode());source_id=h.hexdigest()
++    assert source_id==fr['source_S3_input_id']==source['scenarios']['S3']['input_id']
++    h=hashlib.sha256(source_id.encode());schema=read('review/public_input_text_schema.json')
++    for key in sorted(schema):
++        vals=[r[col] for r in pub for col in schema[key]['columns']]
++        h.update(key.encode());h.update(packed(vals))
++    assert h.hexdigest()==fr['shared_input_id']
++    plan=read('review/baseline_plan.json');M=read('review/static_mapping.json')['M_rad_per_m'];gain=read('review/public_correction_acceptance.json')['gain']
++    for a,b in zip(inp,pub):
++        assert a['t']==b['t_s']
++        center,bd,bdd=baseline(a['t'],plan)
++        assert abs(center-b['common_baseline_um'])<1e-11
++        for key,expected in [('common_delta_y_m',-gain*center*1e-6),('common_delta_y_dot_m_s',-gain*bd*1e-6),('common_delta_y_ddot_m_s2',-gain*bdd*1e-6)]:assert abs(b[key]-expected)<1e-15
++        for key,ykey in [('common_delta_q','common_delta_y_m'),('common_delta_q_dot','common_delta_y_dot_m_s'),('common_delta_q_ddot','common_delta_y_ddot_m_s2')]:
++            for j in range(6):assert b[key+'_J'+str(j+1)]==b[ykey]*M[j]
++    index=rows('review/case_index.csv');metrics=rows('review/新旧分段指标.csv');events=rows('review/新旧事件指标.csv');platforms=rows('review/平台中心前后.csv')
++    assert len(index)==6;checks=eventchecks=0;max_residual=0.;data_by_case={}
++    for item in index:
++        name=item['case_id'];new=item['group']=='new';ctrl=item['controller'];p=fr['parameters'][ctrl]
++        assert item['input_id']==(fr['shared_input_id'] if new else source_id)
++        path=ROOT/'outputs/compact_1ms'/f'{name}.csv';assert sha(path)==item['csv_sha256']
++        data=floats(str(path.relative_to(ROOT)));assert len(data)==10000;data_by_case[name]=data
++        for a,b,f,c in zip(data,inp,fd,pub):
++            assert a['t_s']==b['t']==f['t_s']==c['t_s'] and a['phase']==b['phase'] and a['nominal_Y_m']==-.174
++            assert a['Fd_event_N']==f['Fd_event_N']
++            residual=abs(a['effective_e_um']-a['physical_e_um']-g*b['remaining']*1e6);max_residual=max(max_residual,residual);assert residual<1e-8
++            e=a['effective_e_um']*1e-6;v=a['effective_v_m_s']
++            F=0. if ctrl=='A0' else -p['K']*e-p['B0']*v-p['mu']*math.copysign(abs(v)**p['n'],v)
++            assert abs(F-a['F_anti_requested_N'])<1e-9
++            delta=[a['delta_anti_J'+str(j+1)+'_rad'] for j in range(6)]
++            assert abs(math.sqrt(math.fsum(x*x for x in delta))-a['delta_anti_norm_rad'])<1e-12
++            assert abs(5000*a['delta_anti_norm_rad']-a['tau_anti_requested_norm_Nm'])<1e-10
++            assert abs(a['tau_anti_requested_norm_Nm']-a['tau_anti_realized_norm_Nm'])<1e-8
++            for j,d in enumerate(delta,1):
++                command=b['q_J'+str(j)]+b['dq_J'+str(j)]*g
++                if new:command+=c['common_delta_q_J'+str(j)]
++                assert command+d==a['final_ctrl_J'+str(j)+'_rad']
++            assert all(a[k]==0 for k in ['ctrl_saturated_any','force_saturated_any','joint_saturated_any'])
++        for r in metrics:
++            if r['case_id']!=name:continue
++            x=[a[r['channel']+'_e_um'] for a in data if float(r['t0_s'])<=a['t_s']<=float(r['t1_s'])];assert len(x)==int(r['n'])
++            for key,v in stat(x).items():assert abs(v-float(r[key]))<1e-8,(name,r['window'],key)
++            checks+=1
++        for r in events:
++            if r['case_id']!=name:continue
++            key=r['channel']+'_e_um';b=statistics.median(a[key] for a in data if float(r['baseline_t0_s'])<=a['t_s']<=float(r['baseline_t1_s']))
++            x=[a[key] for a in data if float(r['t0_s'])<=a['t_s']<=float(r['t1_s'])]
++            assert abs(b-float(r['baseline_median_um']))<1e-10
++            assert abs(max(abs(v-b) for v in x)-float(r['baseline_peak_abs_um']))<1e-8
++            assert abs(sum(abs(v-b)>10 for v in x)*.001-float(r['time_abs_deviation_gt10um_s']))<1e-12
++            eventchecks+=1
++        for r in platforms:
++            if r['case_id']!=name:continue
++            x=[a for a in data if float(r['t0_s'])<=a['t_s']<=float(r['t1_s'])];assert len(x)==int(r['n'])
++            for channel in ['physical','effective']:assert statistics.median(a[channel+'_e_um'] for a in x)==float(r[channel+'_median_um'])
++    old=data_by_case['old__A0']
++    for p in plan['platforms']:
++        assert statistics.median(a['effective_e_um'] for a in old if p['t0_s']<=a['t_s']<=p['t1_s'])==p['effective_median_um']
++    ledger=read('review/slow_run_budget.json');assert len(ledger)==3 and all(x['status']=='OK' and x['n_steps_done']==10000 for x in ledger)
++    result=dict(passed=True,cases=6,full_1ms_case_rows=60000,new_integrations=3,budget=6,metric_checks=checks,event_checks=eventchecks,
++        max_physical_plus_remaining_residual_um=max_residual,source_and_public_input_ids_rebuilt=True,public_baseline_mapping_derivatives_recomputed=True,
++        actual_final_commands_checked=True,requires_only_python_standard_library=True)
++    print(json.dumps(result,ensure_ascii=False,indent=2));return result
++if __name__=='__main__':main()
+--- /dev/null
++++ F10_public_slow/input_acceptance.py
+@@ -0,0 +1,38 @@
++"""R-026: explicit numeric input acceptance, including caches; no simulations."""
++import math
++class InputRejected(RuntimeError):pass
++def number(x,label):
++    if isinstance(x,bool):raise InputRejected(label+' is boolean, not numeric')
++    try:v=float(x)
++    except (ValueError,TypeError):raise InputRejected(label+' missing/invalid')
++    if not math.isfinite(v):raise InputRejected(label+' nonfinite')
++    return v
++def calibration_verdict(record):
++    try:
++        g=number(record.get('g'),'g');target=number(record.get('A_target_P95_um'),'target')
++        base=number(record.get('S0_P95_um'),'base');output=number(record.get('S1_P95_um'),'output')
++        tol=number(record.get('check_tolerance_relative'),'tolerance')
++        if not 0<g<=1 or min(target,base)<=0 or output<0:raise InputRejected('invalid calibration range')
++        if tol!=.10:raise InputRejected('original10% calibration tolerance changed')
++        if record.get('accepted') is False:raise InputRejected('cached calibration explicitly rejected')
++        close=abs(output/target-1)<=.10
++        no_amplification=g==1. and base<=target and output<=target*1.10
++        passed=close or no_amplification
++        return dict(passed=passed,reason='within original10% tolerance' if close else ('legal g1 no-amplification branch' if no_amplification else 'outside tolerance'),
++            tolerance_relative=.10,g=g,relative_difference=output/target-1,no_amplification_branch=no_amplification)
++    except InputRejected as e:return dict(passed=False,reason=str(e),tolerance_relative=.10)
++def event_verdict(record):
++    try:
++        error=number(record.get('final_check',{}).get('relative_rms_error'),'event relative residual')
++        if error<0:raise InputRejected('negative residual')
++        passed=error<=.20 and record.get('sufficient_for_approximate_comparison') is True
++        return dict(passed=passed,reason='original20% gate passed' if passed else 'event gate or explicit acceptance failed',relative_rms_error=error,threshold=.20)
++    except InputRejected as e:return dict(passed=False,reason=str(e),threshold=.20)
++def require_calibration(record):
++    v=calibration_verdict(record)
++    if not v['passed']:raise InputRejected('Calibration input rejected: '+v['reason'])
++    return v
++def require_event(record):
++    v=event_verdict(record)
++    if not v['passed']:raise InputRejected('Event input rejected: '+v['reason'])
++    return v
+--- /dev/null
++++ F10_public_slow/pack_slow.py
+@@ -0,0 +1,84 @@
++"""Focused text-only audit package; all six necessary case traces retain full1ms precision."""
++from pathlib import Path
++import sys,json,hashlib,zipfile,difflib
++ROOT=Path(__file__).resolve().parent
++if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
++sys.path.insert(0,str(ROOT.parent/'F组首次接入_20261010/.runtime'))
++import numpy as np
++def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
++def write(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2),encoding='utf-8')
++
++def main():
++    old=Path(json.loads((ROOT/'review/source_version.json').read_text(encoding='utf-8'))['accepted_complete_root'])
++    with np.load(ROOT/'inputs/public_slow_correction.npz') as z,np.load(ROOT/'inputs/frozen_common.npz') as c:
++        cols={'t_s':c['t']};schema={}
++        for key in z.files:
++            a=z[key];names=[key] if a.ndim==1 else [key+'_J'+str(j+1) for j in range(a.shape[1])]
++            for j,n in enumerate(names):cols[n]=a if a.ndim==1 else a[:,j]
++            schema[key]=dict(dtype=str(a.dtype),shape=list(a.shape),columns=names)
++        mat=np.column_stack(list(cols.values()));p=ROOT/'inputs/public_slow_full_1ms.csv'
++        np.savetxt(p,mat,delimiter=',',fmt='%.17g',header=','.join(cols),comments='')
++        assert np.array_equal(np.loadtxt(p,delimiter=',',skiprows=1),mat)
++        write(ROOT/'review/public_input_text_schema.json',schema)
++    # Source full1ms text is inherited unchanged; schema likewise, not a new NPZ container identity.
++    assert sha(ROOT/'inputs/frozen_common_full_1ms.csv')==sha(old/'inputs/frozen_common_full_1ms.csv')
++    patch='';changed=[];added=[]
++    code=[p for p in sorted(ROOT.glob('*.py')) if p.name not in ['check_review.py','pack_review.py']]
++    for p in code:
++        origin=old/p.name
++        if origin.exists():
++            if sha(origin)==sha(p):continue
++            changed.append(p.name);before=origin.read_text(encoding='utf-8-sig').splitlines(True)
++        else:added.append(p.name);before=[]
++        patch+=''.join(difflib.unified_diff(before,p.read_text(encoding='utf-8-sig').splitlines(True),fromfile='accepted_F10/'+p.name if origin.exists() else '/dev/null',tofile='F10_public_slow/'+p.name))
++    assert set(changed)=={'run_short.py','position_logging.py','sweep.py'},changed
++    (ROOT/'review/本轮代码差异.patch').write_text(patch,encoding='utf-8')
++    write(ROOT/'review/code_changes.json',dict(changed_existing=changed,added=added,
++        execution_change='One optional frozen position correction added before existing anti-jitter compensation; core controller/dynamics/limits unchanged.',
++        guard_change='R026 validates generated and cached upstream results before dependent formal use.',
++        old_originals_preserved=True))
++    (ROOT/'核查包说明.md').write_text('''# 本轮文本核查包
++
++先读简报.md、GPT核查入口.md；仅标准库运行 `python check_slow_review.py`。不运行仿真或连接机器人。
++
++本机完整工程：C:/Users/kinli/Documents/ChatGPT/ur10实验/F组_预定慢漂移补偿_20261012。
++已完成3条新积分（A0构造复用、线性、强SFC），最多6条。双击该完整目录的打开结果.cmd看图。run_slow.py为唯一新仿真入口，可复用缓存；旧矩阵命令行已禁用。核查ZIP不能代替完整工程运行MuJoCo。
++
++outputs/compact_1ms含6条10,000行日志（新三方案、旧S3参照），17g往返无损；无50ms抽稀。必要列包括原始physical/effective Y、反馈速度、事件力、抗抖请求力、请求/实现抗抖力矩范数、六关节补偿、最终六关节位置命令和限幅。完整q/qdot、逐关节力矩、中间NPZ仍在本机。inputs仅原始未缩放背景/导数、冻结g、公共预定位置量/导数及原事件外力；逻辑哈希可从文本精确重建。容器NPZ哈希不可用重建文件冒充。
++
++公共位置量与抗抖力/力矩代价分开。初始非零位置指令保留原初态，冷瞬态单列；停后50点只是短尾代表。主曲线原始、不减均值，旧A0−b仅诊断。离线预定纠偏不代表在线漂移处理完成；R027暂缓。
++
++review/text_package_manifest.json冻结除自身/补充检查结果外全部包内文件。text_audit_result.json是补充检查结果；外层ZIP另有SHA256和CRC。ZIP无图片、HTML、模型网格、NPZ、旧长日志。XML仅供接口核查，完整网格留本机。旧short_report.py仅导入stats/table/LABELS，勿运行其历史15-case主入口。
++''',encoding='utf-8')
++    allowed={'.py','.md','.csv','.json','.xml','.patch','.txt'}
++    chosen=set(code)|{ROOT/n for n in ['简报.md','GPT核查入口.md','核查包说明.md','f_config.json','assets_ur10e/ur10e.xml','assets_ur10e/scene.xml']}
++    excluded={'text_package_manifest.json','archive_verification.json','text_audit_result.json'}
++    chosen.update(p for p in (ROOT/'review').glob('*') if p.name not in excluded)
++    chosen.update(ROOT/'inputs'/n for n in ['frozen_common_full_1ms.csv','public_slow_full_1ms.csv','Fd_event.csv','fixed_position_test_parameters.json','仿真误差参数.json'])
++    chosen.update((ROOT/'outputs/compact_1ms').glob('*.csv'))
++    chosen.update((ROOT/'outputs/full_1ms').glob('PC__*.json'))
++    chosen.update((ROOT/'reference_old_S3').glob('*.json'))
++    baseline_names=['frozen_version.json','implementation_freeze.json','compiled_model.json','frozen_input_text_schema.json','source_evidence.json',
++        'event_reconstruction_window.json','用户确认运动边界.md','停止边界原始证据.csv','A_B原始事件分解_1ms.csv','事件来源到响应链.csv']
++    chosen.update(ROOT/'baseline_review'/n for n in baseline_names)
++    chosen={p for p in chosen if p.is_file() and p.suffix.lower() in allowed}
++    files=[dict(path=p.relative_to(ROOT).as_posix(),bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(chosen)]
++    manifest=ROOT/'review/text_package_manifest.json';write(manifest,dict(version='F10-PRESCHEDULED-SLOW-v1',files=files,
++        full_1ms_case_rows=60000,only_text=True,excluded=['images','HTML','all NPZ','meshes','old full long logs'],
++        supplemental_not_in_own_input_manifest=['review/text_audit_result.json']))
++    chosen.add(manifest)
++    import check_slow_review
++    result=check_slow_review.main();audit=ROOT/'review/text_audit_result.json';write(audit,result);chosen.add(audit)
++    dest=ROOT.parent/'F组预定慢漂移补偿_精简文本核查_20261012.zip'
++    with zipfile.ZipFile(dest,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
++        for p in sorted(chosen):z.write(p,ROOT.name+'/'+p.relative_to(ROOT).as_posix())
++    with zipfile.ZipFile(dest) as z:
++        assert z.testzip() is None
++        assert all(Path(x.filename).suffix.lower() in allowed for x in z.infolist())
++        for p in chosen:assert hashlib.sha256(z.read(ROOT.name+'/'+p.relative_to(ROOT).as_posix())).hexdigest()==sha(p)
++        count=len(z.infolist());raw=sum(x.file_size for x in z.infolist())
++    info=dict(archive=str(dest),bytes=dest.stat().st_size,MiB=dest.stat().st_size/1024**2,sha256=sha(dest),files=count,uncompressed_bytes=raw,
++        CRC_and_all_member_hashes_pass=True,compression='DEFLATE',text_only=True,case_rows=60000,new_integrations=3)
++    write(ROOT/'review/archive_verification.json',info);dest.with_suffix('.zip.sha256.txt').write_text(info['sha256']+'  '+dest.name+'\n',encoding='utf-8')
++    print(json.dumps(info,ensure_ascii=False,indent=2),flush=True)
++if __name__=='__main__':main()
+--- accepted_F10/position_logging.py
++++ F10_public_slow/position_logging.py
+@@ -5,7 +5,7 @@
+ from position_execution import TORQUE_DIRECT,actuator_limits
+ 
+ class PreciseLogger:
+-    def __init__(self,path,n,background,execution,update_steps,input_sha,input_data=None):
++    def __init__(self,path,n,background,execution,update_steps,input_sha,input_data=None,common_correction=None):
+         self.path=Path(path);self.n=n
+         self.meta=dict(background_mode=background,execution_mode=execution,update_steps=update_steps,input_sha256=input_sha,
+              sample_position='pre-mj_step, after correct state refresh and current command/disturbance assignment',
+@@ -18,8 +18,14 @@
+             self.arr['phase']=common['phase'].copy()
+             self.arr['q_nominal']=common['q'].copy()
+             self.arr['dq_C']=common['dq'].copy() if background=='C_ORDINARY' else np.zeros_like(common['dq'])
++            self.arr['original_base_ctrl']=self.arr['q_nominal']+self.arr['dq_C']
+         finally:
+             if input_data is None:common.close()
++        correction=common_correction or {}
++        for key in ['common_delta_q','common_delta_q_dot','common_delta_q_ddot']:
++            self.arr[key]=np.asarray(correction.get(key,np.zeros((n,6))),dtype=float).copy()
++        for key in ['common_baseline_um','common_delta_y_m','common_delta_y_dot_m_s','common_delta_y_ddot_m_s2']:
++            self.arr[key]=np.asarray(correction.get(key,np.zeros(n)),dtype=float).copy()
+         self.arr['updated']=np.zeros(n,bool)
+         for k in ['q','qdot','base_ctrl','delta_u','final_ctrl','tau_requested','qfrc_actuator','qfrc_applied','qfrc_disturbance','tau_realized_increment','base_qfrc_actuator','actuator_force','effective_ctrl']:
+             self.arr[k]=np.empty((n,6),np.float64)
+--- accepted_F10/run_short.py
++++ F10_public_slow/run_short.py
+@@ -11,6 +11,7 @@
+ from short_prepare import prepare,write,sha
+ from position_logging import PreciseLogger
+ from position_execution import POSITION_EQUIV
++from input_acceptance import require_calibration,require_event,calibration_verdict
+ 
+ PARAMS={p['case_id']:p for p in json.loads((ROOT/'inputs/fixed_position_test_parameters.json').read_text(encoding='utf-8'))['C_ORDINARY'] if p['case_id'] in ['A0','Alinear','ASFC_strong']}
+ CODE_NAMES=['config.py','sim_env.py','sfc.py','controller.py','sweep.py','background.py','f_measurement.py','position_execution.py','position_logging.py','disturbance.py','short_prepare.py','run_short.py','f_config.json','inputs/fixed_position_test_parameters.json','inputs/仿真误差参数.json']
+@@ -59,7 +60,8 @@
+     a=array(p);return float(np.mean([np.percentile(abs(a['effective_e_um'][a['phase']==code]),95) for code in [1,3]]))
+ def calibrate(c,zero):
+     dst=ROOT/'review/ordinary_calibration.json'
+-    if dst.exists():return read(dst)
++    if dst.exists():
++        result=read(dst);require_calibration(result);return result
+     base=run('S0__A0','A0',c,1.,zero,'formal reused as calibration')
+     assert read(base.with_suffix('.row.json'))['status']=='OK'
+     target=read(ROOT/'review/A_ordinary_reference.json')['target_P95_um'];baseline=ordinary_p95(base)
+@@ -72,11 +74,13 @@
+         value=ordinary_p95(p);history.append(dict(g=g,output_P95_um=value,log=str(p.relative_to(ROOT))))
+         if abs(value/target-1)<=.10 or g>=1:break
+         if attempt<2:g=min(1.,g*target/value)
+-    formalize(p,'S1__A0',g,zero,c)
+     result=dict(g=g,A_target_P95_um=target,S0_P95_um=baseline,S1_P95_um=value,history=history,
+         definition='Equal average of P95(abs raw effective Y error) in outbound and return steady phases; no output recentering.',
+         affects_fixed_bias=True,controller_parameters_unchanged=True,check_tolerance_relative=.10)
+-    write(dst,result);return result
++    result['accepted']=calibration_verdict(result)['passed']
++    write(dst,result);require_calibration(result)
++    formalize(p,'S1__A0',g,zero,c)
++    return result
+ def formalize(src,name,g,fd,c):
+     dest=ROOT/'outputs/full_1ms'/f'{name}.npz'
+     if src!=dest:shutil.copy2(src,dest)
+@@ -98,8 +102,10 @@
+ def reconstruct(c):
+     dst=ROOT/'review/event_reconstruction.json'
+     if dst.exists():
++        result=read(dst);require_event(result)
++        assert sha(ROOT/'inputs/Fd_event.csv')==result['final_fd_sha256'],'Cached accepted event file identity changed'
+         f=np.loadtxt(ROOT/'inputs/Fd_event.csv',delimiter=',',skiprows=1)[:,1]
+-        return fd_object(c,f,ROOT/'inputs/Fd_event.csv'),read(dst)
++        return fd_object(c,f,ROOT/'inputs/Fd_event.csv'),result
+     plant=disturbance.load_plant(ROOT/'reference_B_packet/plant_frf.npz');assert plant is not None
+     target=c['event_target_um'];f=inverse_padded(target,plant);history=[]
+     for attempt in range(3):
+@@ -110,13 +116,14 @@
+         history.append(check);print('EVENT relative RMS residual',check['relative_rms_error'],flush=True)
+         if check['relative_rms_error']<=.20:break
+         if attempt<2:f=f+.7*inverse_padded(target-y,plant)
++    result=dict(history=history,final_check=history[-1],plant_sha256=sha(ROOT/'reference_B_packet/plant_frf.npz'),
++        final_fd_sha256=fd.sha256,settings=dict(pass_hz=config.INV_F_PASS_HZ,stop_hz=config.INV_F_STOP_HZ,zero_padding_each_side_s=2.,residual_learning_rate=.7,max_A0_validations=3),
++        finite_memory_note='Zero-padded inverse suppresses periodic wrap; trimmed tails and cold-start causal response are explicitly checked. Source core e_vib amplitudes are unchanged; output is an approximate plant response, not fresh physical measurement.',
++        sufficient_for_approximate_comparison=history[-1]['relative_rms_error']<=.20)
++    write(dst,result);require_event(result)
+     shutil.copy2(fd.path,ROOT/'inputs/Fd_event.csv');final=fd_object(c,f,ROOT/'inputs/Fd_event.csv')
+     formalize(p,'S2__A0',0.,final,c)
+-    result=dict(history=history,final_check=history[-1],plant_sha256=sha(ROOT/'reference_B_packet/plant_frf.npz'),
+-        final_fd_sha256=final.sha256,settings=dict(pass_hz=config.INV_F_PASS_HZ,stop_hz=config.INV_F_STOP_HZ,zero_padding_each_side_s=2.,residual_learning_rate=.7,max_A0_validations=3),
+-        finite_memory_note='Zero-padded inverse suppresses periodic wrap; trimmed tails and cold-start causal response are explicitly checked. Source core e_vib amplitudes are unchanged; output is an approximate plant response, not fresh physical measurement.',
+-        sufficient_for_approximate_comparison=history[-1]['relative_rms_error']<=.20)
+-    write(dst,result);return final,result
++    return final,result
+ def freeze(c,g,event,zero):
+     scenarios={'S0':(1.,False),'S1':(g,False),'S2':(0.,True),'S3':(g,True),'S4':(1.,True)}
+     info=dict(version='F10-1ms-Acal-event-v1',duration_s=len(c['t'])*.001,dt_s=.001,parameters=PARAMS,
+@@ -141,9 +148,10 @@
+     if stage=='calibrate':calibrate(c,zero);return
+     if stage=='events':reconstruct(c);return
+     cal=calibrate(c,zero);event,recon=reconstruct(c)
++    require_calibration(cal);require_event(recon)
+     scenarios=freeze(c,cal['g'],event,zero)
+     for scenario,(g,on) in scenarios.items():
+         for controller in PARAMS:run(scenario+'__'+controller,controller,c,g,event if on else zero,'formal')
+     write(ROOT/'review/run_complete.json',dict(formal_cases=15,executed_runs=len(ledger()),budget=22,simulation_finished=True))
+ if __name__=='__main__':
+-    ap=argparse.ArgumentParser();ap.add_argument('stage',choices=['prepare','calibrate','events','compare'],default='compare',nargs='?');main(ap.parse_args().stage)
++    raise SystemExit('This independent copy uses run_slow.py. Legacy15-case matrix is retained only for audit; it is not an entry point here.')
+--- /dev/null
++++ F10_public_slow/run_slow.py
+@@ -0,0 +1,164 @@
++"""Offline public slow position correction, then three fixed anti-jitter cases. Max6 runs."""
++from pathlib import Path
++import sys,json,hashlib,shutil,argparse
++ROOT=Path(__file__).resolve().parent
++sys.path.insert(0,str(ROOT.parent/'F组首次接入_20261010/.runtime'));sys.path.insert(0,str(ROOT))
++if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
++import numpy as np
++import config,sweep,disturbance
++from short_prepare import write,sha,smooth,smooth_dot
++from run_short import read,common,array,PARAMS,input_id,fd_object
++from input_acceptance import require_calibration,require_event
++from position_logging import PreciseLogger
++from position_execution import POSITION_EQUIV,compiled_mapping
++from sim_env import SimEnv
++
++VERSION='F10-PRESCHEDULED-SLOW-v1'
++CODE=['run_slow.py','run_short.py','input_acceptance.py','sweep.py','position_logging.py','position_execution.py','controller.py','sfc.py','sim_env.py','config.py','background.py','f_measurement.py','f_config.json','inputs/fixed_position_test_parameters.json','inputs/仿真误差参数.json']
++def budget():return read(ROOT/'review/slow_run_budget.json') if (ROOT/'review/slow_run_budget.json').exists() else []
++def upstream():
++    fr=read(ROOT/'baseline_review/frozen_version.json');c=common();g=fr['g']
++    checks=dict(calibration=require_calibration(read(ROOT/'review/ordinary_calibration.json')),event=require_event(read(ROOT/'review/event_reconstruction.json')))
++    assert sha(ROOT/'inputs/frozen_common.npz')==fr['common_sha256']
++    assert sha(ROOT/'inputs/Fd_event.csv')==fr['event_sha256']
++    assert checks['calibration']['g']==g and PARAMS==fr['parameters']
++    f=np.loadtxt(ROOT/'inputs/Fd_event.csv',delimiter=',',skiprows=1)[:,1];fd=fd_object(c,f,ROOT/'inputs/Fd_event.csv')
++    assert input_id(c,g,fd.sha256)==fr['scenarios']['S3']['input_id']
++    assert read(ROOT/'review/R026_failure_checks.json')['passed']
++    write(ROOT/'review/upstream_acceptance.json',dict(passed=True,checks=checks,source_S3_id=fr['scenarios']['S3']['input_id'],no_new_calibration_or_event_generation=True))
++    return c,g,fd,fr
++def baseline():
++    a=array(ROOT/'reference_old_S3/S3__A0.npz');source=read(ROOT/'review/source_version.json')
++    assert sha(ROOT/'reference_old_S3/S3__A0.npz')==source['source_case_logs']['S3__A0.npz']
++    windows=[('pre_rest',.85,1.075),('outbound',2.226,4.38),('return',5.943,8.667),('post_tail_short',9.95,9.999)]
++    rows=[];levels=[]
++    for name,lo,hi in windows:
++        m=(a['t']>=lo)&(a['t']<=hi);x=a['effective_e_um'][m];level=float(np.median(x));levels.append(level)
++        rows.append(dict(platform=name,t0_s=lo,t1_s=hi,samples=int(m.sum()),effective_median_um=level,physical_median_um=float(np.median(a['physical_e_um'][m])),std_um=float(np.std(x)),
++            qualification='Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state.' if name=='post_tail_short' else 'Outside cold<0.8s and chosen event supports; median of inherited A0 only.'))
++    plan=dict(source='reference_old_S3/S3__A0.npz',source_sha256=sha(ROOT/'reference_old_S3/S3__A0.npz'),source_channel='effective_e_um',units='um',platforms=rows,
++        levels_um=levels,connections_s=[[1.075,2.226],[4.38,5.943],[8.667,9.95]],connection='quintic smoothstep, analytic C2, no fitting within an event',
++        noncausal=True,ordinary_or_event_waveform_fitted=False,tail_limitation='Final representative is short and not proof of long-term drift stability. Its level nearly equals return; stop correction changes by only~0.094um.',
++        event_windows=read(ROOT/'review/event_targets.json'))
++    write(ROOT/'review/baseline_plan.json',plan);return plan
++def slow_center(t,plan):
++    levels=plan['levels_um'];b=np.full_like(t,levels[0]);bd=np.zeros_like(t);bdd=np.zeros_like(t)
++    for j,(lo,hi) in enumerate(plan['connections_s']):
++        T=hi-lo;m=(t>=lo)&(t<=hi);u=(t[m]-lo)/T;diff=levels[j+1]-levels[j]
++        b[m]=levels[j]+diff*smooth(u);bd[m]=diff*smooth_dot(u,T)
++        bdd[m]=diff*(60*u-180*u*u+120*u*u*u)/(T*T)
++        b[t>hi]=levels[j+1]
++    return b,bd,bdd
++def static_map(c):
++    env=SimEnv();env.reset(c['q'][0]);env.forward();J=env.jacp().copy();sv=np.linalg.svd(J,compute_uv=False);condition=float(sv[0]/sv[-1])
++    assert sv[-1]>1e-5 and condition<1e5,'Static translation mapping is ill-conditioned; stop branch'
++    M=J.T@np.linalg.solve(J@J.T,np.array([0.,1.,0.]));assert np.max(abs(J@M-np.array([0.,1.,0.])))<1e-12
++    # Nominal initial FK can have tiny existing IK residual; compare actual states, not config rounding.
++    env.reset(c['q'][0]);env.forward();p0=env.tcp_pos().copy();env.reset(c['q'][0]+M*1e-6);env.forward();shift=env.tcp_pos()-p0
++    assert shift[1]>0 and abs(shift[1]/1e-6-1)<.01
++    mapping=dict(J0_translation_m_per_rad=J,M_rad_per_m=M,singular_values=sv,condition=condition,first_order_JM=[0.,1.,0.],positive1um_FK_shift_m=shift,
++        method='Constant minimum-norm translation right inverse at original initial nominal posture; X/Z first-order correction zero. Static only, no dynamic Jacobian/observer.',
++        full_compiled_model=compiled_mapping(env.model),original_initial_q=c['q'][0])
++    write(ROOT/'review/static_mapping.json',mapping);return M
++def make_correction(c,plan,M,gain):
++    b,bd,bdd=slow_center(c['t'],plan);dy=-gain*b*1e-6;dyd=-gain*bd*1e-6;dydd=-gain*bdd*1e-6
++    return dict(common_baseline_um=b,common_delta_y_m=dy,common_delta_y_dot_m_s=dyd,common_delta_y_ddot_m_s2=dydd,
++        common_delta_q=dy[:,None]*M,common_delta_q_dot=dyd[:,None]*M,common_delta_q_ddot=dydd[:,None]*M)
++def correction_id(corr,source_id):
++    h=hashlib.sha256(source_id.encode())
++    for k in sorted(corr):h.update(k.encode());h.update(np.ascontiguousarray(corr[k]).tobytes())
++    return h.hexdigest()
++def run(name,controller,c,g,fd,corr,source_id,role):
++    dest=ROOT/'outputs/full_1ms'/f'{name}.npz';identity=correction_id(corr,source_id);p=PARAMS[controller]
++    if dest.exists() and dest.with_suffix('.row.json').exists():
++        meta=read(dest.with_suffix('.json'));row=read(dest.with_suffix('.row.json'))
++        assert meta['input_sha256']==identity and meta['controller_parameters']==p and row['status']=='OK' and row['n_steps_done']==len(c['t'])
++        print('REUSE',name,flush=True);return dest
++    runs=budget();assert len(runs)<6,'6-run budget exhausted'
++    assert not any(x['case_id']==name for x in runs),'No silent re-run of failed/incomplete case'
++    if role=='construct':assert controller=='A0' and sum(x['role']=='construct' for x in runs)<3
++    if role=='formal':assert controller in ['Alinear','ASFC_strong'] and sum(x['role']=='formal' for x in runs)<2
++    runs.append(dict(index=len(runs)+1,case_id=name,controller=controller,role=role,input_id=identity,status='RUNNING'));write(ROOT/'review/slow_run_budget.json',runs)
++    scaled={k:(v*g if k in ['dq','dqd','remaining','remaining_dot'] else v) for k,v in c.items()}
++    logger=PreciseLogger(dest,len(c['t']),'C_ORDINARY',POSITION_EQUIV,1,identity,input_data=scaled,common_correction=corr)
++    logger.meta.update(module_version=VERSION,g=g,controller_parameters=p,source_S3_input_id=source_id,fd_sha256=fd.sha256,
++        code_snapshot_sha256=sha(ROOT/'review/slow_implementation_freeze.json'),reference_y_unchanged_m=config.Y_NOMINAL,
++        counterfactual='Independent actuator evaluation at same actual state. Base includes public slow position correction. Recorded realized increment is anti-jitter only; public correction is reported as position/speed/acceleration, not invented force.',
++        shared_inputs='Original frozen q/dq/dqd/remaining/remdot/Fd unchanged; public correction same every case; no output trend subtraction.')
++    print('RUN',len(runs),name,flush=True)
++    row=sweep.run_case(name,p['mode'],p['K'],p['B0'],p['n'],p['mu'],p['r'],p['v_ref'] or 0.,fd,c['along'],c['q'],phase_code=c['phase'],c_input=scaled,
++        execution_mode=POSITION_EQUIV,control_update_steps=1,precise_logger=logger,common_position_correction=corr['common_delta_q'],keep_trace=False)
++    write(dest.with_suffix('.row.json'),row);runs=budget();runs[-1].update(status=row['status'],n_steps_done=row['n_steps_done'],note=row['note'],log_sha256=sha(dest));write(ROOT/'review/slow_run_budget.json',runs)
++    print('DONE',name,row['status'],row['n_steps_done'],flush=True);return dest
++def centers(a,plan):
++    return [float(np.median(a['effective_e_um'][(a['t']>=p['t0_s'])&(a['t']<=p['t1_s'])])) for p in plan['platforms']]
++def construction_check(p,c,plan,corr):
++    a=array(p);row=read(p.with_suffix('.row.json'));vals=centers(a,plan)
++    m=(a['t']>=.85)&(a['t']<=1.075);cold=a['t']<.8;ic=np.flatnonzero(cold)[np.argmax(abs(a['effective_e_um'][cold]))]
++    sat=np.any(a['ctrl_saturation']|a['force_saturation']|a['joint_saturation'],axis=1)
++    passed=row['status']=='OK' and len(a['t'])==len(c['t']) and not sat.any() and max(abs(np.array(vals)))<=5.
++    return dict(passed=bool(passed),status=row['status'],platform_centers_um=vals,original_platform_centers_um=plan['levels_um'],center_threshold_um=5.,saturated_samples=int(sat.sum()),
++        correction_initial_nonzero_rad=corr['common_delta_q'][0],cold_peak_t_s=float(a['t'][ic]),cold_peak_um=float(a['effective_e_um'][ic]),
++        public_delta_q_peak_abs_rad=float(np.max(abs(corr['common_delta_q']))),public_qdot_peak_abs_rad_s=float(np.max(abs(corr['common_delta_q_dot']))),public_qddot_peak_abs_rad_s2=float(np.max(abs(corr['common_delta_q_ddot']))),
++        interpretation='A0 only. Accept approximate platform centering within5um, including separately qualified short tail. No parameter/g/event adjustment. Cold state not changed.')
++def validate_derivatives(c,plan,M,corr,gain):
++    x=np.array([1.20,1.9,4.7,5.3,8.9,9.7]);eps=1e-5;b,bd,bdd=slow_center(x,plan);bp,dp,_=slow_center(x+eps,plan);bm,dm,_=slow_center(x-eps,plan)
++    err1=float(np.max(abs((bp-bm)/(2*eps)-bd)));err2=float(np.max(abs((dp-dm)/(2*eps)-bdd)));assert max(err1,err2)<1e-7
++    joint_step=float(np.max(abs(np.diff(corr['common_delta_q'],axis=0))))
++    assert joint_step<=.001*np.max(abs(corr['common_delta_q_dot']))*1.001+1e-15
++    write(ROOT/'review/slow_derivative_checks.json',dict(passed=True,baseline_derivative_error_um_s=err1,baseline_second_derivative_error_um_s2=err2,
++        C2_endpoint_continuity=True,static_map_only=True,max_adjacent_common_command_step_rad=joint_step,
++        initial_jump_is_separate_from_analytic_derivative=True,initial_common_position_step_rad=corr['common_delta_q'][0]))
++def main(stage='all'):
++    c,g,fd,fr=upstream();snapshot={p:sha(ROOT/p) for p in CODE}
++    freeze=ROOT/'review/slow_implementation_freeze.json'
++    if freeze.exists():assert read(freeze)==snapshot,'Do not silently change implementation after construction validation'
++    else:write(freeze,snapshot)
++    source_id=fr['scenarios']['S3']['input_id'];plan=baseline();M=static_map(c)
++    path=ROOT/'review/public_correction_acceptance.json'
++    if path.exists():
++        accepted=read(path);assert accepted['passed']
++        with np.load(ROOT/'inputs/public_slow_correction.npz') as z:corr={k:z[k] for k in z.files}
++        assert correction_id(corr,source_id)==accepted['input_id']
++        gain=accepted['gain'];p=ROOT/accepted['A0_log']
++        assert construction_check(p,c,plan,corr)['passed']
++    else:
++        gain=1.;history=[]
++        for attempt in range(3):
++            corr=make_correction(c,plan,M,gain);validate_derivatives(c,plan,M,corr,gain)
++            p=run(f'construct_{attempt+1}__A0','A0',c,g,fd,corr,source_id,'construct');check=construction_check(p,c,plan,corr)
++            check.update(attempt=attempt+1,gain=gain,log=str(p.relative_to(ROOT)));history.append(check);write(ROOT/'review/public_correction_attempts.json',history)
++            if check['passed']:break
++            if check['status']!='OK' or check['saturated_samples']:break
++            # A0 ordinary centers only, no event/controller performance used to set gain.
++            old=np.array(plan['levels_um'][1:3]);new=np.array(check['platform_centers_um'][1:3]);response=old-new
++            proposed=gain*float(np.median(old/response)) if np.all(abs(response)>1.) else float('nan')
++            if not np.isfinite(proposed) or not .5<=proposed<=2.:
++                check['rejection']='Simple gain would leave permitted static correction range; no complex fit';break
++            if attempt<2:gain=proposed
++        if not check['passed']:
++            write(path,dict(passed=False,attempts=len(history),reason='Approximate common-center premise not reached within budget; no formal dependent cases.'))
++            raise RuntimeError('Public correction failed acceptance; preserve attempted logs and stop formal dependencies')
++        np.savez_compressed(ROOT/'inputs/public_slow_correction.npz',**corr)
++        accepted=dict(passed=True,gain=gain,input_id=correction_id(corr,source_id),A0_log=str(p.relative_to(ROOT)),check=check,attempts=len(history))
++        write(path,accepted)
++    final=dict(version=VERSION,source_version_sha256=sha(ROOT/'baseline_review/frozen_version.json'),source_S3_input_id=source_id,shared_input_id=accepted['input_id'],g=g,
++        public_correction_sha256=sha(ROOT/'inputs/public_slow_correction.npz'),baseline_plan_sha256=sha(ROOT/'review/baseline_plan.json'),mapping_sha256=sha(ROOT/'review/static_mapping.json'),
++        parameters=PARAMS,dt_s=.001,duration_s=10.,fixed_y_target_m=config.Y_NOMINAL,implementation_sha256=sha(freeze),initial_condition_unchanged=True,
++        feedback_velocity='Measured physicalYdot + original remaining_dot; original nominalYdot=0. Public analytic velocity is diagnostic, not subtracted as a changed target.',
++        execution='original q_nom + original g*dq + frozen public delta_q_slow + existing tau_anti/Kp; only Fd_event in qfrc_applied',noncausal_offline=True)
++    file=ROOT/'review/slow_frozen_version.json'
++    if file.exists():assert read(file)==final
++    else:write(file,final)
++    dst=ROOT/'outputs/full_1ms/PC__A0.npz'
++    if not dst.exists():
++        shutil.copy2(p,dst)
++        for suffix in ['.json','.row.json']:
++            meta=read(p.with_suffix(suffix));meta.update(reused_from=str(p.relative_to(ROOT)))
++            if suffix=='.row.json':meta['case_id']='PC__A0'
++            write(dst.with_suffix(suffix),meta)
++    if stage=='construct':return
++    for controller in ['Alinear','ASFC_strong']:run('PC__'+controller,controller,c,g,fd,corr,source_id,'formal')
++    write(ROOT/'review/slow_complete.json',dict(completed=True,new_integrations=len(budget()),formal_cases=3,A0_reused=True,max_integrations=6))
++if __name__=='__main__':
++    ap=argparse.ArgumentParser();ap.add_argument('stage',choices=['construct','all'],nargs='?',default='all');main(ap.parse_args().stage)
+--- /dev/null
++++ F10_public_slow/slow_report.py
+@@ -0,0 +1,202 @@
++"""Raw new results and inherited reference; report public correction separately from anti-jitter."""
++from run_slow import ROOT,read,write,sha,common,array,PARAMS,VERSION,budget,correction_id,slow_center
++from short_report import stats,table,LABELS
++from pathlib import Path
++import json,numpy as np,difflib
++
++def load():
++    logs={}
++    for p in LABELS:
++        logs['old__'+p]=array(ROOT/'reference_old_S3'/f'S3__{p}.npz')
++        logs['new__'+p]=array(ROOT/'outputs/full_1ms'/f'PC__{p}.npz')
++    return logs
++def validate(c,corr,logs):
++    fr=read(ROOT/'review/slow_frozen_version.json');source=read(ROOT/'baseline_review/frozen_version.json');g=fr['g']
++    assert correction_id(corr,source['scenarios']['S3']['input_id'])==fr['shared_input_id']
++    assert source['g']==g and fr['parameters']==source['parameters']
++    errors={};fd=np.loadtxt(ROOT/'inputs/Fd_event.csv',delimiter=',',skiprows=1)[:,1]
++    for ctrl in LABELS:
++        old=logs['old__'+ctrl];a=logs['new__'+ctrl];meta=read(ROOT/'outputs/full_1ms'/f'PC__{ctrl}.json');row=read(ROOT/'outputs/full_1ms'/f'PC__{ctrl}.row.json')
++        assert row['status']=='OK' and row['n_steps_done']==10000 and meta['input_sha256']==fr['shared_input_id']
++        for k in ['t','phase','q_nominal','dq_C','remaining','remaining_dot','nominal_y','Fd']:
++            assert np.array_equal(a[k],old[k]),(ctrl,k)
++        assert np.array_equal(a['dq_C'],c['dq']*g) and np.array_equal(a['remaining_dot'],c['remaining_dot']*g)
++        assert np.array_equal(a['original_base_ctrl'],old['base_ctrl'])
++        assert np.array_equal(a['base_ctrl'],a['original_base_ctrl']+corr['common_delta_q'])
++        assert np.array_equal(a['final_ctrl'],a['base_ctrl']+a['delta_u'])
++        for k in corr:assert np.array_equal(a[k],corr[k])
++        assert np.array_equal(a['qfrc_applied'],a['qfrc_disturbance']) and np.array_equal(a['Fd'],fd)
++        assert np.array_equal(a['effective_y'],a['physical_y']+a['remaining'])
++        assert np.all(a['nominal_y']==-.174)
++        assert np.array_equal(a['q'][0],old['q'][0]) and np.array_equal(a['qdot'][0],old['qdot'][0])
++        # Source command returned exactly when common correction is switched off, without another full run.
++        off=a['q_nominal']+a['dq_C'];assert np.array_equal(off,old['base_ctrl'])
++        # Controller state responds to the newly integrated plant; it is not an offline shifted trace.
++        assert not np.array_equal(a['q'],old['q'])
++        assert np.allclose(a['delta_u'],a['tau_requested']/5000,atol=1e-15,rtol=0)
++        inc=float(np.max(abs(a['tau_realized_increment']-a['tau_requested'])));assert inc<1e-8
++        p=PARAMS[ctrl];e=a['effective_e_um']*1e-6;v=a['effective_v']
++        F=np.zeros_like(e) if ctrl=='A0' else -p['K']*e-p['B0']*v-p['mu']*np.sign(v)*abs(v)**p['n']
++        ferr=float(np.max(abs(F-a['F_requested'])));assert ferr<1e-9
++        errors[ctrl]=dict(max_anti_realized_residual_Nm=inc,independent_controller_formula_error_N=ferr,
++            saturation_samples=int(np.count_nonzero(np.any(a['ctrl_saturation']|a['force_saturation']|a['joint_saturation'],axis=1))))
++    before=read(ROOT/'review/protected_before.json');after={p:sha(p) for p in before};assert before==after
++    write(ROOT/'review/protected_after.json',after)
++    for p,h in read(ROOT/'review/slow_implementation_freeze.json').items():assert sha(ROOT/p)==h
++    base=Path(read(ROOT/'review/source_version.json')['accepted_complete_root'])
++    unchanged=['config.py','sim_env.py','controller.py','sfc.py','position_execution.py','background.py','f_measurement.py','disturbance.py']
++    assert all(sha(ROOT/n)==sha(base/n) for n in unchanged)
++    for p in (ROOT/'assets_ur10e').rglob('*'):
++        if p.is_file():assert sha(p)==sha(base/'assets_ur10e'/p.relative_to(ROOT/'assets_ur10e'))
++    assert read(ROOT/'review/static_mapping.json')['full_compiled_model']==read(ROOT/'baseline_review/compiled_model.json')
++    verdict=dict(passed=True,new_full_integrations=len(budget()),budget=6,formal_cases=3,protected_original_files=len(before),all_sources_and_old_versions_unchanged=True,
++        source_input_arrays_identical=True,public_correction_same_all_cases=True,zero_reference_unchanged=True,old_command_structure_restored_with_correction_off=True,
++        no_new_controller_or_dynamics=True,anti_torque_not_duplicated_as_external=True,core_unchanged=unchanged,model_and_initial_state_unchanged=True,
++        public_module_no_fabricated_force_or_energy=True,actual_raw_new_outputs=True,controller_checks=errors)
++    write(ROOT/'review/slow_verification.json',verdict);return verdict
++def export(c,corr,logs):
++    out=ROOT/'outputs/compact_1ms';out.mkdir(exist_ok=True)
++    wins=read(ROOT/'baseline_review/metric_windows.json')['windows'];wins['after_cold_aux']=[.8,9.999]
++    plan=read(ROOT/'review/baseline_plan.json');ev=read(ROOT/'review/event_targets.json')
++    index=[];metrics=[];events=[];costs=[];platforms=[];cold=[]
++    for name,a in logs.items():
++        group,ctrl=name.split('__');new=group=='new';fr=read(ROOT/'review/slow_frozen_version.json')
++        cols=dict(t_s=a['t'],phase=a['phase'],nominal_Y_m=a['nominal_y'],physical_e_um=a['physical_e_um'],effective_e_um=a['effective_e_um'],effective_v_m_s=a['effective_v'],Fd_event_N=a['Fd'],F_anti_requested_N=a['F_requested'],
++            tau_anti_requested_norm_Nm=np.linalg.norm(a['tau_requested'],axis=1),tau_anti_realized_norm_Nm=np.linalg.norm(a['tau_realized_increment'],axis=1),
++            delta_anti_norm_rad=np.linalg.norm(a['delta_u'],axis=1),ctrl_saturated_any=np.any(a['ctrl_saturation'],axis=1),force_saturated_any=np.any(a['force_saturation'],axis=1),joint_saturated_any=np.any(a['joint_saturation'],axis=1))
++        for j in range(6):cols[f'delta_anti_J{j+1}_rad']=a['delta_u'][:,j]
++        for j in range(6):cols[f'final_ctrl_J{j+1}_rad']=a['final_ctrl'][:,j]
++        matrix=np.column_stack(list(cols.values()));p=out/(name+'.csv');np.savetxt(p,matrix,delimiter=',',fmt='%.17g',header=','.join(cols),comments='')
++        assert np.array_equal(np.loadtxt(p,delimiter=',',skiprows=1),matrix)
++        index.append(dict(case_id=name,group=group,controller=ctrl,samples=len(a['t']),public_on=new,input_id=fr['shared_input_id'] if new else fr['source_S3_input_id'],g=fr['g'],csv_sha256=sha(p),full_log_local=str(ROOT/('outputs/full_1ms/PC__'+ctrl+'.npz' if new else 'reference_old_S3/S3__'+ctrl+'.npz'))))
++        for window,(lo,hi) in wins.items():
++            mask=(a['t']>=lo)&(a['t']<=hi)
++            for channel in ['effective','physical']:metrics.append(dict(case_id=name,group=group,controller=ctrl,window=window,channel=channel,t0_s=lo,t1_s=hi,n=int(mask.sum()),**stats(a[channel+'_e_um'][mask])))
++        for platform in plan['platforms']:
++            lo=platform['t0_s'];hi=platform['t1_s'];mask=(a['t']>=lo)&(a['t']<=hi)
++            platforms.append(dict(case_id=name,group=group,controller=ctrl,platform=platform['platform'],t0_s=lo,t1_s=hi,n=int(mask.sum()),effective_median_um=float(np.median(a['effective_e_um'][mask])),physical_median_um=float(np.median(a['physical_e_um'][mask])),qualification=platform['qualification']))
++        for event in ev:
++            label=event['event'];lo,hi=event['core_s'] if label!='stop' else event['new_support_s'];blo,bhi=(1.085,1.235) if label=='start' else (event['new_support_s'][0]-.4,event['new_support_s'][0]-.05)
++            mask=(a['t']>=lo)&(a['t']<=hi);bm=(a['t']>=blo)&(a['t']<=bhi)
++            for channel in ['effective','physical']:
++                y=a[channel+'_e_um'];b=float(np.median(y[bm]));d=y[mask]-b
++                events.append(dict(case_id=name,group=group,controller=ctrl,event=label,channel=channel,t0_s=lo,t1_s=hi,baseline_t0_s=blo,baseline_t1_s=bhi,baseline_median_um=b,
++                    baseline_peak_abs_um=float(np.max(abs(d))),raw_min_um=float(np.min(y[mask])),raw_max_um=float(np.max(y[mask])),time_abs_deviation_gt10um_s=float(np.count_nonzero(abs(d)>10)*.001)))
++        sat=np.any(a['ctrl_saturation']|a['force_saturation']|a['joint_saturation'],axis=1)
++        costs.append(dict(case_id=name,F_anti_RMS_N=float(np.sqrt(np.mean(a['F_requested']**2))),F_anti_abs_peak_N=float(np.max(abs(a['F_requested']))),
++            tau_anti_RMS_norm_Nm=float(np.sqrt(np.mean(np.sum(a['tau_requested']**2,axis=1)))),tau_anti_peak_norm_Nm=float(np.max(np.linalg.norm(a['tau_requested'],axis=1))),
++            anti_position_peak_abs_deg=float(np.max(abs(a['delta_u']))*180/np.pi),public_position_peak_abs_deg=float(np.max(abs(corr['common_delta_q']))*180/np.pi) if new else 0.,
++            total_added_position_peak_abs_deg=float(np.max(abs(a['delta_u']+(corr['common_delta_q'] if new else 0.)))*180/np.pi),saturation_samples=int(sat.sum()),saturation_duty=float(np.mean(sat))))
++        m=a['t']<.8;i=np.flatnonzero(m)[np.argmax(abs(a['effective_e_um'][m]))]
++        cold.append(dict(case_id=name,peak_t_s=float(a['t'][i]),peak_signed_um=float(a['effective_e_um'][i]),is_A_start=False,public_initial_position_step=new))
++    comparisons=[]
++    for event in ev:
++        lo,hi=event['core_s'] if event['event']!='stop' else event['new_support_s'];m=(c['t']>=lo)&(c['t']<=hi)
++        x=logs['old__A0']['effective_e_um'][m];y=logs['new__A0']['effective_e_um'][m]
++        old=next(r for r in events if r['case_id']=='old__A0' and r['event']==event['event'] and r['channel']=='effective')
++        new=next(r for r in events if r['case_id']=='new__A0' and r['event']==event['event'] and r['channel']=='effective')
++        comparisons.append(dict(event=event['event'],old_local_peak_um=old['baseline_peak_abs_um'],new_local_peak_um=new['baseline_peak_abs_um'],relative_peak_change=new['baseline_peak_abs_um']/old['baseline_peak_abs_um']-1,
++            diagnostic_centered_shape_correlation=float(np.corrcoef(x,y)[0,1]),old_threshold_occupancy_s=old['time_abs_deviation_gt10um_s'],new_threshold_occupancy_s=new['time_abs_deviation_gt10um_s'],
++            nominal_event_target_and_force_unchanged=True,note='Local median and correlation only diagnose shape; plotted outputs stay raw. Occupancy is not a physical event duration identification.'))
++    for n,rows in [('case_index.csv',index),('新旧分段指标.csv',metrics),('平台中心前后.csv',platforms),('新旧事件指标.csv',events),('抗抖代价_公共位置代价分列.csv',costs),('冷初始化对照.csv',cold),('A0事件形状前后核查.csv',comparisons)]:table(ROOT/'review'/n,rows)
++    write(ROOT/'review/public_position_cost.json',dict(units='Position rad, velocity rad/s, acceleration rad/s2; no invented force or energy',
++        deltaY_peak_abs_um=float(np.max(abs(corr['common_delta_y_m']))*1e6),deltaq_peak_abs_rad=float(np.max(abs(corr['common_delta_q']))),
++        deltaq_dot_peak_abs_rad_s=float(np.max(abs(corr['common_delta_q_dot']))),deltaq_ddot_peak_abs_rad_s2=float(np.max(abs(corr['common_delta_q_ddot']))),
++        initial_nonzero_command_step_rad=corr['common_delta_q'][0],initial_step_separate_from_smooth_analytic_derivative=True))
++    write(ROOT/'review/metric_definition.json',dict(windows=wins,std_ddof=0,full_statistics_include_cold=True,curve_mean_subtracted=False,curve_smoothed=False,curve_multiplied=False,
++        public_improvement_not_attributed_to_SFC=True,offline_residual_diagnostic_not_actual_control=True))
++    return metrics,platforms,events,costs,comparisons
++def plots(c,corr,logs):
++    import matplotlib
++    matplotlib.use('Agg');import matplotlib.pyplot as plt
++    plt.rcParams.update({'font.sans-serif':['Microsoft YaHei','SimHei','DejaVu Sans'],'axes.unicode_minus':False,'font.size':10})
++    dest=ROOT/'outputs/figures';dest.mkdir(exist_ok=True);colors={'A0':'#666666','Alinear':'#2374ab','ASFC_strong':'#d73535'}
++    raw=np.concatenate([a['effective_e_um'] for a in logs.values()]);margin=np.ptp(raw)*.08;ylim=(np.min(raw)-margin,np.max(raw)+margin)
++    t=c['t'];old=logs['old__A0']['effective_e_um'];new=logs['new__A0']['effective_e_um'];b=corr['common_baseline_um'];plan=read(ROOT/'review/baseline_plan.json')
++    def save(fig,n):fig.savefig(dest/n,dpi=155);plt.close(fig)
++    fig,axes=plt.subplots(2,1,figsize=(11,6.2),sharex=True,layout='constrained')
++    axes[0].plot(t,old,color='#666666',lw=1,label='旧S3 A0 原始effective Y');axes[0].plot(t,b,color='#f0932b',lw=2,label='4平台慢中心 b(t)')
++    axes[1].plot(t,old-b,color='#2374ab',lw=1,label='旧A0−b：仅离线分离诊断，非新控制结果')
++    for ax in axes:ax.axhline(0,color='black',lw=.7);ax.set_ylabel('Y偏差 / μm');ax.grid(alpha=.2);ax.legend();ax.set_ylim(*ylim)
++    axes[0].set_title('从旧无附加抗抖结果提取慢中心：保留波纹、事件及冷初始化');axes[1].set_xlabel('时间 / s');save(fig,'01_旧A0与慢中心_诊断.png')
++    fig,axes=plt.subplots(3,1,figsize=(11,7),sharex=True,layout='constrained')
++    axes[0].plot(t,corr['common_delta_y_m']*1e6,color='#f0932b');axes[0].set_ylabel('预定δY / μm');axes[0].set_title('公共纠偏：静态Jacobian映射、C2连接；初始非零，无预热')
++    for j in range(6):axes[1].plot(t,corr['common_delta_q'][:,j]*1e6,label='J'+str(j+1));axes[2].plot(t,corr['common_delta_q_dot'][:,j]*1e6)
++    axes[1].set_ylabel('δq / μrad');axes[1].legend(ncol=6);axes[2].set_ylabel('δq速度 / μrad/s');axes[2].set_xlabel('时间 / s')
++    for ax in axes:ax.grid(alpha=.2)
++    save(fig,'02_公共预定纠偏及速度.png')
++    fig,axes=plt.subplots(2,1,figsize=(11,6.2),sharex=True,gridspec_kw={'height_ratios':[1,3]},layout='constrained')
++    axes[0].plot(t,c['along'],color='#9467bd');axes[0].set_ylabel('沿程 / mm');axes[0].set_title('共同离线预定慢纠偏下的完整往返：实际原始effective Y，10秒/1ms')
++    for ctrl in LABELS:axes[1].plot(t,logs['new__'+ctrl]['effective_e_um'],color=colors[ctrl],label='公共纠偏＋'+LABELS[ctrl],lw=1.)
++    axes[1].set_ylim(*ylim);axes[1].axhline(0,color='black',lw=.7);axes[1].set_ylabel('原始Y偏差 / μm');axes[1].set_xlabel('时间 / s');axes[1].legend(ncol=3,loc='lower left');axes[1].grid(alpha=.2);axes[1].axvspan(0,.8,color='#ddaa44',alpha=.1)
++    axes[1].text(.01,.96,'0–0.8秒：冷初始化＋起始非零公共命令，非A启动',transform=axes[1].transAxes,va='top',fontsize=9)
++    tr=read(ROOT/'review/trajectory.json')
++    for label,lo,hi in [('A启动',1.285,1.926),('去程',2.226,4.38),('换向',4.58,5.643),('回程',5.943,8.667),('减速/停止',8.667,9.999)]:
++        axes[0].text((lo+hi)/2,.95,label,transform=axes[0].get_xaxis_transform(),ha='center',va='top',fontsize=9)
++        if label in ['A启动','换向','减速/停止']:axes[1].axvspan(lo,hi,color='#3498db',alpha=.06)
++    for at in [tr['start_trigger_s'],tr['turn_trigger_s'],tr['post_stop_begin_s']]:axes[1].axvline(at,color='#777777',lw=.8,ls=':',alpha=.5)
++    save(fig,'03_新三方案_完整原始Y.png')
++    fig,ax=plt.subplots(figsize=(11,4.8),layout='constrained');ax.plot(t,old,color='#999999',lw=1,label='旧A0，无公共纠偏');ax.plot(t,new,color='#222222',lw=1,label='新A0，有公共纠偏，实际重新积分')
++    ax.axhline(0,color='black',lw=.7);ax.set_ylim(*ylim);ax.set_xlabel('时间 / s');ax.set_ylabel('原始effective Y / μm');ax.set_title('公共模块的效果单独展示：中心移动不归给SFC');ax.legend();ax.grid(alpha=.2);save(fig,'04_新旧A0原始对照.png')
++    fig,ax=plt.subplots(figsize=(10,4.8),layout='constrained');m=(t>=1.2849583981754964)&(t<=tr['turn_trigger_s'])
++    for ctrl in LABELS:ax.plot(c['along'][m],logs['new__'+ctrl]['effective_e_um'][m],color=colors[ctrl],label=LABELS[ctrl],lw=1.)
++    ax.axhline(0,color='black',lw=.7);ax.set_ylim(*ylim);ax.set_xlabel('去程名义沿程位置 / mm');ax.set_ylabel('原始effective Y / μm');ax.set_title('仅去程：启动至换向顶点，回程未混叠');ax.legend(ncol=3);ax.grid(alpha=.2);save(fig,'05_去程沿程位置与原始Y.png')
++    for event in read(ROOT/'review/event_targets.json')[:2]:
++        lo,hi=event['new_support_s'];m=(t>=lo-.05)&(t<=hi+.10);fig,ax=plt.subplots(figsize=(10,4.2),layout='constrained')
++        for ctrl in LABELS:ax.plot(t[m],logs['new__'+ctrl]['effective_e_um'][m],color=colors[ctrl],label=LABELS[ctrl],lw=1.)
++        ax.axhline(0,color='black',lw=.7);ax.set_ylim(*ylim);ax.set_title('共同纠偏＋'+('启动' if event['event']=='start' else '换向')+'局部：实际原始Y');ax.set_xlabel('时间 / s');ax.set_ylabel('原始effective Y / μm');ax.legend(ncol=3);ax.grid(alpha=.2)
++        save(fig,'06_'+event['event']+'_原始局部.png')
++    write(ROOT/'review/plot_definitions.json',dict(global_y_limits_um=ylim,all_raw_comparison_axes_same=True,offline_residual_only_diagnostic=True,raw_case_curve_keys='effective_e_um',no_curve_recenter_smooth_or_rescale=True))
++def documents(metrics,platforms,events,costs,changes,verdict):
++    def m(group,ctrl,channel='effective',win='full'):return next(r for r in metrics if r['group']==group and r['controller']==ctrl and r['channel']==channel and r['window']==win)
++    def cost(ctrl):return next(r for r in costs if r['case_id']=='new__'+ctrl)
++    def plat(group,ctrl):return [r['effective_median_um'] for r in platforms if r['group']==group and r['controller']==ctrl]
++    source=read(ROOT/'review/slow_frozen_version.json');accept=read(ROOT/'review/public_correction_acceptance.json');public=read(ROOT/'review/public_position_cost.json');mapping=read(ROOT/'review/static_mapping.json')
++    lines=['# F组共同预定慢纠偏｜验收简报','',f'完成**3条新10秒/1ms仿真**：1次A0构造通过并复用，线性/强SFC各1次；预算6条。旧S3三方案直接复用。原件清单{verdict["protected_original_files"]}个文件哈希未变。',
++        '', '**顺序与前提。** 仅从旧S3 A0 effective Y取4个中位中心，用三段五次smoothstep相连；完整旧数据用于离线非因果预处理。预静止/去程/回程窗避开冷初始化与已选事件支持。停后代表窗9.950–9.999 s仅50点，已有仅事件结果该窗最大约1.20 μm；它是短尾参照，不证明长期停稳，未把较早恢复波形拟成中心。',
++        '', '|A0代表中心 / μm|预静止|普通去程|普通回程|停后短尾|','|---|---:|---:|---:|---:|',
++        '|原始|'+'|'.join(f'{v:.2f}' for v in plat('old','A0'))+'|','|加入公共纠偏后|'+'|'.join(f'{v:+.2f}' for v in plat('new','A0'))+'|',
++        '', f'**公共输入。** δY=−b，增益1.0首次即通过；固定初始姿态的平移Jacobian最小范数右逆，条件数{mapping["condition"]:.3f}。命令为原q_nom＋原g·dq＋公共δq慢＋原τ抗抖/5000，评价零线仍是原名义Y。g={source["g"]:.10f}，全部背景及解析导数、事件目标/Fd逐点保留；K/B0/n/μ、模型、1ms、初态不变。公共最大Y纠偏{public["deltaY_peak_abs_um"]:.2f} μm，单关节{public["deltaq_peak_abs_rad"]*180/np.pi:.6f}°；速度/加速度峰{public["deltaq_dot_peak_abs_rad_s"]:.3g} rad/s、{public["deltaq_ddot_peak_abs_rad_s2"]:.3g} rad/s²。位置量未虚报为力或能量。',
++        '', '**新三方案实际effective Y（全程保留冷初始化；std不称纯高频振动）**','', '|方案|标准差 μm|峰峰 μm|均值 μm|原始绝对峰 μm|抗抖力RMS N|抗抖力矩RMS范数 Nm|','|---|---:|---:|---:|---:|---:|---:|']
++    for ctrl in LABELS:
++        a=m('new',ctrl);cc=cost(ctrl);lines.append('|'+LABELS[ctrl]+'|'+'|'.join(f'{a[k]:.2f}' for k in ['std_um','ptp_um','mean_um','raw_peak_abs_um'])+f'|{cc["F_anti_RMS_N"]:.4f}|{cc["tau_anti_RMS_norm_Nm"]:.4f}|')
++    a0=m('new','A0');sf=m('new','ASFC_strong');linear=m('new','Alinear');old=m('old','A0')
++    lines+=['',f'在同一公共纠偏下，线性标准差/峰峰相对A0下降{(1-linear["std_um"]/a0["std_um"])*100:.1f}%/{(1-linear["ptp_um"]/a0["ptp_um"])*100:.1f}%，强SFC下降{(1-sf["std_um"]/a0["std_um"])*100:.1f}%/{(1-sf["ptp_um"]/a0["ptp_um"])*100:.1f}%。强SFC抗抖力RMS约为线性的{cost("ASFC_strong")["F_anti_RMS_N"]/cost("Alinear")["F_anti_RMS_N"]:.2f}倍，未宣称等代价优势。',
++        '', f'公共模块主要搬稳中心：旧/新A0全程std {old["std_um"]:.2f}→{a0["std_um"]:.2f} μm，峰峰{old["ptp_um"]:.2f}→{a0["ptp_um"]:.2f} μm（略增加），不能将居中直接算成抑振。普通去回、启动/换向/停止、physical同口径统计及新旧参照均在review CSV。',
++        '', '|A0事件局部基线峰 / μm|旧|新|','|---|---:|---:|']
++    for r in changes:lines.append('|'+{'start':'启动','turn':'换向','stop':'减速/停止'}[r['event']]+'|'+f'{r["old_local_peak_um"]:.2f}|{r["new_local_peak_um"]:.2f}|')
++    lines+=['', '所有新方案均无饱和或abort。公共纠偏起始已非零，初态仍未改变；A0冷初始化峰约−71.56 μm/0.035 s，旧约−78.12 μm/0.037 s，单列且全程图保留，不当作1.285 s的A启动。新旧局部形状/占时见CSV，未改事件外力修图。主图为原始输出，未减各自均值、未平移/平滑；离线旧A0−b仅作独立诊断。',
++        '', '**代码与边界。** R-026在独立副本修复：缓存及新生成失败均阻断依赖比较，10%/20%原验收阈值与合法无需放大分支保留；6项廉价失败检查通过、零额外积分。新模块另建冻结版本，旧记录保留。R-027“真实慢漂移在线识别/预测/执行及耦合”记为暂缓、未解决；本机未定位含R-026的更完整现行库，已建立接续记录并保留已找到的R-001～008历史出处，没有覆盖历史内容。',
++        '', '**限定结论：离线预定慢纠偏条件下，当前工况的抗抖对照。** 不是在线漂移已解决或CB3实机已验证。双击打开结果.cmd查看完整图；完整工程和1ms NPZ在本机，核查ZIP仅文本且保留6条新旧参照的全1ms必要数据。']
++    (ROOT/'简报.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
++    (ROOT/'GPT核查入口.md').write_text('''# 本轮GPT核查入口
++
++先读简报.md、review/slow_verification.json、review/slow_frozen_version.json、review/baseline_plan.json。
++
++真实命令在sweep.py唯一新增common_position_correction入口，原工艺q_nominal与Y参考未改变；position_logging.py分别记录original_base_ctrl/common_delta_q/抗抖delta_u/final_ctrl。新模块run_slow.py最多6条积分，A0只按4平台中心/约束构造，通过后冻结才跑线性/强SFC。没有拟合事件或重设g、μ。
++
++输入补丁R026见input_acceptance.py/run_short.py/test_input_acceptance.py与review/R026_failure_checks.json：新生成预算耗尽未通过不formalize，坏缓存不调用仿真/力读取；合法g1无需放大分支保留。旧15条不复跑。
++
++old__为旧S3三方案的1ms原始参照，new__为本轮公共纠偏后的实际新结果；公开公共输入仅一份，所有新方案共用。inputs/frozen_common_full_1ms.csv为原输入；inputs/public_slow_full_1ms.csv为公共基线/映射/导数。每条CSV全10,000行，17g无损往返；代码及diff随包。模型网格/完整中间NPZ不打包，完整工程在本机。
++
++check_slow_review.py可仅用Python标准库复算文本包的共享输入哈希、目标/误差叠加、控制公式、最终命令、分段统计，不启动MuJoCo或机器人。图代码slow_report.py随包；图留本机outputs/figures。
++
++问题库接续记录在review/持续问题库_本轮快照.md。R027为暂缓未解决，不能把本轮离线假设称为在线漂移处理完成。
++''',encoding='utf-8')
++    html=['<!doctype html><meta charset="utf-8"><title>F预定慢纠偏</title><style>body{font-family:Microsoft YaHei,sans-serif;max-width:1100px;margin:28px auto;background:#f7f7f7;color:#222}section{background:white;padding:16px;margin:20px 0}img{width:100%}a{color:#1268a8}table{border-collapse:collapse}td,th{padding:8px;border:1px solid #bbb}</style>',
++        '<h1>共同离线预定慢纠偏 · 当前工况抗抖对照</h1><p>3条新运行；原输入全部保留；先A0构造，再冻结共同位置纠偏，最后比较三方案。主图真实重新积分、未减均值。</p>',
++        '<p><a href="简报.md">简报</a> · <a href="review/平台中心前后.csv">平台中心</a> · <a href="review/新旧分段指标.csv">分段指标</a> · <a href="review/抗抖代价_公共位置代价分列.csv">代价</a></p>',
++        '<p>停后仅最后50ms短代表，不证明长期稳定。离线非因果假设不是在线漂移算法；初始非零纠偏及冷瞬态已保留。</p>']
++    html+=['<section><h2>physical Y同口径核对（全程，含冷初始化）</h2><table><tr><th>方案</th><th>标准差 μm</th><th>峰峰 μm</th><th>均值 μm</th></tr>']
++    for ctrl in LABELS:
++        a=m('new',ctrl,channel='physical');html.append('<tr><td>'+LABELS[ctrl]+'</td>'+''.join(f'<td>{a[k]:.2f}</td>' for k in ['std_um','ptp_um','mean_um'])+'</tr>')
++    html+=['</table><p>原始physical Y与effective Y分开统计；源头remaining及导数保留。</p></section>']
++    names=['03_新三方案_完整原始Y.png','01_旧A0与慢中心_诊断.png','02_公共预定纠偏及速度.png','04_新旧A0原始对照.png','05_去程沿程位置与原始Y.png','06_start_原始局部.png','06_turn_原始局部.png']
++    for n in names:html.append('<section><img src="outputs/figures/'+n+'"></section>')
++    (ROOT/'results.html').write_text('\n'.join(html),encoding='utf-8');(ROOT/'打开结果.cmd').write_bytes(b'@echo off\r\nstart "" "%~dp0results.html"\r\n')
++def main():
++    c=common()
++    with np.load(ROOT/'inputs/public_slow_correction.npz') as z:corr={k:z[k] for k in z.files}
++    logs=load();verdict=validate(c,corr,logs);m,p,e,cost,change=export(c,corr,logs);plots(c,corr,logs);documents(m,p,e,cost,change,verdict)
++    print('SLOW report/interfaces/raw CSV/protected versions PASS',flush=True)
++if __name__=='__main__':main()
+--- accepted_F10/sweep.py
++++ F10_public_slow/sweep.py
+@@ -108,7 +108,8 @@
+              ref: dict[str, np.ndarray] | None = None,
+              log: Callable[[str], None] = print,
+              c_input=None, refresh_state: bool = True, compatibility_mode: bool = False,
+-             execution_mode='TORQUE_DIRECT', control_update_steps=1, precise_logger=None) -> dict[str, Any]:
++             execution_mode='TORQUE_DIRECT', control_update_steps=1, precise_logger=None,
++             common_position_correction=None) -> dict[str, Any]:
+     """跑一组并返回统计行。异常/发散不会抛出，而是以 status 标记返回。
+ 
+     fd_scale  : 测试A 用。施加的力按 Fd_scale = fd_scale · Fd(t)，其余完全相同。
+@@ -119,6 +120,10 @@
+     """
+     dt = config.GRID_DT_S
+     N = fd.n_samples
++    if common_position_correction is not None:
++        common_position_correction = np.asarray(common_position_correction, dtype=float)
++        if common_position_correction.shape != (N, 6) or not np.isfinite(common_position_correction).all():
++            raise ValueError('Common predetermined position correction must be finite Nx6 rad')
+ 
+     row: dict[str, Any] = {
+         "case_id": case_id, "group": "", "mode": mode, "status": "OK", "note": "",
+@@ -225,6 +230,8 @@
+ 
+             env.apply_disturbance_force_y(f)
+             base_ctrl = q_traj[i] + dq
++            if common_position_correction is not None:
++                base_ctrl = base_ctrl + common_position_correction[i]
+             env.set_ctrl(actuation.command(base_ctrl)) # base updates each 1ms, compensation ZOH
+             actuation.assert_applied(env)
+             for j in range(6):
+--- /dev/null
++++ F10_public_slow/test_input_acceptance.py
+@@ -0,0 +1,54 @@
++"""Cheap R026 failure-path checks; all run_case paths mocked, zero integrations."""
++from pathlib import Path
++import sys,json,tempfile,unittest
++from unittest.mock import patch,Mock
++ROOT=Path(__file__).resolve().parent
++sys.path.insert(0,str(ROOT.parent/'F组首次接入_20261010/.runtime'));sys.path.insert(0,str(ROOT))
++import numpy as np
++import run_short as r
++from input_acceptance import InputRejected,require_calibration,require_event
++def save(p,v):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(v),encoding='utf-8')
++class Guards(unittest.TestCase):
++    def test_numeric_calibration_failure(self):
++        good=dict(g=.5,A_target_P95_um=50,S0_P95_um=100,S1_P95_um=50,check_tolerance_relative=.1)
++        self.assertTrue(require_calibration(good)['passed'])
++        for change in [dict(g=0),dict(g=1.2),dict(S1_P95_um=60),dict(S1_P95_um=float('nan')),dict(check_tolerance_relative=.5),dict(accepted=False),dict(S0_P95_um=0)]:
++            with self.subTest(change=change),self.assertRaises(InputRejected):require_calibration(dict(good,**change))
++    def test_legal_no_amplification(self):
++        v=require_calibration(dict(g=1.,A_target_P95_um=100.,S0_P95_um=20.,S1_P95_um=20.,check_tolerance_relative=.1))
++        self.assertTrue(v['no_amplification_branch'])
++    def test_event_failure_numeric_and_flag(self):
++        self.assertTrue(require_event(dict(final_check=dict(relative_rms_error=.2),sufficient_for_approximate_comparison=True))['passed'])
++        for err,flag in [(.200001,True),(.05,False),(float('nan'),True),(-.1,True),(.05,None)]:
++            with self.subTest(error=err,flag=flag),self.assertRaises(InputRejected):require_event(dict(final_check=dict(relative_rms_error=err),sufficient_for_approximate_comparison=flag))
++    def test_cached_failures_stop_before_any_run_or_fd_use(self):
++        with tempfile.TemporaryDirectory(dir=ROOT/'review') as d:
++            root=Path(d);save(root/'review/ordinary_calibration.json',dict(g=.5,A_target_P95_um=50,S0_P95_um=100,S1_P95_um=90,check_tolerance_relative=.1))
++            save(root/'review/event_reconstruction.json',dict(final_check=dict(relative_rms_error=.3),sufficient_for_approximate_comparison=False))
++            with patch.object(r,'ROOT',root),patch.object(r,'run') as run,patch.object(r.np,'loadtxt') as load:
++                with self.assertRaises(InputRejected):r.calibrate({},None)
++                with self.assertRaises(InputRejected):r.reconstruct({})
++                run.assert_not_called();load.assert_not_called()
++    def test_generated_calibration_exhaustion_never_formalizes(self):
++        with tempfile.TemporaryDirectory(dir=ROOT/'review') as d:
++            root=Path(d);p=root/'fake.npz';save(p.with_suffix('.row.json'),dict(status='OK'))
++            save(root/'review/A_ordinary_reference.json',dict(target_P95_um=50))
++            with patch.object(r,'ROOT',root),patch.object(r,'run',return_value=p) as run,patch.object(r,'ordinary_p95',side_effect=[100,90,90,90]),patch.object(r,'formalize') as formal:
++                with self.assertRaises(InputRejected):r.calibrate({},None)
++                self.assertEqual(run.call_count,4);formal.assert_not_called()
++                self.assertFalse(r.read(root/'review/ordinary_calibration.json')['accepted'])
++    def test_generated_event_exhaustion_never_freezes_or_formalizes(self):
++        from types import SimpleNamespace
++        with tempfile.TemporaryDirectory(dir=ROOT/'review') as d:
++            root=Path(d);p=root/'fake.npz';save(p.with_suffix('.row.json'),dict(status='OK'))
++            (root/'reference_B_packet').mkdir();(root/'reference_B_packet/plant_frf.npz').write_bytes(b'test placeholder, no plant measurements')
++            fd=SimpleNamespace(path=root/'candidate.csv',sha256='test');c=dict(t=np.arange(10)*.001,event_target_um=np.zeros(10))
++            with patch.object(r,'ROOT',root),patch.object(r.disturbance,'load_plant',return_value=object()),patch.object(r,'inverse_padded',return_value=np.zeros(10)),patch.object(r,'fd_object',return_value=fd),patch.object(r,'run',return_value=p) as run,patch.object(r,'array',return_value=dict(physical_e_um=np.zeros(10))),patch.object(r,'event_check',return_value=dict(relative_rms_error=.21)),patch.object(r,'formalize') as formal,patch.object(r.shutil,'copy2') as copy:
++                with self.assertRaises(InputRejected):r.reconstruct(c)
++                self.assertEqual(run.call_count,3);formal.assert_not_called();copy.assert_not_called()
++                self.assertFalse(r.read(root/'review/event_reconstruction.json')['sufficient_for_approximate_comparison'])
++if __name__=='__main__':
++    res=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(Guards))
++    save(ROOT/'review/R026_failure_checks.json',dict(passed=res.wasSuccessful(),unit_tests=res.testsRun,numeric_rejection_subcases=12,new_integrations=0,
++        cached_and_generated_paths_exercised=True,failed_inputs_not_formalized_or_used=True,original_thresholds=dict(calibration_relative=.10,event_relative=.20),legal_no_amplification_preserved=True))
++    raise SystemExit(0 if res.wasSuccessful() else 1)

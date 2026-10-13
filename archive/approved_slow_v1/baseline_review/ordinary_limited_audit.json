@@ -1,0 +1,181 @@
+{
+  "deg_rad_rounding_errors": {
+    "J1_bias_center": 2.0510217736329297e-09,
+    "J1_static_demeaned_std": 2.8586221121823584e-09,
+    "J1_dynamic_demeaned_std": 4.013978019007391e-09,
+    "J2_bias_center": 7.2028497428980516e-09,
+    "J2_static_demeaned_std": 1.546213402730005e-09,
+    "J2_dynamic_demeaned_std": 4.760576838260726e-09,
+    "J3_bias_center": 6.736865697534679e-09,
+    "J3_static_demeaned_std": 1.6829764997117408e-09,
+    "J3_dynamic_demeaned_std": 5.695487809715262e-09,
+    "J4_bias_center": 7.13420521805486e-09,
+    "J4_static_demeaned_std": 4.105329592241888e-09,
+    "J4_dynamic_demeaned_std": 2.1187359190640324e-09,
+    "J5_bias_center": 1.3182381980153146e-09,
+    "J5_static_demeaned_std": 3.478902355115985e-09,
+    "J5_dynamic_demeaned_std": 3.839149808498345e-09,
+    "J6_bias_center": 8.25870877505052e-09,
+    "J6_static_demeaned_std": 2.26189437779788e-09,
+    "J6_dynamic_demeaned_std": 2.9765379715168553e-10
+  },
+  "mm_to_m_and_um_to_m_correct": true,
+  "remaining": {
+    "observable": "图像强观察方向，主要沿本批机器人基坐标+Z；并非三维机械真值",
+    "signed_center": {
+      "value": -0.14,
+      "unit": "um",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "图像减actual_TCP固定投影，再按强方向尺度换算；拟合数据自身偏置不可解释为绝对精度"
+    },
+    "demeaned_std": {
+      "value": 11.9,
+      "unit": "um",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "默认1–5 mm/s常数，约12 μm；速度差异证据不足"
+    },
+    "demeaned_std_m": {
+      "value": 1.186e-05,
+      "unit": "m",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "um×1e-6；反馈/评价统一"
+    },
+    "observed_range": {
+      "value": [
+        -39.5,
+        38.3
+      ],
+      "unit": "um",
+      "source": "近似换算",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "非峰值边界、非置信区间"
+    },
+    "correlation_time": {
+      "value": 0.03,
+      "unit": "s",
+      "source": "假设",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "连续有色背景可调默认；测量、几何、未校准时延也在剩余量内"
+    },
+    "mapping": {
+      "coefficients": [
+        [
+          -0.03936982900494084,
+          1.0679746165533943
+        ],
+        [
+          10.841168367308299,
+          -0.058112544471221765
+        ],
+        [
+          1067.521055705569,
+          707.2425271566923
+        ]
+      ],
+      "strong_image_axis": [
+        0.9999833306778093,
+        -0.005773938561780813
+      ],
+      "strong_robot_YZ_axis": [
+        -0.004200150673756351,
+        0.9999911793282565
+      ],
+      "strong_px_per_mm": 10.841418819237942,
+      "weak_px_per_mm": 1.067738913341019
+    },
+    "weak_direction": "弱方向已观察但尺度弱约1.07px/mm，保留px诊断，不作为主机械参数",
+    "unobserved": "三维X及完整姿态未独立测量；仿真若关闭这些分量是场景假设，不表示实测为零",
+    "transfer_to_B_Y": {
+      "value": true,
+      "unit": "scenario",
+      "source": "假设",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "B仅控制世界Y；将强方向量级移到B的任务法向Y是等效情景。禁止声称从实测标定出B世界Y误差。"
+    },
+    "encoder_remaining_correlation": {
+      "value": -0.21,
+      "unit": "dimensionless",
+      "source": "实测统计",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "速度等权的局部相关系数；两层不可默认为独立；5 mm/s仅一次，移用于F为近似"
+    },
+    "correlated_background_rule": {
+      "value": "r_noise = sigma_r * (rho*normalized_joint_background_TCP_fluctuation + sqrt(1-rho^2)*eta)",
+      "unit": "dimensionless",
+      "source": "假设",
+      "windows": [
+        "path-six-v1-r1:move第一直线内部窗",
+        "path-six-v1-r2:move第一直线内部窗",
+        "path-six-v3-r1:move第一直线内部窗",
+        "path-six-v3-r2:move第一直线内部窗",
+        "path-six-v5-r1:move第一直线内部窗"
+      ],
+      "applies": "eta为连续单位std独立背景；相关项仅用生成的关节背景在名义姿态的运动学投影，不用含控制响应的全量q或任务误差。联合量级需基准核对；不重放完整实际运动"
+    }
+  },
+  "duplicate_check": "Background only consumes remaining_endpoint visual-actual projection. C local single-joint residuals are not additionally injected. Six-joint dq enters base ctrl once; residual enters SharedMeasurement once.",
+  "source_checks": "C quantified residual has saved pointwise visual-actual identity. Dynamic joint std comes from move phases and is not demonstrated pure constant-speed noise; no new source reprocessing in this round.",
+  "J0": [
+    -0.6910000000000001,
+    -0.0,
+    0.0,
+    0.0,
+    -0.10000000000000009,
+    0.0
+  ],
+  "J0_fixed_usage": "For generated residual correlation only; physical motion uses current model kinematics. Calibration camera strong axis near Z is treated as non-motion Y per user, not a new spatial calibration.",
+  "scenario_assumptions": [
+    "six independent sine banks with old multipliers1.26-1.34",
+    "fixed sampled trial bias added once, not accumulated each frame",
+    "finite sine correlations and UR10e posture differ from measured C posture",
+    "remaining12um is equivalent observed output, not flexibility dynamics",
+    "old start amplitude envelope includes pre-rest; preserved rather than inventing new initialization"
+  ],
+  "confirmed_encoding_error_found": false,
+  "scope": "One static audit completed; plausible model/measurement differences recorded, no root-cause hunt."
+}

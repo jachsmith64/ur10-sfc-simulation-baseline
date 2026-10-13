@@ -1,0 +1,1262 @@
+"""机器人层：在关节空间里走微动，并如实记录"指令角 / 实际角 / 实际角速度"。
+
+被复用代码的边界（必须先说清楚）
+--------------------------------
+``vendor/robot.py`` 里的 ``URRobot`` **只发过 moveL（TCP 直线运动）**，
+它读的状态里也没有 ``actual_qd`` / ``target_q``。本工具需要的是**关节空间微动**，
+所以：
+
+* 不改 vendored 文件一行；:class:`HardwareJointRobot` 把 ``URRobot`` 当成一个
+  被包住的连接对象，在外面追加 ``moveJ`` 和关节状态读取；
+* 连接、安全检查、停止、断开、脚本收尾全部继续走 ``URRobot`` 里已经跑通的代码；
+* **moveJ 这条路径在本工具之前没有在真机上跑过**——这一点写进交付说明，
+  现场第一次跑必须用最小步长、最低速度、手放急停。
+
+三种模式
+--------
+* ``HardwareJointRobot`` —— 真机，发 moveJ；
+* ``SimulatedJointRobot`` —— dry_run，把指令交给合成世界，合成世界自己按一阶跟随
+  产生"实际角"，所以"指令到了、关节还在动"这件事在自测里是真的会发生的；
+* ``ReplayJointRobot`` —— 回放，从历史 RTDE 记录里按时间取状态，**绝不发命令**。
+
+三者实现同一个 :class:`JointRobotPort`，所以实验编排、记录、分析都不用区分模式。
+"""
+
+from __future__ import annotations
+
+import math
+import time
+import threading
+from dataclasses import dataclass, field
+from typing import Any, Callable, Protocol, Sequence
+
+from .config import JOINT_NAMES
+from .kinematics import JOINT_LIMITS_DEG, check_joint_in_limits
+from .vendor_shim import vendor_module
+from .workspace_guard import TCPWorkspaceGuard, WorkspaceAlarm
+
+
+class RobotError(RuntimeError):
+    """机器人层出错。消息中文，能直接显示在界面上。"""
+
+
+class MotionAborted(RobotError):
+    """用户中止（或急停/掉线）导致的取消。区别于普通错误：它不该被当成失败重试。"""
+
+
+class SettleTimeout(RobotError):
+    """等待停稳超时：到时间了关节还在动。
+
+    和 :class:`MotionAborted` 分开，因为原因不同、人的处置也不同：
+    中止是"人叫停的"，超时是"机器没停住"。但两者的后果一样硬：
+    **已经发的这一条要就地 stopJ，后面的动作一律不发，也不自动回位**，
+    盘上已经写下的 RAW / RTDE / 时间戳全部保留，等人来看现场。
+    （原来这里只写一行日志就继续往下走 hold → return → 下一条运动，
+    那等于"没停稳也照样往下做"，采到的数据会带着残余运动被当成到位值。）
+    """
+
+
+@dataclass
+class RobotState:
+    """一条机器人状态记录。字段对应需求六要求的原始数据项 5～9。"""
+
+    host_ns: int
+    #: 指令关节角（度）。真机取 ``target_q``；合成/回放取当时下发的目标。
+    commanded_q_deg: tuple[float, ...] | None
+    actual_q_deg: tuple[float, ...]
+    actual_qd_deg_s: tuple[float, ...] | None
+    actual_tcp_pose: tuple[float, ...] | None
+    robot_mode: Any = None
+    safety_mode: Any = None
+    runtime_state: Any = None
+    speed_scaling: float | None = None
+    robot_timestamp_s: float | None = None
+    #: 这一条状态属于哪个事件（需求六第 11 项：实验阶段/关节/步长/方向/重复编号）。
+    event_id: str | None = None
+    stage: str | None = None
+    synthetic: bool = False
+
+    target_tcp_pose: tuple[float, ...] | None = None
+    actual_tcp_speed: tuple[float, ...] | None = None
+    target_tcp_speed: tuple[float, ...] | None = None
+
+    def to_row(self) -> dict[str, Any]:
+        """铺平成一行，方便写 CSV。"""
+        row: dict[str, Any] = {
+            "host_ns": int(self.host_ns),
+            "robot_timestamp_s": self.robot_timestamp_s if self.robot_timestamp_s is not None else "",
+            "event_id": self.event_id or "",
+            "stage": self.stage or "",
+            "synthetic": int(bool(self.synthetic)),
+            "robot_mode": "" if self.robot_mode is None else self.robot_mode,
+            "safety_mode": "" if self.safety_mode is None else self.safety_mode,
+            "runtime_state": "" if self.runtime_state is None else self.runtime_state,
+            "speed_scaling": "" if self.speed_scaling is None else self.speed_scaling,
+        }
+        for index, name in enumerate(JOINT_NAMES):
+            row[f"command_q_{name}_deg"] = _fmt(
+                None if self.commanded_q_deg is None else self.commanded_q_deg[index]
+            )
+            row[f"actual_q_{name}_deg"] = _fmt(self.actual_q_deg[index])
+            row[f"actual_qd_{name}_deg_s"] = _fmt(
+                None if self.actual_qd_deg_s is None else self.actual_qd_deg_s[index]
+            )
+        for index, axis in enumerate(("x", "y", "z", "rx", "ry", "rz")):
+            row[f"actual_tcp_{axis}"] = _fmt(
+                None if self.actual_tcp_pose is None else self.actual_tcp_pose[index]
+            )
+            for prefix, values in (("target_tcp", self.target_tcp_pose),
+                                   ("actual_tcp_speed", self.actual_tcp_speed),
+                                   ("target_tcp_speed", self.target_tcp_speed)):
+                row[f"{prefix}_{axis}"] = _fmt(None if values is None else values[index])
+        return row
+
+
+def _fmt(value: float | None) -> str:
+    if value is None:
+        return ""
+    return f"{float(value):.6f}"
+
+
+class JointRobotPort(Protocol):
+    """实验编排需要的机器人能力。"""
+
+    mode: str
+    synthetic: bool
+
+    def connect(self, *, require_control: bool) -> None: ...
+
+    def disconnect(self) -> None: ...
+
+    def read_state(self, *, event_id: str | None = None, stage: str | None = None) -> RobotState: ...
+
+    def move_to_joint(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        speed_deg_s: float,
+        accel_deg_s2: float,
+        event_id: str,
+        label: str,
+    ) -> None: ...
+
+    def sync_host_ns(self, host_ns: int) -> None:
+        """把采集层当前帧的时间戳告诉机器人。
+
+        真机/回放忽略它；合成世界用它推进虚拟时间——这样"关节在动"这件事
+        由帧的时间轴驱动，而不用真的 sleep。采集层每接一帧都会调一次。
+        """
+        ...
+
+    def settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+    ) -> bool:
+        """**非阻塞**地问一次"停稳了吗"。
+
+        为什么要非阻塞版本：采集线程在运动期间必须继续接帧，不能为了等停稳
+        而阻塞（那样运动过程就没有画面了）。所以"等停稳"被拆成
+        "每帧问一次" + 下面那个阻塞包装。
+        """
+        ...
+
+    def wait_until_settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+        timeout_s: float,
+    ) -> bool: ...
+
+    def stop(self) -> None: ...
+
+    def abort(self, reason: str) -> None: ...
+
+    def abort_reason(self) -> str | None: ...
+
+    def describe_safety(self) -> dict[str, Any]: ...
+
+
+# --------------------------------------------------------------------------
+# 真机
+# --------------------------------------------------------------------------
+
+
+@dataclass
+class HardwareJointRobot:
+    """真机：**组合**（不是继承）被复用代码的 ``URRobot``，只追加关节空间动作。
+
+    用组合而不是继承，是因为 ``URRobot`` 是"平铺脚本"风格写的类，直接继承会让
+    本类同时背上面向接口的两套状态；组合把边界划得很清楚：连接/断开/安全检查/
+    停止/脚本收尾全部转发给它，新增的只有 moveJ 和关节状态字段。
+
+    **没有做的事**（写在这里避免误解）：本类不做碰撞检查；配置固定参考点后执行 20 mm TCP 位移监控，
+    不自己实现运动规划。它只做三件事：查限位、问控制器能不能到、发 moveJ。
+    真机安全依赖：示教器急停、现场防护、以及操作者对每一步的人工确认。
+    """
+
+    #: 每一步运动前的人机确认入口。真机上是"要人在界面上点"的那个回调。
+    confirm: Callable[[str], bool] | None = None
+    #: 每一步运动前的额外检查（比如"画面里棋盘格还在"）。返回 (通过, 原因)。
+    precheck: Callable[[], tuple[bool, str]] | None = None
+    mode: str = "hardware"
+    synthetic: bool = False
+    settle_poll_s: float = 0.05
+    #: 底层连接对象的工厂。默认 None = ``vendor.robot.URRobot()``（真机路径）。
+    #: ★ 存在的唯一理由是**可测**：本类的单位换算（度 ↔ 弧度）和拒发逻辑是红线，
+    #: 必须在没有真机、甚至没有装 ur_rtde 的机器上也能验证，
+    #: 所以留一个"塞一个假控制器进来"的缝（见 tests/test_hardware_units.py）。
+    #: 生产路径不会传它。
+    robot_factory: Callable[[], Any] | None = None
+
+    def __post_init__(self) -> None:
+        self._robot: Any = None
+        self._abort: str | None = None
+        self._last_command: tuple[float, ...] | None = None
+        self._last_safety: dict[str, Any] = {}
+        self._moved_event_ids: list[str] = []
+        # "从什么时候开始已经安静了"，用于 hold_s 的连续判据（非阻塞询问之间保持）。
+        self._stable_since: float | None = None
+        self._stable_min: list[float] | None = None
+        self._stable_max: list[float] | None = None
+        self._control_lock = threading.RLock()
+        self._last_robot_timestamp = None
+        self._fresh_at = time.perf_counter()
+        self.workspace_guard: TCPWorkspaceGuard | None = None
+        self._guard_thread: threading.Thread | None = None
+        self._guard_stop = threading.Event()
+        self._guard_on_trip: Callable[[str], None] | None = None
+        self._cartesian_active = False
+        self._cartesian_guard = False
+
+    # -- 连接 -------------------------------------------------------------
+
+    def connect(self, *, require_control: bool) -> None:
+        robot_module = vendor_module("robot")
+        if self.robot_factory is not None:
+            # 自测用的假控制器：它的接口和 ``URRobot`` 一样，但不连任何真机。
+            self._robot = self.robot_factory()
+        else:
+            self._robot = robot_module.URRobot()
+        # 连接、Dashboard 只读、RTDE 建链与重试全部沿用被复用代码里跑通过的那套。
+        self._robot.connect(require_control=require_control)
+        state = self._robot.read_state()
+        self._last_safety = self._safety_snapshot(state)
+
+    def disconnect(self) -> None:
+        self._guard_stop.set()
+        if self._guard_thread is not None and self._guard_thread is not threading.current_thread():
+            self._guard_thread.join(timeout=2.0)
+            if self._guard_thread.is_alive():
+                raise RobotError("20 mm 监控尚未退出，拒绝并发断开控制接口。")
+        if self.workspace_guard is not None:
+            self.workspace_guard.close()
+        if self._robot is not None:
+            with self._control_lock:
+                self._robot.disconnect()
+
+    def arm_workspace_guard(self, guard: TCPWorkspaceGuard, *, trace_dir: Any,
+                            on_trip: Callable[[str], None]) -> None:
+        self.workspace_guard = guard
+        self._guard_on_trip = on_trip
+        guard.on_trip = self._workspace_trip
+        guard.open_trace(trace_dir)
+        state = self.read_state()
+        guard.record_startup("before_watchdog", state=state.to_row())
+        guard.check(state)
+        if state.safety_mode != 1:
+            raise RobotError(
+                f"控制器安全模式为 {state.safety_mode}（3=保护停止）；"
+                "请先在示教器查看报警并手动恢复 NORMAL，再重新连接。尚未启用看门狗或发送运动。"
+            )
+        running = getattr(self._robot.control, "isProgramRunning", None)
+        if running is not None and not bool(running()):
+            guard.record_startup("control_script_not_running")
+            raise RobotError("RTDE 控制脚本未运行；不能启用看门狗或开始实验。请检查示教器报警后重新连接。")
+        watchdog = getattr(self._robot.control, "setWatchdog", None)
+        kicker = getattr(self._robot.control, "kickWatchdog", None)
+        if watchdog is None or kicker is None:
+            raise RobotError("当前 ur_rtde 缺少控制器通信看门狗，拒绝自动批次。")
+        with self._control_lock:
+            if not watchdog(2.0):
+                failed_state = self.read_state()
+                script_running = None if running is None else bool(running())
+                guard.record_startup("watchdog_rejected", state=failed_state.to_row(),
+                                     control_script_running=script_running)
+                if failed_state.safety_mode != 1:
+                    raise RobotError(
+                        f"启用看门狗时控制器处于安全模式 {failed_state.safety_mode}（3=保护停止）；"
+                        "请保留示教器报警编号，人工处理后重新连接。详细状态已保存 tcp_guard_startup.json。"
+                    )
+                raise RobotError(
+                    f"控制器通信看门狗启用失败（安全模式={failed_state.safety_mode}，"
+                    f"控制脚本运行={script_running}），禁止实验；详细状态已保存 tcp_guard_startup.json。"
+                )
+            if not kicker():
+                guard.record_startup("first_watchdog_update_failed", state=self.read_state().to_row())
+                raise RobotError("控制器通信看门狗首次更新失败。")
+            guard.record_startup("watchdog_ready")
+        self._guard_stop.clear()
+        self._guard_thread = threading.Thread(target=self._workspace_monitor,
+                                               name="tcp-20mm-watchdog", daemon=True)
+        self._guard_thread.start()
+
+    def _workspace_trip(self, reason: str) -> None:
+        self._abort = reason
+        stop_status: dict[str, Any] = {}
+        with self._control_lock:
+            try:
+                stop_kind = "stopL" if self._cartesian_active or self._cartesian_guard else "stopJ"
+                self.stop()
+                stop_status[stop_kind + "_requested"] = True
+            except Exception as exc:
+                stop_status["stop_error"] = str(exc)
+            try:
+                protective = getattr(self._robot.control, "triggerProtectiveStop", None)
+                stop_status["protective_stop_requested"] = bool(protective and protective())
+            except Exception as exc:
+                stop_status["protective_stop_error"] = str(exc)
+        if self.workspace_guard is not None and self.workspace_guard.alarm is not None:
+            self.workspace_guard.alarm["stop_status"] = stop_status
+        if self._guard_on_trip is not None:
+            self._guard_on_trip(reason)
+
+    def _workspace_monitor(self) -> None:
+        last_kick = 0.0
+        try:
+            while not self._guard_stop.is_set():
+                self.workspace_guard.check(self.read_state())
+                if self._cartesian_guard:
+                    from .path_geometry import MAX_OBSERVED_TCP_SPEED_MM_S, MAX_OBSERVED_JOINT_SPEEDS_DEG_S
+                    sample = self.read_state()
+                    if sample.actual_tcp_speed is None or sample.actual_qd_deg_s is None:
+                        self.workspace_guard.trip("路径速度观测缺失", sample)
+                    if (not all(math.isfinite(float(v)) for v in (*sample.actual_tcp_speed, *sample.actual_qd_deg_s))
+                        or math.sqrt(sum(float(v)**2 for v in sample.actual_tcp_speed[:3]))*1000 > MAX_OBSERVED_TCP_SPEED_MM_S
+                        or len(sample.actual_qd_deg_s) != len(MAX_OBSERVED_JOINT_SPEEDS_DEG_S)
+                        or any(abs(v) > limit for v,limit in zip(sample.actual_qd_deg_s, MAX_OBSERVED_JOINT_SPEEDS_DEG_S))
+                        or int(sample.safety_mode or 0) != 1):
+                        self.workspace_guard.trip("路径速度超限或控制器安全状态异常", sample)
+                if time.perf_counter() - last_kick >= 0.1:
+                    with self._control_lock:
+                        if not self._robot.control.kickWatchdog():
+                            raise RobotError("控制器通信看门狗更新失败。")
+                    last_kick = time.perf_counter()
+                self._guard_stop.wait(0.01)
+        except Exception as exc:
+            if not self._guard_stop.is_set() and not self.workspace_guard.latched:
+                try:
+                    self.workspace_guard.trip(f"20 mm 监控故障：{exc}")
+                except WorkspaceAlarm:
+                    pass
+
+    def workspace_guard_healthy(self) -> bool:
+        return bool(self.workspace_guard is not None and not self.workspace_guard.latched
+                    and self._guard_thread is not None and self._guard_thread.is_alive()
+                    and not self._guard_stop.is_set()
+                    and time.perf_counter() - self.workspace_guard.last_observed < 0.25)
+
+    # -- 状态 -------------------------------------------------------------
+
+    def read_state(
+        self, *, event_id: str | None = None, stage: str | None = None
+    ) -> RobotState:
+        if self._robot is None or self._robot.receive is None:
+            raise RobotError("尚未连接 RTDE，无法读取机器人状态。")
+        raw = self._robot.read_state()
+        stamp = raw.get("robot_timestamp_s")
+        if "robot_timestamp_s" in raw:
+            if stamp is None or not math.isfinite(float(stamp)):
+                raise RobotError("无法取得机器人时间戳，不能确认 RTDE 数据新鲜度。")
+            if self._last_robot_timestamp is None or float(stamp) > self._last_robot_timestamp:
+                self._last_robot_timestamp = float(stamp)
+                self._fresh_at = time.perf_counter()
+            elif time.perf_counter() - self._fresh_at > 0.5:
+                raise RobotError("RTDE 时间戳超过 0.5 秒未前进，停止使用冻结的状态。")
+        # ``actual_qd`` / ``target_q`` 是被复用代码没有写的两个字段，在这里补上。
+        actual_qd = self._safe(self._robot.receive, "getActualQd", None)
+        target_q = self._safe(self._robot.receive, "getTargetQ", None)
+        self._last_safety = self._safety_snapshot(raw)
+        actual = _deg_tuple(raw.get("actual_q_rad"))
+        if actual is None or len(actual) != 6 or not all(math.isfinite(v) for v in actual):
+            raise RobotError("RTDE 实际关节角缺失或非有限值。")
+        return RobotState(
+            host_ns=int(raw["host_ns"]),
+            robot_timestamp_s=stamp,
+            target_tcp_pose=self._safe(self._robot.receive, "getTargetTCPPose", None),
+            actual_tcp_speed=self._safe(self._robot.receive, "getActualTCPSpeed", None),
+            target_tcp_speed=self._safe(self._robot.receive, "getTargetTCPSpeed", None),
+            commanded_q_deg=_deg_tuple(target_q),
+            actual_q_deg=actual,
+            actual_qd_deg_s=_deg_tuple(actual_qd),
+            actual_tcp_pose=tuple(float(v) for v in raw["actual_tcp_pose"]),
+            robot_mode=raw.get("robot_mode"),
+            safety_mode=raw.get("safety_mode"),
+            runtime_state=raw.get("runtime_state"),
+            speed_scaling=raw.get("speed_scaling"),
+            event_id=event_id,
+            stage=stage,
+        )
+
+    @staticmethod
+    def _safe(interface: Any, method_name: str, default: Any) -> Any:
+        method = getattr(interface, method_name, None)
+        if method is None:
+            return default
+        try:
+            return method()
+        except Exception:
+            return default
+
+    def _safety_snapshot(self, state: dict[str, Any]) -> dict[str, Any]:
+        robot_module = vendor_module("robot")
+        dashboard = getattr(self._robot, "dashboard_info", {}) or {}
+        return {
+            "robot_mode": state.get("robot_mode"),
+            "safety_mode": state.get("safety_mode"),
+            "runtime_state": state.get("runtime_state"),
+            "speed_scaling": state.get("speed_scaling"),
+            "dashboard_safety_ok": robot_module._dashboard_safety_status_is_normal(dashboard),
+            "rtde_safety_ok": robot_module._rtde_safety_mode_is_normal(state),
+        }
+
+    def describe_safety(self) -> dict[str, Any]:
+        return dict(self._last_safety)
+
+    # -- 中止 -------------------------------------------------------------
+
+    def abort(self, reason: str) -> None:
+        """请求中止。**不会**自动回到任何位置（需求八：中止后不自动回位）。"""
+        if self._abort is None:
+            self._abort = str(reason)
+            self.stop()
+
+    def abort_reason(self) -> str | None:
+        return self._abort
+
+    def stop(self) -> None:
+        with self._control_lock:
+            if self._robot is not None:
+                if self._cartesian_active or self._cartesian_guard:
+                    self._robot.control.stopL(0.10)
+                    self._cartesian_active = False
+                    self._cartesian_guard = False
+                    print("[机器人] 已请求 stopL 减速停止。", flush=True)
+                    return
+                # 关节空间用 stopJ；被复用代码里的 stop_motion() 走的是 stopL。
+                control = getattr(self._robot, "control", None)
+                if control is not None:
+                    stop_j = getattr(control, "stopJ", None)
+                    if stop_j is not None:
+                        try:
+                            stop_j(1.0)
+                            print("[机器人] 已请求 stopJ 减速停止。", flush=True)
+                            return
+                        except Exception as exc:
+                            print(f"[机器人警告] stopJ 失败：{exc}", flush=True)
+                self._robot.stop_motion()
+
+    # -- 运动 -------------------------------------------------------------
+
+    def move_to_joint(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        speed_deg_s: float,
+        accel_deg_s2: float,
+        event_id: str,
+        label: str,
+    ) -> None:
+        if self._abort is not None:
+            raise MotionAborted(f"已中止（{self._abort}），不再发送任何运动命令。")
+        if self._robot is None or self._robot.control is None:
+            raise RobotError("控制连接未建立，不能发送 moveJ。")
+
+        if self.workspace_guard is not None:
+            if not self.workspace_guard_healthy():
+                self.workspace_guard.trip("20 mm 监控未运行或采样不新鲜，禁止运动。")
+            self.workspace_guard.check(self.read_state())
+        target = tuple(float(v) for v in target_joint_deg)
+        if len(target) != 6:
+            raise RobotError(f"目标关节角必须是 6 个，收到 {len(target)} 个。")
+
+        if not all(math.isfinite(v) for v in target) or not all(
+            math.isfinite(float(v)) and float(v) > 0 for v in (speed_deg_s, accel_deg_s2)
+        ):
+            raise RobotError("目标角度、速度和加速度必须是有限值，速度和加速度必须大于零。")
+
+        # 第一层：本地的名义限位检查。
+        ok, reason = check_joint_in_limits(target, margin_deg=0.5, limits=JOINT_LIMITS_DEG)
+        if not ok:
+            raise RobotError(f"目标姿态未通过本地限位检查：{reason}")
+
+        # ★ 单位边界：本类内部、界面、日志、以及"停稳"判据**全部用度**，
+        # 而 ur_rtde 的关节接口是 **SI 单位（弧度）**——``isJointsWithinSafetyLimits``
+        # 和 ``moveJ`` 收到的必须是 rad。这一层换算只做一次，就在这里：
+        # 把六个度值转成弧度后交给 RTDE，之后本类再也不用 rad。
+        # （原来这里直接把度值传了下去：真机上等于把 0.2° 当成 0.2 rad
+        #  ——安全限位检查会拿一个比真实值小 57 倍的角度去判，
+        #  moveJ 更会让关节转过 11.5° 而不是 0.2°，必须在此拦住。）
+        target_rad = [math.radians(value) for value in target]
+
+        # 第二层：让 UR 控制器自己判断（和 moveL 路径一样的思路）。
+        checker = getattr(self._robot.control, "isJointsWithinSafetyLimits", None)
+        if checker is None:
+            raise RobotError(
+                "当前 ur_rtde 版本没有 isJointsWithinSafetyLimits；"
+                "为了安全，程序不允许跳过该检查后运动。"
+            )
+        with self._control_lock:
+            in_limits = bool(checker(list(target_rad)))
+        if not in_limits:
+            raise RobotError(
+                f"{label}：UR 控制器判定该关节姿态超出当前安全限制，已拒绝发送。"
+            )
+
+        # 第三层：安全检查回调（棋盘格还在不在、磁盘够不够之类）。
+        if self.precheck is not None:
+            passed, why = self.precheck()
+            if not passed:
+                raise MotionAborted(f"{label}：运动前检查未通过 —— {why}")
+
+        # 第四层：人工确认。需求三要求每一步都要人确认，这一步不允许被绕过。
+        if self.confirm is not None and not self.confirm(label):
+            raise MotionAborted(f"{label}：操作者取消了这一次运动。")
+
+        # 第五层：读一次状态，确认安全模式正常。
+        state = self.read_state(event_id=event_id)
+        if state.safety_mode is None or int(state.safety_mode) != 1:
+            raise MotionAborted(
+                f"{label}：当前 safety_mode={state.safety_mode}（非 NORMAL），"
+                "拒绝运动。请先在示教器上恢复。"
+            )
+
+        speed_rad = math.radians(float(speed_deg_s))
+        accel_rad = math.radians(float(accel_deg_s2))
+        # 日志继续按现场习惯显示度数，同时把真正发出去的弧度也打出来：
+        # 万一单位又出问题，日志里能一眼对上。
+        print(
+            f"[机器人] moveJ → {label}\n"
+            f"         目标(度)：{['%.4f' % v for v in target]}\n"
+            f"         目标(弧度，实际下发)：{['%.6f' % v for v in target_rad]}\n"
+            f"         速度 {speed_deg_s} °/s（{speed_rad:.6f} rad/s），"
+            f"加速度 {accel_deg_s2} °/s²（{accel_rad:.6f} rad/s²）",
+            flush=True,
+        )
+        with self._control_lock:
+            if self._abort is not None:
+                raise MotionAborted(f"已中止（{self._abort}），不发送运动。")
+            if self.workspace_guard is not None:
+                self.workspace_guard.check(self.read_state())
+            self._reset_stability()
+            accepted = bool(
+                self._robot.control.moveJ(list(target_rad), speed_rad, accel_rad, True)
+            )
+        if not accepted:
+            raise RobotError(f"{label}：UR 控制器拒绝了异步 moveJ。")
+        # 记住的是**度**：界面与到位检查仍使用该目标。
+        self._last_command = target
+        self._moved_event_ids.append(event_id)
+
+    def sync_host_ns(self, host_ns: int) -> None:
+        """真机不需要外部时钟：RTDE 自己带时间戳。"""
+        return None
+
+    def validate_cartesian_path(self, path, *, max_speed_mm_s=5.0):
+        """Check fixed-anchor envelope, controller IK and speed before motion."""
+        from .path_geometry import MAX_OBSERVED_JOINT_SPEEDS_DEG_S
+        from .workspace_guard import TCP_RADIUS_M
+        self._path_preflight_report = {
+            "max_speed_mm_s": float(max_speed_mm_s),
+            "joint_speed_limits_deg_s": list(MAX_OBSERVED_JOINT_SPEEDS_DEG_S),
+            "synthetic": False, "samples": [],
+            "prediction_method": "adjacent_controller_IK_raw_angle_difference_over_TCP_distance",
+        }
+        path.command(max_speed_mm_s)  # Enforce the unchanged (0,5] command limit.
+        if self._abort:
+            raise MotionAborted(self._abort)
+        if self.workspace_guard is None or not self.workspace_guard_healthy():
+            raise RobotError("20 mm监控未正常启用，禁止路径运动")
+        state = self.read_state()
+        self.workspace_guard.check(state)
+        if int(state.safety_mode or 0) != 1:
+            raise RobotError("机器人非NORMAL，禁止路径运动")
+        if state.actual_tcp_speed is None or state.actual_qd_deg_s is None:
+            raise RobotError("缺少TCP/关节速度，无法启用路径速度保护")
+        if (len(state.actual_tcp_speed) != 6 or len(state.actual_qd_deg_s) != 6
+            or not all(math.isfinite(float(v)) for v in (*state.actual_tcp_speed, *state.actual_qd_deg_s))):
+            raise RobotError("TCP/关节速度数据无效，禁止路径运动")
+        if math.sqrt(sum(float(v)**2 for v in state.actual_tcp_speed[:3])) > .0005:
+            raise RobotError("请等待机器人停止再启动路径实验")
+        if math.dist(state.actual_tcp_pose[:3], path.start[:3])*1000 > path.settings.start_tolerance_mm:
+            raise RobotError("当前点偏离冻结起点，禁止盲目跳转；请检查现场")
+        # Convex sphere + all box vertices encloses straight, arc and blend.
+        if any(math.dist(p[:3], self.workspace_guard.pose[:3]) >= TCP_RADIUS_M-.001
+               for p in path.bound_vertices()):
+            raise RobotError("整条路径未通过原固定参考点20 mm范围检查（预留1 mm余量）")
+        control = self._robot.control
+        for name in ("moveL", "getAsyncOperationProgress", "getInverseKinematics",
+                     "isPoseWithinSafetyLimits", "isJointsWithinSafetyLimits"):
+            if not callable(getattr(control, name, None)):
+                raise RobotError(f"ur_rtde缺少{name}，不能执行路径实验")
+        # Check the virtual intersection too: it is sent as a waypoint, even
+        # though the controller rounds it and never reaches that point.
+        with self._control_lock:
+            if not control.isPoseWithinSafetyLimits(list(path.corner)):
+                raise RobotError("圆角虚拟路点未通过控制器位姿安全限位")
+        qnear = [math.radians(v) for v in state.actual_q_deg]
+        solved, last_pose = [], None
+        for sample_index, pose in enumerate(path.samples()):
+            if self._abort:
+                raise MotionAborted(self._abort)
+            with self._control_lock:
+                if not control.isPoseWithinSafetyLimits(list(pose)):
+                    raise RobotError("路径采样点未通过控制器位姿安全限位")
+                q = tuple(control.getInverseKinematics(list(pose), qnear))
+                if len(q) != 6 or not all(math.isfinite(v) for v in q):
+                    raise RobotError("控制器路径逆运动学返回无效值")
+                if not control.isJointsWithinSafetyLimits(list(q)):
+                    raise RobotError("路径关节配置未通过控制器安全限位")
+            ok, why = check_joint_in_limits([math.degrees(v) for v in q], margin_deg=.5)
+            if not ok:
+                raise RobotError(why)
+            delta_deg = [math.degrees(q[i]-qnear[i]) for i in range(6)]
+            ds = None if last_pose is None else math.dist(pose[:3], last_pose[:3])*1000
+            required = None if ds is None else [abs(v)*float(max_speed_mm_s)/ds for v in delta_deg]
+            sample = {"sample_index": sample_index, "tcp_pose_m_rotvec_rad": list(pose),
+                      "joint_angles_rad": list(q), "step_distance_mm": ds,
+                      "raw_joint_delta_deg": delta_deg,
+                      "wrapped_joint_delta_deg": [(v+180)%360-180 for v in delta_deg],
+                      "predicted_joint_speed_deg_s": required,
+                      "possible_angle_wrap": any(abs(v)>180 for v in delta_deg)}
+            self._path_preflight_report["samples"].append(sample)
+            if required is not None:
+                joint = max(range(6), key=lambda i:required[i]/MAX_OBSERVED_JOINT_SPEEDS_DEG_S[i])
+                if required[joint] > MAX_OBSERVED_JOINT_SPEEDS_DEG_S[joint]:
+                    self._path_preflight_report["exceeded_sample"] = sample
+                    raise RobotError(
+                        f"路径预检查第{sample_index}段：按{float(max_speed_mm_s):g} mm/s预测，"
+                        f"J{joint+1}需要{required[joint]:.3f}°/s，超过{MAX_OBSERVED_JOINT_SPEEDS_DEG_S[joint]:g}°/s保护。"
+                        "可能接近奇异区域或存在逆解跳变；详见preflight诊断。"
+                    )
+            solved.append(list(q))
+            qnear, last_pose = list(q), pose
+        return solved
+
+    def execute_cartesian_path(self, path, speed_mm_s, *, reverse, event_id):
+        command = path.command(speed_mm_s, reverse=reverse)
+        if self._abort:
+            raise MotionAborted(self._abort)
+        if not self.workspace_guard_healthy():
+            raise RobotError("20 mm监控不健康，禁止发送路径")
+        from .workspace_guard import TCP_RADIUS_M
+        if any(math.dist(p[:3], self.workspace_guard.pose[:3]) >= TCP_RADIUS_M-.001
+               for p in path.bound_vertices()):
+            raise RobotError("整条路径超出原固定参考点20 mm保护范围")
+        self.workspace_guard.check(self.read_state())
+        expected = path.end if reverse else path.start
+        state = self.read_state()
+        if int(state.safety_mode or 0) != 1:
+            raise RobotError("机器人非NORMAL，禁止路径运动")
+        if math.dist(state.actual_tcp_pose[:3], expected[:3])*1000 > path.settings.start_tolerance_mm:
+            raise RobotError("当前位置偏离本次路径起点，禁止跳转")
+        with self._control_lock:
+            if self._abort:
+                raise MotionAborted(self._abort)
+            self.workspace_guard.check(self.read_state())
+            for waypoint in command:
+                if not self._robot.control.isPoseWithinSafetyLimits(waypoint[:6]):
+                    raise RobotError("路径路点超出控制器安全限位")
+            self._cartesian_active = self._cartesian_guard = True
+            accepted = self._robot.control.moveL(command, True)
+            self._robot.motion_command_time = time.perf_counter()
+        if not accepted:
+            self.stop()
+            raise RobotError("控制器拒绝异步圆角路径")
+        self._moved_event_ids.append(event_id)
+
+    def cartesian_motion_done(self):
+        if self._abort:
+            raise MotionAborted(self._abort)
+        with self._control_lock:
+            progress = int(self._robot.control.getAsyncOperationProgress())
+        if time.perf_counter()-self._robot.motion_command_time < .20 or progress >= 0:
+            return False
+        self._cartesian_active = False
+        return True
+
+    def cartesian_settings_snapshot(self):
+        values = {}
+        for label, name in (("payload_kg", "getPayload"), ("payload_cog_m", "getPayloadCog"),
+                            ("tcp_offset", "getTCPOffset")):
+            value = self._safe(self._robot.receive, name, None)
+            if value is None:
+                value = self._safe(self._robot.control, name, None)
+            values[label] = value
+        values["unavailable_fields"] = [k for k,v in values.items() if v is None]
+        return values
+
+    def _reset_stability(self) -> None:
+        self._stable_since = None
+        self._stable_min = None
+        self._stable_max = None
+
+    def settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+    ) -> bool:
+        """Check continuous joint fluctuation, separate from target arrival.
+
+        The approach and formal-start paths still verify target proximity.
+        The RTDE velocity limit remains 0.05 °/s.
+        """
+        target = [float(v) for v in target_joint_deg]
+        if self._abort is not None:
+            self._reset_stability()
+            return False
+        try:
+            state = self.read_state()
+        except Exception as exc:
+            self._reset_stability()
+            self._last_safety = {**self._last_safety, "settle_read_error": str(exc)}
+            return False
+        actual = tuple(state.actual_q_deg)
+        velocity = state.actual_qd_deg_s
+        if (
+            len(target) != 6 or len(actual) != 6
+            or velocity is None or len(velocity) != 6
+            or not all(math.isfinite(v) for v in (*target, *actual, *velocity))
+            or not math.isfinite(float(tolerance_deg)) or float(tolerance_deg) <= 0
+            or not math.isfinite(float(hold_s)) or float(hold_s) < 0
+        ):
+            self._reset_stability()
+            return False
+        if max(abs(v) for v in velocity) > 0.05:
+            self._reset_stability()
+            return False
+        now = time.perf_counter()
+        if self._stable_since is None or self._stable_min is None or self._stable_max is None:
+            self._stable_since = now
+            self._stable_min = list(actual)
+            self._stable_max = list(actual)
+            return False
+        self._stable_min = [min(lo, value) for lo, value in zip(self._stable_min, actual)]
+        self._stable_max = [max(hi, value) for hi, value in zip(self._stable_max, actual)]
+        if max(hi - lo for lo, hi in zip(self._stable_min, self._stable_max)) > float(tolerance_deg):
+            self._reset_stability()
+            self._stable_since = now
+            self._stable_min = list(actual)
+            self._stable_max = list(actual)
+            return False
+        return (now - self._stable_since) >= float(hold_s)
+
+    def wait_until_settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+        timeout_s: float,
+    ) -> bool:
+        """阻塞版：没有采集在跑的时候用它（例如到位序列的逐步确认）。
+
+        返回 True 表示"停稳了"，False 表示超时（超时不算错误——分析层会把
+        "到时间还在动"如实记录下来，而不是替它圆场）。
+        """
+        self._reset_stability()
+        deadline = time.perf_counter() + float(timeout_s)
+        while time.perf_counter() < deadline:
+            if self._abort is not None:
+                return False
+            if self.settled(
+                target_joint_deg, tolerance_deg=float(tolerance_deg), hold_s=float(hold_s)
+            ):
+                return True
+            time.sleep(self.settle_poll_s)
+        return False
+
+    def motion_in_progress(self) -> bool:
+        if self._robot is None:
+            return False
+        return bool(self._robot.motion_in_progress())
+
+    def moved_event_ids(self) -> list[str]:
+        return list(self._moved_event_ids)
+
+
+# --------------------------------------------------------------------------
+# 干运行（合成世界）
+# --------------------------------------------------------------------------
+
+
+@dataclass
+class SimulatedJointRobot:
+    """dry_run 用的"机器人"：把指令交给合成世界，不发任何真实命令。
+
+    关键点：它**不假装一切完美**。合成世界的关节做一阶跟随，所以
+    "指令已经下发了，但关节还没到位"这件事会真实发生；下发指令时还会触发余振。
+    这样"RTDE 稳了但画面还在动"这条判据在自测里才能被走到。
+    """
+
+    world: Any
+    nominal_joint_deg: Sequence[float]
+    #: 合成时间（秒）。虚拟时钟下由帧时间戳驱动，所以这里只做累计。
+    clock_s: float = 0.0
+    mode: str = "dry_run"
+    synthetic: bool = True
+    confirm: Callable[[str], bool] | None = None
+    precheck: Callable[[], tuple[bool, str]] | None = None
+
+    def __post_init__(self) -> None:
+        self._abort: str | None = None
+        self._current: tuple[float, ...] = tuple(float(v) for v in self.nominal_joint_deg)
+        self._target: tuple[float, ...] = self._current
+        self._event_id: str | None = None
+        self._stage: str | None = None
+        self._moved_event_ids: list[str] = []
+        self._move_started_s: float | None = None
+        self._t0_ns: int | None = None
+        self._stable_since_s: float | None = None
+
+    # -- 连接（合成世界里没有连接这回事，但接口要一致） --------------------
+
+    def connect(self, *, require_control: bool) -> None:
+        self._current = tuple(float(v) for v in self.nominal_joint_deg)
+        self._target = self._current
+        self.world.reset(self._current)
+        self._t0_ns = None
+        self.clock_s = 0.0
+        self._stable_since_s = None
+
+    def disconnect(self) -> None:
+        return None
+
+    # -- 状态 -------------------------------------------------------------
+
+    def set_time(self, now_s: float) -> None:
+        """由采集层在每段结束时推进一次，保证合成时间和帧时间轴一致。"""
+        self.clock_s = float(now_s)
+        driver = getattr(self, "_path_driver", None)
+        if driver is not None:
+            driver.advance(self.clock_s)
+        self.world.step(self.clock_s)
+
+    def sync_host_ns(self, host_ns: int) -> None:
+        """用帧的时间戳推进虚拟时间。
+
+        取单调不减（``max``）：到位序列里的阻塞等待会自己把时钟往前推，
+        之后帧的时间戳可能比它略小，不能由此让时间倒流。
+        """
+        ns = int(host_ns)
+        if self._t0_ns is None:
+            self._t0_ns = ns
+        self.set_time(max(self.clock_s, (ns - self._t0_ns) / 1e9))
+
+    def read_state(
+        self, *, event_id: str | None = None, stage: str | None = None
+    ) -> RobotState:
+        self.world.step(self.clock_s)
+        actual = tuple(float(v) for v in self.world.actual)
+        target = tuple(float(v) for v in self.world.target)
+        tau = float(getattr(self.world.config, "joint_response_tau_s", 0.12))
+        # 合成角速度＝一阶跟随的瞬时速度，量级上和真机 RTDE 的 actual_qd 同义。
+        vd = tuple(
+            (target[i] - actual[i]) / tau if tau > 0 else 0.0 for i in range(6)
+        )
+        driver = getattr(self, "_path_driver", None)
+        return RobotState(
+            host_ns=time.perf_counter_ns(),
+            commanded_q_deg=target,
+            actual_q_deg=actual,
+            actual_qd_deg_s=tuple(driver.q_gain@(driver.velocity[1:3]*1000)) if driver else vd,
+            actual_tcp_pose=tuple(driver.actual) if driver else _synthetic_tcp(actual),
+            target_tcp_pose=tuple(driver.target) if driver else None,
+            actual_tcp_speed=tuple(driver.velocity) if driver else (0.,)*6,
+            target_tcp_speed=tuple(driver.target_velocity) if driver else None,
+            robot_mode="SIMULATED",
+            safety_mode=1,
+            runtime_state=0,
+            speed_scaling=1.0,
+            event_id=event_id,
+            stage=stage,
+            synthetic=True,
+        )
+
+    def describe_safety(self) -> dict[str, Any]:
+        return {
+            "mode": "dry_run",
+            "robot_mode": "SIMULATED",
+            "safety_mode": 1,
+            "collision_status": "unknown",
+            "note": "干运行：未连接任何真实机械臂，未发送任何运动命令。",
+        }
+
+    def validate_cartesian_path(self, path, *, max_speed_mm_s=5.0):
+        from .path_geometry import MAX_OBSERVED_JOINT_SPEEDS_DEG_S
+        path.command(max_speed_mm_s)
+        self._path_preflight_report = {"max_speed_mm_s":float(max_speed_mm_s),
+            "joint_speed_limits_deg_s":list(MAX_OBSERVED_JOINT_SPEEDS_DEG_S),"synthetic":True,"samples":[],
+            "prediction_method":"synthetic_flow_only_no_hardware_IK"}
+        if self._abort:
+            raise MotionAborted(self._abort)
+        from .path_simulation import SyntheticPathDriver
+        driver = getattr(self, "_path_driver", None)
+        if driver is None or driver.path != path:
+            self._path_driver = SyntheticPathDriver(self, path)
+        return []
+
+    def execute_cartesian_path(self, path, speed_mm_s, *, reverse, event_id):
+        if self._abort:
+            raise MotionAborted(self._abort)
+        path.command(speed_mm_s, reverse=reverse)
+        self._path_driver.command(speed_mm_s, reverse)
+        self._moved_event_ids.append(event_id)
+
+    def cartesian_motion_done(self):
+        if self._abort:
+            raise MotionAborted(self._abort)
+        return self._path_driver.done()
+
+    def cartesian_settings_snapshot(self):
+        return {"synthetic": True, "unavailable_fields": ["payload_kg", "payload_cog_m", "tcp_offset"]}
+
+    # -- 中止 -------------------------------------------------------------
+
+    def abort(self, reason: str) -> None:
+        if self._abort is None:
+            self._abort = str(reason)
+            self.stop()
+
+    def abort_reason(self) -> str | None:
+        return self._abort
+
+    def stop(self) -> None:
+        return None
+
+    # -- 运动 -------------------------------------------------------------
+
+    def move_to_joint(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        speed_deg_s: float,
+        accel_deg_s2: float,
+        event_id: str,
+        label: str,
+    ) -> None:
+        if self._abort is not None:
+            raise MotionAborted(f"已中止（{self._abort}），不再下发任何动作。")
+        target = tuple(float(v) for v in target_joint_deg)
+        ok, reason = check_joint_in_limits(target, margin_deg=0.5, limits=JOINT_LIMITS_DEG)
+        if not ok:
+            raise RobotError(f"目标姿态未通过限位检查：{reason}")
+        if self.precheck is not None:
+            passed, why = self.precheck()
+            if not passed:
+                raise MotionAborted(f"{label}：运动前检查未通过 —— {why}")
+        if self.confirm is not None and not self.confirm(label):
+            raise MotionAborted(f"{label}：操作者取消了这一次运动。")
+        del speed_deg_s, accel_deg_s2  # 合成世界不模拟速度曲线，只用一阶跟随
+        self._event_id = event_id
+        self._target = target
+        self._move_started_s = self.clock_s
+        self._stable_since_s = None
+        self.world.command(target, self.clock_s)
+        self._moved_event_ids.append(event_id)
+
+    def settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+    ) -> bool:
+        """合成世界里的"停稳了吗"：在**虚拟时间**轴上看一阶跟随的偏差和速度。
+
+        因为虚拟时间由帧时间戳推进，所以运动期间采集照常进行——
+        这和真机上"边录边等停稳"是同一条逻辑。
+        """
+        self.world.step(self.clock_s)
+        tau = float(getattr(self.world.config, "joint_response_tau_s", 0.12))
+        error = max(
+            abs(float(self.world.actual[i]) - float(target_joint_deg[i]))
+            for i in range(6)
+        )
+        speed = error / tau if tau > 0 else 0.0
+        quiet = error <= float(tolerance_deg) and speed <= 0.01
+        if not quiet:
+            self._stable_since_s = None
+            return False
+        if self._stable_since_s is None:
+            self._stable_since_s = self.clock_s
+            return False
+        return (self.clock_s - self._stable_since_s) >= float(hold_s)
+
+    def wait_until_settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+        timeout_s: float,
+    ) -> bool:
+        """阻塞版：没有采集在跑的时候用它（例如到位序列的逐步确认）。
+
+        不 sleep 真实时间，而是把虚拟时钟一小步一小步往前推——
+        干运行要跑得动整套 72 次动作。
+        """
+        del timeout_s
+        self._stable_since_s = None
+        for _ in range(20000):
+            self.clock_s += 0.005
+            if self.settled(
+                target_joint_deg,
+                tolerance_deg=float(tolerance_deg),
+                hold_s=float(hold_s),
+            ):
+                return True
+        return False
+
+    def motion_in_progress(self) -> bool:
+        return False
+
+    def moved_event_ids(self) -> list[str]:
+        return list(self._moved_event_ids)
+
+
+# --------------------------------------------------------------------------
+# 回放
+# --------------------------------------------------------------------------
+
+
+@dataclass
+class ReplayJointRobot:
+    """回放用的"机器人"：从历史记录里取状态，**一个命令都不会发**。
+
+    如果回放的数据里没有机器人记录，就读不出状态；这时如实返回一个空状态，
+    让上层把"没有 RTDE 数据"这件事显示出来，而不是编造关节角。
+    """
+
+    #: 历史 RTDE 记录：``[(host_ns, {关节名: 角度}, ...)]``，可为空。
+    records: list[tuple[int, dict[str, float], dict[str, Any]]] = field(
+        default_factory=list
+    )
+    mode: str = "replay"
+    synthetic: bool = False
+    #: 一次动作后最多消费多少条历史记录当作"等待时间"。
+    settle_records: int = 64
+
+    def __post_init__(self) -> None:
+        self._abort: str | None = None
+        self._index = 0
+        self._target: tuple[float, ...] | None = None
+        self._event_id: str | None = None
+        self._stage: str | None = None
+        self._moved_event_ids: list[str] = []
+        self._records_since_move = 0
+        self._last_settle_reason: str | None = None
+
+    def connect(self, *, require_control: bool) -> None:
+        return None
+
+    def disconnect(self) -> None:
+        return None
+
+    def read_state(
+        self, *, event_id: str | None = None, stage: str | None = None
+    ) -> RobotState:
+        if not self.records:
+            return RobotState(
+                host_ns=time.perf_counter_ns(),
+                commanded_q_deg=None,
+                actual_q_deg=(0.0,) * 6,
+                actual_qd_deg_s=None,
+                actual_tcp_pose=None,
+                event_id=event_id,
+                stage=stage,
+            )
+        if self._index < len(self.records):
+            host_ns, angles, extra = self.records[self._index]
+            self._index += 1
+        else:
+            host_ns, angles, extra = self.records[-1]
+        actual = tuple(float(angles.get(name, 0.0)) for name in JOINT_NAMES)
+        return RobotState(
+            host_ns=int(host_ns),
+            commanded_q_deg=self._target or actual,
+            actual_q_deg=actual,
+            actual_qd_deg_s=None,
+            actual_tcp_pose=extra.get("actual_tcp_pose"),
+            robot_mode=extra.get("robot_mode"),
+            safety_mode=extra.get("safety_mode"),
+            runtime_state=extra.get("runtime_state"),
+            event_id=event_id,
+            stage=stage,
+        )
+
+    def describe_safety(self) -> dict[str, Any]:
+        return {
+            "mode": "replay",
+            "collision_status": "unknown",
+            "note": "回放历史数据：未连接任何真实机械臂，未发送任何运动命令。",
+        }
+
+    def abort(self, reason: str) -> None:
+        if self._abort is None:
+            self._abort = str(reason)
+
+    def abort_reason(self) -> str | None:
+        return self._abort
+
+    def stop(self) -> None:
+        return None
+
+    def move_to_joint(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        speed_deg_s: float,
+        accel_deg_s2: float,
+        event_id: str,
+        label: str,
+    ) -> None:
+        if self._abort is not None:
+            raise MotionAborted(f"已中止（{self._abort}）。")
+        del speed_deg_s, accel_deg_s2, label
+        self._target = tuple(float(v) for v in target_joint_deg)
+        self._event_id = event_id
+        self._records_since_move = 0
+        self._last_settle_reason = None
+        self._moved_event_ids.append(event_id)
+
+    def sync_host_ns(self, host_ns: int) -> None:
+        """回放的时间轴来自历史记录本身，不需要外部时钟。"""
+        return None
+
+    def settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+    ) -> bool:
+        """回放里的"停稳"只能**从历史数据里看出来**，不能凭空假设。
+
+        两条结束条件，都不假装：
+        * 历史记录里实际角已经进到容差以内 —— 说明当年确实到位了；
+        * 已经消费了 ``settle_records`` 条历史记录 —— 数据就这么多，
+          再等也没有新信息。这时把 ``_last_settle_reason`` 记成
+          "history_exhausted"，让上层知道这个"停稳"是数据到头，不是真停稳。
+        """
+        del hold_s
+        self._records_since_move += 1
+        if not self.records:
+            self._last_settle_reason = "no_history"
+            return True
+        state = self.read_state()
+        error = max(
+            abs(state.actual_q_deg[i] - float(target_joint_deg[i])) for i in range(6)
+        )
+        if error <= max(float(tolerance_deg), 0.01):
+            self._last_settle_reason = "reached_in_history"
+            return True
+        if self._records_since_move >= int(self.settle_records):
+            self._last_settle_reason = "history_exhausted"
+            return True
+        return False
+
+    def wait_until_settled(
+        self,
+        target_joint_deg: Sequence[float],
+        *,
+        tolerance_deg: float,
+        hold_s: float,
+        timeout_s: float,
+    ) -> bool:
+        del timeout_s
+        for _ in range(max(1, int(self.settle_records))):
+            if self.settled(
+                target_joint_deg,
+                tolerance_deg=float(tolerance_deg),
+                hold_s=float(hold_s),
+            ):
+                return True
+        return False
+
+    def motion_in_progress(self) -> bool:
+        return False
+
+    def moved_event_ids(self) -> list[str]:
+        return list(self._moved_event_ids)
+
+
+# --------------------------------------------------------------------------
+# 工具
+# --------------------------------------------------------------------------
+
+
+def _deg_tuple(values: Any) -> tuple[float, ...] | None:
+    if values is None:
+        return None
+    try:
+        items = [float(v) for v in values]
+    except (TypeError, ValueError):
+        return None
+    if len(items) != 6:
+        return None
+    return tuple(math.degrees(value) for value in items)
+
+
+def _np_array(values: Sequence[float]) -> Any:
+    import numpy as np
+
+    return np.asarray(values, dtype=np.float64)
+
+
+def _synthetic_tcp(joint_deg: Sequence[float]) -> tuple[float, ...]:
+    """合成世界里的 TCP 位姿：用名义正运动学算位置，姿态固定为 0 旋转向量。
+
+    只用于让"记录里有个 TCP 位姿"这件事成立；合成世界的 TCP 不代表真机姿态。
+    """
+    from .kinematics import forward_kinematics
+
+    matrix = forward_kinematics(joint_deg)
+    position = matrix[:3, 3]
+    return (
+        float(position[0]),
+        float(position[1]),
+        float(position[2]),
+        0.0,
+        0.0,
+        0.0,
+    )
+
+
+def make_robot(
+    config: Any,
+    *,
+    world: Any = None,
+    records: list[tuple[int, dict[str, float], dict[str, Any]]] | None = None,
+    confirm: Callable[[str], bool] | None = None,
+    precheck: Callable[[], tuple[bool, str]] | None = None,
+) -> JointRobotPort:
+    """按运行模式造出对应的机器人对象。"""
+    if config.mode == "hardware":
+        return HardwareJointRobot(confirm=confirm, precheck=precheck)
+    if config.mode == "replay":
+        return ReplayJointRobot(records=list(records or []))
+    if world is None:
+        raise RobotError("dry_run 模式必须传入合成世界（SyntheticWorld）。")
+    return SimulatedJointRobot(
+        world=world,
+        nominal_joint_deg=config.robot.nominal_joint_deg,
+        confirm=confirm,
+        precheck=precheck,
+    )

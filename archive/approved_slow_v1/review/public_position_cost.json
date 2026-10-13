@@ -1,0 +1,16 @@
+{
+  "units": "Position rad, velocity rad/s, acceleration rad/s2; no invented force or energy",
+  "deltaY_peak_abs_um": 22.77985044865649,
+  "deltaq_peak_abs_rad": 3.219320907794433e-05,
+  "deltaq_dot_peak_abs_rad_s": 3.810605005065187e-06,
+  "deltaq_ddot_peak_abs_rad_s2": 7.50711592200436e-06,
+  "initial_nonzero_command_step_rad": [
+    -3.219320907794433e-05,
+    -8.647589970272895e-06,
+    8.015760069498746e-06,
+    3.638287178624472e-06,
+    -5.343429757969549e-06,
+    1.5089751126870308e-21
+  ],
+  "initial_step_separate_from_smooth_analytic_derivative": true
+}

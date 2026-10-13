@@ -1,0 +1,2 @@
+# Preserve original scientific source/input/model bytes, including original CRLF.
+* -text

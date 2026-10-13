@@ -1,0 +1,107 @@
+{
+  "all_pass": true,
+  "formal_cases": 15,
+  "executed_short_runs": 15,
+  "max_allowed_runs": 22,
+  "protected_files": 428,
+  "original_files_unchanged": true,
+  "controller_and_execution_core_identical_to_accepted_F": [
+    "config.py",
+    "sfc.py",
+    "controller.py",
+    "sim_env.py",
+    "sweep.py",
+    "position_execution.py",
+    "background.py",
+    "f_measurement.py",
+    "disturbance.py"
+  ],
+  "compiled_model_identical": true,
+  "shared_case_inputs_and_raw_signals_pass": true,
+  "g1_exact_unscaled_and_event_off_exact_zero": true,
+  "no_duplicate_SFC_external_torque": true,
+  "no_mean_subtraction_or_output_scaling": true,
+  "independent_JT_force_error_Nm": 0.0,
+  "cases": {
+    "S0__A0": {
+      "max_increment_torque_residual_Nm": 0.0,
+      "max_independent_force_formula_error_N": 0.0,
+      "any_saturated_samples": 0
+    },
+    "S0__Alinear": {
+      "max_increment_torque_residual_Nm": 1.4160189657043576e-12,
+      "max_independent_force_formula_error_N": 1.1102230246251565e-16,
+      "any_saturated_samples": 0
+    },
+    "S0__ASFC_strong": {
+      "max_increment_torque_residual_Nm": 1.4383293004977676e-12,
+      "max_independent_force_formula_error_N": 8.881784197001252e-16,
+      "any_saturated_samples": 0
+    },
+    "S1__A0": {
+      "max_increment_torque_residual_Nm": 0.0,
+      "max_independent_force_formula_error_N": 0.0,
+      "any_saturated_samples": 0
+    },
+    "S1__Alinear": {
+      "max_increment_torque_residual_Nm": 1.4254743219144217e-12,
+      "max_independent_force_formula_error_N": 1.1102230246251565e-16,
+      "any_saturated_samples": 0
+    },
+    "S1__ASFC_strong": {
+      "max_increment_torque_residual_Nm": 1.4178623553018355e-12,
+      "max_independent_force_formula_error_N": 8.881784197001252e-16,
+      "any_saturated_samples": 0
+    },
+    "S2__A0": {
+      "max_increment_torque_residual_Nm": 0.0,
+      "max_independent_force_formula_error_N": 0.0,
+      "any_saturated_samples": 0
+    },
+    "S2__Alinear": {
+      "max_increment_torque_residual_Nm": 1.4055043856881478e-12,
+      "max_independent_force_formula_error_N": 1.1102230246251565e-16,
+      "any_saturated_samples": 0
+    },
+    "S2__ASFC_strong": {
+      "max_increment_torque_residual_Nm": 1.4091028767331871e-12,
+      "max_independent_force_formula_error_N": 4.440892098500626e-16,
+      "any_saturated_samples": 0
+    },
+    "S3__A0": {
+      "max_increment_torque_residual_Nm": 0.0,
+      "max_independent_force_formula_error_N": 0.0,
+      "any_saturated_samples": 0
+    },
+    "S3__Alinear": {
+      "max_increment_torque_residual_Nm": 1.4225446992241486e-12,
+      "max_independent_force_formula_error_N": 2.220446049250313e-16,
+      "any_saturated_samples": 0
+    },
+    "S3__ASFC_strong": {
+      "max_increment_torque_residual_Nm": 1.4401309937866862e-12,
+      "max_independent_force_formula_error_N": 8.881784197001252e-16,
+      "any_saturated_samples": 0
+    },
+    "S4__A0": {
+      "max_increment_torque_residual_Nm": 0.0,
+      "max_independent_force_formula_error_N": 0.0,
+      "any_saturated_samples": 0
+    },
+    "S4__Alinear": {
+      "max_increment_torque_residual_Nm": 1.4265241108323262e-12,
+      "max_independent_force_formula_error_N": 2.220446049250313e-16,
+      "any_saturated_samples": 0
+    },
+    "S4__ASFC_strong": {
+      "max_increment_torque_residual_Nm": 1.4278918217085212e-12,
+      "max_independent_force_formula_error_N": 8.881784197001252e-16,
+      "any_saturated_samples": 0
+    }
+  },
+  "limitations": [
+    "User approved inherited piecewise-linear event command velocities, not newly planned C1 motion.",
+    "Cold initialization remains unchanged and is displayed separately.",
+    "Passing execution checks does not demonstrate physical CB3 performance."
+  ]
+}

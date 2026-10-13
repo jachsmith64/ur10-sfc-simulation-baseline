@@ -1,0 +1,32 @@
+{
+  "approved_png_sha256": "223ad2b9ee02f0ecf76f03f87c677ecbbe1297d6bfc1b21cd3cd6dbe04d6d193",
+  "plot_data_sha256": "dbdd2c82e4573bd8c5d54d3c166869a65a4a55ec2315bf1b78ab3ba62f377b1f",
+  "rows": 10000,
+  "source_version": "F10-PRESCHEDULED-SLOW-v1",
+  "recommended_execution_version": "F10-IDEAL-EXECUTION-ENGINEERING-CANDIDATE-v2",
+  "fixed_version_run_ids": [
+    "20261012T123028491525Z_9f7f6d3a",
+    "20261012T123042308025Z_05af114f"
+  ],
+  "y_definition": "raw effective_e_um; no individual mean removal or smoothing",
+  "csv_export": "17 significant digits; original 10000 saved points, no simulation",
+  "case_metrics": {
+    "A0": {
+      "std_um": 28.826034960868505,
+      "ptp_um": 197.58614193321478,
+      "source_csv_sha256": "46847f17d2d6f56fd5d24957695016f34d441138c2f1439e1adf0ee38d49ecfb"
+    },
+    "Alinear": {
+      "std_um": 19.89697537467832,
+      "ptp_um": 137.04184363896866,
+      "source_csv_sha256": "2f20d66324fd82175c517a8ed6d3c4da70de34a99acb8e1712bf12e6bb2a739e"
+    },
+    "ASFC_strong": {
+      "std_um": 15.976965443773993,
+      "ptp_um": 109.43879929262157,
+      "source_csv_sha256": "c1d94d8ac93f5b69fdbe62f1209fa488bbe64bb2ed3bab3c51e6e1b0605bc88d"
+    }
+  },
+  "source_common_csv_sha256": "d1032bdb0079248cfc8e056e03fef6cb6b5f05724668c8d6604b55c3b4dee1f2",
+  "original_audit_plot_script_sha256": "05ee0c7f5125fdd05c5b06c5ac6af0cde05dda197c8349a7dda11a3625999e3f"
+}

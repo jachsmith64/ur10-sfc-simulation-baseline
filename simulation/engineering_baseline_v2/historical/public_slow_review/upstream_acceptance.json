@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": {
+    "calibration": {
+      "passed": true,
+      "reason": "within original10% tolerance",
+      "tolerance_relative": 0.1,
+      "g": 0.6634406421952753,
+      "relative_difference": 0.0033601669401901457,
+      "no_amplification_branch": false
+    },
+    "event": {
+      "passed": true,
+      "reason": "original20% gate passed",
+      "relative_rms_error": 0.08703271426041935,
+      "threshold": 0.2
+    }
+  },
+  "source_S3_id": "2622533f108c17013b8de2704550957e8e0cc60b89e8b6d155371b488bcb39a9",
+  "no_new_calibration_or_event_generation": true
+}

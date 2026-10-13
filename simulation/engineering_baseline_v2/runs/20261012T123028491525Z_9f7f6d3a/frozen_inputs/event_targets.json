@@ -1,0 +1,50 @@
+[
+  {
+    "event": "start",
+    "new_support_s": [
+      1.085,
+      2.226
+    ],
+    "core_s": [
+      1.2849583981754964,
+      1.926
+    ],
+    "source_shift_s": 0.0,
+    "peak_positive_um": 104.72006489626048,
+    "peak_negative_um": -26.27314409015274,
+    "core_original_preserved": true,
+    "note": "e_vib=A raw-b; preserves core sign/duration/shape, source noise may remain; leading50ms/trailing150ms joins only. Stop includes deceleration and >1s original tail; last150ms taper prevents FFT endpoint wrap."
+  },
+  {
+    "event": "turn",
+    "new_support_s": [
+      4.38,
+      5.943
+    ],
+    "core_s": [
+      4.58,
+      5.643
+    ],
+    "source_shift_s": -1.1190000000000002,
+    "peak_positive_um": 43.17546827697832,
+    "peak_negative_um": -112.14075854806272,
+    "core_original_preserved": true,
+    "note": "e_vib=A raw-b; preserves core sign/duration/shape, source noise may remain; leading50ms/trailing150ms joins only. Stop includes deceleration and >1s original tail; last150ms taper prevents FFT endpoint wrap."
+  },
+  {
+    "event": "stop",
+    "new_support_s": [
+      8.667,
+      9.999
+    ],
+    "core_s": [
+      8.797,
+      9.457756461197407
+    ],
+    "source_shift_s": -2.2439999999999998,
+    "peak_positive_um": 27.10142998203407,
+    "peak_negative_um": -31.00475383276868,
+    "core_original_preserved": true,
+    "note": "e_vib=A raw-b; preserves core sign/duration/shape, source noise may remain; leading50ms/trailing150ms joins only. Stop includes deceleration and >1s original tail; last150ms taper prevents FFT endpoint wrap."
+  }
+]

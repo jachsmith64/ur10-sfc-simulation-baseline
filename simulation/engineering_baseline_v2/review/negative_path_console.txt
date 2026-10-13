@@ -1,0 +1,62 @@
+INTEGRATE 20261012T131314426394Z_13f9f782 A0
+VALIDATED A0 10000
+INTEGRATE 20261012T131314426394Z_13f9f782 Alinear
+VALIDATED Alinear 10000
+INTEGRATE 20261012T131314426394Z_13f9f782 ASFC_strong
+VALIDATED ASFC_strong 10000
+SUCCESS 20261012T131314426394Z_13f9f782 3 new integrations
+test_actual_report_from_accepted_fixture (__main__.EngineeringChecks.test_actual_report_from_accepted_fixture) ... ok
+test_directory_collision_never_overwrites_or_calls_simulator (__main__.EngineeringChecks.test_directory_collision_never_overwrites_or_calls_simulator) ... ok
+INTEGRATE 20261012T131323842833Z_fffab7f4 A0
+INTEGRATE 20261012T131324388005Z_6797d6c1 A0
+INTEGRATE 20261012T131324919506Z_f485f465 A0
+INTEGRATE 20261012T131325486095Z_d539ed30 A0
+INTEGRATE 20261012T131326048685Z_56a290c1 A0
+INTEGRATE 20261012T131326613064Z_b52c0a97 A0
+INTEGRATE 20261012T131327177346Z_d4a8742a A0
+INTEGRATE 20261012T131327747151Z_bcdb417c A0
+INTEGRATE 20261012T131328289931Z_3ca8be1d A0
+test_failed_invalid_short_nonfinite_missing_time_identity_counts (__main__.EngineeringChecks.test_failed_invalid_short_nonfinite_missing_time_identity_counts) ... ok
+INTEGRATE 20261012T131329056884Z_71be9d0b A0
+VALIDATED A0 10000
+INTEGRATE 20261012T131329056884Z_71be9d0b Alinear
+VALIDATED Alinear 10000
+INTEGRATE 20261012T131329056884Z_71be9d0b ASFC_strong
+VALIDATED ASFC_strong 10000
+SUCCESS 20261012T131329056884Z_71be9d0b 3 new integrations
+test_history_corruption_no_simulation_or_fallback (__main__.EngineeringChecks.test_history_corruption_no_simulation_or_fallback) ... ok
+test_integration_exception_no_success_and_nonzero_cli (__main__.EngineeringChecks.test_integration_exception_no_success_and_nonzero_cli) ... FAILED (no success/fallback): RuntimeError injected integration error
+INTEGRATE 20261012T131330878647Z_08bc497c A0
+ok
+INTEGRATE 20261012T131331240298Z_aad17dfa A0
+VALIDATED A0 10000
+INTEGRATE 20261012T131331240298Z_aad17dfa Alinear
+test_later_case_failure_stops_batch_and_report (__main__.EngineeringChecks.test_later_case_failure_stops_batch_and_report) ... ok
+INTEGRATE 20261012T131332336482Z_b35955a8 A0
+VALIDATED A0 10000
+INTEGRATE 20261012T131332336482Z_b35955a8 Alinear
+VALIDATED Alinear 10000
+INTEGRATE 20261012T131332336482Z_b35955a8 ASFC_strong
+VALIDATED ASFC_strong 10000
+SUCCESS 20261012T131332336482Z_b35955a8 3 new integrations
+INTEGRATE 20261012T131333779895Z_948b9688 A0
+VALIDATED A0 10000
+INTEGRATE 20261012T131333779895Z_948b9688 Alinear
+VALIDATED Alinear 10000
+INTEGRATE 20261012T131333779895Z_948b9688 ASFC_strong
+VALIDATED ASFC_strong 10000
+SUCCESS 20261012T131333779895Z_948b9688 3 new integrations
+test_old_valid_corrupt_and_changed_xml_always_call_current_integration (__main__.EngineeringChecks.test_old_valid_corrupt_and_changed_xml_always_call_current_integration) ... ok
+test_prefix_and_input_failure_protection (__main__.EngineeringChecks.test_prefix_and_input_failure_protection) ... ok
+INTEGRATE 20261012T131335550496Z_9762c6d4 A0
+VALIDATED A0 10000
+INTEGRATE 20261012T131335550496Z_9762c6d4 Alinear
+VALIDATED Alinear 10000
+INTEGRATE 20261012T131335550496Z_9762c6d4 ASFC_strong
+VALIDATED ASFC_strong 10000
+test_source_change_during_batch_rejects_completion (__main__.EngineeringChecks.test_source_change_during_batch_rejects_completion) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 22.750s
+
+OK

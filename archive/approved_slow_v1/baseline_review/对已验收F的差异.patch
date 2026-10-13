@@ -1,0 +1,26 @@
+--- accepted_F/position_logging.py
++++ new_F10/position_logging.py
+@@ -5,7 +5,7 @@
+ from position_execution import TORQUE_DIRECT,actuator_limits
+ 
+ class PreciseLogger:
+-    def __init__(self,path,n,background,execution,update_steps,input_sha):
++    def __init__(self,path,n,background,execution,update_steps,input_sha,input_data=None):
+         self.path=Path(path);self.n=n
+         self.meta=dict(background_mode=background,execution_mode=execution,update_steps=update_steps,input_sha256=input_sha,
+              sample_position='pre-mj_step, after correct state refresh and current command/disturbance assignment',
+@@ -13,10 +13,13 @@
+              shared_inputs='inputs/frozen_common.npz: t/phase/along/q_nominal/dq_C/remaining/remaining_dot; B dq/remaining/dot zero; base ctrl reconstructed exactly',
+              units='t:s; q/q_nominal/dq/base_ctrl/delta_u/final_ctrl:rad; qdot:rad/s; y:m; e:um; v:m/s; F:N; tau/qfrc:Nm; saturation/updated:bool')
+         self.arr={}
+-        with np.load(Path(__file__).resolve().parent/'inputs/frozen_common.npz') as common:
++        common=np.load(Path(__file__).resolve().parent/'inputs/frozen_common.npz') if input_data is None else input_data
++        try:
+             self.arr['phase']=common['phase'].copy()
+             self.arr['q_nominal']=common['q'].copy()
+             self.arr['dq_C']=common['dq'].copy() if background=='C_ORDINARY' else np.zeros_like(common['dq'])
++        finally:
++            if input_data is None:common.close()
+         self.arr['updated']=np.zeros(n,bool)
+         for k in ['q','qdot','base_ctrl','delta_u','final_ctrl','tau_requested','qfrc_actuator','qfrc_applied','qfrc_disturbance','tau_realized_increment','base_qfrc_actuator','actuator_force','effective_ctrl']:
+             self.arr[k]=np.empty((n,6),np.float64)

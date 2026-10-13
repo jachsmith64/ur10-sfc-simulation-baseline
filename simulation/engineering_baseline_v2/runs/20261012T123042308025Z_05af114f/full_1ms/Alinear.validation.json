@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "samples": 10000,
+  "case_id": "Alinear",
+  "run_id": "20261012T123042308025Z_05af114f",
+  "data_sha256": "824f8f4a29dd48ce04bd051af7b925b0400e058222848e1f683cbee370e49c60",
+  "logical_arrays_sha256": "0b2bfe6aed7067d82345abba1cab6f2ddd8324e0cf0ff9d02941c1645e5d851b",
+  "saturation_entries": {
+    "ctrl_saturation": 0,
+    "force_saturation": 0,
+    "joint_saturation": 0
+  }
+}

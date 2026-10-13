@@ -1,0 +1,28 @@
+{
+  "source_sha256": "d8d76ea3a259f8dc631547391ed0ec546b39014c608b90d16e229b68d8ad99fe",
+  "raw_frames_no_resampling": true,
+  "windows": [
+    {
+      "phase": "outbound",
+      "t0": 1.926,
+      "t1": 3.461,
+      "n": 192,
+      "P95_abs_um": 50.14547119894546,
+      "max_abs_um": 56.80053955664255,
+      "mean_um": 23.683406108378037,
+      "std_um": 15.86010949985183
+    },
+    {
+      "phase": "return",
+      "t0": 4.524,
+      "t1": 6.573,
+      "n": 254,
+      "P95_abs_um": 50.33608690232005,
+      "max_abs_um": 62.22544476112822,
+      "mean_um": -19.196829336699196,
+      "std_um": 16.607384596357203
+    }
+  ],
+  "target_P95_um": 50.24077905063275,
+  "interpolated_example_in_task_is_not_fixed_truth": true
+}

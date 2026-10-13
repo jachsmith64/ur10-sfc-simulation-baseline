@@ -1,0 +1,25 @@
+{
+  "changes": {
+    "run_slow.py": {
+      "integration_source_sha256": "7b248afc1257a868b68043fa5e0d9ffe45d3d5db44960078a0e0017505e1b4fb",
+      "current_sha256": "b91a146a1bd98972721cc832a382828c5f7c92574e0d6397b454bd97a0ed84ad",
+      "change": "Post-integration historical artifact integrity guard and isolated verification only; physics/control/input unchanged"
+    },
+    "test_engineering.py": {
+      "integration_source_sha256": "51a281debd75952675318f62df0cbfe3d15f26f4597423d277a27c335eccaa44",
+      "current_sha256": "3aae79b0386d7eca7042b613c665d68345e6bf329d9595f475bcf30328dd5b7f",
+      "change": "Post-integration historical artifact integrity guard and isolated verification only; physics/control/input unchanged"
+    }
+  },
+  "real_integrations_added": 0,
+  "negative_path_checks": {
+    "passed": true,
+    "test_groups": 9,
+    "real_integrations": 0,
+    "optimization": 1,
+    "negative_variants": 9,
+    "no_MuJoCo_step": true,
+    "tests_source_sha256": "3aae79b0386d7eca7042b613c665d68345e6bf329d9595f475bcf30328dd5b7f"
+  },
+  "historical_batches_not_claimed_current_source_reintegrated": true
+}

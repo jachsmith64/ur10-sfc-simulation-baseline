@@ -1,0 +1,995 @@
+--- /dev/null
++++ candidate-v2/audit_execution_evidence.py
+@@ -0,0 +1,121 @@
++"""R017 directed offline audit of already recorded C data. No robot imports/commands or fitting."""
++from pathlib import Path
++import sys,csv,json,bisect,math
++ROOT=Path(__file__).resolve().parent
++sys.path.insert(0,str(ROOT.parent/'F组首次接入_20261010/.runtime'));sys.path.insert(0,str(ROOT))
++if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
++import numpy as np
++from batch_identity import read,sha,atomic_json
++from run_report import table
++C=Path('D:/UR10_Data/20261008_190952');P=Path('D:/UR10_Data/20261010_141616/path_speed/path-six')
++Q=ROOT.parent/'C组量化_V4.1_20261010';CODE=Path('C:/Users/kinli/Documents/Codex/2026-10-02/UR10_CB3_single_joint_pretest_local_acceptance/src/sj_pretest')
++OUT=ROOT/'review/R017';OUT.mkdir(exist_ok=True)
++def csvread(p):
++    with Path(p).open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
++def stat(x):
++    x=np.array(x,float)
++    if not len(x):return dict(n=0,mean=None,std=None,peak=None)
++    return dict(n=len(x),mean=float(np.mean(x)),std=float(np.std(x)),peak=float(np.max(abs(x))))
++def arrays(p):
++    with np.load(p) as z:return {k:z[k].copy() for k in z.files}
++def main():
++    ids=read(ROOT/'review/accepted_run_ids.json')['run_ids'];run=ROOT/'runs'/ids[0]
++    source=read(Q/'逐次明细/C_cache_source.json');native=C/'robot_states.csv';cache=Q/'逐次明细/C_capture_robot.csv'
++    if native.stat().st_size!=source['size'] or native.stat().st_mtime_ns!=source['mtime_ns']:raise RuntimeError('C source signature changed; do not infer from stale extraction')
++    rows=csvread(cache)
++    if any(r['synthetic']!='0' for r in rows):raise RuntimeError('Synthetic rows in measured C data')
++    rows.sort(key=lambda x:int(x['host_ns']));stamps=[int(r['host_ns']) for r in rows]
++    metadata=[];native_trials=[];unique_periods=[];all_windows=[];source_files={str(cache):sha(cache),str(Q/'逐次明细/C_cache_source.json'):sha(Q/'逐次明细/C_cache_source.json')}
++    source_files[str(C/'config.json')]=sha(C/'config.json');source_files[str(C/'run_manifest.json')]=sha(C/'run_manifest.json')
++    expected={sid:(a,b) for sid,a,b in source['windows']}
++    for directory in sorted((C/'segments').glob('pretest-*')):
++        p=directory/'capture_metadata.json';m=read(p);metadata.append(m);source_files[str(p)]=sha(p)
++        if m['synthetic'] or expected.get(m['segment_id'])!=(m['first_host_ns'],m['last_host_ns']):raise RuntimeError('C extraction window provenance mismatch')
++        rr=rows[bisect.bisect_left(stamps,m['first_host_ns']):bisect.bisect_right(stamps,m['last_host_ns'])]
++        rr=list({float(r['robot_timestamp_s']):r for r in rr}.values());rr.sort(key=lambda r:float(r['robot_timestamp_s']))
++        clock=np.array([float(r['robot_timestamp_s']) for r in rr]);dt=np.diff(clock);unique_periods.extend(dt[dt>0].tolist())
++        j=m['joint'];key='actual_q_'+j+'_deg';target='command_q_'+j+'_deg'
++        if not rr or any(not math.isfinite(float(r[key])) or not math.isfinite(float(r[target])) for r in rr):raise RuntimeError('Missing/nonfinite native paired joint samples')
++        for phase in m['phases']:
++            lo=phase['start_s'];hi=phase['end_s'];lo=(lo+hi)/2 if phase['label']=='hold' else lo
++            selected=[r for r in rr if lo<=(int(r['host_ns'])-m['first_host_ns'])/1e9<=hi]
++            e=[float(r[key])-float(r[target]) for r in selected];s=stat(e)
++            tr=np.array([float(r[target]) for r in selected]);tt=np.array([float(r['robot_timestamp_s']) for r in selected]);diff=np.diff(tt)
++            valid=(diff>0)&(diff<=.016001);v=np.diff(tr)[valid]/diff[valid] if len(tr)>1 else np.array([])
++            native_trials.append(dict(segment=m['segment_id'],joint=j,amplitude_deg=m['amplitude_deg'],direction=m['direction'],repeat=m['repeat'],phase=phase['label'],
++                window_t0_s=lo,window_t1_s=hi,metadata_path=str(p),native_source=str(native),extracted_source=str(cache),
++                **{'error_'+k:val for k,val in s.items()},observed_internal_target_speed_peak_deg_s=float(np.max(abs(v))) if len(v) else None,
++                target_kind='RTDE getTargetQ, not host final moveJ goal',deduplicated_robot_timestamps=True))
++            if m['amplitude_deg']==.01 and m['repeat']==1 and phase['label'] in ['move','return']:
++                for r in selected:all_windows.append(dict(segment=m['segment_id'],phase=phase['label'],joint=j,host_ns=r['host_ns'],robot_timestamp_s=r['robot_timestamp_s'],
++                    time_s=(int(r['host_ns'])-m['first_host_ns'])/1e9,internal_target_q_deg=r[target],actual_q_deg=r[key],actual_minus_internal_target_deg=float(r[key])-float(r[target])))
++    if len(metadata)!=72:raise RuntimeError('Expected72 measured micro trials')
++    table(OUT/'C微动逐试次与分窗.csv',native_trials);table(OUT/'C最小幅值正反向原始窗口.csv',all_windows)
++    params=read(ROOT/'inputs/仿真误差参数.json');source_files[str(ROOT/'inputs/仿真误差参数.json')]=sha(ROOT/'inputs/仿真误差参数.json')
++    summaries=[]
++    for j in ['J'+str(i) for i in range(1,7)]:
++        ms=[m for m in metadata if m['joint']==j];hold=[r for r in native_trials if r['joint']==j and r['phase']=='hold'];moving=[r for r in native_trials if r['joint']==j and r['phase'] in ['move','return']]
++        meanhold=float(np.mean([r['error_mean'] for r in hold]));stdhold=float(np.mean([r['error_std'] for r in hold]));stdmotion=float(np.mean([r['error_std'] for r in moving]))
++        summaries.append(dict(joint=j,trials=len(ms),amplitudes_deg=','.join(str(x) for x in sorted({m['amplitude_deg'] for m in ms})),both_directions=True,repeats_each=2,
++            mean_hold_error_deg=meanhold,mean_hold_std_deg=stdhold,mean_motion_std_deg=stdmotion,
++            already_background_bias_deg=params['joints'][j]['bias_center']['deg']['value'],already_background_static_std_deg=params['joints'][j]['static_demeaned_std']['deg']['value'],
++            already_background_dynamic_std_deg=params['joints'][j]['dynamic_demeaned_std']['deg']['value'],
++            dynamic_background_source='Five path-six measured move straight-inner windows, not this micro move/return mean',not_independent_new_noise=True))
++    table(OUT/'C覆盖与已入背景.csv',summaries)
++    coverage=[]
++    logs={k:arrays(run/'full_1ms'/f'{k}.npz') for k in ['A0','Alinear','ASFC_strong']}
++    for j in range(6):
++        result=dict(joint='J'+str(j+1),C_min_single_joint_move_deg=.01,C_max_single_joint_move_deg=.2,C_native_update_median_ms=float(np.median(unique_periods))*1000,F_update_ms=1.)
++        for ctrl,a in logs.items():
++            delta=a['common_delta_q'][:,j]+a['delta_u'][:,j];dqstep=np.diff(delta)
++            result[ctrl+'_total_added_peak_deg']=float(np.max(abs(delta))*180/np.pi);result[ctrl+'_added_adjacent_speed_peak_deg_s']=float(np.max(abs(dqstep))/.001*180/np.pi)
++        result['public_peak_deg']=float(np.max(abs(logs['A0']['common_delta_q'][:,j]))*180/np.pi)
++        result['public_smooth_speed_peak_deg_s']=float(np.max(abs(logs['A0']['common_delta_q_dot'][:,j]))*180/np.pi)
++        result['public_initial_step_deg']=float(logs['A0']['common_delta_q'][0,j]*180/np.pi)
++        result['coverage_note']='Single-joint moveJ versus simultaneous6joint1ms additive position commands: not equivalent excitation/feedback/pose/command cadence.'
++        coverage.append(result)
++    table(OUT/'当前补偿与C覆盖关系.csv',coverage)
++    path_rows=[];path_windows=[]
++    for folder in sorted(P.glob('path-six-*')):
++        p=folder/'matched_samples.csv';report=folder/'report.json'
++        if not p.exists() or not report.exists():continue
++        rep=read(report)
++        if rep.get('status')!='analyzed' or rep.get('synthetic') is not False:continue
++        source_files[str(p)]=sha(p);source_files[str(report)]=sha(report)
++        data=csvread(p)
++        # Matched rows duplicate RTDE samples at camera cadence; deduplicate for robot-only statistics.
++        selected=[r for r in data if int(r['pair_valid'])==1 and int(r['visual_valid'])==1 and float(r['pair_gap_ms'])<=20]
++        for phase in ['pre_motion','move','post_motion','return','post_return']:
++            rows_phase=[r for r in selected if r['phase']==phase]
++            if not rows_phase:continue
++            rr=list({float(r['robot_timestamp_s']):r for r in rows_phase}.values());rr.sort(key=lambda r:float(r['robot_timestamp_s']))
++            dt=np.diff([float(r['robot_timestamp_s']) for r in rr]);dt=dt[dt>0]
++            y=[(float(r['actual_tcp_y'])-float(r['target_tcp_y']))*1e6 for r in rr]
++            native_y=stat(y);vision=[float(r['visual_minus_actual_projection_norm_px']) for r in rows_phase]
++            path_rows.append(dict(segment=rep['segment_id'],speed_mm_s=rep['speed_mm_s'],repeat=rep['repeat'],phase=phase,source=str(p),window_t0_s=min(float(r['time_s']) for r in rows_phase),window_t1_s=max(float(r['time_s']) for r in rows_phase),
++                camera_paired_samples=len(rows_phase),unique_robot_samples=len(rr),median_unique_robot_dt_ms=float(np.median(dt))*1000 if len(dt) else None,max_pair_gap_ms=max(float(r['pair_gap_ms']) for r in rows_phase),
++                **{'encoder_Y_error_'+k+'_um':v for k,v in native_y.items()},visual_minus_actual_norm_P95_px=float(np.percentile(vision,95)),
++                observed_qd_peak_deg_s=max(abs(float(r[f'actual_qd_J{i}_deg_s'])) for r in rr for i in range(1,7)),
++                scope='Encoder Y uses same RTDE row target/actual; vision uses host nearest-pair <=20ms, not independently calibrated exposure latency/3D ground truth.'))
++            if rep['segment_id']=='path-six-v3-r1' and phase in ['move','return']:
++                for r in rr: path_windows.append({k:r[k] for k in ['time_s','robot_timestamp_s','rtde_host_ns','camera_host_ns','pair_gap_ms','phase','actual_tcp_y','target_tcp_y','actual_tcp_z','target_tcp_z','actual_qd_J1_deg_s','command_q_J1_deg','actual_q_J1_deg','visual_minus_actual_projection_norm_px']})
++    table(OUT/'C补测同窗执行观测.csv',path_rows);table(OUT/'C补测v3r1原始同窗.csv',path_windows)
++    for n in ['robot_joint.py','path_report.py']:
++        source_files[str(CODE/n)]=sha(CODE/n)
++        # Preserve code evidence as text, never import a hardware module.
++        text=(CODE/n).read_text(encoding='utf-8');(OUT/(n+'.txt')).write_text(text,encoding='utf-8')
++    manifest=dict(passed=True,C_micro_trials=72,path_trials=len({r['segment'] for r in path_rows}),C_native_unique_robot_dt_median_ms=float(np.median(unique_periods))*1000,
++        C_extraction_source_signature_matches=True,C_native_source=dict(path=str(native),bytes=native.stat().st_size,mtime_ns=native.stat().st_mtime_ns,
++            full_3_7GB_file_not_rehashed=True,scope='Existing capture extraction checked against recorded size/mtime and all72 metadata windows; no claim of a fresh whole-file content hash.'),
++        files_sha256=source_files,run_id_for_F_amplitude_coverage=ids[0],already_background_summary=summaries,coverage=coverage,
++        inference='No compensation-specific execution model or parameter identified; no new noise/algorithm/data collection.')
++    atomic_json(OUT/'evidence_manifest.json',manifest)
++    evidence=[
++        dict(phenomenon='单关节微动的内部目标—实际角差、保持偏差与动作波动',source='D:/UR10_Data/20261008_190952/segments/pretest-*/capture_metadata.json；robot_states.csv既有capture提取',window='72试次，0.01/0.05/0.2deg，正负各2次；pre/move/hold后半/return/post',current_coverage='保持偏置/静态统计已入冻结六关节背景；本次微动动作差另列，当前动态std来自补测直线内窗；MuJoCo也有伺服跟随',missing_relation='总误差无法独立拆出补偿专属执行误差；目标是RTDE内部目标，不是每1ms外部补偿指令',constraints='可约束当前姿态/接口下观测量级与重复性；不能辨识1ms小补偿Kp/Kd、死区或回差'),
++        dict(phenomenon='弯曲往返的关节/TCP目标—实际及实际速度',source='D:/UR10_Data/20261010_141616/path_speed/path-six/*/matched_samples.csv',window='5个analyzed实测，1/3mm/s各2次、5mm/s1次；按有效同窗且RTDE时间去重',current_coverage='路径动作角差参与原动态背景量级；当前伺服含惯性/阻尼/耦合',missing_relation='moveL整路径不是总目标上每1ms叠加6关节微纠偏；姿态/轨迹不同，控制器内部目标≠外部发送流',constraints='可约束该路径下内部目标跟随量级/速度，不能移植为小补偿传递函数或精确执行增益'),
++        dict(phenomenon='视觉—编码器局部投影剩余',source='C组量化_V4.1_20261010/逐次明细/C逐次统计.json；补测matched_samples及path_report.py',window='主试次固定局部映射；补测host最近邻≤20ms有效对',current_coverage='已压缩进remaining等效输出项并冻结，频率/相关生成有假设',missing_relation='含相机、时间与二维投影影响，非纯机械柔性或补偿误差；A时间问题不推广成全部C无效',constraints='可描述投影观测，不能独立标定三维TCP或另加同样末端噪声'),
++        dict(phenomenon='tau/Kp同状态执行器增量几乎精确',source='position_execution.py；本轮full_1ms有符号tau_requested/qfrc_actuator/base_qfrc_actuator/tau_realized_increment',window='两批10秒1ms无饱和基线',current_coverage='已知同一仿射执行器在同一状态下增量相符；真实q需通过动力学推进',missing_relation='不能证明真实CB3小纠偏准确；实际q−final_ctrl是总跟踪差，不是补偿独有差',constraints='只验证模型内代数适配；未由现有C资料辨识真实小补偿执行关系'),
++        dict(phenomenon='公共慢纠偏幅值、强SFC快速换向与更新周期',source='review/R017/当前补偿与C覆盖关系.csv',window='本轮公共最大单关节约0.001845deg；全部实际值逐关节列出，另列初始阶跃',current_coverage='总位置目标共享名义伺服与机械动力学；原背景保持',missing_relation='多数公共量小于C最小0.01deg；部分抗抖峰落在C范围也不等于频率/同时多轴/更新周期覆盖',constraints='1ms外部命令下执行误差不能从8ms内部目标采样、moveJ/moveL重复动作直接辨识')]
++    table(OUT/'执行误差证据表.csv',evidence)
++    print('R017 existing data audit:',manifest['C_micro_trials'],'micro trials;',manifest['path_trials'],'path trials; no new model or robot operation',flush=True)
++if __name__=='__main__':main()
+--- /dev/null
++++ candidate-v2/batch_identity.py
+@@ -0,0 +1,43 @@
++"""Per-run provenance and atomic status writes; no cache/reuse policy."""
++from pathlib import Path
++from datetime import datetime,timezone
++import hashlib,json,os,platform,subprocess,sys,uuid
++def read(p):return json.loads(Path(p).read_text(encoding='utf-8'))
++def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
++def atomic_json(p,x):
++    p=Path(p);p.parent.mkdir(parents=True,exist_ok=True);tmp=p.with_name(p.name+'.tmp-'+uuid.uuid4().hex)
++    try:
++        tmp.write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False),encoding='utf-8');os.replace(tmp,p)
++    finally:
++        if tmp.exists():tmp.unlink()
++def safe_id(run_id):
++    import re
++    if not isinstance(run_id,str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,96}',run_id):raise ValueError('Invalid run_id')
++    return run_id
++def new_id():return datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_'+uuid.uuid4().hex[:8]
++def new_directory(root,run_id=None):
++    run_id=safe_id(run_id or new_id());d=Path(root)/'runs'/run_id;d.mkdir(parents=True,exist_ok=False);(d/'full_1ms').mkdir();return run_id,d
++def files_snapshot(root):
++    root=Path(root);chosen=set(root.glob('*.py'))|set(root.glob('*.json'))
++    for folder in ['assets_ur10e','inputs']:chosen.update(p for p in (root/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts)
++    chosen.update(root/'historical/public_slow_review'/n for n in ['slow_frozen_version.json','public_correction_acceptance.json','ordinary_calibration.json','event_reconstruction.json','baseline_plan.json','static_mapping.json','metric_windows.json','event_targets.json','trajectory.json'])
++    chosen.add(root/'baseline_review/frozen_version.json')
++    return {p.relative_to(root).as_posix():dict(bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(chosen)}
++def git_info(root):
++    exe=Path('D:/Software/Git/cmd/git.exe')
++    if not exe.exists():exe=Path('C:/Users/kinli/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe')
++    def run(*args):
++        r=subprocess.run([str(exe),'-c','core.quotepath=false','-C',str(root),*args],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=30)
++        return dict(exit_code=r.returncode,output=r.stdout.strip(),error=r.stderr.strip())
++    try:
++        top=run('rev-parse','--show-toplevel');head=run('rev-parse','HEAD');status=run('status','--porcelain=v1','--untracked-files=normal')
++        return dict(root=top,commit=head,status=status,dirty=bool(status['output']) if status['exit_code']==0 else None,
++            note='Parent repository has untracked F candidates. Actual source/assets hashes identify this implementation; Git HEAD alone is not this F version.')
++    except Exception as e:return dict(available=False,error=str(e))
++def provenance(root,version,input_id):
++    import numpy,mujoco
++    files=files_snapshot(root);env=dict(python=sys.version,python_executable=sys.executable,numpy=numpy.__version__,mujoco=mujoco.__version__,
++        numpy_module=numpy.__file__,mujoco_module=mujoco.__file__,platform=platform.platform(),dt_s=.001,control_update_steps=1)
++    canonical=json.dumps(dict(files=files,environment=env,version=version,input_id=input_id),sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf-8')
++    return dict(version=version,generation_id=hashlib.sha256(canonical).hexdigest(),files=files,environment=env,git=git_info(root),
++        inputs_are_explicitly_inherited=True,result_reuse=False,created_utc=datetime.now(timezone.utc).isoformat())
+--- /dev/null
++++ candidate-v2/check_engineering_review.py
+@@ -0,0 +1,47 @@
++"""Standard-library ZIP verification; no extraction, simulation or hardware."""
++import csv,hashlib,io,json,math,statistics,sys,zipfile
++def need(c,msg):
++    if not c:raise RuntimeError(msg)
++def close(x,y,tol=1e-8):need(abs(x-y)<=tol,'Numeric mismatch: '+str((x,y,tol)))
++def check(path):
++    with zipfile.ZipFile(path) as z:
++        def js(n):return json.loads(z.read(n))
++        def rows(n):return list(csv.DictReader(io.StringIO(z.read(n).decode('utf-8-sig'))))
++        m=js('package_manifest.json');need(set(z.namelist())==set(m['files'])|{'package_manifest.json'},'Unexpected/missing package entries')
++        for n,h in m['files'].items():need(hashlib.sha256(z.read(n)).hexdigest()==h,'Package hash mismatch '+n)
++        index=js('review/data_deduplication.json');ids=index['run_ids'];logs={};checks=0
++        for ctrl in ['A0','Alinear','ASFC_strong']:
++            p=index['cases'][ctrl]['package_csv'];a=rows(p);need(len(a)==10000 and len(a[0])==99,'Incomplete signed-vector CSV')
++            h=hashlib.sha256(z.read(p)).hexdigest()
++            for rid in ids:need(js('runs/'+rid+'/csv_schema.json')['cases'][ctrl]['csv_sha256']==h,'Deduplicated second batch identity mismatch')
++            a=[{k:float(v) for k,v in r.items()} for r in a];logs[ctrl]=a
++            for i,r in enumerate(a):
++                need(all(math.isfinite(v) for v in r.values()),'Nonfinite CSV');close(r['t'],i*.001,1e-12);close(r['model_time_s'],r['t'],1e-9)
++                close(r['effective_y']-r['physical_y'],r['remaining'],1e-15)
++                close(r['effective_v']-r['physical_v'],r['remaining_dot'],1e-15)
++                for j in range(1,7):
++                    s='_J'+str(j)
++                    close(r['final_ctrl'+s],r['q_nominal'+s]+r['dq_C'+s]+r['common_delta_q'+s]+r['delta_u'+s],1e-12)
++                    close(r['delta_u'+s],r['tau_requested'+s]/5000,1e-12)
++                    close(r['qfrc_actuator'+s]-r['base_qfrc_actuator'+s],r['tau_realized_increment'+s],1e-10)
++                    close(r['qfrc_applied'+s],r['qfrc_disturbance'+s],1e-12)
++        for ctrl,a in logs.items():
++            for i,r in enumerate(a):
++                for k in ['remaining','remaining_dot','Fd','phase']+[q+'_J'+str(j) for q in ['q_nominal','dq_C','common_delta_q'] for j in range(1,7)]:need(r[k]==logs['A0'][i][k],'Background differs across controllers')
++        for rid in ids:
++            state=js('runs/'+rid+'/completed.json');need(state['completed'] and state['integrations_started']==3,'Wrong actual batch completion')
++            for r in rows('runs/'+rid+'/metrics.csv'):
++                x=[a[r['channel']+'_e_um'] for a in logs[r['case_id']] if float(r['t0_s'])<=a['t']<=float(r['t1_s'])]
++                need(len(x)==int(r['n']),'Metric window count')
++                for k,v in [('mean_um',statistics.mean(x)),('std_um',statistics.pstdev(x)),('ptp_um',max(x)-min(x)),('raw_peak_abs_um',max(map(abs,x)))]:close(float(r[k]),v)
++                checks+=1
++            for r in rows('runs/'+rid+'/costs.csv'):
++                a=logs[r['case_id']];close(float(r['F_RMS_N']),math.sqrt(statistics.mean(x['F_requested']**2 for x in a)),1e-10)
++                close(float(r['tau_requested_RMS_norm_Nm']),math.sqrt(statistics.mean(sum(x['tau_requested_J'+str(j)]**2 for j in range(1,7)) for x in a)),1e-10)
++            for r in rows('runs/'+rid+'/events.csv'):
++                a=logs[r['case_id']];key=r['channel']+'_e_um';b=statistics.median(x[key] for x in a if float(r['baseline_t0_s'])<=x['t']<=float(r['baseline_t1_s']))
++                x=[x[key]-b for x in a if float(r['t0_s'])<=x['t']<=float(r['t1_s'])]
++                close(float(r['baseline_um']),b);close(float(r['local_peak_abs_um']),max(map(abs,x)));close(float(r['threshold10um_occupancy_s']),sum(abs(v)>10 for v in x)*.001,1e-12)
++        repro=js('review/reproducibility.json');need(repro['passed'] and repro['actual_integrations']==6 and repro['max_abs_difference']==0,'Reproducibility evidence')
++        print(json.dumps(dict(passed=True,package_files=len(m['files']),csv_rows=30000,signed_columns=99,metric_rows_recomputed=checks,second_batch_csv_sha_verified=True,real_integrations=0),ensure_ascii=False))
++if __name__=='__main__':check(sys.argv[1])
+--- /dev/null
++++ candidate-v2/finalize_review.py
+@@ -0,0 +1,25 @@
++"""Offline final checks and compact review companion; no integrations."""
++import difflib,hashlib,json,zipfile
++from pathlib import Path
++from batch_identity import read,sha,atomic_json
++import run_slow
++R=Path(__file__).resolve().parent;old=R.parent/'F组_预定慢漂移补偿_20261012'
++ids=read(R/'review/accepted_run_ids.json')['run_ids']
++for rid in ids:run_slow.open_history(rid,R)
++gen=read(R/'runs'/ids[0]/'generation.json');changes=[]
++for n,h in gen['files'].items():
++    if sha(R/n)!=h['sha256']:changes.append(n)
++if set(changes)!=set(['run_slow.py','test_engineering.py']):raise RuntimeError('Unexplained changes to actual generation source '+str(changes))
++for n in changes:
++    if sha(R/'review/积分时源码补存'/n)!=gen['files'][n]['sha256']:raise RuntimeError('Integration source recovery mismatch '+n)
++allpatch=[];modified=[]
++for p in sorted(R.glob('*.py')):
++    prev=old/p.name;a=prev.read_text(encoding='utf-8').splitlines(True) if prev.is_file() else [];b=p.read_text(encoding='utf-8').splitlines(True)
++    if a!=b:
++        modified.append(dict(file=p.name,type='modified' if a else 'added',sha256=sha(p)))
++        allpatch.extend(difflib.unified_diff(a,b,fromfile='accepted-v1/'+p.name if a else '/dev/null',tofile='candidate-v2/'+p.name))
++(R/'review/代码差异.patch').write_text(''.join(allpatch),encoding='utf-8');atomic_json(R/'review/改动文件.json',modified)
++atomic_json(R/'review/最终本地验收.json',dict(passed=True,run_ids=ids,actual_integrations=6,explicit_history_data_and_artifacts_valid=True,
++    source_environment_and_model_frozen=True,post_integration_history_only_changes=changes,recovered_generation_source_sha_verified=True,
++    no_control_or_physics_changes=True,negative_checks=read(R/'review/negative_path_checks.json'),reproducibility=read(R/'review/reproducibility.json'),protected=read(R/'review/历史保护核查.json')))
++print('Final local checks passed; 6 integrations preserved, no new integrations.')
+--- /dev/null
++++ candidate-v2/finish_delivery.py
+@@ -0,0 +1,95 @@
++"""Offline delivery only: no simulation, controller changes, or hardware."""
++import csv,difflib,hashlib,json,shutil,sys,zipfile
++from pathlib import Path
++R=Path(__file__).resolve().parent
++W=R.parent
++OLD=W/'F组_预定慢漂移补偿_20261012'
++def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
++def read(p):return json.loads(Path(p).read_text(encoding='utf-8'))
++def save(p,x):Path(p).write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
++def require(x,msg):
++    if not x:raise RuntimeError(msg)
++ids=read(R/'review/accepted_run_ids.json')['run_ids']
++py=Path(sys.executable)
++for title,command in [('新仿真','new'),('查看第一批','show --run-id '+ids[0]),('查看第二批','show --run-id '+ids[1]),('仅重画第一批','redraw --run-id '+ids[0])]:
++    (R/(title+'.cmd')).write_bytes(('@echo off\r\ncd /d "%~dp0"\r\n"'+str(py)+'" run_slow.py '+command+'\r\nif errorlevel 1 echo FAILED: no successful result or fallback.\r\npause\r\n').encode('ascii'))
++protected={}
++for p in [R/'review/protected_before.json',OLD/'review/protected_before.json']:protected.update(read(p))
++bad=[p for p,h in protected.items() if not Path(p).is_file() or sha(p)!=h]
++require(not bad,'Protected originals changed: '+str(bad))
++save(R/'review/历史保护核查.json',dict(passed=True,checked_files=len(protected),changed=[],scope='Union of original F and its protected antecedents; pycache excluded'))
++shutil.copy2(W/'F组持续问题库.md',R/'review/持续问题库_本轮快照.md')
++post={}
++for n in ['run_slow.py','test_engineering.py']:
++    old=R/'review/积分时源码补存'/n
++    if old.is_file():post[n]={'integration_source_sha256':sha(old),'current_sha256':sha(R/n),'change':'Post-integration historical artifact integrity guard and isolated verification only; physics/control/input unchanged'}
++save(R/'review/积分后历史显示保护补充.json',dict(changes=post,real_integrations_added=0,negative_path_checks=read(R/'review/negative_path_checks.json'),historical_batches_not_claimed_current_source_reintegrated=True))
++changes=[];patch=[]
++for p in sorted(R.glob('*.py')):
++    prev=OLD/p.name;a=prev.read_text(encoding='utf-8').splitlines(True) if prev.is_file() else []
++    b=p.read_text(encoding='utf-8').splitlines(True)
++    if a!=b:
++        changes.append({'file':p.name,'type':'modified' if a else 'added','sha256':sha(p)})
++        patch.extend(difflib.unified_diff(a,b,fromfile='accepted-v1/'+p.name if a else '/dev/null',tofile='candidate-v2/'+p.name))
++(R/'review/代码差异.patch').write_text(''.join(patch),encoding='utf-8')
++save(R/'review/改动文件.json',changes)
++brief='''# F组工程修复候选：一页简报
++
++本轮只修新运行、失败判定和数据追溯，并定向核查补偿执行证据；未修改控制参数、冻结背景、事件、公共纠偏、模型或初态。完整工程保存在本目录，原B/F及已审核结果保持。
++
++新运行路径：点击“新仿真.cmd”→创建唯一run_id→A0、线性、强SFC分别实际积分→逐组核对真实返回状态、10000点、字段/形状/有限值、时间和输入身份→三组通过后生成本批图表并原子写成功标志。失败非零退出、保留有效前缀，停止依赖比较，不自动调参或回退旧结果。查看/重画必须指定run_id；检查日志、CSV、图及指标表，损坏不静默打开。根目录旧run_short/slow_report等保留供历史核查，当前新入口不经过它们。
++
++|实际新批次|三组积分|结果|
++|---|---:|---|
++|`FIRST`|3 × 10000步|全部通过，未饱和|
++|`SECOND`|3 × 10000步|全部通过，未饱和|
++
++两批及旧已审核数据共294项逐数组比较，最大差异0；本轮恰好6次新积分，未追平旧数值而修改物理或参数。隔离检查9组、9种失败数据，含旧结果存在/损坏、XML变化、目录冲突、运行异常、FAILED/INVALID/短日志/非有限值/身份或计数错误、源码运行中变化及历史损坏；在Python -O下通过，桩测试0次真实积分。模型XML、全部依赖资产、输入/参数、源码、运行环境及Git状态均留档。积分后补充历史图表完整性保护，保存积分时对应源码，另做桩验证；未增加积分或改写历史生成身份。
++
++|全程effective Y，含冷初始化|std μm|峰峰 μm|请求力RMS N|请求力矩RMS范数 N·m|
++|---|---:|---:|---:|---:|
++|无附加抗抖|28.826|197.586|0|0|
++|线性|19.897|137.042|0.1810|0.1255|
++|强SFC|15.977|109.439|0.3951|0.2742|
++
++强SFC请求力RMS为线性的2.18倍，尚不支持等代价机制优势结论。各批保留完整1ms日志和有符号六关节向量；完整往返、去程及局部原始图分开显示physical/effective，未减均值、平滑或改幅值，指标/图绑定本批数据SHA。总跟踪误差不当作补偿独有误差，同状态力矩增量不当作补偿位置精度。
++
++R-017：核查72次微动、5条补测；实际使用异步moveJ/moveL，RTDE约8ms。command_q来自机器人内部getTargetQ，非外部逐1ms发送流。公共纠偏最大约0.001845°，低于C最小0.01°，当前强SFC部分J1幅值虽有重叠，更新/变化速度、多轴及姿态覆盖仍不足。静态背景来自微动，动态背景主要来自路径普通窗；已有动力学也表示跟随差异，不能再把总跟踪误差拆成多个噪声。现资料不能辨识当前小补偿的独立执行关系。
++
++交付R017证据表及最小接口建议：总目标（名义＋原背景＋公共纠偏＋抗抖）共同经过执行关系，再进入机械动力学；控制适配器只用冻结名义参数，新增关系关闭应还原基线。本轮没有实施新执行模型。R-028/R-029仅在本候选当前入口关闭；R-017模型、8ms/延迟、等代价及在线漂移仍待处理。未创建远端、推送或发布“稳定版”。
++'''.replace('FIRST',ids[0]).replace('SECOND',ids[1])
++(R/'简报.md').write_text(brief,encoding='utf-8')
++(R/'review/发布检查清单.md').write_text('''# 候选发布检查清单
++
++- [x] 独立完整工程及原件保护；当前入口无跨运行结果返回。
++- [x] 失败状态、有效前缀、显式历史ID及图表完整性检查；-O隔离验证。
++- [x] 两批6次实际积分，294项数组复现；完整1ms日志、原始图和控制代价。
++- [x] R-017资料核查完成，最小接口及缺失观测已列。
++- [ ] 依据确定后实现执行模型，并验证关闭/零偏差还原基线；本轮未授权实施。
++- [ ] 向实机推进前核查8ms、真实反馈与延迟；当前1ms理想条件不等于CB3已验证。
++- [ ] 主张SFC机制优势前完成等代价比较；在线漂移另议。
++- [ ] 用户确定发布路线并验收新模型/新图后才发布。当前未建远端或推送。
++
++现有上级Git仓库状态已记录于每批generation.json；F工程主要为未跟踪工作副本，HEAD不能单独识别本候选。逐文件SHA和差异补充身份；未提交不表示已发布。完整工程为本地备份，文本核查zip不含仿真网格，不能独立作为全模型工程运行。
++''',encoding='utf-8')
++# Prepare exact section11-only update for guarded external save.
++doc=Path('C:/Users/kinli/Desktop/科研代码工作总览/PROJECTS/流程参考/B组_MuJoCo_SFC_V1.3与V1.2_流程快照.md')
++raw=doc.read_bytes();marker='## 11. '.encode();at=raw.index(marker);prefix=raw[:20446];separator=raw[20446:at]
++require(hashlib.sha256(prefix).hexdigest()=='72272015cdfa185f39e81858b5309cac5cf78a450c4ab960fb2943da94b5bfd4','Historical sections1–10 identity mismatch')
++s=raw[at:].decode('utf-8')
++s=s.replace('本次补充仅编辑文档，不运行仿真或修改业务代码。','此前补充仅编辑文档；随后本日F工程修复任务另有6次实际积分，证据在本节接续记录，未改变旧B历史。')
++anchor='本节提醒不授权修改历史代码、重建扰动、重跑全矩阵、开发新控制器或实机实验。'
++addition='''本日接续的“F组理想执行基线_工程修复候选”只继承已接受的冻结输入；新运行每次新run_id，三方案实际积分，旧结果存在或哈希相符均不允许跨运行返回。模型XML、全部依赖资产、源码、配置、输入及环境身份用于追溯，不是结果复用许可。历史查看/重画必须指定批次，只读其自带输入和完整数据，损坏/缺失/未完成不回退另一批。
++
++R-028/R-029仅在该候选当前入口验证关闭：三组逐一核对返回状态、有效步数、数组形状/字段有限值、时间轴及输入身份，失败保留前缀并非零退出，全部通过后才生成正式报告/原子成功标志。9组隔离检查（包括9种失败数据、历史图表损坏）在-O模式通过；两批各3次真实1ms积分，共6次，294项与两批/旧审核数据比较最大差异0。未调整科研参数或物理实现。原B及旧F历史入口仍保留，不能概括为全工程都已修复。
++
++'''
++require(anchor in s,'Section11 insertion anchor missing');s=s.replace(anchor,addition+anchor)
++s=s.replace('| R-014/R-015/R-017：CB3接口、UR10e差异、补偿自身误差 | 实机未验证；模型位置适配不能替代真实辨识 |','| R-014/R-015/R-017：CB3接口、UR10e差异、补偿自身误差 | R-017定向资料核查完成，执行模型仍未辨识/验证；72次微动和5条补测的内部目标约8ms，不能证明1ms小补偿；接口实机仍未验证 |\n| R-028/R-029：结果跨运行复用、失败判定 | 仅新候选当前入口已修并验证；旧B/F未回写，哈希一致不授予结果自动复用 |')
++s+='''
++
++本日工程修复接续证据（与上述首次文档补充区分）：[候选简报](<C:/Users/kinli/Documents/ChatGPT/ur10实验/F组_理想执行基线_工程修复候选_20261012/简报.md>)、[复现核查](<C:/Users/kinli/Documents/ChatGPT/ur10实验/F组_理想执行基线_工程修复候选_20261012/review/reproducibility.json>)、[R017资料与最小接口](<C:/Users/kinli/Documents/ChatGPT/ur10实验/F组_理想执行基线_工程修复候选_20261012/review/R017/资料核查与最小接口建议.md>)。总目标共同经过执行关系再进入动力学；新增不确定性时适配器只能使用冻结名义参数，不能读取实际不确定参数精确抵消。保留冻结背景，避免将已入背景的总误差重复添加。当前不实施无依据的死区/随机噪声，也不宣称CB3微补偿已验证。
++'''
++staged=R/'review/B流程参考_待原位保存.md';staged.write_bytes(prefix+separator+s.encode('utf-8'))
++save(R/'review/B文档保存保护.json',dict(target=str(doc),before_sha256=hashlib.sha256(raw).hexdigest(),staged_sha256=sha(staged),sections1to10_sha256=hashlib.sha256(prefix).hexdigest()))
++print('Prepared documentation, commands, diff and protection; originals',len(protected),'unchanged')
+--- /dev/null
++++ candidate-v2/pack_engineering_review.py
+@@ -0,0 +1,58 @@
++"""Text-only review package, with exact duplicate batch CSVs represented once."""
++import hashlib,json,zipfile
++from pathlib import Path
++R=Path(__file__).resolve().parent
++def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
++def read(p):return json.loads(Path(p).read_text(encoding='utf-8'))
++def save(p,x):Path(p).write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
++ids=read(R/'review/accepted_run_ids.json')['run_ids'];files={}
++def add(p,n=None):
++    p=Path(p);files[n or p.relative_to(R).as_posix()]=p
++for p in R.iterdir():
++    if p.is_file() and p.suffix in ['.py','.md','.json','.cmd']:add(p)
++for p in (R/'review').rglob('*'):
++    if p.is_file() and p.suffix in ['.md','.json','.csv','.patch','.txt','.py'] and p.name not in ['B流程参考_待原位保存.md','negative_path_console.txt']:add(p)
++for p in (R/'inputs').iterdir():
++    if p.suffix in ['.json','.csv'] and p.name!='Fd_zero.csv':add(p)
++for p in (R/'assets_ur10e').rglob('*.xml'):add(p)
++for p in (R/'historical/public_slow_review').glob('*.json'):add(p)
++for p in (R/'baseline_review').glob('*.json'):add(p)
++dedup=dict(run_ids=ids,local_full_batches_preserved=True,rule='Only packaging exact SHA-identical CSV files once. Both batches separately actually integrated. No cross-run simulation result reuse.',cases={})
++for rid in ids:
++    d=R/'runs'/rid
++    for p in d.glob('*'):
++        if p.is_file() and p.suffix in ['.json','.csv','.md']:add(p)
++    for p in (d/'full_1ms').glob('*.json'):add(p)
++    for p in (d/'figures').glob('*.json'):add(p)
++    for p in (d/'frozen_inputs').glob('*.json'):add(p)
++for ctrl in ['A0','Alinear','ASFC_strong']:
++    a=R/'runs'/ids[0]/'csv_1ms'/(ctrl+'.csv');b=R/'runs'/ids[1]/'csv_1ms'/(ctrl+'.csv')
++    if sha(a)!=sha(b):raise RuntimeError('CSV differs; cannot deduplicate '+ctrl)
++    add(a);dedup['cases'][ctrl]=dict(package_csv=a.relative_to(R).as_posix(),csv_sha256=sha(a),same_data_in_second_run=b.relative_to(R).as_posix(),samples=10000,signed_columns=99)
++save(R/'review/data_deduplication.json',dedup);add(R/'review/data_deduplication.json')
++guide='''# GPT核查入口
++
++先读简报.md、README.md、review/reproducibility.json、review/negative_path_checks.json及review/R017/资料核查与最小接口建议.md，再查代码差异和逐数组证据。
++
++本包仅文本：代码、MD、CSV、JSON、XML及patch，无图片、网格、NPZ、3.7GB原采集或运行环境。完整模型/两批全部原始日志及图仍在本机完整工程；此包用于审阅，不能单独运行MuJoCo全工程。
++
++两批各三次真正新积分，完整1ms有符号99列CSV共30000行在第一批csv_1ms。第二批同列CSV逐文件SHA完全一致，仅为缩小交付包去重；两批生成身份、验证、完成状态、指标及CSV_schema独立保留，关联见review/data_deduplication.json。49字段NPZ的294项逐数组比较见review/两批及旧结果逐数组复现.csv，NPZ留本机；包内99列不包含每轴全部布尔标志和公共二阶导数，这些在本机NPZ，原输入导数也在inputs完整文本表。本包不把包装去重当作结果自动复用。
++
++标准库自检：python check_engineering_review.py 核查包.zip；核对全包SHA、两批CSV身份、完整行数/有符号通道定义、共同输入及两批全部分窗指标、控制代价和事件统计，不积分。Python -O隔离桩检查证明软件分支，不能当物理模型实机验收。
++
++每批generation.json记录积分时源码/模型/环境/Git身份；review/积分时源码补存保存积分后调整前的历史查看保护源码。积分后增加图表损坏检查和桩验证，不修改动力学/控制/输入，也未额外积分。辅助资料核查、说明和打包代码在积分后完成，不宣称属于当时生成清单。
++
++R017证据来自原C微动/补测；关节command_q为内部getTargetQ。不能辨识当前1ms补偿执行关系；原文件未全量重新哈希的范围见evidence_manifest.json。不得据此新增无依据噪声或宣称CB3已验证。本轮未发布稳定版。
++'''
++(R/'GPT核查入口.md').write_text(guide,encoding='utf-8');add(R/'GPT核查入口.md')
++doc=Path('C:/Users/kinli/Desktop/科研代码工作总览/PROJECTS/流程参考/B组_MuJoCo_SFC_V1.3与V1.2_流程快照.md');add(doc,'reference/B组流程参考_含本轮第11节.md')
++guard=read(R/'review/B文档保存保护.json')
++if sha(doc)!=guard['staged_sha256']:raise RuntimeError('B reference not saved as prepared')
++save(R/'review/B文档保存验收.json',dict(passed=True,target=str(doc),after_sha256=sha(doc),sections1to10_sha256=hashlib.sha256(doc.read_bytes()[:20446]).hexdigest()))
++add(R/'review/B文档保存验收.json')
++out=R/'F组工程修复_GPT文本核查.zip'
++manifest=dict(text_only=True,images=0,meshes=0,npz=0,data_policy='Both actual batches preserved locally; exact duplicate CSVs packaged once',files={n:sha(p) for n,p in files.items()})
++with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_LZMA) as z:
++    for n,p in sorted(files.items()):z.write(p,n)
++    z.writestr('package_manifest.json',json.dumps(manifest,ensure_ascii=False,indent=2))
++print(json.dumps(dict(path=str(out),size_MiB=out.stat().st_size/1048576,files=len(files)+1,sha256=sha(out)),ensure_ascii=False))
+--- accepted-v1/position_logging.py
++++ candidate-v2/position_logging.py
+@@ -64,6 +64,9 @@
+     def finish(self,row):
+         import json
+         self.path.parent.mkdir(parents=True,exist_ok=True)
+-        self.meta.update(status=row['status'],n_steps_done=row['n_steps_done'],logger_samples=self.done,n_steps_requested=self.n,note=row['note'])
+-        np.savez_compressed(self.path,**{k:v[:self.done] for k,v in self.arr.items()})
++        valid=min(self.done,int(row['n_steps_done']))
++        status=row['status']
++        if status=='OK' and valid!=self.n:status='INCOMPLETE'
++        self.meta.update(status=status,n_steps_done=row['n_steps_done'],logger_samples=valid,logger_samples_before_prefix_trim=self.done,n_steps_requested=self.n,note=row['note'])
++        np.savez_compressed(self.path,**{k:v[:valid] for k,v in self.arr.items()})
+         self.path.with_suffix('.json').write_text(json.dumps(self.meta,ensure_ascii=False,indent=2),encoding='utf-8')
+--- /dev/null
++++ candidate-v2/run_report.py
+@@ -0,0 +1,121 @@
++"""Raw report for one explicitly validated batch; never integrates, reuses, or substitutes cases."""
++from pathlib import Path
++import csv,json,hashlib
++import numpy as np
++from batch_identity import read,sha,atomic_json
++PLOT_VERSION='F10-run-report-v2'
++LABELS={'A0':'无附加抗抖','Alinear':'原线性','ASFC_strong':'强SFC'}
++def table(path,rows):
++    with Path(path).open('w',encoding='utf-8-sig',newline='') as f:
++        w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
++def stat(x):return dict(std_um=float(np.std(x,ddof=0)),ptp_um=float(np.ptp(x)),mean_um=float(np.mean(x)),raw_peak_abs_um=float(np.max(abs(x))))
++def render(d,root=None,validated_before_completion=False):
++    from run_slow import ROOT,arrays,inputs_from_run,validate_case,require,CONTROLLERS
++    root=Path(root or ROOT);d=Path(d);validation=read(d/'validation.json');gen=read(d/'generation.json');rid=gen['run_id'];ctx=inputs_from_run(d)
++    require(validation['passed'] is True and validation['run_id']==rid,'No accepted batch to report')
++    if not validated_before_completion:require((d/'completed.json').is_file() and read(d/'completed.json')['completed'] is True,'Historical batch not complete')
++    logs={};ids={}
++    for ctrl in CONTROLLERS:
++        p=d/'full_1ms'/f'{ctrl}.npz';v=next(x for x in validation['cases'] if x['case_id']==ctrl)
++        require(sha(p)==v['data_sha256'],'Data changed before plotting: '+ctrl)
++        validate_case(p,read(p.with_suffix('.row.json')),ctx,rid,gen['generation_id'],ctrl);logs[ctrl]=arrays(p);ids[ctrl]=sha(p)
++    (d/'csv_1ms').mkdir(exist_ok=True);(d/'figures').mkdir(exist_ok=True)
++    scalars=['t','model_time_s','phase','nominal_y','physical_y','effective_y','physical_e_um','effective_e_um','physical_v','effective_v','remaining','remaining_dot','Fd','F_spring','F_linear','F_shear','F_requested','updated']
++    matrices=['q_nominal','dq_C','common_delta_q','delta_u','final_ctrl','q','qdot','tau_requested','qfrc_actuator','base_qfrc_actuator','tau_realized_increment','qfrc_disturbance','qfrc_applied']
++    text_schema={};csvhash={}
++    for ctrl,a in logs.items():
++        columns={k:a[k] for k in scalars}
++        for key in matrices:
++            for j in range(6):columns[key+'_J'+str(j+1)]=a[key][:,j]
++        for key in ['ctrl_saturation','force_saturation','joint_saturation']:columns[key+'_any']=np.any(a[key],axis=1)
++        matrix=np.column_stack(list(columns.values()));p=d/'csv_1ms'/f'{ctrl}.csv'
++        np.savetxt(p,matrix,delimiter=',',fmt='%.17g',header=','.join(columns),comments='')
++        require(np.array_equal(np.loadtxt(p,delimiter=',',skiprows=1),matrix),'CSV precision mismatch')
++        text_schema[ctrl]=dict(columns=list(columns),samples=len(a['t']),precision='17g exact roundtrip',data_sha256=ids[ctrl],csv_sha256=sha(p));csvhash[ctrl]=sha(p)
++    atomic_json(d/'csv_schema.json',dict(run_id=rid,plot_version=PLOT_VERSION,cases=text_schema,
++        units='t/model_time:s; q and offsets:rad; qdot:rad/s; Y/remaining:m; e:um; velocity:m/s; F:N; torque vectors:Nm; flags:bool',
++        torque_meaning='qfrc_actuator is total realized actuator torque. tau_realized_increment is same-state counterfactual anti-only increment, not compensation position precision.'))
++    wins=dict(read(d/'frozen_inputs/metric_windows.json')['windows']);wins['after_cold_aux']=[.8,9.999]
++    metrics=[];costs=[];events=[]
++    for ctrl,a in logs.items():
++        for window,(lo,hi) in wins.items():
++            mask=(a['t']>=lo)&(a['t']<=hi)
++            for channel in ['physical','effective']:
++                metrics.append(dict(run_id=rid,case_id=ctrl,data_sha256=ids[ctrl],plot_version=PLOT_VERSION,channel=channel,window=window,t0_s=lo,t1_s=hi,n=int(mask.sum()),sample_rule='pre-step full1ms; full includes cold',**stat(a[channel+'_e_um'][mask])))
++        sat=np.any(a['ctrl_saturation']|a['force_saturation']|a['joint_saturation'],axis=1)
++        costs.append(dict(run_id=rid,case_id=ctrl,data_sha256=ids[ctrl],plot_version=PLOT_VERSION,F_RMS_N=float(np.sqrt(np.mean(a['F_requested']**2))),F_peak_N=float(np.max(abs(a['F_requested']))),
++            tau_requested_RMS_norm_Nm=float(np.sqrt(np.mean(np.sum(a['tau_requested']**2,axis=1)))),tau_requested_peak_norm_Nm=float(np.max(np.linalg.norm(a['tau_requested'],axis=1))),
++            actuator_total_RMS_norm_Nm=float(np.sqrt(np.mean(np.sum(a['qfrc_actuator']**2,axis=1)))),anti_position_peak_rad=float(np.max(abs(a['delta_u']))),public_position_peak_rad=float(np.max(abs(a['common_delta_q']))),
++            saturation_samples=int(sat.sum()),saturation_duty=float(np.mean(sat))))
++        for ev in read(d/'frozen_inputs/event_targets.json'):
++            lo,hi=ev['core_s'] if ev['event']!='stop' else ev['new_support_s'];blo,bhi=(1.085,1.235) if ev['event']=='start' else (ev['new_support_s'][0]-.4,ev['new_support_s'][0]-.05)
++            for channel in ['physical','effective']:
++                x=a[channel+'_e_um'];m=(a['t']>=lo)&(a['t']<=hi);b=float(np.median(x[(a['t']>=blo)&(a['t']<=bhi)]));dx=x[m]-b
++                events.append(dict(run_id=rid,case_id=ctrl,data_sha256=ids[ctrl],plot_version=PLOT_VERSION,event=ev['event'],channel=channel,t0_s=lo,t1_s=hi,baseline_t0_s=blo,baseline_t1_s=bhi,
++                    baseline_um=b,local_peak_abs_um=float(np.max(abs(dx))),threshold10um_occupancy_s=float(np.count_nonzero(abs(dx)>10)*.001)))
++    table(d/'metrics.csv',metrics);table(d/'costs.csv',costs);table(d/'events.csv',events)
++    import matplotlib
++    matplotlib.use('Agg');import matplotlib.pyplot as plt
++    plt.rcParams.update({'font.sans-serif':['Microsoft YaHei','SimHei','DejaVu Sans'],'axes.unicode_minus':False,'font.size':10})
++    colors={'A0':'#666666','Alinear':'#2476ad','ASFC_strong':'#da3838'};t=ctx['c']['t'];along=ctx['c']['along'];figrows=[]
++    def save(fig,name,channel,window,xunit):
++        fig.suptitle(rid+' · '+PLOT_VERSION,fontsize=8);fig.savefig(d/'figures'/name,dpi=145);plt.close(fig)
++        info=dict(run_id=rid,generation_id=gen['generation_id'],figure=name,figure_sha256=sha(d/'figures'/name),case_data_sha256=ids,csv_sha256=csvhash,
++            channel=channel,window_s=window,x_unit=xunit,y_unit='um',sample_rule='pre-step 1ms; cold included in full',plot_version=PLOT_VERSION,plot_source_sha256=sha(Path(__file__)),raw_no_shift_smooth_rescale=True)
++        atomic_json(d/'figures'/Path(name).with_suffix('.json').name,info);figrows.append(info)
++    for channel in ['effective','physical']:
++        raw=np.concatenate([a[channel+'_e_um'] for a in logs.values()]);pad=np.ptp(raw)*.08;ylim=(np.min(raw)-pad,np.max(raw)+pad)
++        fig,axes=plt.subplots(2,1,figsize=(11,6),sharex=True,gridspec_kw={'height_ratios':[1,3]},layout='constrained')
++        axes[0].plot(t,along,color='#9062b5');axes[0].set_ylabel('沿程 / mm');axes[0].set_title(channel+' Y完整往返：实际新积分，原始偏差')
++        for ctrl,a in logs.items():axes[1].plot(t,a[channel+'_e_um'],color=colors[ctrl],label=LABELS[ctrl],lw=1)
++        axes[1].axhline(0,color='black',lw=.7);axes[1].set_ylim(*ylim);axes[1].axvspan(0,.8,color='#ddaa44',alpha=.1);axes[1].set_xlabel('时间 / s');axes[1].set_ylabel('原始Y偏差 / μm');axes[1].grid(alpha=.2);axes[1].legend(ncol=3,loc='lower left')
++        axes[1].text(.01,.96,'0–0.8s冷初始化＋非零公共起始指令；非A启动',transform=axes[1].transAxes,va='top',fontsize=9)
++        for name,at in [('A启动',1.2849583981754964),('换向',4.981),('停后',8.858)]:axes[0].axvline(at,color='#777',ls=':',lw=.8);axes[0].text(at,.92,name,transform=axes[0].get_xaxis_transform(),ha='center',va='top')
++        save(fig,'full_'+channel+'.png',channel,[0,9.999],'s')
++    fig,ax=plt.subplots(figsize=(10,4.6),layout='constrained');m=(t>=1.2849583981754964)&(t<=4.981)
++    for ctrl,a in logs.items():ax.plot(along[m],a['effective_e_um'][m],color=colors[ctrl],label=LABELS[ctrl],lw=1)
++    ax.axhline(0,color='black',lw=.7);ax.set_xlabel('仅去程名义沿程 / mm');ax.set_ylabel('原始effective Y / μm');ax.set_title('仅去程，不混叠回程');ax.legend(ncol=3);ax.grid(alpha=.2);save(fig,'outbound_effective.png','effective',[1.2849583981754964,4.981],'mm')
++    for ev in read(d/'frozen_inputs/event_targets.json')[:2]:
++        lo,hi=ev['new_support_s'];m=(t>=lo-.05)&(t<=hi+.10);fig,ax=plt.subplots(figsize=(10,4.5),layout='constrained')
++        for ctrl,a in logs.items():ax.plot(t[m],a['effective_e_um'][m],color=colors[ctrl],label=LABELS[ctrl],lw=1)
++        ax.axhline(0,color='black',lw=.7);ax.set_xlabel('时间 / s');ax.set_ylabel('原始effective Y / μm');ax.set_title('启动局部' if ev['event']=='start' else '换向局部');ax.legend(ncol=3);ax.grid(alpha=.2);save(fig,'local_'+ev['event']+'.png','effective',[lo-.05,hi+.10],'s')
++    atomic_json(d/'plot_manifest.json',dict(run_id=rid,generation_id=gen['generation_id'],plot_version=PLOT_VERSION,source_sha256=sha(Path(__file__)),figures=figrows,
++        metric_tables={n:sha(d/n) for n in ['metrics.csv','costs.csv','events.csv']},all_three_from_this_run=True))
++    main=[r for r in metrics if r['window']=='full' and r['channel']=='effective'];cost={r['case_id']:r for r in costs}
++    lines=['# F组理想执行基线：本批结果','',f'run_id：`{rid}`；生成版本：`{gen["version"]}`；3条本批实际积分，各10000步。所有数据来自本批，未复用历史结果。',
++        '', '|方案|std μm|峰峰 μm|均值 μm|绝对峰 μm|请求力RMS N|请求力矩RMS范数 Nm|','|---|---:|---:|---:|---:|---:|---:|']
++    for r in main:
++        cc=cost[r['case_id']];lines.append('|'+LABELS[r['case_id']]+'|'+'|'.join(f'{r[k]:.2f}' for k in ['std_um','ptp_um','mean_um','raw_peak_abs_um'])+f'|{cc["F_RMS_N"]:.4f}|{cc["tau_requested_RMS_norm_Nm"]:.4f}|')
++    lines+=['',f'强SFC请求力RMS为线性的{cost["ASFC_strong"]["F_RMS_N"]/cost["Alinear"]["F_RMS_N"]:.2f}倍，本轮未做等代价机制比较。饱和样本：'+str({k:v['saturation_samples'] for k,v in cost.items()})+'。',
++        '', '原g、关节背景、remaining及导数、事件、公共纠偏、模型和初态保持；原目标零线未移动。主全程包含冷初始化，辅助窗另列。图为原始输出，std不称纯高频振动。physical/effective分别统计。',
++        '', '完整1ms NPZ和有符号向量CSV分别在full_1ms、csv_1ms。实际q与最终目标之差是总跟踪误差，不是补偿独有误差；同状态tau_realized_increment只是瞬时抗抖力矩增量，不是位置执行精度。R017尚无新执行模型，CB3未验证。',
++        '', '新运行：`python run_slow.py new`，每次新run_id；仅查看/重画本批：`python run_slow.py show --run-id '+rid+'` / `python run_slow.py redraw --run-id '+rid+'`。']
++    (d/'简报.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
++    html=['<!doctype html><meta charset="utf-8"><title>'+rid+'</title><style>body{font-family:Microsoft YaHei;max-width:1120px;margin:28px auto;background:#fafafa}img{width:100%}section{background:white;padding:16px;margin:18px 0}</style>',
++        '<h1>指定批次的实际新基线</h1><p>run_id：'+rid+'；'+gen['version']+'。查看此页不会运行仿真。</p>',
++        '<p>三组全部校验通过后生成。原始曲线，公共纠偏/原误差/事件全部保持；强SFC代价较高，未做等代价比较。</p>',
++        '<p><a href="简报.md">简报</a> · <a href="metrics.csv">指标</a> · <a href="costs.csv">代价</a> · <a href="plot_manifest.json">图表数据身份</a></p>']
++    for f in figrows:html.append('<section><img src="figures/'+f['figure']+'"></section>')
++    (d/'results.html').write_text('\n'.join(html),encoding='utf-8')
++    return d/'results.html'
++
++def compare_batches(root,first,second):
++    from run_slow import arrays,require,open_history,CONTROLLERS
++    root=Path(root);open_history(first,root);open_history(second,root);rows=[]
++    d1=root/'runs'/first;d2=root/'runs'/second;old=root/'historical/accepted_full_1ms'
++    require(read(d1/'generation.json')['generation_id']==read(d2/'generation.json')['generation_id'],'Environment/source identity differs across batches')
++    for ctrl in CONTROLLERS:
++        a=arrays(d1/'full_1ms'/f'{ctrl}.npz');b=arrays(d2/'full_1ms'/f'{ctrl}.npz')
++        require(set(a)==set(b),'Fields differ across batches')
++        for relation,other in [('batch2',b),('accepted_old',arrays(old/f'PC__{ctrl}.npz'))]:
++            for k in sorted(set(a)&set(other)):
++                require(a[k].shape==other[k].shape,'Compared shape mismatch')
++                err=float(np.max(abs(a[k].astype(float)-other[k].astype(float))))
++                tol=1e-8 if k.endswith('_um') else 1e-9 if 'tau' in k or 'qfrc' in k or k.startswith('F') else 1e-12
++                rows.append(dict(first_run=first,second_run=second,case_id=ctrl,comparison=relation,array=k,max_abs_difference=err,tolerance=tol,passed=err<=tol,
++                    first_data_sha256=sha(d1/'full_1ms'/f'{ctrl}.npz'),other_data_sha256=sha(d2/'full_1ms'/f'{ctrl}.npz') if relation=='batch2' else sha(old/f'PC__{ctrl}.npz')))
++                require(err<=tol,'Unexplained baseline response difference '+ctrl+'/'+k)
++    table(root/'review/两批及旧结果逐数组复现.csv',rows)
++    info=dict(passed=True,run_ids=[first,second],actual_integrations=6,source_environment_identical=True,array_checks=len(rows),max_abs_difference=max(r['max_abs_difference'] for r in rows),
++        tolerances='Yum1e-8; force/torque1e-9; other float1e-12; flags exact; metadata timestamp/run_id/container excluded',old_results_only_explicit_reference=True)
++    atomic_json(root/'review/reproducibility.json',info);return info
+--- accepted-v1/run_slow.py
++++ candidate-v2/run_slow.py
+@@ -1,164 +1,170 @@
+-"""Offline public slow position correction, then three fixed anti-jitter cases. Max6 runs."""
++"""Every new simulation integrates three fixed cases in a unique run_id. No result cache."""
+ from pathlib import Path
+-import sys,json,hashlib,shutil,argparse
++import sys,hashlib,argparse,traceback,time,shutil
+ ROOT=Path(__file__).resolve().parent
+ sys.path.insert(0,str(ROOT.parent/'F组首次接入_20261010/.runtime'));sys.path.insert(0,str(ROOT))
+ if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
+ import numpy as np
+ import config,sweep,disturbance
+-from short_prepare import write,sha,smooth,smooth_dot
+-from run_short import read,common,array,PARAMS,input_id,fd_object
+ from input_acceptance import require_calibration,require_event
++from position_execution import POSITION_EQUIV
+ from position_logging import PreciseLogger
+-from position_execution import POSITION_EQUIV,compiled_mapping
+-from sim_env import SimEnv
+-
+-VERSION='F10-PRESCHEDULED-SLOW-v1'
+-CODE=['run_slow.py','run_short.py','input_acceptance.py','sweep.py','position_logging.py','position_execution.py','controller.py','sfc.py','sim_env.py','config.py','background.py','f_measurement.py','f_config.json','inputs/fixed_position_test_parameters.json','inputs/仿真误差参数.json']
+-def budget():return read(ROOT/'review/slow_run_budget.json') if (ROOT/'review/slow_run_budget.json').exists() else []
+-def upstream():
+-    fr=read(ROOT/'baseline_review/frozen_version.json');c=common();g=fr['g']
+-    checks=dict(calibration=require_calibration(read(ROOT/'review/ordinary_calibration.json')),event=require_event(read(ROOT/'review/event_reconstruction.json')))
+-    assert sha(ROOT/'inputs/frozen_common.npz')==fr['common_sha256']
+-    assert sha(ROOT/'inputs/Fd_event.csv')==fr['event_sha256']
+-    assert checks['calibration']['g']==g and PARAMS==fr['parameters']
+-    f=np.loadtxt(ROOT/'inputs/Fd_event.csv',delimiter=',',skiprows=1)[:,1];fd=fd_object(c,f,ROOT/'inputs/Fd_event.csv')
+-    assert input_id(c,g,fd.sha256)==fr['scenarios']['S3']['input_id']
+-    assert read(ROOT/'review/R026_failure_checks.json')['passed']
+-    write(ROOT/'review/upstream_acceptance.json',dict(passed=True,checks=checks,source_S3_id=fr['scenarios']['S3']['input_id'],no_new_calibration_or_event_generation=True))
+-    return c,g,fd,fr
+-def baseline():
+-    a=array(ROOT/'reference_old_S3/S3__A0.npz');source=read(ROOT/'review/source_version.json')
+-    assert sha(ROOT/'reference_old_S3/S3__A0.npz')==source['source_case_logs']['S3__A0.npz']
+-    windows=[('pre_rest',.85,1.075),('outbound',2.226,4.38),('return',5.943,8.667),('post_tail_short',9.95,9.999)]
+-    rows=[];levels=[]
+-    for name,lo,hi in windows:
+-        m=(a['t']>=lo)&(a['t']<=hi);x=a['effective_e_um'][m];level=float(np.median(x));levels.append(level)
+-        rows.append(dict(platform=name,t0_s=lo,t1_s=hi,samples=int(m.sum()),effective_median_um=level,physical_median_um=float(np.median(a['physical_e_um'][m])),std_um=float(np.std(x)),
+-            qualification='Only49ms/50 samples near end; event-only old A0 max1.20um here, separately checked in prior results. Short tail representative, not independent long settled state.' if name=='post_tail_short' else 'Outside cold<0.8s and chosen event supports; median of inherited A0 only.'))
+-    plan=dict(source='reference_old_S3/S3__A0.npz',source_sha256=sha(ROOT/'reference_old_S3/S3__A0.npz'),source_channel='effective_e_um',units='um',platforms=rows,
+-        levels_um=levels,connections_s=[[1.075,2.226],[4.38,5.943],[8.667,9.95]],connection='quintic smoothstep, analytic C2, no fitting within an event',
+-        noncausal=True,ordinary_or_event_waveform_fitted=False,tail_limitation='Final representative is short and not proof of long-term drift stability. Its level nearly equals return; stop correction changes by only~0.094um.',
+-        event_windows=read(ROOT/'review/event_targets.json'))
+-    write(ROOT/'review/baseline_plan.json',plan);return plan
+-def slow_center(t,plan):
+-    levels=plan['levels_um'];b=np.full_like(t,levels[0]);bd=np.zeros_like(t);bdd=np.zeros_like(t)
+-    for j,(lo,hi) in enumerate(plan['connections_s']):
+-        T=hi-lo;m=(t>=lo)&(t<=hi);u=(t[m]-lo)/T;diff=levels[j+1]-levels[j]
+-        b[m]=levels[j]+diff*smooth(u);bd[m]=diff*smooth_dot(u,T)
+-        bdd[m]=diff*(60*u-180*u*u+120*u*u*u)/(T*T)
+-        b[t>hi]=levels[j+1]
+-    return b,bd,bdd
+-def static_map(c):
+-    env=SimEnv();env.reset(c['q'][0]);env.forward();J=env.jacp().copy();sv=np.linalg.svd(J,compute_uv=False);condition=float(sv[0]/sv[-1])
+-    assert sv[-1]>1e-5 and condition<1e5,'Static translation mapping is ill-conditioned; stop branch'
+-    M=J.T@np.linalg.solve(J@J.T,np.array([0.,1.,0.]));assert np.max(abs(J@M-np.array([0.,1.,0.])))<1e-12
+-    # Nominal initial FK can have tiny existing IK residual; compare actual states, not config rounding.
+-    env.reset(c['q'][0]);env.forward();p0=env.tcp_pos().copy();env.reset(c['q'][0]+M*1e-6);env.forward();shift=env.tcp_pos()-p0
+-    assert shift[1]>0 and abs(shift[1]/1e-6-1)<.01
+-    mapping=dict(J0_translation_m_per_rad=J,M_rad_per_m=M,singular_values=sv,condition=condition,first_order_JM=[0.,1.,0.],positive1um_FK_shift_m=shift,
+-        method='Constant minimum-norm translation right inverse at original initial nominal posture; X/Z first-order correction zero. Static only, no dynamic Jacobian/observer.',
+-        full_compiled_model=compiled_mapping(env.model),original_initial_q=c['q'][0])
+-    write(ROOT/'review/static_mapping.json',mapping);return M
+-def make_correction(c,plan,M,gain):
+-    b,bd,bdd=slow_center(c['t'],plan);dy=-gain*b*1e-6;dyd=-gain*bd*1e-6;dydd=-gain*bdd*1e-6
+-    return dict(common_baseline_um=b,common_delta_y_m=dy,common_delta_y_dot_m_s=dyd,common_delta_y_ddot_m_s2=dydd,
+-        common_delta_q=dy[:,None]*M,common_delta_q_dot=dyd[:,None]*M,common_delta_q_ddot=dydd[:,None]*M)
++from batch_identity import read,sha,atomic_json,new_directory,safe_id,files_snapshot,provenance
++VERSION='F10-IDEAL-EXECUTION-ENGINEERING-CANDIDATE-v2'
++CONTROLLERS=('A0','Alinear','ASFC_strong')
++class RunRejected(RuntimeError):pass
++def require(ok,message):
++    if not ok:raise RunRejected(message)
++def arrays(p):
++    with np.load(p,allow_pickle=False) as z:return {k:z[k].copy() for k in z.files}
+ def correction_id(corr,source_id):
+     h=hashlib.sha256(source_id.encode())
+     for k in sorted(corr):h.update(k.encode());h.update(np.ascontiguousarray(corr[k]).tobytes())
+     return h.hexdigest()
+-def run(name,controller,c,g,fd,corr,source_id,role):
+-    dest=ROOT/'outputs/full_1ms'/f'{name}.npz';identity=correction_id(corr,source_id);p=PARAMS[controller]
+-    if dest.exists() and dest.with_suffix('.row.json').exists():
+-        meta=read(dest.with_suffix('.json'));row=read(dest.with_suffix('.row.json'))
+-        assert meta['input_sha256']==identity and meta['controller_parameters']==p and row['status']=='OK' and row['n_steps_done']==len(c['t'])
+-        print('REUSE',name,flush=True);return dest
+-    runs=budget();assert len(runs)<6,'6-run budget exhausted'
+-    assert not any(x['case_id']==name for x in runs),'No silent re-run of failed/incomplete case'
+-    if role=='construct':assert controller=='A0' and sum(x['role']=='construct' for x in runs)<3
+-    if role=='formal':assert controller in ['Alinear','ASFC_strong'] and sum(x['role']=='formal' for x in runs)<2
+-    runs.append(dict(index=len(runs)+1,case_id=name,controller=controller,role=role,input_id=identity,status='RUNNING'));write(ROOT/'review/slow_run_budget.json',runs)
+-    scaled={k:(v*g if k in ['dq','dqd','remaining','remaining_dot'] else v) for k,v in c.items()}
+-    logger=PreciseLogger(dest,len(c['t']),'C_ORDINARY',POSITION_EQUIV,1,identity,input_data=scaled,common_correction=corr)
+-    logger.meta.update(module_version=VERSION,g=g,controller_parameters=p,source_S3_input_id=source_id,fd_sha256=fd.sha256,
+-        code_snapshot_sha256=sha(ROOT/'review/slow_implementation_freeze.json'),reference_y_unchanged_m=config.Y_NOMINAL,
+-        counterfactual='Independent actuator evaluation at same actual state. Base includes public slow position correction. Recorded realized increment is anti-jitter only; public correction is reported as position/speed/acceleration, not invented force.',
+-        shared_inputs='Original frozen q/dq/dqd/remaining/remdot/Fd unchanged; public correction same every case; no output trend subtraction.')
+-    print('RUN',len(runs),name,flush=True)
+-    row=sweep.run_case(name,p['mode'],p['K'],p['B0'],p['n'],p['mu'],p['r'],p['v_ref'] or 0.,fd,c['along'],c['q'],phase_code=c['phase'],c_input=scaled,
+-        execution_mode=POSITION_EQUIV,control_update_steps=1,precise_logger=logger,common_position_correction=corr['common_delta_q'],keep_trace=False)
+-    write(dest.with_suffix('.row.json'),row);runs=budget();runs[-1].update(status=row['status'],n_steps_done=row['n_steps_done'],note=row['note'],log_sha256=sha(dest));write(ROOT/'review/slow_run_budget.json',runs)
+-    print('DONE',name,row['status'],row['n_steps_done'],flush=True);return dest
+-def centers(a,plan):
+-    return [float(np.median(a['effective_e_um'][(a['t']>=p['t0_s'])&(a['t']<=p['t1_s'])])) for p in plan['platforms']]
+-def construction_check(p,c,plan,corr):
+-    a=array(p);row=read(p.with_suffix('.row.json'));vals=centers(a,plan)
+-    m=(a['t']>=.85)&(a['t']<=1.075);cold=a['t']<.8;ic=np.flatnonzero(cold)[np.argmax(abs(a['effective_e_um'][cold]))]
+-    sat=np.any(a['ctrl_saturation']|a['force_saturation']|a['joint_saturation'],axis=1)
+-    passed=row['status']=='OK' and len(a['t'])==len(c['t']) and not sat.any() and max(abs(np.array(vals)))<=5.
+-    return dict(passed=bool(passed),status=row['status'],platform_centers_um=vals,original_platform_centers_um=plan['levels_um'],center_threshold_um=5.,saturated_samples=int(sat.sum()),
+-        correction_initial_nonzero_rad=corr['common_delta_q'][0],cold_peak_t_s=float(a['t'][ic]),cold_peak_um=float(a['effective_e_um'][ic]),
+-        public_delta_q_peak_abs_rad=float(np.max(abs(corr['common_delta_q']))),public_qdot_peak_abs_rad_s=float(np.max(abs(corr['common_delta_q_dot']))),public_qddot_peak_abs_rad_s2=float(np.max(abs(corr['common_delta_q_ddot']))),
+-        interpretation='A0 only. Accept approximate platform centering within5um, including separately qualified short tail. No parameter/g/event adjustment. Cold state not changed.')
+-def validate_derivatives(c,plan,M,corr,gain):
+-    x=np.array([1.20,1.9,4.7,5.3,8.9,9.7]);eps=1e-5;b,bd,bdd=slow_center(x,plan);bp,dp,_=slow_center(x+eps,plan);bm,dm,_=slow_center(x-eps,plan)
+-    err1=float(np.max(abs((bp-bm)/(2*eps)-bd)));err2=float(np.max(abs((dp-dm)/(2*eps)-bdd)));assert max(err1,err2)<1e-7
+-    joint_step=float(np.max(abs(np.diff(corr['common_delta_q'],axis=0))))
+-    assert joint_step<=.001*np.max(abs(corr['common_delta_q_dot']))*1.001+1e-15
+-    write(ROOT/'review/slow_derivative_checks.json',dict(passed=True,baseline_derivative_error_um_s=err1,baseline_second_derivative_error_um_s2=err2,
+-        C2_endpoint_continuity=True,static_map_only=True,max_adjacent_common_command_step_rad=joint_step,
+-        initial_jump_is_separate_from_analytic_derivative=True,initial_common_position_step_rad=corr['common_delta_q'][0]))
+-def main(stage='all'):
+-    c,g,fd,fr=upstream();snapshot={p:sha(ROOT/p) for p in CODE}
+-    freeze=ROOT/'review/slow_implementation_freeze.json'
+-    if freeze.exists():assert read(freeze)==snapshot,'Do not silently change implementation after construction validation'
+-    else:write(freeze,snapshot)
+-    source_id=fr['scenarios']['S3']['input_id'];plan=baseline();M=static_map(c)
+-    path=ROOT/'review/public_correction_acceptance.json'
+-    if path.exists():
+-        accepted=read(path);assert accepted['passed']
+-        with np.load(ROOT/'inputs/public_slow_correction.npz') as z:corr={k:z[k] for k in z.files}
+-        assert correction_id(corr,source_id)==accepted['input_id']
+-        gain=accepted['gain'];p=ROOT/accepted['A0_log']
+-        assert construction_check(p,c,plan,corr)['passed']
+-    else:
+-        gain=1.;history=[]
+-        for attempt in range(3):
+-            corr=make_correction(c,plan,M,gain);validate_derivatives(c,plan,M,corr,gain)
+-            p=run(f'construct_{attempt+1}__A0','A0',c,g,fd,corr,source_id,'construct');check=construction_check(p,c,plan,corr)
+-            check.update(attempt=attempt+1,gain=gain,log=str(p.relative_to(ROOT)));history.append(check);write(ROOT/'review/public_correction_attempts.json',history)
+-            if check['passed']:break
+-            if check['status']!='OK' or check['saturated_samples']:break
+-            # A0 ordinary centers only, no event/controller performance used to set gain.
+-            old=np.array(plan['levels_um'][1:3]);new=np.array(check['platform_centers_um'][1:3]);response=old-new
+-            proposed=gain*float(np.median(old/response)) if np.all(abs(response)>1.) else float('nan')
+-            if not np.isfinite(proposed) or not .5<=proposed<=2.:
+-                check['rejection']='Simple gain would leave permitted static correction range; no complex fit';break
+-            if attempt<2:gain=proposed
+-        if not check['passed']:
+-            write(path,dict(passed=False,attempts=len(history),reason='Approximate common-center premise not reached within budget; no formal dependent cases.'))
+-            raise RuntimeError('Public correction failed acceptance; preserve attempted logs and stop formal dependencies')
+-        np.savez_compressed(ROOT/'inputs/public_slow_correction.npz',**corr)
+-        accepted=dict(passed=True,gain=gain,input_id=correction_id(corr,source_id),A0_log=str(p.relative_to(ROOT)),check=check,attempts=len(history))
+-        write(path,accepted)
+-    final=dict(version=VERSION,source_version_sha256=sha(ROOT/'baseline_review/frozen_version.json'),source_S3_input_id=source_id,shared_input_id=accepted['input_id'],g=g,
+-        public_correction_sha256=sha(ROOT/'inputs/public_slow_correction.npz'),baseline_plan_sha256=sha(ROOT/'review/baseline_plan.json'),mapping_sha256=sha(ROOT/'review/static_mapping.json'),
+-        parameters=PARAMS,dt_s=.001,duration_s=10.,fixed_y_target_m=config.Y_NOMINAL,implementation_sha256=sha(freeze),initial_condition_unchanged=True,
+-        feedback_velocity='Measured physicalYdot + original remaining_dot; original nominalYdot=0. Public analytic velocity is diagnostic, not subtracted as a changed target.',
+-        execution='original q_nom + original g*dq + frozen public delta_q_slow + existing tau_anti/Kp; only Fd_event in qfrc_applied',noncausal_offline=True)
+-    file=ROOT/'review/slow_frozen_version.json'
+-    if file.exists():assert read(file)==final
+-    else:write(file,final)
+-    dst=ROOT/'outputs/full_1ms/PC__A0.npz'
+-    if not dst.exists():
+-        shutil.copy2(p,dst)
+-        for suffix in ['.json','.row.json']:
+-            meta=read(p.with_suffix(suffix));meta.update(reused_from=str(p.relative_to(ROOT)))
+-            if suffix=='.row.json':meta['case_id']='PC__A0'
+-            write(dst.with_suffix(suffix),meta)
+-    if stage=='construct':return
+-    for controller in ['Alinear','ASFC_strong']:run('PC__'+controller,controller,c,g,fd,corr,source_id,'formal')
+-    write(ROOT/'review/slow_complete.json',dict(completed=True,new_integrations=len(budget()),formal_cases=3,A0_reused=True,max_integrations=6))
+-if __name__=='__main__':
+-    ap=argparse.ArgumentParser();ap.add_argument('stage',choices=['construct','all'],nargs='?',default='all');main(ap.parse_args().stage)
++def source_id(c,g,fd_sha):
++    h=hashlib.sha256()
++    for k in ['t','q','phase','dq','dqd','remaining','remaining_dot']:
++        a=c[k]*g if k in ['dq','dqd','remaining','remaining_dot'] else c[k];h.update(k.encode());h.update(np.ascontiguousarray(a).tobytes())
++    h.update(fd_sha.encode());return h.hexdigest()
++def load_inputs(root=ROOT):
++    root=Path(root);hist=root/'historical/public_slow_review';fr=read(hist/'slow_frozen_version.json');old=read(root/'baseline_review/frozen_version.json')
++    require(fr['version']=='F10-PRESCHEDULED-SLOW-v1','Unexpected inherited correction version')
++    require_calibration(read(hist/'ordinary_calibration.json'));require_event(read(hist/'event_reconstruction.json'))
++    c=arrays(root/'inputs/frozen_common.npz');corr=arrays(root/'inputs/public_slow_correction.npz');g=fr['g']
++    require(g==old['g'],'Frozen g changed');require(sha(root/'inputs/frozen_common.npz')==old['common_sha256'],'Source arrays changed')
++    require(sha(root/'inputs/public_slow_correction.npz')==fr['public_correction_sha256'],'Public correction changed')
++    fd_sha=sha(root/'inputs/Fd_event.csv');require(fd_sha==old['event_sha256'],'Event force changed')
++    require(source_id(c,g,fd_sha)==fr['source_S3_input_id'],'Source input mismatch')
++    require(correction_id(corr,fr['source_S3_input_id'])==fr['shared_input_id'],'Public logical input mismatch')
++    accepted=read(hist/'public_correction_acceptance.json');require(accepted['passed'] is True and accepted['input_id']==fr['shared_input_id'],'Public input not accepted')
++    pars={p['case_id']:p for p in read(root/'inputs/fixed_position_test_parameters.json')['C_ORDINARY'] if p['case_id'] in CONTROLLERS}
++    require(pars==fr['parameters'],'Frozen controller parameters changed')
++    n=len(c['t']);require(n==10000 and np.array_equal(c['t'],np.arange(n)*.001),'Expected exact10000 pre-step samples')
++    for key,a in c.items():require(a.shape[0]==n and np.isfinite(a).all(),'Invalid source '+key)
++    for key,a in corr.items():
++        require(a.shape==((n,6) if key.startswith('common_delta_q') else (n,)),'Public shape '+key);require(np.isfinite(a).all(),'Public values '+key)
++    saved=np.loadtxt(root/'inputs/Fd_event.csv',delimiter=',',skiprows=1)
++    require(saved.shape==(n,2) and np.array_equal(saved[:,0],c['t']) and np.isfinite(saved).all(),'Force time axis')
++    fd=disturbance.FrozenDisturbance(root/'inputs/Fd_event.csv',c['t'],saved[:,1],{'frozen':{'sha256':fd_sha}})
++    return dict(c=c,corr=corr,g=g,fd=fd,params=pars,freeze=fr,input_id=fr['shared_input_id'],fd_values=saved[:,1],fd_sha=fd_sha,nominal_Y_m=config.Y_NOMINAL)
++def inputs_from_run(d):
++    d=Path(d);identity=read(d/'input_identity.json')
++    for n,h in identity['run_input_snapshots'].items():require((d/'frozen_inputs'/n).is_file() and sha(d/'frozen_inputs'/n)==h,'Historical input missing/corrupt: '+n)
++    c=arrays(d/'frozen_inputs/frozen_common.npz');corr=arrays(d/'frozen_inputs/public_slow_correction.npz')
++    fd=np.loadtxt(d/'frozen_inputs/Fd_event.csv',delimiter=',',skiprows=1)
++    require(source_id(c,identity['g'],sha(d/'frozen_inputs/Fd_event.csv'))==identity['source_S3_input_id'],'Historical source ID mismatch')
++    require(correction_id(corr,identity['source_S3_input_id'])==identity['input_id'],'Historical public ID mismatch')
++    return dict(c=c,corr=corr,g=identity['g'],params=identity['parameters'],input_id=identity['input_id'],fd_values=fd[:,1],nominal_Y_m=identity['nominal_Y_m'])
++SCALARS=['t','model_time_s','physical_y','effective_y','nominal_y','physical_v','effective_v','physical_e_um','effective_e_um','remaining','remaining_dot',
++    'sample_e_m','sample_v_m_s','F_spring','F_linear','F_shear','F_requested','Fd','phase','updated',
++    'common_baseline_um','common_delta_y_m','common_delta_y_dot_m_s','common_delta_y_ddot_m_s2']
++MATRICES=['q_nominal','dq_C','original_base_ctrl','common_delta_q','common_delta_q_dot','common_delta_q_ddot','q','qdot','base_ctrl','delta_u','final_ctrl',
++    'tau_requested','qfrc_actuator','qfrc_applied','qfrc_disturbance','tau_realized_increment','base_qfrc_actuator','actuator_force','effective_ctrl',
++    'ctrl_saturation','force_saturation','joint_saturation','base_ctrl_saturation','base_force_saturation','base_joint_saturation']
++def validate_case(path,row,ctx,run_id,generation_id,controller):
++    require(row.get('status')=='OK','Returned '+str(row.get('status'))+': '+str(row.get('note')))
++    n=len(ctx['c']['t']);require(row.get('n_steps_done')==n and row.get('n_steps_total')==n,'Step count mismatch')
++    require(Path(path).is_file() and Path(path).with_suffix('.json').is_file(),'Missing data/metadata')
++    meta=read(Path(path).with_suffix('.json'));a=arrays(path)
++    require(meta.get('status')=='OK' and meta.get('n_steps_done')==n and meta.get('logger_samples')==n and meta.get('n_steps_requested')==n,'Metadata status/count mismatch')
++    require(meta.get('run_id')==run_id and meta.get('generation_id')==generation_id and meta.get('case_id')==controller,'Generation/case mismatch')
++    require(meta.get('input_sha256')==ctx['input_id'] and meta.get('controller_parameters')==ctx['params'][controller],'Input/parameter metadata mismatch')
++    for k in SCALARS+MATRICES:
++        require(k in a,'Missing field '+k);require(a[k].shape==((n,6) if k in MATRICES else (n,)),'Shape mismatch '+k)
++    for k,v in a.items():require(v.ndim in (1,2) and v.shape[0]==n and np.isfinite(v).all(),'Nonfinite/short '+k)
++    require(np.array_equal(a['t'],ctx['c']['t']) and np.max(abs(a['model_time_s']-a['t']))<1e-9,'Time/sample position mismatch')
++    require(np.array_equal(a['q_nominal'],ctx['c']['q']) and np.array_equal(a['dq_C'],ctx['c']['dq']*ctx['g']),'Source positions differ')
++    require(np.array_equal(a['remaining'],ctx['c']['remaining']*ctx['g']) and np.array_equal(a['remaining_dot'],ctx['c']['remaining_dot']*ctx['g']),'Remaining differs')
++    for k,v in ctx['corr'].items():require(np.array_equal(a[k],v),'Public differs: '+k)
++    require(np.array_equal(a['Fd'],ctx['fd_values']) and np.array_equal(a['phase'],ctx['c']['phase']),'Force/phase differs')
++    require(np.all(a['nominal_y']==ctx['nominal_Y_m']) and np.array_equal(a['q'][0],ctx['c']['q'][0]) and np.all(a['qdot'][0]==0),'Target/initial state changed')
++    require(np.array_equal(a['base_ctrl'],a['q_nominal']+a['dq_C']+a['common_delta_q']),'Base command mismatch')
++    require(np.array_equal(a['final_ctrl'],a['base_ctrl']+a['delta_u']),'Final command mismatch')
++    require(np.array_equal(a['qfrc_applied'],a['qfrc_disturbance']),'Duplicate anti torque')
++    require(np.max(abs(a['effective_y']-a['physical_y']-a['remaining']))<1e-15 and np.max(abs(a['effective_v']-a['physical_v']-a['remaining_dot']))<1e-15,'Measurement mismatch')
++    sums={k:int(np.count_nonzero(a[k])) for k in ['ctrl_saturation','force_saturation','joint_saturation']}
++    logical=hashlib.sha256()
++    for k in sorted(a):logical.update(k.encode());logical.update(str(a[k].dtype).encode());logical.update(np.ascontiguousarray(a[k]).tobytes())
++    return dict(passed=True,samples=n,case_id=controller,run_id=run_id,data_sha256=sha(path),logical_arrays_sha256=logical.hexdigest(),saturation_entries=sums)
++def json_safe(x):
++    if isinstance(x,dict):return {k:json_safe(v) for k,v in x.items()}
++    if isinstance(x,(list,tuple)):return [json_safe(v) for v in x]
++    if isinstance(x,float) and not np.isfinite(x):return None
++    return x
++def run_case(d,run_id,controller,ctx,gen):
++    path=Path(d)/'full_1ms'/f'{controller}.npz';require(not path.exists() and not path.with_suffix('.json').exists(),'Case collision; never reuse')
++    p=ctx['params'][controller];c=ctx['c'];scaled={k:(v*ctx['g'] if k in ['dq','dqd','remaining','remaining_dot'] else v) for k,v in c.items()}
++    logger=PreciseLogger(path,len(c['t']),'C_ORDINARY',POSITION_EQUIV,1,ctx['input_id'],input_data=scaled,common_correction=ctx['corr'])
++    logger.meta.update(run_id=run_id,case_id=controller,generation_id=gen['generation_id'],module_version=VERSION,controller_parameters=p,g=ctx['g'],fd_sha256=ctx['fd_sha'],
++        reference_y_unchanged_m=config.Y_NOMINAL,public_correction_source='Explicit accepted input; no historical result used',
++        anti_increment_meaning='Same-state instantaneous actuator torque increment, NOT compensation position accuracy')
++    print('INTEGRATE',run_id,controller,flush=True)
++    row=sweep.run_case(controller,p['mode'],p['K'],p['B0'],p['n'],p['mu'],p['r'],p['v_ref'] or 0.,ctx['fd'],c['along'],c['q'],phase_code=c['phase'],
++        c_input=scaled,execution_mode=POSITION_EQUIV,control_update_steps=1,precise_logger=logger,common_position_correction=ctx['corr']['common_delta_q'],keep_trace=False)
++    atomic_json(path.with_suffix('.row.json'),json_safe(row));verdict=validate_case(path,row,ctx,run_id,gen['generation_id'],controller)
++    atomic_json(path.with_suffix('.validation.json'),verdict);print('VALIDATED',controller,verdict['samples'],flush=True);return verdict
++def new_run(root=ROOT,run_id=None,retry_of=None,make_report=True):
++    root=Path(root)
++    if retry_of:
++        prev=root/'runs'/safe_id(retry_of);require((prev/'state.json').is_file() and read(prev/'state.json')['status'] in ['FAILED','INCOMPLETE'],'Retry needs specified failed batch')
++    rid,d=new_directory(root,run_id);start=time.monotonic();integrations=0;checks=[]
++    atomic_json(d/'state.json',dict(run_id=rid,status='RUNNING',completed=False,integrations_started=0,retry_of=retry_of))
++    try:
++        ctx=load_inputs(root);gen=provenance(root,VERSION,ctx['input_id']);gen.update(run_id=rid,retry_of=retry_of);atomic_json(d/'generation.json',gen)
++        (d/'frozen_inputs').mkdir()
++        input_copies={}
++        for n in ['frozen_common.npz','public_slow_correction.npz','Fd_event.csv']:
++            shutil.copy2(root/'inputs'/n,d/'frozen_inputs'/n);input_copies[n]=sha(d/'frozen_inputs'/n)
++        for n in ['metric_windows.json','event_targets.json','trajectory.json']:
++            shutil.copy2(root/'historical/public_slow_review'/n,d/'frozen_inputs'/n);input_copies[n]=sha(d/'frozen_inputs'/n)
++        atomic_json(d/'input_identity.json',dict(input_id=ctx['input_id'],source_S3_input_id=ctx['freeze']['source_S3_input_id'],g=ctx['g'],parameters=ctx['params'],dt_s=.001,control_update_steps=1,
++            public_source_version='F10-PRESCHEDULED-SLOW-v1',inherited_input_files={p:v for p,v in gen['files'].items() if p.startswith('inputs/')},run_input_snapshots=input_copies,not_inherited_results=True,
++            initial_q=ctx['c']['q'][0].tolist(),initial_qdot=[0.]*6,nominal_Y_m=config.Y_NOMINAL))
++        for ctrl in CONTROLLERS:
++            integrations+=1;atomic_json(d/'state.json',dict(run_id=rid,status='RUNNING',completed=False,current_case=ctrl,integrations_started=integrations,validated_cases=checks,retry_of=retry_of))
++            checks.append(run_case(d,rid,ctrl,ctx,gen))
++        require(files_snapshot(root)==gen['files'],'Implementation/assets/inputs changed during run')
++        atomic_json(d/'validation.json',dict(passed=True,run_id=rid,generation_id=gen['generation_id'],integrations_started=integrations,cases=checks,accepted_before_report=True,
++            success_rule='All3: status/count/finite fields/shapes/sample timing/identities/common conditions checked'))
++        if make_report:
++            from run_report import render
++            render(d,root=root,validated_before_completion=True)
++        complete=dict(run_id=rid,status='SUCCESS',completed=True,integrations_started=integrations,cases=checks,generation_id=gen['generation_id'],elapsed_s=time.monotonic()-start,report_generated=make_report,retry_of=retry_of)
++        atomic_json(d/'completed.json',complete);atomic_json(d/'state.json',complete);print('SUCCESS',rid,'3 new integrations',flush=True);return rid
++    except BaseException as e:
++        failure=dict(run_id=rid,status='FAILED',completed=False,integrations_started=integrations,validated_cases=checks,retry_of=retry_of,reason=f'{type(e).__name__}: {e}',traceback=traceback.format_exc(),elapsed_s=time.monotonic()-start)
++        atomic_json(d/'state.json',failure);atomic_json(d/'failure.json',failure)
++        if (d/'completed.json').exists():(d/'completed.json').unlink()
++        raise
++def open_history(run_id,root=ROOT,redraw=False):
++    d=Path(root)/'runs'/safe_id(run_id);require((d/'completed.json').is_file() and read(d/'completed.json').get('completed') is True,'Specified batch missing/failed/incomplete')
++    ctx=inputs_from_run(d);gen=read(d/'generation.json');done=read(d/'completed.json')
++    for ctrl in CONTROLLERS:
++        p=d/'full_1ms'/f'{ctrl}.npz';verdict=next(x for x in done['cases'] if x['case_id']==ctrl)
++        require(p.is_file() and sha(p)==verdict['data_sha256'],'Specified data missing/corrupt: '+ctrl)
++        validate_case(p,read(p.with_suffix('.row.json')),ctx,run_id,gen['generation_id'],ctrl)
++    if redraw:
++        from run_report import render
++        render(d,root=Path(root),validated_before_completion=False)
++    require((d/'results.html').is_file(),'Specified batch has no report')
++    manifest=read(d/'plot_manifest.json');require(manifest['run_id']==run_id,'Report run identity mismatch')
++    for name,h in manifest['metric_tables'].items():require((d/name).is_file() and sha(d/name)==h,'Report table missing/corrupt: '+name)
++    for fig in manifest['figures']:
++        p=d/'figures'/fig['figure'];require(p.is_file() and sha(p)==fig['figure_sha256'],'Report figure missing/corrupt: '+fig['figure'])
++        for ctrl,h in fig['csv_sha256'].items():
++            p=d/'csv_1ms'/f'{ctrl}.csv';require(p.is_file() and sha(p)==h,'Report CSV missing/corrupt: '+ctrl)
++    return d/'results.html'
++def cli(argv=None):
++    ap=argparse.ArgumentParser(description='new integrates; show/redraw require exact run_id');sub=ap.add_subparsers(dest='command',required=True)
++    p=sub.add_parser('new');p.add_argument('--run-id');p.add_argument('--retry-of')
++    for cmd in ['show','redraw']:p=sub.add_parser(cmd);p.add_argument('--run-id',required=True)
++    args=ap.parse_args(argv)
++    try:
++        if args.command=='new':rid=new_run(run_id=args.run_id,retry_of=args.retry_of);print('VIEW: python run_slow.py show --run-id '+rid,flush=True)
++        else:
++            path=open_history(args.run_id,redraw=args.command=='redraw');print('HISTORICAL DATA ONLY:',path,flush=True)
++            import os
++            os.startfile(str(path))
++        return 0
++    except Exception as e:print('FAILED (no success/fallback):',type(e).__name__,str(e),file=sys.stderr,flush=True);return 2
++if __name__=='__main__':raise SystemExit(cli())
+--- /dev/null
++++ candidate-v2/test_engineering.py
+@@ -0,0 +1,122 @@
++"""Isolated negative paths; no MuJoCo step or real integration is invoked."""
++import sys,tempfile,shutil,json,unittest
++from pathlib import Path
++from unittest.mock import patch
++import run_slow as r
++import numpy as np
++from batch_identity import atomic_json,read,files_snapshot
++import run_report
++
++class EngineeringChecks(unittest.TestCase):
++    def setUp(self):
++        self.tmp=tempfile.TemporaryDirectory(dir=str(r.ROOT/'review'));self.root=Path(self.tmp.name)
++        for n in ['inputs','baseline_review']:shutil.copytree(r.ROOT/n,self.root/n)
++        shutil.copytree(r.ROOT/'historical/public_slow_review',self.root/'historical/public_slow_review')
++        (self.root/'assets_ur10e').mkdir();(self.root/'assets_ur10e/scene.xml').write_text('<mujoco/>',encoding='utf-8')
++        (self.root/'entry.py').write_text('# isolated fixture',encoding='utf-8')
++        self.calls=[];self.ctx=r.load_inputs(self.root)
++    def tearDown(self):self.tmp.cleanup()
++    def fake(self,*args,**kw):
++        ctrl=args[0];logger=kw['precise_logger'];self.calls.append((logger.meta['run_id'],ctrl))
++        a=r.arrays(r.ROOT/'historical/accepted_full_1ms'/f'PC__{ctrl}.npz')
++        n=len(a['t']);row=dict(status='OK',note='',case_id=ctrl,n_steps_done=n,n_steps_total=n)
++        mode=getattr(self,'failure_mode',None)
++        if mode in ['FAILED','INVALID']:row.update(status=mode,note='injected failure')
++        if mode=='short':a={k:v[:-1] for k,v in a.items()}
++        if mode=='nan':a['q'][17,2]=np.nan
++        if mode=='missing':del a['tau_requested']
++        if mode=='time':a['t'][20]+=.0002
++        if mode=='identity':logger.meta['input_sha256']='wrong'
++        if mode=='row_count':row['n_steps_done']=9999
++        if mode=='meta_count':n=9999
++        np.savez_compressed(logger.path,**a)
++        meta=dict(logger.meta,status=row['status'],n_steps_done=row['n_steps_done'],logger_samples=n,n_steps_requested=10000)
++        atomic_json(logger.path.with_suffix('.json'),meta);return row
++    def batch(self):return r.new_run(self.root,make_report=True)
++    def test_old_valid_corrupt_and_changed_xml_always_call_current_integration(self):
++        old=self.root/'outputs/full_1ms';old.mkdir(parents=True)
++        (old/'PC__A0.npz').write_bytes(b'not an npz');(old/'PC__A0.row.json').write_text('{"status":"OK","n_steps_done":10000}')
++        def report(d,**kw):(Path(d)/'results.html').write_text('fixture successful report',encoding='utf-8')
++        with patch.object(r.sweep,'run_case',side_effect=self.fake),patch.object(run_report,'render',side_effect=report) as renderer:
++            first=self.batch();(old/'PC__A0.npz').write_bytes((r.ROOT/'historical/accepted_full_1ms/PC__A0.npz').read_bytes())
++            (self.root/'assets_ur10e/scene.xml').write_text('<mujoco><!-- changed XML identity --></mujoco>',encoding='utf-8');second=self.batch()
++        self.assertNotEqual(first,second);self.assertEqual(len(self.calls),6);self.assertEqual(renderer.call_count,2)
++        self.assertNotEqual(read(self.root/'runs'/first/'generation.json')['generation_id'],read(self.root/'runs'/second/'generation.json')['generation_id'])
++        self.assertEqual([c for rid,c in self.calls if rid==second],list(r.CONTROLLERS))
++    def test_failed_invalid_short_nonfinite_missing_time_identity_counts(self):
++        for mode in ['FAILED','INVALID','short','nan','missing','time','identity','row_count','meta_count']:
++            with self.subTest(mode=mode):
++                self.failure_mode=mode
++                with patch.object(r.sweep,'run_case',side_effect=self.fake),patch.object(run_report,'render') as renderer:
++                    with self.assertRaises(r.RunRejected):self.batch()
++                state=sorted((self.root/'runs').glob('*/state.json'),key=lambda p:p.stat().st_mtime_ns)[-1]
++                self.assertFalse(read(state)['completed']);self.assertEqual(read(state)['status'],'FAILED')
++                self.assertFalse((state.parent/'completed.json').exists());self.assertFalse((state.parent/'results.html').exists());renderer.assert_not_called()
++    def test_directory_collision_never_overwrites_or_calls_simulator(self):
++        (self.root/'runs/collision').mkdir(parents=True);p=self.root/'runs/collision/keep.txt';p.write_text('keep')
++        with patch.object(r.sweep,'run_case') as integrate:
++            with self.assertRaises(FileExistsError):r.new_run(self.root,'collision')
++            integrate.assert_not_called()
++        self.assertEqual(p.read_text(),'keep')
++    def test_integration_exception_no_success_and_nonzero_cli(self):
++        with patch.object(r,'new_run',side_effect=RuntimeError('injected integration error')):self.assertEqual(r.cli(['new']),2)
++        with patch.object(r.sweep,'run_case',side_effect=RuntimeError('injected integration error')),patch.object(run_report,'render') as render:
++            with self.assertRaises(RuntimeError):self.batch()
++        d=next((self.root/'runs').iterdir());self.assertFalse((d/'completed.json').exists());self.assertEqual(read(d/'state.json')['status'],'FAILED');render.assert_not_called()
++    def test_later_case_failure_stops_batch_and_report(self):
++        fake=self.fake
++        def fail_second(*args,**kw):
++            if args[0]=='Alinear':self.failure_mode='INVALID'
++            return fake(*args,**kw)
++        with patch.object(r.sweep,'run_case',side_effect=fail_second),patch.object(run_report,'render') as render:
++            with self.assertRaises(r.RunRejected):self.batch()
++        self.assertEqual([c for rid,c in self.calls],['A0','Alinear']);render.assert_not_called()
++    def test_history_corruption_no_simulation_or_fallback(self):
++        def report(d,**kw):
++            (Path(d)/'results.html').write_text('fixture',encoding='utf-8')
++            atomic_json(Path(d)/'plot_manifest.json',dict(run_id=Path(d).name,metric_tables={},figures=[]))
++        with patch.object(r.sweep,'run_case',side_effect=self.fake),patch.object(run_report,'render',side_effect=report):rid=self.batch()
++        # Current inputs and XML need not remain accessible to view an explicit completed historical batch.
++        shutil.rmtree(self.root/'inputs')
++        with patch.object(r.sweep,'run_case') as integrate:
++            self.assertTrue(r.open_history(rid,self.root).is_file());integrate.assert_not_called()
++            (self.root/'runs'/rid/'full_1ms/A0.npz').write_bytes(b'corrupt')
++            with self.assertRaises(r.RunRejected):r.open_history(rid,self.root)
++            with self.assertRaises(r.RunRejected):r.open_history('missing',self.root)
++            integrate.assert_not_called()
++    def test_source_change_during_batch_rejects_completion(self):
++        fake=self.fake
++        def mutate(*args,**kw):
++            row=fake(*args,**kw)
++            if args[0]=='ASFC_strong':(self.root/'entry.py').write_text('# modified while integrating')
++            return row
++        with patch.object(r.sweep,'run_case',side_effect=mutate),patch.object(run_report,'render') as render:
++            with self.assertRaises(r.RunRejected):self.batch()
++        render.assert_not_called();d=next((self.root/'runs').iterdir());self.assertFalse((d/'completed.json').exists())
++    def test_actual_report_from_accepted_fixture(self):
++        with patch.object(r.sweep,'run_case',side_effect=self.fake):rid=self.batch()
++        d=self.root/'runs'/rid
++        self.assertTrue((d/'completed.json').is_file());self.assertTrue((d/'results.html').is_file())
++        self.assertEqual(len(read(d/'plot_manifest.json')['figures']),5)
++        self.assertEqual(len(list((d/'csv_1ms').glob('*.csv'))),3)
++        with patch.object(r.sweep,'run_case') as integrate:
++            self.assertTrue(r.open_history(rid,self.root).is_file())
++            (d/'figures/full_effective.png').write_bytes(b'corrupt')
++            with self.assertRaises(r.RunRejected):r.open_history(rid,self.root)
++            self.assertTrue(r.open_history(rid,self.root,redraw=True).is_file())
++            (d/'metrics.csv').unlink()
++            with self.assertRaises(r.RunRejected):r.open_history(rid,self.root)
++            integrate.assert_not_called()
++    def test_prefix_and_input_failure_protection(self):
++        with patch.object(r,'load_inputs',side_effect=RuntimeError('input rejected')),patch.object(r.sweep,'run_case') as integrate:
++            with self.assertRaises(RuntimeError):self.batch()
++            integrate.assert_not_called()
++        p=self.root/'prefix.npz';l=r.PreciseLogger(p,10000,'C_ORDINARY','POSITION_EQUIV',1,self.ctx['input_id'],input_data=self.ctx['c'],common_correction=self.ctx['corr'])
++        l.done=4;l.finish(dict(status='FAILED',n_steps_done=3,note='step failed after fourth pre-step sample'))
++        self.assertTrue(all(len(x)==3 for x in r.arrays(p).values()));self.assertEqual(read(p.with_suffix('.json'))['logger_samples'],3)
++
++if __name__=='__main__':
++    result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(EngineeringChecks))
++    atomic_json(r.ROOT/'review/negative_path_checks.json',dict(passed=result.wasSuccessful(),test_groups=result.testsRun,real_integrations=0,
++        optimization=sys.flags.optimize,negative_variants=9,no_MuJoCo_step=True,tests_source_sha256=r.sha(Path(__file__))))
++    raise SystemExit(0 if result.wasSuccessful() else 1)

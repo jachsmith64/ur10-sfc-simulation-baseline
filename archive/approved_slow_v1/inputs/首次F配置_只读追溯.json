@@ -1,0 +1,42 @@
+{
+  "physics_dt_s": 0.001,
+  "speed_mm_s": 3.0,
+  "length_mm": 13.0,
+  "ramp_s": 0.5,
+  "pre_s": 2.0,
+  "post_s": 2.0,
+  "seed": 20261010,
+  "bias_scenario": "sampled_once",
+  "joint_tau_s": 0.1,
+  "remaining_tau_s": 0.03,
+  "static_remaining_std_um": 0.5,
+  "motion_rho": -0.21,
+  "joint_input_scale": [
+    1.33914,
+    1.2611,
+    1.32044,
+    1.32776,
+    1.3249,
+    1.33957
+  ],
+  "gravity_compensation": false,
+  "servo_velocity_feedforward": false,
+  "K_N_m": 5000.0,
+  "B0_Ns_m": 400.0,
+  "sfc_n": 3.0,
+  "sfc_r": 1.0,
+  "task_force_limit_N": 10.0,
+  "joint_added_torque_limit_Nm": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+  ],
+  "abort_equivalent_error_m": 0.01,
+  "abort_joint_speed_rad_s": 5.0,
+  "old_Fd_enabled": false,
+  "notes": "13mm来自B data/P05R01/D1_时序.csv名义沿程0..13mm；X直线，恒Y/Z；频带和静止剩余0.5um是情景假设。仅运行一次代表小型比较。 动态ctrl输入幅值由无新增控制pilot的actual增量一次校准；静态关节幅值缩至0.05是保守等效情景，避免把未分离的编码器静态抖动当独立机械振动；不声称重现静态精度。",
+  "static_joint_scale": 0.05
+}

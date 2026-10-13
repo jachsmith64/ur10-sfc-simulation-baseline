@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "run_ids": [
+    "20261012T123028491525Z_9f7f6d3a",
+    "20261012T123042308025Z_05af114f"
+  ],
+  "actual_integrations": 6,
+  "explicit_history_data_and_artifacts_valid": true,
+  "source_environment_and_model_frozen": true,
+  "post_integration_history_only_changes": [
+    "run_slow.py",
+    "test_engineering.py"
+  ],
+  "recovered_generation_source_sha_verified": true,
+  "no_control_or_physics_changes": true,
+  "negative_checks": {
+    "passed": true,
+    "test_groups": 9,
+    "real_integrations": 0,
+    "optimization": 1,
+    "negative_variants": 9,
+    "no_MuJoCo_step": true,
+    "tests_source_sha256": "3aae79b0386d7eca7042b613c665d68345e6bf329d9595f475bcf30328dd5b7f"
+  },
+  "reproducibility": {
+    "passed": true,
+    "run_ids": [
+      "20261012T123028491525Z_9f7f6d3a",
+      "20261012T123042308025Z_05af114f"
+    ],
+    "actual_integrations": 6,
+    "source_environment_identical": true,
+    "array_checks": 294,
+    "max_abs_difference": 0.0,
+    "tolerances": "Yum1e-8; force/torque1e-9; other float1e-12; flags exact; metadata timestamp/run_id/container excluded",
+    "old_results_only_explicit_reference": true
+  },
+  "protected": {
+    "passed": true,
+    "checked_files": 840,
+    "changed": [],
+    "scope": "Union of original F and its protected antecedents; pycache excluded"
+  }
+}

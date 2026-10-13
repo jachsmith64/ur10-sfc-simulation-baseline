@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "test_groups": 9,
+  "real_integrations": 0,
+  "optimization": 1,
+  "negative_variants": 9,
+  "no_MuJoCo_step": true,
+  "tests_source_sha256": "3aae79b0386d7eca7042b613c665d68345e6bf329d9595f475bcf30328dd5b7f"
+}

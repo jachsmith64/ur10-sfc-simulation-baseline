@@ -1,0 +1,1 @@
+{"passed": true, "unit_tests": 6, "numeric_rejection_subcases": 12, "new_integrations": 0, "cached_and_generated_paths_exercised": true, "failed_inputs_not_formalized_or_used": true, "original_thresholds": {"calibration_relative": 0.1, "event_relative": 0.2}, "legal_no_amplification_preserved": true}

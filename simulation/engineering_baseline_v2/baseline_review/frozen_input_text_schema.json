@@ -1,0 +1,155 @@
+{
+  "t": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "t"
+    ]
+  },
+  "along": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "along"
+    ]
+  },
+  "phase": {
+    "dtype": "int64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "phase"
+    ]
+  },
+  "q": {
+    "dtype": "float64",
+    "shape": [
+      10000,
+      6
+    ],
+    "columns": [
+      "q_J1",
+      "q_J2",
+      "q_J3",
+      "q_J4",
+      "q_J5",
+      "q_J6"
+    ]
+  },
+  "dq": {
+    "dtype": "float64",
+    "shape": [
+      10000,
+      6
+    ],
+    "columns": [
+      "dq_J1",
+      "dq_J2",
+      "dq_J3",
+      "dq_J4",
+      "dq_J5",
+      "dq_J6"
+    ]
+  },
+  "dqd": {
+    "dtype": "float64",
+    "shape": [
+      10000,
+      6
+    ],
+    "columns": [
+      "dqd_J1",
+      "dqd_J2",
+      "dqd_J3",
+      "dqd_J4",
+      "dqd_J5",
+      "dqd_J6"
+    ]
+  },
+  "remaining": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "remaining"
+    ]
+  },
+  "remaining_dot": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "remaining_dot"
+    ]
+  },
+  "weight": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "weight"
+    ]
+  },
+  "weight_dot": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "weight_dot"
+    ]
+  },
+  "source_index": {
+    "dtype": "int64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "source_index"
+    ]
+  },
+  "event_target_um": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "event_target_um"
+    ]
+  },
+  "target_start_um": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "target_start_um"
+    ]
+  },
+  "target_turn_um": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "target_turn_um"
+    ]
+  },
+  "target_stop_um": {
+    "dtype": "float64",
+    "shape": [
+      10000
+    ],
+    "columns": [
+      "target_stop_um"
+    ]
+  }
+}

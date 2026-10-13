@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "scope": "Saved arrays/static source/assets only; no MuJoCo import or new integration, no hardware.",
+  "new_integrations": 0,
+  "approved_png_sha256": "223ad2b9ee02f0ecf76f03f87c677ecbbe1297d6bfc1b21cd3cd6dbe04d6d193",
+  "approved_csv_sha256": "dbdd2c82e4573bd8c5d54d3c166869a65a4a55ec2315bf1b78ab3ba62f377b1f",
+  "samples_per_case": 10000,
+  "g": 0.6634406421952753,
+  "metrics": {
+    "A0": {
+      "std_um": 28.826034960868505,
+      "ptp_um": 197.58614193321478
+    },
+    "Alinear": {
+      "std_um": 19.89697537467832,
+      "ptp_um": 137.04184363896866
+    },
+    "ASFC_strong": {
+      "std_um": 15.976965443773993,
+      "ptp_um": 109.43879929262157
+    }
+  },
+  "array_comparisons": 294,
+  "max_abs_difference": 0.0,
+  "fields_per_npz": 49,
+  "generation_file_checks": 144,
+  "model_reference_checks": 40,
+  "meshes_per_model": 20,
+  "copied_source_files": 523,
+  "existing_integrations": 6,
+  "not_run": [
+    "New simulation/reconstruction/parameter scanning",
+    "Fresh dependency installation on another PC",
+    "Robot interface or action"
+  ],
+  "history_only_source_changes": [
+    "run_slow.py",
+    "test_engineering.py; integration-time originals preserved and SHA-checked"
+  ],
+  "historical_entry_check": {
+    "passed": true,
+    "batches": 2,
+    "guard": "mujoco.mj_step replaced by a rejecting function",
+    "new_integrations": 0,
+    "environment": "Original accepted Python3.12.10/NumPy2.5.3/Matplotlib3.11.2 with existing MuJoCo3.15.0 runtime; no fresh dependency installation"
+  },
+  "portable_redraw": {
+    "passed": true,
+    "rows": 10000,
+    "curve_exact_to_saved_npz": true,
+    "layout": "Original two panels/colors/event stages and outbound2.226..4.38 along position; installed Microsoft YaHei font",
+    "original_png_unchanged": true
+  }
+}

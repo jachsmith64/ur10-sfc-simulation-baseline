@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "samples": 10000,
+  "case_id": "ASFC_strong",
+  "run_id": "20261012T123028491525Z_9f7f6d3a",
+  "data_sha256": "f4ddbf2a955db7d96266d153cdb654a6a938ec2e1a72a26aeeb9b513e99e7012",
+  "logical_arrays_sha256": "ee4b61fd9a76944076a4e08ed39a9143a851921b8917411c93549d467fcc3df4",
+  "saturation_entries": {
+    "ctrl_saturation": 0,
+    "force_saturation": 0,
+    "joint_saturation": 0
+  }
+}

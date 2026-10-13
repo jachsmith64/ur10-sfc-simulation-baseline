@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "run_ids": [
+    "20261012T123028491525Z_9f7f6d3a",
+    "20261012T123042308025Z_05af114f"
+  ],
+  "actual_integrations": 6,
+  "source_environment_identical": true,
+  "array_checks": 294,
+  "max_abs_difference": 0.0,
+  "tolerances": "Yum1e-8; force/torque1e-9; other float1e-12; flags exact; metadata timestamp/run_id/container excluded",
+  "old_results_only_explicit_reference": true
+}

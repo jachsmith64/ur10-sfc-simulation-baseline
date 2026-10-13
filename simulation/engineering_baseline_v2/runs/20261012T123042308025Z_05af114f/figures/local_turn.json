@@ -1,0 +1,27 @@
+{
+  "run_id": "20261012T123042308025Z_05af114f",
+  "generation_id": "cb03fec5b03103c4fe61f132ba0bd7bbb0442b88eee79bae67a87967078958aa",
+  "figure": "local_turn.png",
+  "figure_sha256": "63eccdb7169b0c1037ee5d1854ca5ab2fbf04508b78ba1821931defad42f183c",
+  "case_data_sha256": {
+    "A0": "3f9458ac5fe2b64450b3c0aadc248752575e683fc1c48ef6ae2b53ebd40dfd5a",
+    "Alinear": "824f8f4a29dd48ce04bd051af7b925b0400e058222848e1f683cbee370e49c60",
+    "ASFC_strong": "f4ddbf2a955db7d96266d153cdb654a6a938ec2e1a72a26aeeb9b513e99e7012"
+  },
+  "csv_sha256": {
+    "A0": "2ebd1abc2d7c6d22cfa3d896e6bc656f293233c753a6779e6b768e1e49814a50",
+    "Alinear": "14699832be8383f04c833fe71be5bb45b1351087185d0e821dd0c9b0b8b1e0ee",
+    "ASFC_strong": "c88b8801c2b194f22db37b57347d33ad9d897068214ac720560b981f3dea5180"
+  },
+  "channel": "effective",
+  "window_s": [
+    4.33,
+    6.042999999999999
+  ],
+  "x_unit": "s",
+  "y_unit": "um",
+  "sample_rule": "pre-step 1ms; cold included in full",
+  "plot_version": "F10-run-report-v2",
+  "plot_source_sha256": "ef05e6891fc55820a3cd7ce9734fc23ebad3bec32524bf0001b5703b953fdca4",
+  "raw_no_shift_smooth_rescale": true
+}

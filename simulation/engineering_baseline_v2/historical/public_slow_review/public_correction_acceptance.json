@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "gain": 1.0,
+  "input_id": "d2489c4ed0406761079ce55fc37c0a728bd92c071bad00acede316b32d892715",
+  "A0_log": "outputs\\full_1ms\\construct_1__A0.npz",
+  "check": {
+    "passed": true,
+    "status": "OK",
+    "platform_centers_um": [
+      0.09252200552922751,
+      -0.21849188813760634,
+      -0.16725308749077072,
+      0.08342098491154193
+    ],
+    "original_platform_centers_um": [
+      -22.77985044865649,
+      -22.602085397893656,
+      -20.35438411468471,
+      -20.447947285714974
+    ],
+    "center_threshold_um": 5.0,
+    "saturated_samples": 0,
+    "correction_initial_nonzero_rad": [
+      -3.219320907794433e-05,
+      -8.647589970272895e-06,
+      8.015760069498746e-06,
+      3.638287178624472e-06,
+      -5.343429757969549e-06,
+      1.5089751126870308e-21
+    ],
+    "cold_peak_t_s": 0.035,
+    "cold_peak_um": -71.56365836896717,
+    "public_delta_q_peak_abs_rad": 3.219320907794433e-05,
+    "public_qdot_peak_abs_rad_s": 3.810605005065187e-06,
+    "public_qddot_peak_abs_rad_s2": 7.50711592200436e-06,
+    "interpretation": "A0 only. Accept approximate platform centering within5um, including separately qualified short tail. No parameter/g/event adjustment. Cold state not changed.",
+    "attempt": 1,
+    "gain": 1.0,
+    "log": "outputs\\full_1ms\\construct_1__A0.npz"
+  },
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+﻿joint,trials,amplitudes_deg,both_directions,repeats_each,mean_hold_error_deg,mean_hold_std_deg,mean_motion_std_deg,already_background_bias_deg,already_background_static_std_deg,already_background_dynamic_std_deg,dynamic_background_source,not_independent_new_noise
+J1,12,"0.01,0.05,0.2",True,2,-0.0004648826562760956,0.00127316360677168,0.0030695351987152075,-0.000465,0.001273,0.001781,"Five path-six measured move straight-inner windows, not this micro move/return mean",True
+J2,12,"0.01,0.05,0.2",True,2,-0.002520412972372823,0.0014590889274142833,0.0035915072017269727,-0.00252,0.001459,0.002791,"Five path-six measured move straight-inner windows, not this micro move/return mean",True
+J3,12,"0.01,0.05,0.2",True,2,0.0017203883264785506,0.0010530944012222695,0.0040747181147907695,0.00172,0.001053,0.002993,"Five path-six measured move straight-inner windows, not this micro move/return mean",True
+J4,12,"0.01,0.05,0.2",True,2,-0.0003865913883126639,0.001274236166762428,0.008858306693910788,-0.000387,0.001274,0.004216,"Five path-six measured move straight-inner windows, not this micro move/return mean",True
+J5,12,"0.01,0.05,0.2",True,2,3.4924483337026774e-05,0.0014968025859235772,0.007070365174430462,3.5e-05,0.001497,0.002266,"Five path-six measured move straight-inner windows, not this micro move/return mean",True
+J6,12,"0.01,0.05,0.2",True,2,-0.00043952683405917674,0.0010968704019995409,0.007352448846865277,-0.00044,0.001097,0.002066,"Five path-six measured move straight-inner windows, not this micro move/return mean",True

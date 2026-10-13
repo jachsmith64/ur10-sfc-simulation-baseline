@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "new_full_integrations": 3,
+  "budget": 6,
+  "formal_cases": 3,
+  "protected_original_files": 638,
+  "all_sources_and_old_versions_unchanged": true,
+  "source_input_arrays_identical": true,
+  "public_correction_same_all_cases": true,
+  "zero_reference_unchanged": true,
+  "old_command_structure_restored_with_correction_off": true,
+  "no_new_controller_or_dynamics": true,
+  "anti_torque_not_duplicated_as_external": true,
+  "core_unchanged": [
+    "config.py",
+    "sim_env.py",
+    "controller.py",
+    "sfc.py",
+    "position_execution.py",
+    "background.py",
+    "f_measurement.py",
+    "disturbance.py"
+  ],
+  "model_and_initial_state_unchanged": true,
+  "public_module_no_fabricated_force_or_energy": true,
+  "actual_raw_new_outputs": true,
+  "controller_checks": {
+    "A0": {
+      "max_anti_realized_residual_Nm": 0.0,
+      "independent_controller_formula_error_N": 0.0,
+      "saturation_samples": 0
+    },
+    "Alinear": {
+      "max_anti_realized_residual_Nm": 1.4392112665197522e-12,
+      "independent_controller_formula_error_N": 1.1102230246251565e-16,
+      "saturation_samples": 0
+    },
+    "ASFC_strong": {
+      "max_anti_realized_residual_Nm": 1.4264527059548726e-12,
+      "independent_controller_formula_error_N": 8.881784197001252e-16,
+      "saturation_samples": 0
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "samples": 10000,
+  "last_sample_s": 9.999,
+  "integration_duration_s": 10.0,
+  "max_along_mm": 18.729900451231003,
+  "end_along_mm": -7.494005416219807e-16,
+  "source_duration_s": 7.755,
+  "ordinary_extra_fwd_steps": 1119,
+  "return_rounding_correction_mm": 0.0026312778223118727,
+  "strategy": "Only steady repetition/length reduced; unchanged source start/turn/stop samples, durations, amplitudes. Omit shared duplicate seam samples. Quintic sub-step closure correction only on ordinary return.",
+  "segments": [
+    [
+      "start",
+      0,
+      1927
+    ],
+    [
+      "mid_fwd",
+      1927,
+      3462
+    ],
+    [
+      "mid_fwd",
+      3462,
+      4581
+    ],
+    [
+      "turn_fwd",
+      4581,
+      4982
+    ],
+    [
+      "turn_ret",
+      4982,
+      5644
+    ],
+    [
+      "mid_ret",
+      5644,
+      7692
+    ],
+    [
+      "mid_ret",
+      7692,
+      8818
+    ],
+    [
+      "stop",
+      8818,
+      10000
+    ]
+  ],
+  "phase_bounds": {
+    "start": [
+      0,
+      1927
+    ],
+    "fwd_steady": [
+      1927,
+      4581
+    ],
+    "turn": [
+      4581,
+      5644
+    ],
+    "ret_steady": [
+      5644,
+      8818
+    ],
+    "stop": [
+      8818,
+      10000
+    ]
+  },
+  "start_trigger_s": 1.2849583981754964,
+  "turn_trigger_s": 4.981,
+  "turn_begin_s": 4.58,
+  "stop_begin_s": 8.817,
+  "post_stop_begin_s": 8.857756461197408,
+  "source_stop_speed_evidence": "UR speed ~-5 at6.56085s then~-2 at6.57596s; original iD=6.573s within sampling bracket. Stop event support begins 0.15s earlier, covers deceleration.",
+  "all_events_not_time_compressed": true,
+  "ordinary_repeat_note": "Return repetition ends one source tick before iD, excluding the half-speed deceleration tick from repeated ordinary segments. Genuine final deceleration is retained in stop.",
+  "velocity_limitation": "Original event commands are piecewise linear sampled positions, not a C1 planner. No new event planning. Ordinary joins have matching sampled constant-speed slopes; tiny closure correction has zero endpoint derivative."
+}

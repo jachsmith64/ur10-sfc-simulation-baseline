@@ -1,0 +1,14 @@
+{
+  "archive": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\F组10秒往返_精简文本核查_20261012.zip",
+  "bytes": 15197120,
+  "MiB": 14.49310302734375,
+  "sha256": "9d2defee0daff993ef5c6c253b51828f608b69e16965eab2b5a3dbed98664ac7",
+  "files": 125,
+  "uncompressed_bytes": 51657684,
+  "archive_crc_pass": true,
+  "all_member_hashes_pass": true,
+  "text_only": true,
+  "compression": "ZIP_LZMA method14; Python standard zipfile supported",
+  "full_1ms_rows": 150000,
+  "no_images_meshes_old_full_logs": true
+}
