@@ -6,5 +6,7 @@
   "new_integrations": 0,
   "robot_actions": 0,
   "remote_status": "Pending; mark uploaded only after branch/tag/tree/content verification",
-  "reason_for_private_repository": "Existing UR10 remote mixes historical A/B; APF repository is a different simulation. No unique current F remote/archive. Dedicated private target follows the handoff fallback."
+  "repository_visibility": "public",
+  "visibility_authorization": "User explicitly instructed 建立公开仓库 after complete local archive and upload scope were explained.",
+  "reason_for_public_repository": "Dedicated current F baseline; user instruction supersedes the attachment private-only fallback."
 }

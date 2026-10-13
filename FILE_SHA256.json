@@ -836,7 +836,7 @@
     },
     "README.md": {
       "bytes": 4189,
-      "sha256": "2f63ac7f972e86ee538c3e4fa96af149b84d2bdec68dcdaeeda8fe8f9b79a5c4"
+      "sha256": "2ed5a7141dbbf76fb1d750f56689354a41cc873963655ed50bf88e4d9464b2bb"
     },
     "reference/slow_review_independent.py": {
       "bytes": 12816,
@@ -851,8 +851,8 @@
       "sha256": "413a9fcb6e988b7f7896f9493fff966e0ca7f1b86c49090cf765bc02efa9c6fd"
     },
     "review/archive_intent.json": {
-      "bytes": 639,
-      "sha256": "89c69ea0ee1bc1a26b537e4088030b6d4100081990de392a253756c449ea2f6b"
+      "bytes": 738,
+      "sha256": "d3cd0627706c1e33f23ff73f04c2ae58be274a2be02a6e2b19250a7f5cb97b20"
     },
     "review/source_copy_manifest.json": {
       "bytes": 191899,
@@ -863,8 +863,8 @@
       "sha256": "d9c847ed1ccf346dc60866a5adfd2fbbaa85d0787fa25942e258225ead685327"
     },
     "review/持续问题库.md": {
-      "bytes": 17344,
-      "sha256": "ec596d6dbc924f5b9d740d2ffaa605c8270e4d82bf936371271f2bb18af20630"
+      "bytes": 17349,
+      "sha256": "ff305440afa97bec1dfd554098c33f37e5c2157d91f5fba28aa6f4e4650a8e6d"
     },
     "review/持续问题库_归档前原文.md": {
       "bytes": 16191,
@@ -2192,11 +2192,11 @@
     },
     "当前优选基线.md": {
       "bytes": 778,
-      "sha256": "bf51c39a5e05f26c89b96cddf4d983fac4352e95ecf70f4838317630e58f1852"
+      "sha256": "7ace6ffc6789955e84d99d5223d294ee9ef6fd7400230d62fb74f01d2d7da221"
     },
     "恢复与复用说明.md": {
-      "bytes": 4115,
-      "sha256": "a02ee7fa3f27e698af7141c79c80039ba45fcf8b48fbf0775901bed358eff945"
+      "bytes": 4129,
+      "sha256": "7068667459644ad2b90d50eb2590147fbc6a4e216ae6e4ac3e28bba896e164ff"
     },
     "打开认可结果.cmd": {
       "bytes": 155,

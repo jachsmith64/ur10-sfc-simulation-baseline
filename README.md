@@ -26,7 +26,7 @@
 
 ## Git定位
 
-专用私有仓库：https://github.com/jachsmith64/ur10-sfc-simulation-baseline。
+专用公开仓库：https://github.com/jachsmith64/ur10-sfc-simulation-baseline。
 分支：codex/archive/f-slow-correction-20261012。
 固定tag：f-slow-correction-baseline-20261012。完整commit由该tag解析；远端核实后的commit记录在F组顶层当前优选基线.md及本机local_records/Git定位.json，不在提交内容中自引用自身SHA。
 
