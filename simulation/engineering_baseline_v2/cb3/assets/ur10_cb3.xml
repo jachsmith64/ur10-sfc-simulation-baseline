@@ -1,0 +1,45 @@
+<mujoco model="ur10_cb3_nominal">
+  <!-- CB3 nominal UR DH chain, with link-frame CoM and inertia from UR's ROS 2 description. -->
+  <compiler angle="radian" autolimits="true"/>
+  <option integrator="implicitfast" timestep="0.001"/>
+  <default>
+    <joint axis="0 0 1" range="-6.28319 6.28319" armature="0.1"/>
+    <!-- Affine servo and limits carried over as offline proxy assumptions. -->
+    <general biastype="affine" ctrlrange="-6.2831 6.2831" gainprm="5000" biasprm="0 -5000 -500"/>
+  </default>
+  <worldbody>
+    <body name="shoulder_link" pos="0 0 0.1273">
+      <joint name="shoulder_pan_joint" damping="10"/>
+      <inertial mass="7.1" pos="0.021 -0.027 0" fullinertia="0.03408 0.02156 0.03529 0.00425 0.00002 -0.00008"/>
+      <body name="upper_arm_link" euler="1.5707963267948966 0 0">
+        <joint name="shoulder_lift_joint" damping="10"/>
+        <inertial mass="12.7" pos="-0.232 0 0.158" fullinertia="0.02814 0.77068 0.76943 0.00005 -0.01561 0.00002"/>
+        <body name="forearm_link" pos="-0.612 0 0">
+          <joint name="elbow_joint" range="-3.1415 3.1415" damping="5"/>
+          <inertial mass="4.27" pos="-0.3323 0 0.068" fullinertia="0.01014 0.30928 0.30646 0.00008 0.00916 0"/>
+          <body name="wrist_1_link" pos="-0.5723 0 0.163941">
+            <joint name="wrist_1_joint" damping="2"/>
+            <inertial mass="2" pos="0 -0.018 0.007" fullinertia="0.00296 0.00258 0.00222 0 -0.00001 0.00024"/>
+            <body name="wrist_2_link" pos="0 -0.1157 0" euler="1.5707963267948966 0 0">
+              <joint name="wrist_2_joint" damping="2"/>
+              <inertial mass="2" pos="0 0.018 -0.007" fullinertia="0.00296 0.00258 0.00222 0 0.00001 0.00024"/>
+              <body name="wrist_3_link" pos="0 0.0922 0" euler="-1.5707963267948966 0 0">
+                <joint name="wrist_3_joint" damping="2"/>
+                <inertial mass="0.365" pos="0 0 -0.026" fullinertia="0.00040 0.00041 0.00034 0 0 0"/>
+                <site name="attachment_site" pos="0 0 0" size="0.001"/>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <general name="shoulder_pan" joint="shoulder_pan_joint" forcerange="-330 330"/>
+    <general name="shoulder_lift" joint="shoulder_lift_joint" forcerange="-330 330"/>
+    <general name="elbow" joint="elbow_joint" ctrlrange="-3.1415 3.1415" forcerange="-150 150"/>
+    <general name="wrist_1" joint="wrist_1_joint" forcerange="-56 56"/>
+    <general name="wrist_2" joint="wrist_2_joint" forcerange="-56 56"/>
+    <general name="wrist_3" joint="wrist_3_joint" forcerange="-56 56"/>
+  </actuator>
+</mujoco>

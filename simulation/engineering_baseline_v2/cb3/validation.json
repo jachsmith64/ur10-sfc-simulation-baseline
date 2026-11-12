@@ -1,0 +1,40 @@
+{
+  "geometry": {
+    "physics_step_ms": 1,
+    "tcp_offset_flange_m": [0, 0, 0],
+    "controller_base_transform": "identity",
+    "reference_dh_a_m": [0, -0.612, -0.5723, 0, 0, 0],
+    "reference_dh_d_m": [0.1273, 0, 0, 0.163941, 0.1157, 0.0922],
+    "reference_dh_alpha_quarter_turn": [1, 0, 0, 1, -1, 0]
+  },
+  "a_event": {
+    "ordinary_trim_s": 0.25,
+    "turn_lead_s": 0.25,
+    "turn_tail_s": 0.5,
+    "reversal_marker": "argmax of recorded ur_along_mm in far_end_turn"
+  },
+  "future_control_candidate": {
+    "status": "recorded comparison configuration only; no A dynamics run",
+    "source": "20261110 strong filter and 20261111 A minimal replay; linear comparison uses the archived multiplier 1 arm",
+    "K_N_per_m": 5000.0,
+    "B0_N_s_per_m": 400.0,
+    "linear_multiplier": 1.0,
+    "sfc_n": 1.5,
+    "sfc_mu": 70879.56438014314,
+    "sfc_r": 4.0,
+    "sfc_v_ref_m_s": 0.000509563,
+    "sfc_weight_gamma": 0.01,
+    "velocity_low_pass_hz": 5,
+    "velocity_filter_order": 1,
+    "velocity_high_frequency_residual_fraction": 0.0,
+    "position_source": "C (camera)",
+    "velocity_source": "Q (encoder difference)",
+    "camera_hz_assumed": 132,
+    "camera_availability_delay_ms_assumed": 4,
+    "encoder_sample_ms_assumed": 8,
+    "encoder_availability_delay_ms_assumed": 0,
+    "controller_compute_ms_assumed": 8,
+    "command_hold_ms_assumed": 8,
+    "execution_delay_ms_assumed": 0
+  }
+}
