@@ -78,8 +78,12 @@ def a_event(path, output, cfg):
     speed_sign_change = turn[:-1][(cabinet_speed[turn[:-1]] > 0) & (cabinet_speed[turn[1:]] < 0)]
     reversal_brackets = [[float(t[i]), float(t[i+1])] for i in speed_sign_change]
     trim = cfg["ordinary_trim_s"]
-    ordinary = [(bounds[name][0]+trim, bounds[name][1]-trim)
-                for name in ("X_outbound", "X_return")]
+    ordinary = []
+    for name, direction in (("X_outbound", 1), ("X_return", -1)):
+        moving = t[(phase == name) & (direction*cabinet_speed >= cfg["ordinary_min_motion_speed_mm_s"])]
+        if len(moving) < 2 or moving[-1]-moving[0] <= 2*trim:
+            raise ValueError(f"{path.name} has no usable ordinary {name} window")
+        ordinary.append((float(moving[0]+trim), float(moving[-1]-trim)))
     lo = bounds["X_outbound"][1]-cfg["turn_lead_s"]
     hi = bounds["X_return"][0]+cfg["turn_tail_s"]
     baseline_um = float(np.median(cross[phase == "pre_motion"]))

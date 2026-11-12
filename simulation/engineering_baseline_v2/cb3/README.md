@@ -10,7 +10,7 @@
 python cb3/diagnose.py --a sources_A/P05R01/D1_时序.csv sources_A/P05R02/D1_时序.csv --tcp <同帧关节角与柜端TCP的CSV> --legacy-scene assets_ur10e/scene.xml --out <新目录>
 ```
 
-实测 CSV 使用 `robot_timestamp_s`、`actual_q_J1_rad` … `actual_q_J6_rad`（或六轴统一使用 `_deg`）及 `actual_tcp_x/y/z`（米）。如有 `stage=path_pre_motion` 则报告该静止段中位偏差与运动残差。样本严格按原顺序，同一行配对。A 表按保存的阶段边界取窗，记录沿程最大值和实测派生速度由正转负的采样区间。无采样重构、空间拟合或时间插值。结果包含完整原采样关键列和模型输出。验证环境为 Python 3.13.13、NumPy 2.4.4、MuJoCo 3.8.0。
+实测 CSV 使用 `robot_timestamp_s`、`actual_q_J1_rad` … `actual_q_J6_rad`（或六轴统一使用 `_deg`）及 `actual_tcp_x/y/z`（米）。如有 `stage=path_pre_motion` 则报告该静止段中位偏差与运动残差。样本严格按原顺序，同一行配对。A 表记录沿程最大值和实测派生速度由正转负的采样区间。普通段在原出程、回程标签内，以相应方向达到 2.5 mm/s 的首末样点为界，再从两端各去 0.25 s。这样可排除 R02 仍标为回程的停后静置。无采样重构、空间拟合或时间插值。结果包含完整原采样关键列和模型输出。验证环境为 Python 3.13.13、NumPy 2.4.4、MuJoCo 3.8.0。
 
 ## 参数和边界
 

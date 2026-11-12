@@ -9,6 +9,7 @@
   },
   "a_event": {
     "ordinary_trim_s": 0.25,
+    "ordinary_min_motion_speed_mm_s": 2.5,
     "turn_lead_s": 0.25,
     "turn_tail_s": 0.5,
     "reversal_marker": "argmax of recorded ur_along_mm in far_end_turn"
