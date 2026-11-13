@@ -31,27 +31,27 @@ import math
 
 
 def sfc_force(e: float, v: float, K: float, B0: float, mu: float, n: float,
-              mode: str) -> float:
+              mode: str, gamma: float = 1.0) -> float:
     """返回末端 Y 向控制力 F_SFC [N]（正号 = 指向 +Y）。"""
     if mode == "A0":
         return 0.0
     if mode == "Alinear":
         return -K * e - B0 * v
     if mode == "ASFC":
-        shear = mu * (abs(v) ** (n - 1.0)) * v
+        shear = (gamma * mu) * (abs(v) ** (n - 1.0)) * v
         return -K * e - B0 * v - shear
     raise ValueError(f"未知模式：{mode}（应为 A0 / Alinear / ASFC）")
 
 
 def force_terms(e: float, v: float, K: float, B0: float, mu: float, n: float,
-                mode: str) -> dict[str, float]:
+                mode: str, gamma: float = 1.0) -> dict[str, float]:
     """把 F_SFC 拆成三项，用于验证“非线性项是否真的被激活”。
 
     返回 {"F_K", "F_B", "F_shear", "F_total"}，单位 N，均为已带符号的实际贡献。
     """
     F_K = -K * e
     F_B = -B0 * v
-    F_shear = -mu * (abs(v) ** (n - 1.0)) * v
+    F_shear = -(gamma * mu) * (abs(v) ** (n - 1.0)) * v
     if mode == "A0":
         F_K = F_B = F_shear = 0.0
     elif mode == "Alinear":

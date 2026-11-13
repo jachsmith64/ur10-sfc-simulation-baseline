@@ -92,7 +92,8 @@ class SFCController:
         """采一次状态 → 算 F_SFC → 转成 τ 并施加。返回本步记录。"""
         e, v = self.measurement.measure(self.env, y_d, y_d_dot)
         terms = sfc.force_terms(e, v, self.params["K"], self.params["B0"],
-                                self.params["mu"], self.params["n"], self.mode)
+                                self.params["mu"], self.params["n"], self.mode,
+                                gamma=self.params.get("gamma", 1.0))
         f_sfc = terms["F_total"]
         tau = self.execution.execute(self.env, f_sfc)
         if self.actuation is None:
