@@ -1,0 +1,1245 @@
+{
+  "membership": "left inclusive, right exclusive; final original frame included",
+  "source_only": true,
+  "transition_policy": "C2 between old and new phase medians, after protected events",
+  "slow_trend_policy": "Separate optional additive within-stage drift. Keep zero unless repeatable, monotonic change exceeds within-stage scatter. No shared cross-stage slope.",
+  "boundary_sensitivity": "Individual trial only, move each event-to-transition boundary -60 or +60 ms; move following stable boundary with it, all other boundaries retained.",
+  "trials": {
+    "X_P05_R01": {
+      "source_npz_sha256": "ed1c06be6d8c613e2816a47a5019b259ed637ae81bd97aa63ccd8297c3744e3a",
+      "source_record_sha256": "19222d64de36199b5b3be5413d35fc900a0bc756d251f9ad0b82b4248f2379fc",
+      "source_clock_origin_ns": 111245196440700,
+      "speed_mm_s": 5.0,
+      "cabinet_gaps_s": [
+        [
+          1.0021706000000001,
+          1.252204
+        ],
+        [
+          6.602590500000001,
+          6.7544708
+        ]
+      ],
+      "original_stage_labels_s": {
+        "pre_motion": [
+          0.0,
+          1.2843283
+        ],
+        "X_outbound": [
+          1.2906433000000002,
+          3.8563138
+        ],
+        "far_end_turn": [
+          3.8638809000000003,
+          4.0560017
+        ],
+        "X_return": [
+          4.062025,
+          6.6086887
+        ],
+        "post_stop": [
+          6.6162378,
+          7.761492100000001
+        ]
+      },
+      "windows_s": {
+        "pre_static": [
+          0.0,
+          1.255
+        ],
+        "start": [
+          1.255,
+          1.96
+        ],
+        "start_transition": [
+          1.96,
+          2.24
+        ],
+        "outbound": [
+          2.24,
+          3.84
+        ],
+        "turn": [
+          3.84,
+          4.63
+        ],
+        "turn_transition": [
+          4.63,
+          5.02
+        ],
+        "return_straight": [
+          5.02,
+          6.42
+        ],
+        "stop": [
+          6.42,
+          7.2
+        ],
+        "stop_transition": [
+          7.2,
+          7.4
+        ],
+        "post_static": [
+          7.4,
+          7.761492100000001
+        ]
+      },
+      "source_statistics": {
+        "pre_static": {
+          "valid_frames": 159,
+          "invalid_saved_frames": 0,
+          "median_um": -0.020821462375421707,
+          "p10_p90_um": [
+            -1.9314873116982223,
+            2.6097370020293984
+          ],
+          "third_medians_um": [
+            1.1510119093968587,
+            -0.21864737005887258,
+            -0.4289264433415516
+          ],
+          "cabinet_samples": 63,
+          "median_x_speed_mm_s": -0.0010069853368916617
+        },
+        "start": {
+          "valid_frames": 87,
+          "invalid_saved_frames": 0,
+          "median_um": 65.80179371443815,
+          "p10_p90_um": [
+            4.795391730532976,
+            108.96657435475666
+          ],
+          "third_medians_um": [
+            24.074216405413203,
+            77.63721100238402,
+            47.7070107605789
+          ],
+          "cabinet_samples": 87,
+          "median_x_speed_mm_s": 4.9763232057168265
+        },
+        "start_transition": {
+          "valid_frames": 35,
+          "invalid_saved_frames": 0,
+          "median_um": 31.980193475821807,
+          "p10_p90_um": [
+            24.81127639107126,
+            43.93853834866104
+          ],
+          "third_medians_um": [
+            41.57443526537751,
+            28.892369939578266,
+            29.9735046487661
+          ],
+          "cabinet_samples": 35,
+          "median_x_speed_mm_s": 4.92326510141067
+        },
+        "outbound": {
+          "valid_frames": 200,
+          "invalid_saved_frames": 0,
+          "median_um": 20.657699286324902,
+          "p10_p90_um": [
+            2.411030795723949,
+            45.205781152135096
+          ],
+          "third_medians_um": [
+            18.778161770913858,
+            13.97148601360196,
+            30.091665926139363
+          ],
+          "cabinet_samples": 200,
+          "median_x_speed_mm_s": 4.934460974754525
+        },
+        "turn": {
+          "valid_frames": 98,
+          "invalid_saved_frames": 0,
+          "median_um": -57.4396032640566,
+          "p10_p90_um": [
+            -104.99821376420635,
+            34.743762191347315
+          ],
+          "third_medians_um": [
+            29.233452892350783,
+            -97.00656656013992,
+            -57.4396032640566
+          ],
+          "cabinet_samples": 99,
+          "median_x_speed_mm_s": -4.725073370877387
+        },
+        "turn_transition": {
+          "valid_frames": 46,
+          "invalid_saved_frames": 0,
+          "median_um": -35.75624706143838,
+          "p10_p90_um": [
+            -51.811200407474274,
+            -16.210548400978553
+          ],
+          "third_medians_um": [
+            -49.11210968280053,
+            -22.83703660104133,
+            -34.051071899654644
+          ],
+          "cabinet_samples": 49,
+          "median_x_speed_mm_s": -5.0142249117871405
+        },
+        "return_straight": {
+          "valid_frames": 176,
+          "invalid_saved_frames": 0,
+          "median_um": -14.69293009515048,
+          "p10_p90_um": [
+            -33.54142253372714,
+            3.232793465058018
+          ],
+          "third_medians_um": [
+            -14.626763625536865,
+            -9.12617856034904,
+            -22.919006536908416
+          ],
+          "cabinet_samples": 175,
+          "median_x_speed_mm_s": -4.985437170412301
+        },
+        "stop": {
+          "valid_frames": 100,
+          "invalid_saved_frames": 0,
+          "median_um": -4.539598697271627,
+          "p10_p90_um": [
+            -19.332182737275737,
+            3.1404336262587167
+          ],
+          "third_medians_um": [
+            -8.837830533795728,
+            -7.687588399927748,
+            -1.2654696984220004
+          ],
+          "cabinet_samples": 51,
+          "median_x_speed_mm_s": 0.0256716329698395
+        },
+        "stop_transition": {
+          "valid_frames": 24,
+          "invalid_saved_frames": 0,
+          "median_um": 9.605518218885452,
+          "p10_p90_um": [
+            4.299566093095815,
+            14.540989814826503
+          ],
+          "third_medians_um": [
+            7.944612912838403,
+            10.829784246386014,
+            12.80111650304029
+          ],
+          "cabinet_samples": 13,
+          "median_x_speed_mm_s": 0.017683704785719952
+        },
+        "post_static": {
+          "valid_frames": 46,
+          "invalid_saved_frames": 0,
+          "median_um": 10.03572880369607,
+          "p10_p90_um": [
+            7.3551482429148685,
+            14.267923409105755
+          ],
+          "third_medians_um": [
+            10.21534593967787,
+            11.086709594490658,
+            8.461138304472348
+          ],
+          "cabinet_samples": 22,
+          "median_x_speed_mm_s": 0.01664467564794538
+        }
+      },
+      "bases_um": {
+        "pre_static": -0.020821462375421707,
+        "outbound": 20.657699286324902,
+        "return_straight": -14.69293009515048,
+        "post_static": 10.03572880369607
+      },
+      "optional_drift_um": 0.0,
+      "rationale": [
+        "X leaves rest near 1.29 s. Y reaches a second and larger peak around 1.75 s after X is already near 5 mm/s.",
+        "Cabinet deceleration follows about 3.84 s. The negative Y trough near 4.25 s and the next recovery lobe extend past reversal in X.",
+        "The Y tail grows before final deceleration. Cabinet rows are sparse across 6.603–6.754 s. Camera resolves the tail and post-stop platform."
+      ],
+      "alternatives": {
+        "start": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              1.9,
+              2.18
+            ],
+            "stable_window": [
+              2.18,
+              3.84
+            ],
+            "stable_source": {
+              "valid_frames": 206,
+              "invalid_saved_frames": 0,
+              "median_um": 21.234418251163518,
+              "p10_p90_um": [
+                2.563945515464162,
+                45.096236325481
+              ],
+              "third_medians_um": [
+                22.659787410630834,
+                13.624388212260126,
+                29.825928221716552
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              2.02,
+              2.3000000000000003
+            ],
+            "stable_window": [
+              2.3000000000000003,
+              3.84
+            ],
+            "stable_source": {
+              "valid_frames": 191,
+              "invalid_saved_frames": 0,
+              "median_um": 19.01643930213221,
+              "p10_p90_um": [
+                1.827006454745849,
+                42.421721687450926
+              ],
+              "third_medians_um": [
+                17.603033798374874,
+                14.306962381019519,
+                30.601065605158393
+              ]
+            }
+          }
+        ],
+        "turn": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              4.57,
+              4.96
+            ],
+            "stable_window": [
+              4.96,
+              6.42
+            ],
+            "stable_source": {
+              "valid_frames": 182,
+              "invalid_saved_frames": 0,
+              "median_um": -15.230129586115275,
+              "p10_p90_um": [
+                -35.896990203157465,
+                3.1352437942352473
+              ],
+              "third_medians_um": [
+                -17.20745444491558,
+                -10.634687935946918,
+                -22.807171361809097
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              4.6899999999999995,
+              5.079999999999999
+            ],
+            "stable_window": [
+              5.079999999999999,
+              6.42
+            ],
+            "stable_source": {
+              "valid_frames": 168,
+              "invalid_saved_frames": 0,
+              "median_um": -14.529487523169127,
+              "p10_p90_um": [
+                -33.42420699367692,
+                3.2012545814653697
+              ],
+              "third_medians_um": [
+                -13.204319008149827,
+                -8.75668968774432,
+                -23.28822230986547
+              ]
+            }
+          }
+        ],
+        "stop": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              7.140000000000001,
+              7.340000000000001
+            ],
+            "stable_window": [
+              7.340000000000001,
+              7.761492100000001
+            ],
+            "stable_source": {
+              "valid_frames": 54,
+              "invalid_saved_frames": 0,
+              "median_um": 10.21534593967787,
+              "p10_p90_um": [
+                7.556993690965526,
+                14.322476238654708
+              ],
+              "third_medians_um": [
+                12.25073509402114,
+                10.762572560098953,
+                9.139458868087917
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              7.26,
+              7.46
+            ],
+            "stable_window": [
+              7.46,
+              7.761492100000001
+            ],
+            "stable_source": {
+              "valid_frames": 38,
+              "invalid_saved_frames": 0,
+              "median_um": 9.965935906276613,
+              "p10_p90_um": [
+                7.151371881199202,
+                13.869177095659909
+              ],
+              "third_medians_um": [
+                9.961847688553036,
+                12.016049689595375,
+                7.747778887228179
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "X_P05_R02": {
+      "source_npz_sha256": "a0d79462af86be06746421dbeeff3ab2f59ff53a27572701672ce2ff136bba7a",
+      "source_record_sha256": "1462108345f58d4574cd0e1fc37f78330bea1cdc7db45ba2911fee5d60b01b3b",
+      "source_clock_origin_ns": 111274814435600,
+      "speed_mm_s": 5.0,
+      "cabinet_gaps_s": [
+        [
+          1.0080775,
+          1.2460292000000002
+        ],
+        [
+          6.6008487,
+          6.6702617
+        ]
+      ],
+      "original_stage_labels_s": {
+        "pre_motion": [
+          0.0,
+          1.2930727000000002
+        ],
+        "X_outbound": [
+          1.3088656,
+          3.8548726
+        ],
+        "far_end_turn": [
+          3.8609962,
+          4.045380000000001
+        ],
+        "X_return": [
+          4.0572073,
+          7.5841022
+        ],
+        "post_stop": [
+          7.5916613,
+          7.676752700000001
+        ]
+      },
+      "windows_s": {
+        "pre_static": [
+          0.0,
+          1.275
+        ],
+        "start": [
+          1.275,
+          1.98
+        ],
+        "start_transition": [
+          1.98,
+          2.27
+        ],
+        "outbound": [
+          2.27,
+          3.83
+        ],
+        "turn": [
+          3.83,
+          4.58
+        ],
+        "turn_transition": [
+          4.58,
+          5.02
+        ],
+        "return_straight": [
+          5.02,
+          6.31
+        ],
+        "stop": [
+          6.31,
+          7.22
+        ],
+        "stop_transition": [
+          7.22,
+          7.42
+        ],
+        "post_static": [
+          7.42,
+          7.676752700000001
+        ]
+      },
+      "source_statistics": {
+        "pre_static": {
+          "valid_frames": 162,
+          "invalid_saved_frames": 0,
+          "median_um": 0.04088026023754282,
+          "p10_p90_um": [
+            -3.554639094734434,
+            3.463194098704877
+          ],
+          "third_medians_um": [
+            2.1206703079863938,
+            -2.3508795564693834,
+            -0.7029349559002307
+          ],
+          "cabinet_samples": 67,
+          "median_x_speed_mm_s": -0.00897081990980136
+        },
+        "start": {
+          "valid_frames": 89,
+          "invalid_saved_frames": 0,
+          "median_um": 64.71902261573607,
+          "p10_p90_um": [
+            9.585664679591794,
+            107.98786576098531
+          ],
+          "third_medians_um": [
+            35.141008947568814,
+            79.69519397915322,
+            27.466205145275705
+          ],
+          "cabinet_samples": 88,
+          "median_x_speed_mm_s": 4.954399129770077
+        },
+        "start_transition": {
+          "valid_frames": 37,
+          "invalid_saved_frames": 0,
+          "median_um": 43.009819924533616,
+          "p10_p90_um": [
+            32.55144034877708,
+            57.26770937506544
+          ],
+          "third_medians_um": [
+            47.21458774150532,
+            37.738101428427925,
+            47.1784117004906
+          ],
+          "cabinet_samples": 36,
+          "median_x_speed_mm_s": 4.961432490548464
+        },
+        "outbound": {
+          "valid_frames": 195,
+          "invalid_saved_frames": 0,
+          "median_um": 28.643560097420472,
+          "p10_p90_um": [
+            11.545328665628894,
+            51.306606285371906
+          ],
+          "third_medians_um": [
+            27.557392687709346,
+            21.484161590498232,
+            38.395007784568286
+          ],
+          "cabinet_samples": 195,
+          "median_x_speed_mm_s": 4.936838239678503
+        },
+        "turn": {
+          "valid_frames": 96,
+          "invalid_saved_frames": 0,
+          "median_um": -44.0051294029149,
+          "p10_p90_um": [
+            -105.29131612715108,
+            35.09887290012911
+          ],
+          "third_medians_um": [
+            29.74181911368101,
+            -87.46990604135152,
+            -51.38647340865299
+          ],
+          "cabinet_samples": 94,
+          "median_x_speed_mm_s": -4.679864930296563
+        },
+        "turn_transition": {
+          "valid_frames": 55,
+          "invalid_saved_frames": 0,
+          "median_um": -32.19909656057414,
+          "p10_p90_um": [
+            -42.16949907245383,
+            -0.47047432116341675
+          ],
+          "third_medians_um": [
+            -32.70734437953988,
+            -24.64686751401372,
+            -31.05830266545449
+          ],
+          "cabinet_samples": 55,
+          "median_x_speed_mm_s": -4.91633241480676
+        },
+        "return_straight": {
+          "valid_frames": 164,
+          "invalid_saved_frames": 0,
+          "median_um": -20.127136758635295,
+          "p10_p90_um": [
+            -35.89609708975024,
+            -0.9423531970338661
+          ],
+          "third_medians_um": [
+            -25.058321697133373,
+            -14.84231248946606,
+            -24.777250093747206
+          ],
+          "cabinet_samples": 161,
+          "median_x_speed_mm_s": -4.9661895606714985
+        },
+        "stop": {
+          "valid_frames": 114,
+          "invalid_saved_frames": 0,
+          "median_um": 1.7093894469424002,
+          "p10_p90_um": [
+            -50.66241610715134,
+            10.816144425341896
+          ],
+          "third_medians_um": [
+            -18.604236878689534,
+            3.9838053021329984,
+            3.515323960086899
+          ],
+          "cabinet_samples": 71,
+          "median_x_speed_mm_s": -1.5395849742877714
+        },
+        "stop_transition": {
+          "valid_frames": 26,
+          "invalid_saved_frames": 0,
+          "median_um": 14.900891700438244,
+          "p10_p90_um": [
+            12.9038996028208,
+            17.6684811238972
+          ],
+          "third_medians_um": [
+            13.753845403900463,
+            16.195430617694196,
+            15.82738637989002
+          ],
+          "cabinet_samples": 13,
+          "median_x_speed_mm_s": 0.001517152682224596
+        },
+        "post_static": {
+          "valid_frames": 32,
+          "invalid_saved_frames": 0,
+          "median_um": 16.038664244528437,
+          "p10_p90_um": [
+            13.713130907457922,
+            18.49919437714067
+          ],
+          "third_medians_um": [
+            15.61519871530421,
+            16.843302734389216,
+            15.866487460706644
+          ],
+          "cabinet_samples": 15,
+          "median_x_speed_mm_s": 0.0007317922700849063
+        }
+      },
+      "bases_um": {
+        "pre_static": 0.04088026023754282,
+        "outbound": 28.643560097420472,
+        "return_straight": -20.127136758635295,
+        "post_static": 16.038664244528437
+      },
+      "optional_drift_um": 0.0,
+      "rationale": [
+        "The larger Y peak repeats near 1.75 s, after the first X rise. Stable fitting starts after the Y recovery and shoulder.",
+        "The return Y trough near 4.26 s is much later than the X zero crossing. The return platform is calibrated from 5.02 s.",
+        "Vision Y changes sharply near 6.5 s. Cabinet speed is near zero after the 6.601–6.670 s gap, although the archived return label persists to 7.584 s."
+      ],
+      "alternatives": {
+        "start": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              1.92,
+              2.21
+            ],
+            "stable_window": [
+              2.21,
+              3.83
+            ],
+            "stable_source": {
+              "valid_frames": 202,
+              "invalid_saved_frames": 0,
+              "median_um": 29.271385303166515,
+              "p10_p90_um": [
+                12.010853192654928,
+                52.351919486769916
+              ],
+              "third_medians_um": [
+                30.391159599936437,
+                21.799744355036314,
+                38.31428854672716
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              2.04,
+              2.33
+            ],
+            "stable_window": [
+              2.33,
+              3.83
+            ],
+            "stable_source": {
+              "valid_frames": 186,
+              "invalid_saved_frames": 0,
+              "median_um": 28.005430357264807,
+              "p10_p90_um": [
+                10.992880516785247,
+                46.568874788811
+              ],
+              "third_medians_um": [
+                27.532933836625862,
+                19.9593408643357,
+                38.41248340784201
+              ]
+            }
+          }
+        ],
+        "turn": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              4.5200000000000005,
+              4.96
+            ],
+            "stable_window": [
+              4.96,
+              6.31
+            ],
+            "stable_source": {
+              "valid_frames": 171,
+              "invalid_saved_frames": 0,
+              "median_um": -21.03042042375541,
+              "p10_p90_um": [
+                -36.82384336965283,
+                -1.4581608197388354
+              ],
+              "third_medians_um": [
+                -29.35245565368739,
+                -13.78260694601561,
+                -24.860154321801033
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              4.64,
+              5.079999999999999
+            ],
+            "stable_window": [
+              5.079999999999999,
+              6.31
+            ],
+            "stable_source": {
+              "valid_frames": 156,
+              "invalid_saved_frames": 0,
+              "median_um": -19.83264908355858,
+              "p10_p90_um": [
+                -35.813789530235155,
+                -1.0897268035210093
+              ],
+              "third_medians_um": [
+                -20.969903922285845,
+                -16.31256240999968,
+                -24.36002962859404
+              ]
+            }
+          }
+        ],
+        "stop": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              7.16,
+              7.36
+            ],
+            "stable_window": [
+              7.36,
+              7.676752700000001
+            ],
+            "stable_source": {
+              "valid_frames": 40,
+              "invalid_saved_frames": 0,
+              "median_um": 16.038664244528437,
+              "p10_p90_um": [
+                13.684491845527848,
+                18.432112354972396
+              ],
+              "third_medians_um": [
+                16.05534945402491,
+                15.41606223953774,
+                16.280112849297275
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              7.279999999999999,
+              7.4799999999999995
+            ],
+            "stable_window": [
+              7.4799999999999995,
+              7.676752700000001
+            ],
+            "stable_source": {
+              "valid_frames": 25,
+              "invalid_saved_frames": 0,
+              "median_um": 16.17194297921209,
+              "p10_p90_um": [
+                13.744202040054144,
+                18.337199901015467
+              ],
+              "third_medians_um": [
+                16.17194297921209,
+                16.601181867520488,
+                15.866487460706644
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "X_P10_R01": {
+      "source_npz_sha256": "f3ee5773dde6170a2fc503854a3455ce2284253da1fdf85ab5741dfe08d7b28b",
+      "source_record_sha256": "09bdcdf16b33c17aa93a9f2c2d0ddd5723e0644d9e09ec25ae181533a35452fd",
+      "source_clock_origin_ns": 111252977134200,
+      "speed_mm_s": 10.0,
+      "cabinet_gaps_s": [
+        [
+          0.9995883000000001,
+          1.2537207000000001
+        ],
+        [
+          6.1202465,
+          6.3137384
+        ]
+      ],
+      "original_stage_labels_s": {
+        "pre_motion": [
+          0.0,
+          1.3232374
+        ],
+        "X_outbound": [
+          1.3327488,
+          3.6143872000000004
+        ],
+        "far_end_turn": [
+          3.6219846,
+          3.8109549
+        ],
+        "X_return": [
+          3.8185454,
+          6.1138650000000005
+        ],
+        "post_stop": [
+          6.1199843000000005,
+          7.3194628
+        ]
+      },
+      "windows_s": {
+        "pre_static": [
+          0.0,
+          1.29
+        ],
+        "start": [
+          1.29,
+          1.98
+        ],
+        "start_transition": [
+          1.98,
+          2.18
+        ],
+        "outbound": [
+          2.18,
+          3.62
+        ],
+        "turn": [
+          3.62,
+          4.68
+        ],
+        "turn_transition": [
+          4.68,
+          4.97
+        ],
+        "return_straight": [
+          4.97,
+          5.94
+        ],
+        "stop": [
+          5.94,
+          6.73
+        ],
+        "stop_transition": [
+          6.73,
+          6.94
+        ],
+        "post_static": [
+          6.94,
+          7.3194628
+        ]
+      },
+      "source_statistics": {
+        "pre_static": {
+          "valid_frames": 160,
+          "invalid_saved_frames": 0,
+          "median_um": -0.08682673841173122,
+          "p10_p90_um": [
+            -3.6506926588252457,
+            2.1180000037464306
+          ],
+          "third_medians_um": [
+            0.5761845876765426,
+            -0.17776328849792788,
+            -2.4272284839929794
+          ],
+          "cabinet_samples": 65,
+          "median_x_speed_mm_s": 0.008238006927049527
+        },
+        "start": {
+          "valid_frames": 85,
+          "invalid_saved_frames": 0,
+          "median_um": 46.291375113041454,
+          "p10_p90_um": [
+            12.930261493717929,
+            100.47818537973201
+          ],
+          "third_medians_um": [
+            46.291375113041454,
+            96.00510923443966,
+            33.130996280666324
+          ],
+          "cabinet_samples": 67,
+          "median_x_speed_mm_s": 9.916320820423818
+        },
+        "start_transition": {
+          "valid_frames": 25,
+          "invalid_saved_frames": 0,
+          "median_um": 5.606147077039431,
+          "p10_p90_um": [
+            -6.718119025125681,
+            19.506007635786297
+          ],
+          "third_medians_um": [
+            8.468572298246793,
+            -4.032988710118605,
+            11.327529303290223
+          ],
+          "cabinet_samples": 20,
+          "median_x_speed_mm_s": 10.05794143722203
+        },
+        "outbound": {
+          "valid_frames": 182,
+          "invalid_saved_frames": 0,
+          "median_um": 3.8627686282535922,
+          "p10_p90_um": [
+            -9.861410436052621,
+            23.998646648130833
+          ],
+          "third_medians_um": [
+            1.5756426395700571,
+            3.0073977872261386,
+            6.726962173141592
+          ],
+          "cabinet_samples": 142,
+          "median_x_speed_mm_s": 10.101639216462111
+        },
+        "turn": {
+          "valid_frames": 133,
+          "invalid_saved_frames": 0,
+          "median_um": -38.24634756790839,
+          "p10_p90_um": [
+            -95.129637099749,
+            -3.818956612928223
+          ],
+          "third_medians_um": [
+            -16.461219600846903,
+            -68.42375855654376,
+            -28.960450588494716
+          ],
+          "cabinet_samples": 103,
+          "median_x_speed_mm_s": -9.918184169451052
+        },
+        "turn_transition": {
+          "valid_frames": 37,
+          "invalid_saved_frames": 0,
+          "median_um": -12.338514168513731,
+          "p10_p90_um": [
+            -26.03585807275345,
+            -0.4719549117990532
+          ],
+          "third_medians_um": [
+            -12.700149664536525,
+            -13.971726795382892,
+            -8.066026863536164
+          ],
+          "cabinet_samples": 30,
+          "median_x_speed_mm_s": -9.991568814025156
+        },
+        "return_straight": {
+          "valid_frames": 121,
+          "invalid_saved_frames": 0,
+          "median_um": -1.6781228302991322,
+          "p10_p90_um": [
+            -22.031227554882847,
+            9.869030991030689
+          ],
+          "third_medians_um": [
+            -14.289890375915329,
+            6.29214584278029,
+            -2.9848366181619377
+          ],
+          "cabinet_samples": 96,
+          "median_x_speed_mm_s": -10.13969536752249
+        },
+        "stop": {
+          "valid_frames": 99,
+          "invalid_saved_frames": 0,
+          "median_um": -9.66207334545538,
+          "p10_p90_um": [
+            -21.890514757079256,
+            2.811089620701384
+          ],
+          "third_medians_um": [
+            -13.752278389404422,
+            -10.980718712972733,
+            -5.9696387582541215
+          ],
+          "cabinet_samples": 43,
+          "median_x_speed_mm_s": 0.027611767517584134
+        },
+        "stop_transition": {
+          "valid_frames": 27,
+          "invalid_saved_frames": 0,
+          "median_um": 7.198671595180376,
+          "p10_p90_um": [
+            4.331034958994884,
+            9.291019478894205
+          ],
+          "third_medians_um": [
+            6.127952243204126,
+            6.9625509735451585,
+            7.555471016368852
+          ],
+          "cabinet_samples": 13,
+          "median_x_speed_mm_s": 0.014747748698798977
+        },
+        "post_static": {
+          "valid_frames": 47,
+          "invalid_saved_frames": 0,
+          "median_um": 7.764010087057647,
+          "p10_p90_um": [
+            6.5320294162636525,
+            8.93759657779728
+          ],
+          "third_medians_um": [
+            7.967218484860514,
+            7.727232960599961,
+            7.764010087057647
+          ],
+          "cabinet_samples": 23,
+          "median_x_speed_mm_s": 0.005917030889732729
+        }
+      },
+      "bases_um": {
+        "pre_static": -0.08682673841173122,
+        "outbound": 3.8627686282535922,
+        "return_straight": -1.6781228302991322,
+        "post_static": 7.764010087057647
+      },
+      "optional_drift_um": 0.0,
+      "rationale": [
+        "X leaves rest near 1.33 s. Y peaks around 1.58 s and keeps returning towards the outbound platform through about 2 s.",
+        "X decelerates near 3.62 s. Y stays depressed after reverse speed is established. Protect the trough and recovery through 4.68 s.",
+        "The terminal Y excursion and post-stop recovery bracket the 6.120–6.314 s cabinet gap. The camera establishes the later static plateau."
+      ],
+      "alternatives": {
+        "start": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              1.92,
+              2.12
+            ],
+            "stable_window": [
+              2.12,
+              3.62
+            ],
+            "stable_source": {
+              "valid_frames": 189,
+              "invalid_saved_frames": 0,
+              "median_um": 4.431676378150886,
+              "p10_p90_um": [
+                -9.821335560678461,
+                23.33788913655811
+              ],
+              "third_medians_um": [
+                1.5756426395700571,
+                4.434008684646326,
+                5.656171377969896
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              2.04,
+              2.24
+            ],
+            "stable_window": [
+              2.24,
+              3.62
+            ],
+            "stable_source": {
+              "valid_frames": 174,
+              "invalid_saved_frames": 0,
+              "median_um": 4.507472017257886,
+              "p10_p90_um": [
+                -9.425923339326069,
+                24.1331417562033
+              ],
+              "third_medians_um": [
+                10.623272318923453,
+                1.243402275493822,
+                6.877018894243021
+              ]
+            }
+          }
+        ],
+        "turn": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              4.62,
+              4.91
+            ],
+            "stable_window": [
+              4.91,
+              5.94
+            ],
+            "stable_source": {
+              "valid_frames": 128,
+              "invalid_saved_frames": 0,
+              "median_um": -2.9848366181619377,
+              "p10_p90_um": [
+                -22.067460506667246,
+                9.675556045755151
+              ],
+              "third_medians_um": [
+                -13.027529049349015,
+                5.772186440589775,
+                -2.7552543841739885
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              4.739999999999999,
+              5.029999999999999
+            ],
+            "stable_window": [
+              5.029999999999999,
+              5.94
+            ],
+            "stable_source": {
+              "valid_frames": 113,
+              "invalid_saved_frames": 0,
+              "median_um": -0.9522235959189135,
+              "p10_p90_um": [
+                -18.898705144911908,
+                11.153358689126925
+              ],
+              "third_medians_um": [
+                -11.856398728942963,
+                7.059171448503317,
+                -3.241721587406778
+              ]
+            }
+          }
+        ],
+        "stop": [
+          {
+            "delta_s": -0.06,
+            "transition": [
+              6.670000000000001,
+              6.880000000000001
+            ],
+            "stable_window": [
+              6.880000000000001,
+              7.3194628
+            ],
+            "stable_source": {
+              "valid_frames": 55,
+              "invalid_saved_frames": 0,
+              "median_um": 7.764010087057647,
+              "p10_p90_um": [
+                6.522613211403112,
+                9.321507753526177
+              ],
+              "third_medians_um": [
+                7.637904215732578,
+                8.100100056435174,
+                7.700614950161708
+              ]
+            }
+          },
+          {
+            "delta_s": 0.06,
+            "transition": [
+              6.79,
+              7.0
+            ],
+            "stable_window": [
+              7.0,
+              7.3194628
+            ],
+            "stable_source": {
+              "valid_frames": 40,
+              "invalid_saved_frames": 0,
+              "median_um": 7.7633742982643845,
+              "p10_p90_um": [
+                6.546153723554466,
+                8.92566297990662
+              ],
+              "third_medians_um": [
+                7.605057529696516,
+                7.762738509471121,
+                8.042837900525281
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

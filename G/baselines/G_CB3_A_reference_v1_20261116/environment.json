@@ -1,0 +1,20 @@
+{
+  "offline_integrator": {
+    "python": "3.12.10",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mujoco": "3.15.0",
+    "ruckig": "0.19.4",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "loader": "v02_runtime/offline.py -> guarded_run.py",
+  "runtime_folders": "Supply the existing V02 runtime and scientific-library folders explicitly. Runtime folders are not archived.",
+  "timing": {
+    "physics_step_ms": 1,
+    "command_period_ms": 8,
+    "camera_hz": 132,
+    "camera_delay_ms": 4,
+    "execution_delay_ms": 0
+  },
+  "expected_compiled_model": "CB3, six axes, Kp 5000 Nm/rad and Kd 500 Nms/rad per axis"
+}

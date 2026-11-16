@@ -1,0 +1,312 @@
+{
+  "source_kind": "archived_per_frame_with_original_cabinet_and_sidecar",
+  "identity": {
+    "20260901_184044_B05_X_P10_R01_UR10.txt": {
+      "path": "data/original/X_P10_R01/20260901_184044_B05_X_P10_R01_UR10.txt",
+      "sha256": "96581450d44235c2d796e730d96a9962cb1bda31cc8b43b0006fd2d3d928fa09"
+    },
+    "20260901_184044_B05_X_P10_R01_FRAME_TIMESTAMPS.csv": {
+      "path": "data/original/X_P10_R01/20260901_184044_B05_X_P10_R01_FRAME_TIMESTAMPS.csv",
+      "sha256": "cf3546522e7608860c7c9b8166b494351e66459dc26802033014e763938a6537"
+    },
+    "20260901_184044_B05_X_P10_R01_META.json": {
+      "path": "data/original/X_P10_R01/20260901_184044_B05_X_P10_R01_META.json",
+      "sha256": "6528cd7a67e52205efbf4dacf75d90a4352a3e2f8a1cd134550c2ecd3172fc7a"
+    },
+    "inventory.csv": {
+      "path": "data/analysis_20260902/inventory.csv",
+      "sha256": "13005b0bec04fa638406acb5494dca32873bbb0424152b62732d80133936307f"
+    },
+    "20260901_184044_B05_X_P10_R01_derived.csv": {
+      "path": "data/analysis_20260902/20260901_184044_B05_X_P10_R01_derived.csv",
+      "sha256": "e6e4bc510f9710e432cca406940487842406511b3df37b8dd8374507a46cc363"
+    },
+    "phase_summary.csv": {
+      "path": "data/analysis_20260902/phase_summary.csv",
+      "sha256": "f131fd0dde9ab31e7e4a60771a312caac1f6f7794bdb51f32ea3f48b6860b5e4"
+    },
+    "axis_mapping.json": {
+      "path": "data/analysis_20260902/axis_mapping.json",
+      "sha256": "8caff58f9f8587591d3554513d1589b1337fe9e7ea1769e2ff4d222772895246"
+    },
+    "run_manifest.json": {
+      "path": "data/analysis_20260902/run_manifest.json",
+      "sha256": "4c5fd32d834fc8556b776e60cf3075ce1ce4f33d46a58c5f5758b94aa6921ac3"
+    }
+  },
+  "recorded_originals": {
+    "META": {
+      "filename": "20260901_184044_B05_X_P10_R01_META.json",
+      "source_path": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\UR10_vibration_pretest\\UR10_vibration_pretest_v1\\UR10_vibration_pretest\\outputs\\20260901_184044_B05\\20260901_184044_B05_X_P10_R01_META.json",
+      "sha256": "6528cd7a67e52205efbf4dacf75d90a4352a3e2f8a1cd134550c2ecd3172fc7a"
+    },
+    "RUNLOG": {
+      "filename": "20260901_184044_B05_X_P10_R01_RUNLOG.txt",
+      "source_path": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\UR10_vibration_pretest\\UR10_vibration_pretest_v1\\UR10_vibration_pretest\\outputs\\20260901_184044_B05\\20260901_184044_B05_X_P10_R01_RUNLOG.txt",
+      "sha256": "0c34124fa2e72a0f14d181d532d1c92487651357df95236c697f02147d73f202"
+    },
+    "UR10": {
+      "filename": "20260901_184044_B05_X_P10_R01_UR10.txt",
+      "source_path": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\UR10_vibration_pretest\\UR10_vibration_pretest_v1\\UR10_vibration_pretest\\outputs\\20260901_184044_B05\\20260901_184044_B05_X_P10_R01_UR10.txt",
+      "sha256": "96581450d44235c2d796e730d96a9962cb1bda31cc8b43b0006fd2d3d928fa09"
+    },
+    "VISION": {
+      "filename": "20260901_184044_B05_X_P10_R01_VISION.txt",
+      "source_path": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\UR10_vibration_pretest\\UR10_vibration_pretest_v1\\UR10_vibration_pretest\\outputs\\20260901_184044_B05\\20260901_184044_B05_X_P10_R01_VISION.txt",
+      "sha256": "a59e8ce34d5bb00fbf474d03381abc3219f3a90ddfa4bbe023873f8f25325fcc"
+    }
+  },
+  "original_vision_txt_and_runlog_locally_available": false,
+  "exact_frame_identity_rows": 916,
+  "frame_identity_fields": [
+    "frame_id",
+    "host_ns",
+    "camera_timestamp_raw"
+  ],
+  "clock": {
+    "distinct_cabinet_times": 589,
+    "retained_host_rows": 604,
+    "target_q_rows": 0,
+    "identical_repeated_payload_rows_removed": 164,
+    "equal_cabinet_distinct_payload_rows_retained": [
+      {
+        "cabinet_s": 30925.352,
+        "host_ns": 111254609155700,
+        "changed_fields": [
+          "actual_q_rad",
+          "actual_tcp_pose",
+          "actual_tcp_speed"
+        ]
+      },
+      {
+        "cabinet_s": 30925.392,
+        "host_ns": 111254649257100,
+        "changed_fields": [
+          "actual_q_rad"
+        ]
+      },
+      {
+        "cabinet_s": 30926.359999999997,
+        "host_ns": 111255617338200,
+        "changed_fields": [
+          "actual_q_rad",
+          "actual_tcp_pose",
+          "actual_tcp_speed"
+        ]
+      },
+      {
+        "cabinet_s": 30926.856,
+        "host_ns": 111256113272100,
+        "changed_fields": [
+          "target_tcp_pose"
+        ]
+      },
+      {
+        "cabinet_s": 30926.879999999997,
+        "host_ns": 111256137330900,
+        "changed_fields": [
+          "target_tcp_pose"
+        ]
+      },
+      {
+        "cabinet_s": 30926.976,
+        "host_ns": 111256233397100,
+        "changed_fields": [
+          "target_tcp_pose"
+        ]
+      },
+      {
+        "cabinet_s": 30927.232,
+        "host_ns": 111256489250100,
+        "changed_fields": [
+          "actual_q_rad"
+        ]
+      },
+      {
+        "cabinet_s": 30927.327999999998,
+        "host_ns": 111256585313100,
+        "changed_fields": [
+          "actual_q_rad"
+        ]
+      },
+      {
+        "cabinet_s": 30927.536,
+        "host_ns": 111256793225300,
+        "changed_fields": [
+          "actual_q_rad",
+          "actual_tcp_pose"
+        ]
+      },
+      {
+        "cabinet_s": 30928.287999999997,
+        "host_ns": 111257545390300,
+        "changed_fields": [
+          "target_tcp_pose"
+        ]
+      },
+      {
+        "cabinet_s": 30928.471999999998,
+        "host_ns": 111257729286900,
+        "changed_fields": [
+          "actual_q_rad",
+          "actual_tcp_pose"
+        ]
+      },
+      {
+        "cabinet_s": 30928.487999999998,
+        "host_ns": 111257745164700,
+        "changed_fields": [
+          "actual_q_rad"
+        ]
+      },
+      {
+        "cabinet_s": 30928.519999999997,
+        "host_ns": 111257777266100,
+        "changed_fields": [
+          "target_tcp_pose"
+        ]
+      },
+      {
+        "cabinet_s": 30928.84,
+        "host_ns": 111258097065400,
+        "changed_fields": [
+          "actual_q_rad"
+        ]
+      },
+      {
+        "cabinet_s": 30929.8,
+        "host_ns": 111259057355700,
+        "changed_fields": [
+          "target_tcp_pose"
+        ]
+      }
+    ]
+  },
+  "speed_mm_s": 10.0,
+  "raw_visual_zero_um": -0.36021793906386057,
+  "phase_host_bounds_s": {
+    "pre_motion": [
+      0.0,
+      1.3232374
+    ],
+    "X_outbound": [
+      1.3327488,
+      3.6143872000000004
+    ],
+    "far_end_turn": [
+      3.6219846,
+      3.8109549
+    ],
+    "X_return": [
+      3.8185454,
+      6.1138650000000005
+    ],
+    "post_stop": [
+      6.1199843000000005,
+      7.3194628
+    ]
+  },
+  "windows_s": {
+    "full": [
+      0.0,
+      7.3194628
+    ],
+    "start": [
+      1.2977488000000001,
+      1.6379219
+    ],
+    "turn": [
+      3.4719846000000003,
+      4.0409549
+    ],
+    "outbound": [
+      1.7579219,
+      3.3919846000000002
+    ],
+    "return_straight": [
+      4.1209549,
+      5.9119232
+    ],
+    "pre_static": [
+      0.7,
+      0.96
+    ],
+    "post_static": [
+      6.8194628,
+      7.1994628
+    ]
+  },
+  "platform_names": [
+    "pre_static",
+    "outbound",
+    "return_straight",
+    "post_static"
+  ],
+  "first_half_speed_s": 1.3679219,
+  "turn_actual_xmax_s": 3.7279631,
+  "last_return_90_percent_speed_s": 6.0319232000000005,
+  "host_gap_evidence": [
+    [
+      -0.005912700000000001,
+      0.0164718,
+      0.0
+    ],
+    [
+      0.2855237,
+      0.3085742,
+      0.0
+    ],
+    [
+      0.3244224,
+      0.3448203,
+      0.0
+    ],
+    [
+      0.3601914,
+      0.38983910000000005,
+      0.0
+    ],
+    [
+      0.8345072,
+      0.8555876,
+      0.0
+    ],
+    [
+      0.9995883000000001,
+      1.2537207000000001,
+      0.00043807999844380774
+    ],
+    [
+      6.1202465,
+      6.3137384,
+      0.0001845856428817072
+    ],
+    [
+      6.3137384,
+      6.336544300000001,
+      0.0
+    ],
+    [
+      6.4313378000000005,
+      6.4530614,
+      0.0
+    ],
+    [
+      6.4680495,
+      6.489916600000001,
+      0.0
+    ],
+    [
+      6.934086000000001,
+      6.9541309,
+      0.0
+    ]
+  ],
+  "missing_frame_count": 53,
+  "source_clock_origin_ns": 111252977134200,
+  "pre_stationary_axial_speed_mm_s": 0.008603224702337094,
+  "source_median_vx_mm_s": {
+    "outbound": 10.104667545555914,
+    "return_straight": -10.083435550312892
+  }
+}

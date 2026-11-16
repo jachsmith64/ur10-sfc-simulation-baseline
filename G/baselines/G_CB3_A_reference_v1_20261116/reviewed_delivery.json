@@ -1,0 +1,39 @@
+{
+  "branch": "work/g-clock-event-20261116",
+  "commit": "57f6aa7dc498cdcd2398e8a33fbb8dc00720444c",
+  "original_parent": "0fd746f487cb9e5382b7e4249a3824c5c0c8bfe3",
+  "clock_event_diagnostic_commit_before_user_update": "4daecbd0ec3fd9a7c6e89fbc6f7eb30b2c885dff",
+  "repository": "https://github.com/jachsmith64/ur10-sfc-simulation-baseline.git",
+  "actual_B_working_item": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\G_B_clock_event_20261116\\G\\20261116_clock_event",
+  "prior_B_working_item": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\G_B_servo_minimal_20261116\\G\\20261116_servo_minimal",
+  "frozen_V02_B": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\G_B_work_20261116\\G\\20261116_A_multispeed\\local\\frozen_V02",
+  "source_only_verified_preparation_B": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\G_B_clock_event_20261116\\G\\20261116_clock_event\\runs\\input_verified",
+  "full_X_results_B": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\G_B_clock_event_20261116\\G\\20261116_clock_event\\runs\\paired_6",
+  "full_Y_results_B": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\G_B_clock_event_20261116\\G\\20261116_clock_event\\runs\\y_physical",
+  "historical_X_handoff_B": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\G_B_clock_event_20261116\\G\\20261116_clock_event\\runs\\x_gate_handoff",
+  "push": {
+    "final_status": "failed",
+    "reason": "HTTPS to github.com:443 timed out after 21100 ms",
+    "github_api_verification": "HTTP 422, no object found for final SHA",
+    "force_used": false
+  },
+  "restore": {
+    "zip_path": "git_recovery/g_clock_event.bundle",
+    "bundle_sha256": "a13aa538ef7678ffbfa80f2818612778560d7440a576587a895322efb0b09abd",
+    "prerequisite": "0fd746f487cb9e5382b7e4249a3824c5c0c8bfe3",
+    "empty_checkout_from_parent_verified_sha": "57f6aa7dc498cdcd2398e8a33fbb8dc00720444c",
+    "fetch": "git fetch <bundle-path> refs/heads/work/g-clock-event-20261116:refs/heads/work/g-clock-event-20261116",
+    "switch": "git switch work/g-clock-event-20261116"
+  },
+  "verdict": {
+    "clock_input": "passes for the three trials",
+    "event_detector": "locked and checked",
+    "legacy_combined_X_gate": "failed at P10 far terminal position",
+    "X_reference_for_current_Y": "adequate for three trials under the updated user scope",
+    "Y_motion_baseline": "3 trials pass original and fixed-reference checks; stationary low scores retained",
+    "micro_command_path": "six signed responses, all correct",
+    "formal_L_or_SFC_runs": 0,
+    "real_hardware_validation": "not performed"
+  },
+  "handoff": "B only; one ZIP for GPT review. A was not operated."
+}

@@ -1,0 +1,15 @@
+{
+  "input_gates": {
+    "X_P05_R01": true,
+    "X_P05_R02": true,
+    "X_P10_R01": true
+  },
+  "input_hashes": {
+    "X_P05_R01": "dad2a9bd34d88034689673c7e90165e780670f4487e12321d0cc84fa9fdef5fd",
+    "X_P05_R02": "fe261be874a37914c370290cc8c571e85ae617b79f842ab125f1ed18a4ff7dd4",
+    "X_P10_R01": "8a0be5345d8972b913ca9b7605ba411ebbb8011dd6adf0d52e4402efffe57908"
+  },
+  "config_sha256": "b4783051d9cd27a82c95f4b70eed9f6f82d977d6c63a5a0987561e0ba0aae70b",
+  "windows_sha256": "89cd3a47b8e69757b86661dea8e7fcf1b7e718cc77f35e0635b833cf974023ad",
+  "stage": "Locked using source evidence before any paired simulation"
+}
