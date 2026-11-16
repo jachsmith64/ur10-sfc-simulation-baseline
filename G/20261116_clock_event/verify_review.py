@@ -161,6 +161,107 @@ def raw_scores(t,x,v,h,xa,va,w,result):
     return score,peaks,np.array(distance)
 
 
+def score_reference_at(t,record):
+    levels=[record["bases_um"][n] for n in ("pre_static","outbound","return_straight","post_static")]
+    result=np.full_like(t,levels[0],dtype=float)
+    for (left,right),a,b in zip((record["windows_s"][n] for n in
+                 ("start_transition","turn_transition","stop_transition")),levels[:-1],levels[1:],strict=True):
+        u=np.clip((t-left)/(right-left),0,1)
+        result+=(b-a)*(10*u**3-15*u**4+6*u**5)
+    return result
+
+
+def verify_y(root,pair_receipt):
+    handoff=load(root/"x_reference_for_y.json")
+    overall=load(root/"results/y_receipt.json")
+    windows=load(root/"windows_frozen.json")["trials"]
+    assert handoff["continuation_authorized_by_current_user"] and not handoff["prior_combined_x_diagnostic_pass"]
+    assert overall["rule_sha256"]==digest(root/"x_reference_for_y.json")
+    assert overall["paired_receipt_sha256"]==digest(root/"results/paired_receipt.json")
+    assert not pair_receipt["x_pass"] and not overall["historical_X_gate"]
+    assert overall["source_window_sha256"]==digest(root/"windows_frozen.json")
+    assert overall["formal_L_SFC"]==0
+    summaries,compensations=[],[]
+    count=0
+    for trial in TRIALS:
+        result=root/"results"/trial
+        w=windows[trial]
+        source=root/"source_arrays"/trial
+        a=arrays(source/"A_source.npz")
+        origin=load(source/"source.json")["raw_visual_zero_um"]
+        status=load(result/"y_status.json")
+        assert status==overall["results"][trial]
+        z=arrays(result/"refit_review.npz")
+        x=arrays(result/"input.npz")
+        assert handoff["results"][trial]["input_sha256"]==digest(result/"input.npz")==status["mapped_X_input_sha256"]
+        assert status["frequency_response_sha256"]==digest(result/"plant.npz")
+        t=z["t"]
+        ft=a["frame_host_time_s"]
+        assert np.array_equal(t,x["t"])
+        assert np.array_equal(np.flatnonzero(z["guarded_updated"]),x["tick_index"])
+        assert not np.any(z["remaining_m"]) and not np.any(z["remaining_dot_m_s"])
+        same(z["velocity_ff_at_ticks_rad"],x["qdot_nom_rad_s"][x["tick_index"]]*.1,1e-16)
+        same(z["score_reference_um"],score_reference_at(t,w),1e-12)
+        same(z["feedback_reference_um"],x["feedback_reference_um"],1e-12)
+        same(z["fit_y_um"],z["all_attempt_y_um"][status["best_index"]],1e-15)
+        same(z["fit_y_um"][0],status["initial_stationary_y_um"])
+        assert sha256(z["force_N"].tobytes()).hexdigest()==status["attempts"][status["best_index"]]["force_sha256"]
+        same(a["A_raw_um"],a["A_centered_um"]+origin,1e-12)
+        dat=score_reference_at(ft,w)
+        for phase in ("start","turn","stop"):
+            lo,hi=w["windows_s"][phase]
+            k=(t>=lo)&(t<hi)
+            assert np.ptp(z["common_command_y_m"][k])==0 and np.ptp(z["score_reference_um"][k])==0
+        k_phase=("full","start","outbound","turn","return_straight","stop")
+        for i,attempt in enumerate(status["attempts"]):
+            model=np.interp(ft,t,z["all_attempt_y_um"][i])
+            fit=[]
+            for phase,rows in attempt["scores"].items():
+                lo,hi=(0.,ft[-1]) if phase=="full" else w["windows_s"][phase]
+                keep=a["frame_valid"]&(ft>=lo)&((ft<hi)|((hi==ft[-1])&(ft==hi)))
+                tt=ft[keep]
+                for kind,ref in (("raw",np.full_like(ft,-origin)),("processed",dat)):
+                    source_y=(a["A_centered_um"]-ref)[keep]
+                    model_y=(model-ref)[keep]
+                    recorded=rows[kind]
+                    assert recorded["samples"]==len(tt)
+                    rmse=np.linalg.norm(model_y-source_y)/np.sqrt(len(tt))
+                    same(rmse,recorded["rmse_um"])
+                    spread=np.std(source_y)
+                    if spread>1:
+                        val=(1-rmse/spread)*100
+                        same(val,recorded["fit"],1e-8)
+                        if phase in k_phase:
+                            fit.append(val)
+                    else:
+                        assert recorded["fit"] is None
+                    ai,bi=np.argmax(abs(source_y)),np.argmax(abs(model_y))
+                    same([source_y[ai],model_y[bi],tt[bi]-tt[ai]],
+                         [recorded["peak_A_um"],recorded["peak_N_um"],recorded["absolute_peak_delay_s"]])
+                    count+=1
+            same(min(fit),attempt["min_fit"],1e-8)
+        same(max(v["min_fit"] for v in status["attempts"]),status["best_min_fit"])
+        summaries.append(status["best_min_fit"]>=80)
+        checks=result/"y_run_configs"
+        before=checks/status["attempts"][status["best_index"]]["name"]
+        assert load(before/"checks.json")["external_force_path_exact"] and load(before/"guard.json") is None
+        for label,sign in (("plus",1),("minus",-1)):
+            delta=z[label+"_delta_y_um"]
+            assert not delta[:801].any() and np.sign(delta[801])==sign and np.any(z[label+"_micro_q_rad"])
+            same(delta.max() if sign>0 else delta.min(),status["positive_micro_peak_um" if sign>0 else "negative_micro_peak_um"])
+            case=load(checks/("micro_"+label)/"case.json")
+            assert case["pulse_N"]==sign and case["Fd_sha256"]==status["attempts"][status["best_index"]]["force_sha256"]
+            assert load(checks/("micro_"+label)/"guard.json") is None
+        compensations.append(status["pulse_pass"])
+        endpoints=load(result/"Y_X_endpoints.json")
+        raw_x=a["actual_tcp_pose"][:,0]
+        x_fit=z["fitted_xyz_m"][:,0]
+        same((x_fit.max()-raw_x.max())*1000,endpoints["fitted_far_endpoint_signed_error_mm"])
+    assert all(summaries) and overall["Y_baseline_motion_windows_pass"]
+    assert all(compensations) and overall["signed_micro_compensation_verified"]
+    return count
+
+
 def verify(root):
     manifest=load(root/"SHA256SUMS.json")
     members={p.relative_to(root).as_posix():p for p in root.rglob("*") if p.is_file()}
@@ -255,7 +356,9 @@ def verify(root):
     assert outcomes==[True,True,False]
     receipt=load(root/"results/paired_receipt.json")
     assert not receipt["x_pass"] and receipt["n_refit"]=="not started" and receipt["formal_L_SFC"]==0
-    print(f"{len(manifest)} hashes, {n_marks} physical-event evaluations, six command/torque pairs, raw shape and the failed P10 overshoot gate verified.")
+    n_y=verify_y(root,receipt)
+    print(f"{len(manifest)} hashes, {n_marks} X event evaluations and six command/torque pairs; "
+          f"{n_y} Y FIT/RMSE/peak records and three pairs of signed Y micro-compensations verified.")
 
 
 if __name__=="__main__":

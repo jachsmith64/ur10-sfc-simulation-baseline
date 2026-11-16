@@ -1,0 +1,103 @@
+{
+  "use": "Y physical baseline and later S-curve reference only",
+  "continuation_authorized_by_current_user": true,
+  "prior_combined_x_diagnostic_pass": false,
+  "parallel_controls": false,
+  "source_hold_behavior": "identical to completed correction",
+  "receipt_from_x_commit": "4daecbd0ec3fd9a7c6e89fbc6f7eb30b2c885dff",
+  "results": {
+    "X_P05_R01": {
+      "sufficient_for_current_Y_baseline": true,
+      "side": "velocity_on",
+      "rationale": "Captured target command geometry with fixed clock; no doubled slope, motion directions and representative speed as intended, start/reversal process close enough for source-fixed Y; overshoot retained as a limitation.",
+      "stable_speed": {
+        "outbound": {
+          "median_mm_s": 5.016436684752116,
+          "range_mm_s": [
+            4.840358098344544,
+            5.193253752327276
+          ],
+          "setpoint_mm_s": 5.0
+        },
+        "return_straight": {
+          "median_mm_s": -4.985236817354852,
+          "range_mm_s": [
+            -5.256856559051808,
+            -4.672028147052353
+          ],
+          "setpoint_mm_s": -5.0
+        }
+      },
+      "physical_span_mm": 13.023321497869194,
+      "corrected_nominal_span_mm": 12.999499319311575,
+      "difference_mm": 0.023822178557619367,
+      "overshoot_vs_A_mm": 0.03797764264840131,
+      "endpoint_overshoot_fraction_of_nominal": 0.002921469643987221,
+      "legacy_X_gate": true,
+      "unchanged_protection_pass": true,
+      "input_sha256": "dad2a9bd34d88034689673c7e90165e780670f4487e12321d0cc84fa9fdef5fd"
+    },
+    "X_P05_R02": {
+      "sufficient_for_current_Y_baseline": true,
+      "side": "velocity_on",
+      "rationale": "Captured target command geometry with fixed clock; no doubled slope, motion directions and representative speed as intended, start/reversal process close enough for source-fixed Y; overshoot retained as a limitation.",
+      "stable_speed": {
+        "outbound": {
+          "median_mm_s": 5.0158198602541315,
+          "range_mm_s": [
+            4.840354911524025,
+            5.193259094223086
+          ],
+          "setpoint_mm_s": 5.0
+        },
+        "return_straight": {
+          "median_mm_s": -4.976834287256073,
+          "range_mm_s": [
+            -5.193285116469706,
+            -4.672028830712766
+          ],
+          "setpoint_mm_s": -5.0
+        }
+      },
+      "physical_span_mm": 13.039224115303922,
+      "corrected_nominal_span_mm": 12.999500050744517,
+      "difference_mm": 0.03972406455940458,
+      "overshoot_vs_A_mm": 0.03870826906826608,
+      "endpoint_overshoot_fraction_of_nominal": 0.0029776736733847812,
+      "legacy_X_gate": true,
+      "unchanged_protection_pass": true,
+      "input_sha256": "fe261be874a37914c370290cc8c571e85ae617b79f842ab125f1ed18a4ff7dd4"
+    },
+    "X_P10_R01": {
+      "sufficient_for_current_Y_baseline": true,
+      "side": "velocity_on",
+      "rationale": "Captured target command geometry with fixed clock; no doubled slope, motion directions and representative speed as intended, start/reversal process close enough for source-fixed Y; overshoot retained as a limitation.",
+      "stable_speed": {
+        "outbound": {
+          "median_mm_s": 10.016010446255756,
+          "range_mm_s": [
+            9.780155754625907,
+            10.223430492974998
+          ],
+          "setpoint_mm_s": 10.0
+        },
+        "return_straight": {
+          "median_mm_s": -10.009525143667933,
+          "range_mm_s": [
+            -10.216584731571148,
+            -9.757873409170523
+          ],
+          "setpoint_mm_s": -10.0
+        }
+      },
+      "physical_span_mm": 23.083353783963783,
+      "corrected_nominal_span_mm": 22.999513688910373,
+      "difference_mm": 0.08384009505341083,
+      "overshoot_vs_A_mm": 0.10875045854530363,
+      "endpoint_overshoot_fraction_of_nominal": 0.0047283807830136694,
+      "legacy_X_gate": false,
+      "unchanged_protection_pass": true,
+      "input_sha256": "8a0be5345d8972b913ca9b7605ba411ebbb8011dd6adf0d52e4402efffe57908"
+    }
+  }
+}

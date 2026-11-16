@@ -121,7 +121,53 @@ def figures(items):
     return overview,details
 
 
-def report(items,prepared):
+
+def y_report(root,items):
+    receipt=read(root/"receipt.json")
+    fig,axs=plt.subplots(3,3,figsize=(14,9),layout="constrained")
+    conclusion=[]
+    details=[]
+    for item,row in zip(items,axs,strict=True):
+        trial,rec,source,_,_,_,_=item
+        status=receipt["results"][trial]
+        a=data(root/trial/"refit_review.npz")
+        meta=read(PREPARED/trial/"source.json")
+        t=a["t"]
+        f=source["frame_host_time_s"]
+        valid=source["frame_valid"]
+        zero=meta["raw_visual_zero_um"]
+        r=a["score_reference_um"]
+        refs=(np.full_like(r,-zero),r)
+        for ax,reference,title in zip(row[:2],refs,("Original visual origin","Common reference removed"),strict=True):
+            for phase,color in (("start","#fdebde"),("turn","#eeebf7"),("stop","#fdebde")):
+                ax.axvspan(*rec["windows_s"][phase],facecolor=color,edgecolor="none",zorder=-3)
+            ar=np.interp(f,t,reference)
+            ax.plot(f[valid],(source["A_centered_um"]-ar)[valid],".",ms=1.7,color=COLORS[2],label="A camera valid")
+            ax.plot(t,a["fit_y_um"]-reference,color=COLORS[1],lw=.9,label="N physical")
+            ax.set(title=trial+"  "+title,xlabel="Original camera host time [s]",ylabel="Y [µm]")
+            ax.legend(loc="best",fontsize=6.5)
+            ax.grid(alpha=.18)
+        ax=row[2]
+        ax.plot(t,a["plus_delta_y_um"],color=COLORS[1],lw=.9,label="+1 N")
+        ax.plot(t,a["minus_delta_y_um"],color=COLORS[2],lw=.9,label="−1 N")
+        ax.axvspan(.800,.856,facecolor="#e5ede7",zorder=-3)
+        ax.set(xlim=(.76,1.18),title=trial+"  Micro-compensation",xlabel="Original time [s]",ylabel="Physical Y change [µm]")
+        ax.legend(loc="best",fontsize=7)
+        ax.grid(alpha=.18)
+        attempt=status["attempts"][status["best_index"]]
+        conclusion.append((trial,num(attempt["scores"]["full"]["raw"]["fit"],2),
+             num(attempt["scores"]["full"]["processed"]["fit"],2),num(status["best_min_fit"],2),
+             num(status["initial_stationary_y_um"],3),
+            num((max(a["fitted_xyz_m"][:,0])-max(source["actual_tcp_pose"][:,0]))*1000,3),
+             num(status["positive_micro_peak_um"],2)+" / "+num(status["negative_micro_peak_um"],2)))
+        details.append(f"<h3>{trial} 的所有 Y 窗口</h3>"+table(["窗口","原始 FIT","去共同参考 FIT","原始 RMSE μm","去参考 RMSE μm"],[
+            (k,num(v["raw"]["fit"],2),num(v["processed"]["fit"],2),num(v["raw"]["rmse_um"],3),num(v["processed"]["rmse_um"],3))
+            for k,v in attempt["scores"].items()]))
+    caption=table(["试次","整段原始 FIT","整段抖动 FIT","主要窗口最低 FIT","初始物理 Y μm","拟合后远端误差 mm","正/负峰 μm"],conclusion)
+    return caption+plot_img(fig,"三片 Y 物理重建与正负微补偿响应")+"".join(details)
+
+
+def report(items,prepared,y_root):
     overview,details=figures(items)
     summary=[]
     parts=[]
@@ -156,7 +202,7 @@ def report(items,prepared):
             (name,num(x["delay_ms"],2),num(x["reported_resolution_ms"],2)) for name,x in g["markers"].items()])
         parts.append(f"<section><h2>{name}</h2><p>{verdict}。</p>{img}{pts}{spans}{shapes}{peaks}{uncertainty}{old}</section>")
     input_overlay=f'<img alt="积分前原名义输入和修正输入叠图" src="data:image/png;base64,{enc((prepared/"input_overlay.png").read_bytes())}">'
-    verdict="三片通过 X 联合验收。" if all(item[5]["gate"]["pass_all"] for item in items) else "至少一片未通过 X 联合验收。"
+    verdict="按原联合门槛回放，P10 新增端点过冲仍超出限值。按用户更新的研究用途，三片 X 参考足够进入 Y 物理重建。"
     doc=f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>G 组时钟与事件修正</title>
 <style>body{{max-width:1210px;margin:32px auto;padding:0 22px;font:18px/1.56 SimSun,"Times New Roman",serif;color:#192a37}}
@@ -166,23 +212,26 @@ th,td{{padding:7px 9px;border-bottom:1px solid #d4e0e7;text-align:right}} th{{ba
 section{{margin:45px 0}} .card{{background:#edf4f8;border-left:4px solid #225686;padding:8px 16px}}
 </style></head><body><main>
 <h1>G 组名义时间和事件识别</h1><p class="card">三片输入预检通过。{verdict} 同一 G 冻结窗口、实际静止初态和原保护下完成六次新积分。</p>
-{table(["试次","候选启动半速差 ms","候选最大 X 差 ms","候选回程半速差 ms","联合门槛"],summary)}
+{table(["试次","候选启动半速差 ms","候选最大 X 差 ms","候选回程半速差 ms","旧联合诊断"],summary)}
 <h2>三片全程位置和速度</h2>
-<p>实验 A 关闭速度参考，实验 B 开启唯一名义速度参考。横坐标以相机首帧为零，共同主机时间未对某一臂平移。斜纹是柜端长采样空档，原到达时刻与映射时刻均留存。局部图淡点为实测原到达时间，橙点为映射后原值；虚线为旧事件点，点线为稳健事件点。RMSE 直接使用映射后原样点。</p>{overview}
+<p>实验 A 关闭速度参考，实验 B 开启唯一名义速度参考。横坐标以相机首帧为零，共同主机时间未对某一臂平移。以下 X 时长、速度和过冲表保留旧诊断口径。斜纹是柜端长采样空档，原到达时刻与映射时刻均留存。局部图淡点为实测原到达时间，橙点为映射后原值；虚线为旧事件点，点线为稳健事件点。RMSE 直接使用映射后原样点。</p>{overview}
 <h2>积分前名义时钟检查</h2>
 <p>P10 同一跳变 160 μm，主机间隔 7.946 ms 给出 20.14 mm/s，柜端 16 ms 给出 10 mm/s。原相邻读取调用先取 actual 字段，再写主机时戳和柜端戳，最后单独取目标位姿，记录未证明字段原子一致。固定偏移的精度受未知采集到达延迟限制。相同柜端戳有冲突时排除整组目标，实际位置与速度独立核对。新图使用同一位置曲线及其导数，未限幅或滤掉原运动。</p>
 <p>初次源数据图另发现固定稳定窗之外三处残余双幅尖峰。前后等速斜率与短桥一致，便排除孤立中点。该处理完成于动力学积分前。未在未知的长空档内重建实际起停过程；可疑停车段仍保留为空档。各行决定和长短跨接见证据 JSON。</p>
 {input_overlay}
-<h2>为何没有继续 N</h2><p>P10 在修正后未出现上轮速度过冲，稳定速度 RMSE 约 0.31–0.32 mm/s，仍有 0.10875 mm 的远端新增位置过冲。原实测峰与映射后实测峰相同，候选也高于纠正名义峰 0.07335 mm。Kp/Kd、初态和其余条件成对保持，只有名义速度项开关变化。详细峰值见原始数组和 <code>P10_peak_crosscheck.json</code>。</p>
+<h2>P10 端点局限</h2><p>P10 在修正后未出现上轮速度过冲，稳定速度 RMSE 约 0.31–0.32 mm/s，仍有 0.10875 mm 的远端新增位置过冲。原实测峰与映射后实测峰相同，候选也高于纠正名义峰 0.07335 mm。Kp/Kd、初态和其余条件成对保持，只有名义速度项开关变化。详细峰值见原始数组和 <code>P10_peak_crosscheck.json</code>。</p>
 <h2>事件锁定与测量口径</h2>
 <p>只为检测将原速度在有证据的短括号内线性插值到 1 ms，用半宽 12 ms 的居中中值和至少 24 ms 的持续性。围绕唯一主过零取最后一个连通的减速穿越；R01 的提前回落后还回到了正向平台，因此落在主段之外。90% 为主，50% 与 80% 仅用于敏感性呈现。数值表中的小数是可复算插值，物理精度仍受原样点括号、固定时钟残差和检测窗影响。报告不据此声明亚毫秒同步。</p>
 {"".join(parts)}
-<h2>条件 N 重建</h2><p>联合 X 门槛未通过。Y 从零重建、公共关节纠偏重算以及新条件微补偿未启动。</p>
+<h2>相机 Y 的物理 N 重建</h2>
+<p>Y 使用相机原有幅值、有效帧和时刻。仅施加由静止与稳定平台定标的公共物理纠偏，以及通过 30/45 Hz 反推的 Y 力。原方向反馈参考和同源评分参考单独封存；事件窗内保留预事件基线。旧观测 remaining 及其导数为零。正负 1 N 在相同最佳 N 上由原关节指令通道施加，0.800 s 开始，第一处可分辨物理响应在 0.801 s。三片保持原 8 ms 速度项，未覆盖实际关节状态。</p>
+{y_report(y_root,items)}
+<p>运动窗 FIT 的范围只衡量对这三片源 Y 的离线拟合。静止与过渡窗单列，较低 FIT 的结果保留。此包供 GPT 审查，未执行正式线性/SFC 对照。</p>
 </main></body></html>'''
     (ROOT/"G_clock_event_review.html").write_text(doc,encoding="utf8")
 
 
-def build(prepared,pairs):
+def build(prepared,pairs,y_root):
     public=ROOT/"results"
     public.mkdir(exist_ok=True)
     windows=read(ROOT.parent/"20261116_preprocess_timing/windows_frozen.json")
@@ -190,6 +239,7 @@ def build(prepared,pairs):
     for name in ("lock.json","preflight_plot_and_rules.json","derived_command_event_check.json"):
         copy2(prepared/name,public/name)
     copy2(pairs/"receipt.json",public/"paired_receipt.json")
+    copy2(y_root/"receipt.json",public/"y_receipt.json")
     copy2(pairs/"integration_source"/"command_channel.patch",public/"inherited_command_channel.patch")
     items=[]
     comparison=[]
@@ -207,11 +257,31 @@ def build(prepared,pairs):
             path.mkdir(exist_ok=True)
             for f in ("row.json","case.json","checks.json","guard.json"):
                 copy2(g/arm/f,path/f)
+        y=y_root/trial
+        copy2(y/"status.json",out/"y_status.json")
+        copy2(y/"refit_review.npz",out/"refit_review.npz")
+        copy2(y/"plant.npz",out/"plant.npz")
+        audit=out/"y_run_configs"
+        audit.mkdir(exist_ok=True)
+        for config in sorted(y.glob("*/case.json")):
+            place=audit/config.parent.name
+            place.mkdir(exist_ok=True)
+            for name in ("case.json","row.json","checks.json","guard.json"):
+                copy2(config.parent/name,place/name)
         s=read(g/"status.json")
         old_receipt=ROOT.parent/"20261116_servo_minimal/outputs"/trial/"status.json"
         history=read(old_receipt)
         copy2(old_receipt,out/"historical_servo_status.json")
         source=data(PREPARED/trial/"A_source.npz")
+        original_x=source["actual_tcp_pose"][:,0]
+        fit_x=data(y/"refit_review.npz")["fitted_xyz_m"][:,0]
+        before=data(g/"comparison.npz")["velocity_on_physical_xyz_m"][:,0]
+        result=dict(fitted_far_endpoint_signed_error_mm=float((max(fit_x)-max(original_x))*1000),
+             fitted_near_endpoint_signed_error_mm=float((min(fit_x)-min(original_x))*1000),
+             fitted_span_mm=float(np.ptp(fit_x)*1000),
+             reference_before_Y_far_endpoint_signed_error_mm=float((max(before)-max(original_x))*1000))
+        (out/"Y_X_endpoints.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
+
         evidence=dict(input=read(p/"input.json"),clock=read(p/"clock_decisions.json"),historical=history)
         items.append((trial,windows["trials"][trial],source,data(p/"input.npz"),data(g/"comparison.npz"),s,evidence))
         for k,v in s["gate"]["markers"].items():
@@ -220,12 +290,13 @@ def build(prepared,pairs):
         w=csv.DictWriter(f,fieldnames=comparison[0].keys())
         w.writeheader()
         w.writerows(comparison)
-    report(items,prepared)
+    report(items,prepared,y_root)
 
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
     p.add_argument("--prepared",type=Path,required=True)
     p.add_argument("--pairs",type=Path,required=True)
+    p.add_argument("--y",type=Path,required=True)
     a=p.parse_args()
-    build(a.prepared,a.pairs)
+    build(a.prepared,a.pairs,a.y)
