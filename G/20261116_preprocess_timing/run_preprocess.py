@@ -52,14 +52,17 @@ def initial_factory(initial_q):
     return factory
 
 
-def integrate(sweep,path,ctx,case,fd_values,initial_q,pulse=0.):
+def integrate(sweep,path,ctx,case,fd_values,initial_q,pulse=0.,*,execution=None):
     path.mkdir()
     t,p=ctx["c"]["t"],ctx["parameters"]
     noise=np.zeros(int(np.ceil((t[-1]+.001)*PLAN["camera_hz"]))+1)
     sensor=ReferencedMeasurement(core.CONFIG,case,core.aconfig.Y_NOMINAL,ctx["pressure"],noise,ctx["reference"])
     coordinator=old.PulseCoordinator(ctx,case,sensor,pulse) if pulse else core.Coordinator(ctx,case,sensor)
-    channel=core.CommandChannel(case["execution_delay_ms"],case["command_ms"],coordinator)
-    logger=TimingLogger(path/"trace.npz",ctx,case,sensor,channel)
+    if execution is None:
+        channel=core.CommandChannel(case["execution_delay_ms"],case["command_ms"],coordinator)
+        logger=TimingLogger(path/"trace.npz",ctx,case,sensor,channel)
+    else:
+        channel,logger=execution(path,ctx,case,sensor,coordinator)
     fd_sha=sha256(fd_values.tobytes()).hexdigest()
     fd=old.disturbance.FrozenDisturbance(Path("physical_only"),t,fd_values,{"frozen":{"sha256":fd_sha}})
     sweep.SimEnv=initial_factory(initial_q)

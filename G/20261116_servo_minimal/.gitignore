@@ -1,0 +1,7 @@
+/runs/
+/local/
+/outputs/**/*.npz
+/outputs/**/trace_reference.json
+/outputs/delivery.json
+/G_servo_minimal_review_20261116.zip
+__pycache__/

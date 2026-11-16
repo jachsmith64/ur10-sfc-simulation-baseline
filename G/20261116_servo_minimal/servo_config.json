@@ -1,0 +1,13 @@
+{
+  "parent_commit": "ea51baca08a62291ee98b49c6286cff199ee7148",
+  "nominal_velocity_rule": "Derivative of existing piecewise-linear original host-time IK knots. Right derivative at interior knots, left slope at final endpoint. No smoothing or extrapolation. 8 ms reads of this analytic segment derivative.",
+  "episode_gate_delay_ms": 50,
+  "duration_absolute_error_must_decrease": true,
+  "start_and_turn_speed_rmse_must_decrease": true,
+  "maximum_new_speed_overshoot_fraction_nominal": 0.1,
+  "maximum_new_spatial_overshoot_mm": 0.05,
+  "zero_fit_force": true,
+  "zero_public_command_table": true,
+  "zero_added_feedback_control": true,
+  "no_force_push": true
+}
