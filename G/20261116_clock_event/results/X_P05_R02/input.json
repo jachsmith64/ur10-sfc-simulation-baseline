@@ -1,0 +1,650 @@
+{
+  "input_pass": true,
+  "legacy_nominal": {
+    "stable": {
+      "outbound": {
+        "count": 194,
+        "min": 4.62529338940652,
+        "median": 5.002001187250492,
+        "max": 5.552007049426467,
+        "exceeding_15_mm_s": 0,
+        "max_error_mm_s": 0.5520070494264671
+      },
+      "return_straight": {
+        "count": 160,
+        "min": -5.475701516368868,
+        "median": -4.986319322794417,
+        "max": -4.569705121522808,
+        "exceeding_15_mm_s": 0,
+        "max_error_mm_s": 0.4757015163688676
+      }
+    },
+    "max_nominal_abs_vx_mm_s": 5.552007049426467,
+    "source_velocity_on_knot_rule": {
+      "events": {
+        "start10": {
+          "time_s": 1.2594887269143364,
+          "bracket_s": [
+            1.2590000000000001,
+            1.26
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start50": {
+          "time_s": 1.3119235743787065,
+          "bracket_s": [
+            1.311,
+            1.312
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start80": {
+          "time_s": 1.3821558605212623,
+          "bracket_s": [
+            1.3820000000000001,
+            1.383
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start90": {
+          "time_s": 1.4267743606295693,
+          "bracket_s": [
+            1.426,
+            1.427
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "zero": {
+          "time_s": 3.95158799490451,
+          "bracket_s": [
+            3.951,
+            3.952
+          ],
+          "rule": "single confirmed sign exchange"
+        },
+        "decel50": {
+          "time_s": 3.9268120696775264,
+          "bracket_s": [
+            3.926,
+            3.927
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel80": {
+          "time_s": 3.9138063036486783,
+          "bracket_s": [
+            3.9130000000000003,
+            3.914
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel90": {
+          "time_s": 3.90475699235587,
+          "bracket_s": [
+            3.904,
+            3.9050000000000002
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "return50": {
+          "time_s": 3.9773923109465104,
+          "bracket_s": [
+            3.977,
+            3.978
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "return80": {
+          "time_s": 3.9916281060257246,
+          "bracket_s": [
+            3.991,
+            3.992
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "return90": {
+          "time_s": 3.998573333407723,
+          "bracket_s": [
+            3.998,
+            3.999
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "turn_xmax": {
+          "time_s": 3.9525474000000003,
+          "bracket_s": [
+            3.9447671000000004,
+            3.9608875
+          ],
+          "rule": "raw position maximum"
+        }
+      },
+      "spans_ms": {
+        "rise_10_90": 167.28563371523285,
+        "reversal_90_90": 93.81634105185333,
+        "reversal_50_50": 50.58024126898397,
+        "reversal_80_80": 77.82180237704628
+      },
+      "native_brackets_s": {
+        "start10": [
+          1.250639,
+          1.2649218
+        ],
+        "start50": [
+          1.3044743,
+          1.3126928
+        ],
+        "start80": [
+          1.3766555,
+          1.3850911000000001
+        ],
+        "start90": [
+          1.4245147,
+          1.4323983
+        ],
+        "zero": [
+          3.9447671000000004,
+          3.9525474000000003
+        ],
+        "decel50": [
+          3.9207253000000004,
+          3.9286604
+        ],
+        "decel80": [
+          3.9131072000000002,
+          3.9207253000000004
+        ],
+        "decel90": [
+          3.8969195,
+          3.9047772000000003
+        ],
+        "return50": [
+          3.9767179,
+          3.9850217000000003
+        ],
+        "return80": [
+          3.9850217000000003,
+          3.9926182000000003
+        ],
+        "return90": [
+          3.9926182000000003,
+          4.0006714
+        ],
+        "turn_xmax": [
+          3.9447671000000004,
+          3.9525474000000003
+        ]
+      }
+    },
+    "first_x_mm": 196.83804857599176,
+    "last_x_mm": 196.83796823801126,
+    "span_x_mm": 12.999529670115583,
+    "x_maximum_s": 3.9525474000000003
+  },
+  "mapped_nominal": {
+    "stable": {
+      "outbound": {
+        "count": 194,
+        "min": 4.9999958733941385,
+        "median": 4.999999921927104,
+        "max": 4.999999999879264,
+        "exceeding_15_mm_s": 0,
+        "max_error_mm_s": 4.126605861465293e-06
+      },
+      "return_straight": {
+        "count": 160,
+        "min": -4.999999999379663,
+        "median": -4.999999939322912,
+        "max": -4.999998402223227,
+        "exceeding_15_mm_s": 0,
+        "max_error_mm_s": 1.5977767731101267e-06
+      }
+    },
+    "max_nominal_abs_vx_mm_s": 5.000000001183776,
+    "source_velocity_on_knot_rule": {
+      "events": {
+        "start10": {
+          "time_s": null,
+          "bracket_s": null,
+          "rule": "no persistent crossing",
+          "alternatives": 0
+        },
+        "start50": {
+          "time_s": 1.3132137226417087,
+          "bracket_s": [
+            1.313,
+            1.314
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start80": {
+          "time_s": 1.3847416374777626,
+          "bracket_s": [
+            1.3840000000000001,
+            1.385
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start90": {
+          "time_s": 1.4247403825437976,
+          "bracket_s": [
+            1.424,
+            1.425
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "zero": {
+          "time_s": 3.951669323715938,
+          "bracket_s": [
+            3.951,
+            3.952
+          ],
+          "rule": "single confirmed sign exchange"
+        },
+        "decel50": {
+          "time_s": 3.9266716339359027,
+          "bracket_s": [
+            3.926,
+            3.927
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel80": {
+          "time_s": 3.9116495870988017,
+          "bracket_s": [
+            3.911,
+            3.912
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel90": {
+          "time_s": 3.9065463884338465,
+          "bracket_s": [
+            3.906,
+            3.907
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "return50": {
+          "time_s": 3.976667784791836,
+          "bracket_s": [
+            3.976,
+            3.977
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "return80": {
+          "time_s": 3.991667784794739,
+          "bracket_s": [
+            3.991,
+            3.992
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "return90": {
+          "time_s": 3.996935797452435,
+          "bracket_s": [
+            3.996,
+            3.997
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "turn_xmax": {
+          "time_s": 3.9527174999985455,
+          "bracket_s": [
+            3.9447174999969157,
+            3.9607174999965373
+          ],
+          "rule": "raw position maximum"
+        }
+      },
+      "spans_ms": {
+        "rise_10_90": null,
+        "reversal_90_90": 90.38940901858838,
+        "reversal_50_50": 49.99615085593323,
+        "reversal_80_80": 80.01819769593732
+      },
+      "native_brackets_s": {
+        "start10": null,
+        "start50": [
+          1.3127174999991276,
+          1.3207174999971194
+        ],
+        "start80": [
+          1.384717499999244,
+          1.3927174999972358
+        ],
+        "start90": [
+          1.424717500000117,
+          1.432717499998109
+        ],
+        "zero": [
+          3.9447174999969157,
+          3.9527174999985455
+        ],
+        "decel50": [
+          3.920717499999302,
+          3.928717499997294
+        ],
+        "decel80": [
+          3.9047174999996805,
+          3.9127174999976724
+        ],
+        "decel90": [
+          3.9047174999996805,
+          3.9127174999976724
+        ],
+        "return50": [
+          3.968717499998167,
+          3.976717499999797
+        ],
+        "return80": [
+          3.984717499997789,
+          3.9927174999994186
+        ],
+        "return90": [
+          3.9927174999994186,
+          4.00071749999741
+        ],
+        "turn_xmax": [
+          3.9447174999969157,
+          3.9527174999985455
+        ]
+      }
+    },
+    "first_x_mm": 196.83804857599176,
+    "last_x_mm": 196.83796823801126,
+    "span_x_mm": 12.999529670115583,
+    "x_maximum_s": 3.9527174999985455
+  },
+  "legacy_actual_events": {
+    "start10": {
+      "time_s": 1.2986602226096553,
+      "bracket_s": [
+        1.2966851000000001,
+        1.3044743
+      ],
+      "unresolved_gap": false
+    },
+    "start50": {
+      "time_s": 1.3470788762356531,
+      "bracket_s": [
+        1.3447265000000002,
+        1.3525525
+      ],
+      "unresolved_gap": false
+    },
+    "start90": {
+      "time_s": 1.413223354169953,
+      "bracket_s": [
+        1.4087067,
+        1.4165806
+      ],
+      "unresolved_gap": false
+    },
+    "decel90": {
+      "time_s": 3.8967760631595008,
+      "bracket_s": [
+        3.8890715000000005,
+        3.8969195
+      ],
+      "unresolved_gap": false
+    },
+    "zero": {
+      "time_s": 3.9514611374176987,
+      "bracket_s": [
+        3.9447671000000004,
+        3.9525474000000003
+      ],
+      "unresolved_gap": false
+    },
+    "return50": {
+      "time_s": 3.984281833544706,
+      "bracket_s": [
+        3.9767179,
+        3.9850217000000003
+      ],
+      "unresolved_gap": false
+    },
+    "return90": {
+      "time_s": 4.072990666537487,
+      "bracket_s": [
+        4.0728988,
+        4.0808418
+      ],
+      "unresolved_gap": false
+    },
+    "stop90": {
+      "time_s": 6.488398037100561,
+      "bracket_s": [
+        6.4811591,
+        6.4885763
+      ],
+      "unresolved_gap": false
+    },
+    "stop10": {
+      "time_s": null,
+      "bracket_s": [
+        6.6008487,
+        6.6702617
+      ],
+      "unresolved_gap": true
+    },
+    "turn_xmax": {
+      "time_s": 3.9366047
+    }
+  },
+  "mapped_actual": {
+    "events": {
+      "start10": {
+        "time_s": 1.298746075575082,
+        "bracket_s": [
+          1.298,
+          1.299
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start50": {
+        "time_s": 1.3367136516659577,
+        "bracket_s": [
+          1.336,
+          1.337
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start80": {
+        "time_s": 1.3824917275559485,
+        "bracket_s": [
+          1.3820000000000001,
+          1.383
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start90": {
+        "time_s": 1.4190207880221561,
+        "bracket_s": [
+          1.419,
+          1.42
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 2
+      },
+      "zero": {
+        "time_s": 3.9516005635487708,
+        "bracket_s": [
+          3.951,
+          3.952
+        ],
+        "rule": "single confirmed sign exchange"
+      },
+      "decel50": {
+        "time_s": 3.9238330954607736,
+        "bracket_s": [
+          3.923,
+          3.924
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel80": {
+        "time_s": 3.9163140218452193,
+        "bracket_s": [
+          3.916,
+          3.9170000000000003
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel90": {
+        "time_s": 3.9142572778942957,
+        "bracket_s": [
+          3.914,
+          3.915
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "return50": {
+        "time_s": 3.993008533167865,
+        "bracket_s": [
+          3.993,
+          3.994
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return80": {
+        "time_s": 4.001052267583815,
+        "bracket_s": [
+          4.001,
+          4.002
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return90": {
+        "time_s": 4.003917260559129,
+        "bracket_s": [
+          4.003,
+          4.0040000000000004
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 3
+      },
+      "turn_xmax": {
+        "time_s": 3.936717499998924,
+        "bracket_s": [
+          3.928717499997294,
+          3.9447174999969157
+        ],
+        "rule": "raw position maximum"
+      }
+    },
+    "spans_ms": {
+      "rise_10_90": 120.27471244707422,
+      "reversal_90_90": 89.65998266483366,
+      "reversal_50_50": 69.17543770709145,
+      "reversal_80_80": 84.7382457385959
+    },
+    "native_brackets_s": {
+      "start10": [
+        1.296717499999506,
+        1.3047174999974978
+      ],
+      "start50": [
+        1.3287174999987492,
+        1.336717499996741
+      ],
+      "start80": [
+        1.3767174999976142,
+        1.384717499999244
+      ],
+      "start90": [
+        1.4167174999984873,
+        1.424717500000117
+      ],
+      "zero": [
+        3.9447174999969157,
+        3.9527174999985455
+      ],
+      "decel50": [
+        3.920717499999302,
+        3.928717499997294
+      ],
+      "decel80": [
+        3.9127174999976724,
+        3.920717499999302
+      ],
+      "decel90": [
+        3.9127174999976724,
+        3.920717499999302
+      ],
+      "return50": [
+        3.9927174999994186,
+        4.00071749999741
+      ],
+      "return80": [
+        4.00071749999741,
+        4.00871749999904
+      ],
+      "return90": [
+        4.00071749999741,
+        4.00871749999904
+      ],
+      "turn_xmax": [
+        3.928717499997294,
+        3.936717499998924
+      ]
+    }
+  },
+  "spike_example": null,
+  "source_hash": "a0d79462af86be06746421dbeeff3ab2f59ff53a27572701672ce2ff136bba7a",
+  "observed_actual_stop_gaps": [
+    {
+      "source_indices": [
+        63,
+        64
+      ],
+      "mapped_s": [
+        1.0087174999990403,
+        1.248717499997003
+      ],
+      "seconds": 0.23999999999796273
+    },
+    {
+      "source_indices": [
+        733,
+        734
+      ],
+      "mapped_s": [
+        6.600717499999593,
+        6.67271749999971
+      ],
+      "seconds": 0.07200000000011642
+    }
+  ],
+  "frozen_window_sha256": "89cd3a47b8e69757b86661dea8e7fcf1b7e718cc77f35e0635b833cf974023ad",
+  "locked_rule_sha256": "b4783051d9cd27a82c95f4b70eed9f6f82d977d6c63a5a0987561e0ba0aae70b"
+}

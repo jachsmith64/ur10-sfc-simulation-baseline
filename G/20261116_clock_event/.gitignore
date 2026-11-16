@@ -1,0 +1,6 @@
+/local/
+/runs/
+/results/**/*.npz
+/G_clock_event_review_20261116.zip
+/delivery.json
+__pycache__/

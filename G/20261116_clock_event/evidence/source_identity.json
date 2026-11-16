@@ -1,0 +1,129 @@
+{
+  "code_archive_path": "C:\\Users\\PC\\Documents\\ChatGPT\\机械臂阻抗控制\\A_turning_handoff_20261113\\received\\code\\capture_reference\\robot.py",
+  "code_archive_sha256": "0a7ff8d022aefefdd6d1e30dbc61c345e5ba17887fef83d90627f5b4c8fff7d8",
+  "lines": [
+    1023,
+    1042
+  ],
+  "raw_robot_exports": {
+    "X_P05_R01": [
+      {
+        "name": "20260901_184044_B05_X_P05_R01_RUNLOG.txt",
+        "bytes": 880744,
+        "sha256": "6e11d74fd5156ab9d348ce875bd460fed025d159998323fdd3069cbff44ec935",
+        "robot_rows": 829,
+        "target_velocity_keys": {},
+        "all_robot_keys": {
+          "kind": 829,
+          "host_ns": 829,
+          "robot_timestamp_s": 829,
+          "actual_q_rad": 829,
+          "actual_tcp_pose": 829,
+          "actual_tcp_speed": 829,
+          "target_tcp_pose": 829,
+          "speed_scaling": 829,
+          "robot_mode": 829,
+          "safety_mode": 829,
+          "runtime_state": 829,
+          "robot_status_bits": 829,
+          "safety_status_bits": 829,
+          "segment_base": 829
+        }
+      },
+      {
+        "name": "20260901_184044_B05_X_P05_R01_UR10.txt",
+        "bytes": 660469,
+        "sha256": "6b3265ac168c37096f5d29d5d5ea678c896f322e63fe70010247223992b541a1",
+        "robot_rows": 829,
+        "target_velocity_keys": {},
+        "all_robot_keys": {
+          "kind": 829,
+          "host_ns": 829,
+          "robot_timestamp_s": 829,
+          "actual_q_rad": 829,
+          "actual_tcp_pose": 829,
+          "actual_tcp_speed": 829,
+          "target_tcp_pose": 829,
+          "speed_scaling": 829,
+          "robot_mode": 829,
+          "safety_mode": 829,
+          "runtime_state": 829,
+          "robot_status_bits": 829,
+          "safety_status_bits": 829
+        }
+      }
+    ],
+    "X_P05_R02": [
+      {
+        "name": "20260901_184044_B05_X_P05_R02_RUNLOG.txt",
+        "bytes": 880824,
+        "sha256": "b9f95826ee2b790787842df94369d02725d59e5feaa37e9fbbf129a94ec3e49b",
+        "robot_rows": 829,
+        "target_velocity_keys": {},
+        "all_robot_keys": {
+          "kind": 829,
+          "host_ns": 829,
+          "robot_timestamp_s": 829,
+          "actual_q_rad": 829,
+          "actual_tcp_pose": 829,
+          "actual_tcp_speed": 829,
+          "target_tcp_pose": 829,
+          "speed_scaling": 829,
+          "robot_mode": 829,
+          "safety_mode": 829,
+          "runtime_state": 829,
+          "robot_status_bits": 829,
+          "safety_status_bits": 829,
+          "segment_base": 829
+        }
+      },
+      {
+        "name": "20260901_184044_B05_X_P05_R02_UR10.txt",
+        "bytes": 660736,
+        "sha256": "9385d8e2bbea4f4de876ad589d8b687bfce310d009e7aa502c9e1d4c4aa728ed",
+        "robot_rows": 829,
+        "target_velocity_keys": {},
+        "all_robot_keys": {
+          "kind": 829,
+          "host_ns": 829,
+          "robot_timestamp_s": 829,
+          "actual_q_rad": 829,
+          "actual_tcp_pose": 829,
+          "actual_tcp_speed": 829,
+          "target_tcp_pose": 829,
+          "speed_scaling": 829,
+          "robot_mode": 829,
+          "safety_mode": 829,
+          "runtime_state": 829,
+          "robot_status_bits": 829,
+          "safety_status_bits": 829
+        }
+      }
+    ],
+    "X_P10_R01": [
+      {
+        "name": "20260901_184044_B05_X_P10_R01_UR10.txt",
+        "bytes": 615808,
+        "sha256": "96581450d44235c2d796e730d96a9962cb1bda31cc8b43b0006fd2d3d928fa09",
+        "robot_rows": 768,
+        "target_velocity_keys": {},
+        "all_robot_keys": {
+          "kind": 768,
+          "host_ns": 768,
+          "robot_timestamp_s": 768,
+          "actual_q_rad": 768,
+          "actual_tcp_pose": 768,
+          "actual_tcp_speed": 768,
+          "target_tcp_pose": 768,
+          "speed_scaling": 768,
+          "robot_mode": 768,
+          "safety_mode": 768,
+          "runtime_state": 768,
+          "robot_status_bits": 768,
+          "safety_status_bits": 768
+        }
+      }
+    ]
+  },
+  "scope": "Getters and host timestamp are adjacent but separate. No atomic snapshot is asserted; actual sample origin and collection root cause remain unproven."
+}

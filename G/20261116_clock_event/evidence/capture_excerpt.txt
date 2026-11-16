@@ -1,0 +1,20 @@
+1023: 
+1024:         # 本段读取最核心的机器人状态。
+1025:         # actual_q 是 6 个关节角；tcp_pose 是末端位姿；tcp_speed 是末端当前速度。
+1026:         actual_q = self.receive.getActualQ()
+1027:         tcp_pose = self.receive.getActualTCPPose()
+1028:         tcp_speed = self.receive.getActualTCPSpeed()
+1029: 
+1030:         return {
+1031:             "kind": "ROBOT",
+1032:             "host_ns": time.perf_counter_ns(),
+1033:             "robot_timestamp_s": float(
+1034:                 self._safe_call(self.receive, "getTimestamp", math.nan)
+1035:             ),
+1036:             "actual_q_rad": [float(value) for value in actual_q],
+1037:             "actual_tcp_pose": [float(value) for value in tcp_pose],
+1038:             "actual_tcp_speed": [float(value) for value in tcp_speed],
+1039:             "target_tcp_pose": [
+1040:                 float(value)
+1041:                 for value in self._safe_call(self.receive, "getTargetTCPPose", [])
+1042:             ],

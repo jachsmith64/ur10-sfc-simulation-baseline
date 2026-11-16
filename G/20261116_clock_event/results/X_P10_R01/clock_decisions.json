@@ -1,0 +1,6196 @@
+{
+  "clock_scale": 1.0,
+  "cabinet_origin_s": 30923.719999999998,
+  "offset_s": -0.007500500001440535,
+  "singleton_count": 574,
+  "residual_quantile_ms": [
+    -0.3815999999856601,
+    -0.25769500013654856,
+    -0.14035000002921016,
+    0.0,
+    6.603724999702202,
+    7.682444999844318,
+    7.932900000596543
+  ],
+  "offset_by_time_quartile_ms": [
+    -3.7725500023719216,
+    -7.555400001629797,
+    -7.624600001978621,
+    -6.573700002065586
+  ],
+  "largest_abs_residual_ms": 7.932900000596543,
+  "arrival_uncertainty": "No direct sample-time anchor. Residuals include arrival variation, getter order and unknown constant delay. Fixed offset is an estimate.",
+  "actual_mapping": "actual TCP pose and speed are validated jointly within equal stamps; other actual fields and camera are not shifted",
+  "target_conflict_rows": 12,
+  "actual_conflict_rows": 8,
+  "target_identical_rows_merged": 9,
+  "actual_identical_rows_merged": 11,
+  "field_consistency_exclusions": [
+    {
+      "excluded_source_index": 92,
+      "trusted_source_endpoints": [
+        91,
+        93
+      ],
+      "mapped_bracket_s": [
+        1.5444994999982393,
+        1.560499499997861
+      ],
+      "interior_velocities_mm_s": [
+        20.000014866692762,
+        0.0
+      ],
+      "adjacent_and_bridge_mm_s": [
+        10.000007909736867,
+        10.00000743562012,
+        10.00000684599044
+      ],
+      "reason": "isolated phase-discordant target on independently bounded plateau"
+    },
+    {
+      "excluded_source_index": 121,
+      "trusted_source_endpoints": [
+        120,
+        122
+      ],
+      "mapped_bracket_s": [
+        1.8404995000003348,
+        1.8564994999999564
+      ],
+      "interior_velocities_mm_s": [
+        20.000003252981884,
+        0.0
+      ],
+      "adjacent_and_bridge_mm_s": [
+        10.000001725126708,
+        10.000001624217205,
+        10.000001528256632
+      ],
+      "reason": "isolated phase-discordant target on independently bounded plateau"
+    },
+    {
+      "excluded_source_index": 395,
+      "trusted_source_endpoints": [
+        394,
+        396
+      ],
+      "mapped_bracket_s": [
+        4.632499499997977,
+        4.656499499999229
+      ],
+      "interior_velocities_mm_s": [
+        -20.000009570218392,
+        -5.000002249594289
+      ],
+      "adjacent_and_bridge_mm_s": [
+        -10.000005092768875,
+        -10.000004690560237,
+        -10.000004232115103
+      ],
+      "reason": "isolated phase-discordant target on independently bounded plateau"
+    }
+  ],
+  "long_target_gaps": [
+    {
+      "start_s": 0.9924994999985595,
+      "end_s": 1.2484994999997818,
+      "seconds": 0.25600000000122236,
+      "left_source_index": 61,
+      "right_source_index": 62,
+      "observed_tip_displacement_um": 0.43807999844380774,
+      "intersects_critical": [],
+      "accepted_bounded_target_hold": true,
+      "right_return_index": 63,
+      "rejoin_s": [
+        1.2484994999997818,
+        1.2564995000014116
+      ],
+      "actual_capture_gap_not_filled": true,
+      "interpretation": "Bounded nominal hold; no actual motion inferred."
+    },
+    {
+      "start_s": 6.120499499999171,
+      "end_s": 6.312499499998268,
+      "seconds": 0.19199999999909778,
+      "left_source_index": 540,
+      "right_source_index": 541,
+      "observed_tip_displacement_um": 0.1845856428817072,
+      "intersects_critical": [],
+      "accepted_bounded_target_hold": true,
+      "right_return_index": 542,
+      "rejoin_s": [
+        6.312499499998268,
+        6.33649949999952
+      ],
+      "actual_capture_gap_not_filled": true,
+      "interpretation": "Bounded nominal hold; no actual motion inferred."
+    }
+  ],
+  "actual_gaps": [
+    {
+      "source_indices": [
+        61,
+        62
+      ],
+      "mapped_s": [
+        0.9924994999985595,
+        1.2484994999997818
+      ],
+      "seconds": 0.25600000000122236
+    },
+    {
+      "source_indices": [
+        540,
+        541
+      ],
+      "mapped_s": [
+        6.120499499999171,
+        6.312499499998268
+      ],
+      "seconds": 0.19199999999909778
+    }
+  ],
+  "blocking_gaps": [],
+  "decisions": [
+    {
+      "index": 0,
+      "host_s": -0.005912700000000001,
+      "cabinet_s": 30923.719999999998,
+      "mapped_host_s": -0.007500500001440535,
+      "target_action": "kept",
+      "target_rep_index": 0,
+      "actual_action": "kept",
+      "actual_rep_index": 0
+    },
+    {
+      "index": 1,
+      "host_s": 0.0164718,
+      "cabinet_s": 30923.744,
+      "mapped_host_s": 0.01649949999981093,
+      "target_action": "kept",
+      "target_rep_index": 1,
+      "actual_action": "kept",
+      "actual_rep_index": 1
+    },
+    {
+      "index": 2,
+      "host_s": 0.0326354,
+      "cabinet_s": 30923.76,
+      "mapped_host_s": 0.03249949999943258,
+      "target_action": "kept",
+      "target_rep_index": 2,
+      "actual_action": "kept",
+      "actual_rep_index": 2
+    },
+    {
+      "index": 3,
+      "host_s": 0.048281500000000005,
+      "cabinet_s": 30923.768,
+      "mapped_host_s": 0.040499500001062394,
+      "target_action": "kept",
+      "target_rep_index": 3,
+      "actual_action": "kept",
+      "actual_rep_index": 3
+    },
+    {
+      "index": 4,
+      "host_s": 0.0639248,
+      "cabinet_s": 30923.784,
+      "mapped_host_s": 0.056499500000684044,
+      "target_action": "kept",
+      "target_rep_index": 4,
+      "actual_action": "kept",
+      "actual_rep_index": 4
+    },
+    {
+      "index": 5,
+      "host_s": 0.0797186,
+      "cabinet_s": 30923.8,
+      "mapped_host_s": 0.0724995000003057,
+      "target_action": "kept",
+      "target_rep_index": 5,
+      "actual_action": "kept",
+      "actual_rep_index": 5
+    },
+    {
+      "index": 6,
+      "host_s": 0.0955072,
+      "cabinet_s": 30923.816,
+      "mapped_host_s": 0.08849949999992734,
+      "target_action": "kept",
+      "target_rep_index": 6,
+      "actual_action": "kept",
+      "actual_rep_index": 6
+    },
+    {
+      "index": 7,
+      "host_s": 0.11146650000000001,
+      "cabinet_s": 30923.832,
+      "mapped_host_s": 0.104499499999549,
+      "target_action": "kept",
+      "target_rep_index": 7,
+      "actual_action": "kept",
+      "actual_rep_index": 7
+    },
+    {
+      "index": 8,
+      "host_s": 0.1275281,
+      "cabinet_s": 30923.847999999998,
+      "mapped_host_s": 0.12049949999917065,
+      "target_action": "kept",
+      "target_rep_index": 8,
+      "actual_action": "kept",
+      "actual_rep_index": 8
+    },
+    {
+      "index": 9,
+      "host_s": 0.1436838,
+      "cabinet_s": 30923.863999999998,
+      "mapped_host_s": 0.1364994999987923,
+      "target_action": "kept",
+      "target_rep_index": 9,
+      "actual_action": "kept",
+      "actual_rep_index": 9
+    },
+    {
+      "index": 10,
+      "host_s": 0.15956,
+      "cabinet_s": 30923.879999999997,
+      "mapped_host_s": 0.15249949999841395,
+      "target_action": "kept",
+      "target_rep_index": 10,
+      "actual_action": "kept",
+      "actual_rep_index": 10
+    },
+    {
+      "index": 11,
+      "host_s": 0.1751966,
+      "cabinet_s": 30923.895999999997,
+      "mapped_host_s": 0.1684994999980356,
+      "target_action": "kept",
+      "target_rep_index": 11,
+      "actual_action": "kept",
+      "actual_rep_index": 11
+    },
+    {
+      "index": 12,
+      "host_s": 0.1909218,
+      "cabinet_s": 30923.912,
+      "mapped_host_s": 0.18449950000129522,
+      "target_action": "kept",
+      "target_rep_index": 12,
+      "actual_action": "kept",
+      "actual_rep_index": 12
+    },
+    {
+      "index": 13,
+      "host_s": 0.2068248,
+      "cabinet_s": 30923.928,
+      "mapped_host_s": 0.20049950000091687,
+      "target_action": "kept",
+      "target_rep_index": 13,
+      "actual_action": "kept",
+      "actual_rep_index": 13
+    },
+    {
+      "index": 14,
+      "host_s": 0.22308650000000002,
+      "cabinet_s": 30923.944,
+      "mapped_host_s": 0.21649950000053853,
+      "target_action": "kept",
+      "target_rep_index": 14,
+      "actual_action": "kept",
+      "actual_rep_index": 14
+    },
+    {
+      "index": 15,
+      "host_s": 0.2386938,
+      "cabinet_s": 30923.96,
+      "mapped_host_s": 0.23249950000016018,
+      "target_action": "kept",
+      "target_rep_index": 15,
+      "actual_action": "kept",
+      "actual_rep_index": 15
+    },
+    {
+      "index": 16,
+      "host_s": 0.2544811,
+      "cabinet_s": 30923.976,
+      "mapped_host_s": 0.24849949999978183,
+      "target_action": "kept",
+      "target_rep_index": 16,
+      "actual_action": "kept",
+      "actual_rep_index": 16
+    },
+    {
+      "index": 17,
+      "host_s": 0.27030190000000004,
+      "cabinet_s": 30923.992,
+      "mapped_host_s": 0.2644994999994035,
+      "target_action": "kept",
+      "target_rep_index": 17,
+      "actual_action": "kept",
+      "actual_rep_index": 17
+    },
+    {
+      "index": 18,
+      "host_s": 0.2855237,
+      "cabinet_s": 30924.007999999998,
+      "mapped_host_s": 0.2804994999990251,
+      "target_action": "kept",
+      "target_rep_index": 18,
+      "actual_action": "kept",
+      "actual_rep_index": 18
+    },
+    {
+      "index": 19,
+      "host_s": 0.3085742,
+      "cabinet_s": 30924.032,
+      "mapped_host_s": 0.3044995000002766,
+      "target_action": "kept",
+      "target_rep_index": 19,
+      "actual_action": "kept",
+      "actual_rep_index": 19
+    },
+    {
+      "index": 20,
+      "host_s": 0.3244224,
+      "cabinet_s": 30924.048,
+      "mapped_host_s": 0.32049949999989824,
+      "target_action": "kept",
+      "target_rep_index": 20,
+      "actual_action": "kept",
+      "actual_rep_index": 20
+    },
+    {
+      "index": 21,
+      "host_s": 0.3448203,
+      "cabinet_s": 30924.072,
+      "mapped_host_s": 0.3444995000011497,
+      "target_action": "kept",
+      "target_rep_index": 21,
+      "actual_action": "kept",
+      "actual_rep_index": 21
+    },
+    {
+      "index": 22,
+      "host_s": 0.3601914,
+      "cabinet_s": 30924.079999999998,
+      "mapped_host_s": 0.35249949999914154,
+      "target_action": "kept",
+      "target_rep_index": 22,
+      "actual_action": "kept",
+      "actual_rep_index": 22
+    },
+    {
+      "index": 23,
+      "host_s": 0.38983910000000005,
+      "cabinet_s": 30924.111999999997,
+      "mapped_host_s": 0.38449949999838484,
+      "target_action": "kept",
+      "target_rep_index": 23,
+      "actual_action": "kept",
+      "actual_rep_index": 23
+    },
+    {
+      "index": 24,
+      "host_s": 0.4054918,
+      "cabinet_s": 30924.127999999997,
+      "mapped_host_s": 0.4004994999980065,
+      "target_action": "kept",
+      "target_rep_index": 24,
+      "actual_action": "kept",
+      "actual_rep_index": 24
+    },
+    {
+      "index": 25,
+      "host_s": 0.42157140000000004,
+      "cabinet_s": 30924.144,
+      "mapped_host_s": 0.4164995000012661,
+      "target_action": "kept",
+      "target_rep_index": 25,
+      "actual_action": "kept",
+      "actual_rep_index": 25
+    },
+    {
+      "index": 26,
+      "host_s": 0.43735460000000004,
+      "cabinet_s": 30924.16,
+      "mapped_host_s": 0.43249950000088777,
+      "target_action": "kept",
+      "target_rep_index": 26,
+      "actual_action": "kept",
+      "actual_rep_index": 26
+    },
+    {
+      "index": 27,
+      "host_s": 0.45312850000000005,
+      "cabinet_s": 30924.176,
+      "mapped_host_s": 0.4484995000005094,
+      "target_action": "kept",
+      "target_rep_index": 27,
+      "actual_action": "kept",
+      "actual_rep_index": 27
+    },
+    {
+      "index": 28,
+      "host_s": 0.46901600000000004,
+      "cabinet_s": 30924.192,
+      "mapped_host_s": 0.46449950000013107,
+      "target_action": "kept",
+      "target_rep_index": 28,
+      "actual_action": "kept",
+      "actual_rep_index": 28
+    },
+    {
+      "index": 29,
+      "host_s": 0.4851649,
+      "cabinet_s": 30924.208,
+      "mapped_host_s": 0.4804994999997527,
+      "target_action": "kept",
+      "target_rep_index": 29,
+      "actual_action": "kept",
+      "actual_rep_index": 29
+    },
+    {
+      "index": 30,
+      "host_s": 0.5014705,
+      "cabinet_s": 30924.224,
+      "mapped_host_s": 0.49649949999937437,
+      "target_action": "kept",
+      "target_rep_index": 30,
+      "actual_action": "kept",
+      "actual_rep_index": 30
+    },
+    {
+      "index": 31,
+      "host_s": 0.5169759,
+      "cabinet_s": 30924.239999999998,
+      "mapped_host_s": 0.512499499998996,
+      "target_action": "kept",
+      "target_rep_index": 31,
+      "actual_action": "kept",
+      "actual_rep_index": 31
+    },
+    {
+      "index": 32,
+      "host_s": 0.5330808,
+      "cabinet_s": 30924.255999999998,
+      "mapped_host_s": 0.5284994999986177,
+      "target_action": "kept",
+      "target_rep_index": 32,
+      "actual_action": "kept",
+      "actual_rep_index": 32
+    },
+    {
+      "index": 33,
+      "host_s": 0.5487319,
+      "cabinet_s": 30924.271999999997,
+      "mapped_host_s": 0.5444994999982393,
+      "target_action": "kept",
+      "target_rep_index": 33,
+      "actual_action": "kept",
+      "actual_rep_index": 33
+    },
+    {
+      "index": 34,
+      "host_s": 0.5644176000000001,
+      "cabinet_s": 30924.287999999997,
+      "mapped_host_s": 0.560499499997861,
+      "target_action": "kept",
+      "target_rep_index": 34,
+      "actual_action": "kept",
+      "actual_rep_index": 34
+    },
+    {
+      "index": 35,
+      "host_s": 0.5802430000000001,
+      "cabinet_s": 30924.304,
+      "mapped_host_s": 0.5764995000011206,
+      "target_action": "kept",
+      "target_rep_index": 35,
+      "actual_action": "kept",
+      "actual_rep_index": 35
+    },
+    {
+      "index": 36,
+      "host_s": 0.5962119,
+      "cabinet_s": 30924.32,
+      "mapped_host_s": 0.5924995000007423,
+      "target_action": "kept",
+      "target_rep_index": 36,
+      "actual_action": "kept",
+      "actual_rep_index": 36
+    },
+    {
+      "index": 37,
+      "host_s": 0.6123681000000001,
+      "cabinet_s": 30924.336,
+      "mapped_host_s": 0.6084995000003639,
+      "target_action": "kept",
+      "target_rep_index": 37,
+      "actual_action": "kept",
+      "actual_rep_index": 37
+    },
+    {
+      "index": 38,
+      "host_s": 0.6283198,
+      "cabinet_s": 30924.352,
+      "mapped_host_s": 0.6244994999999856,
+      "target_action": "kept",
+      "target_rep_index": 38,
+      "actual_action": "kept",
+      "actual_rep_index": 38
+    },
+    {
+      "index": 39,
+      "host_s": 0.6440101,
+      "cabinet_s": 30924.368,
+      "mapped_host_s": 0.6404994999996072,
+      "target_action": "kept",
+      "target_rep_index": 39,
+      "actual_action": "kept",
+      "actual_rep_index": 39
+    },
+    {
+      "index": 40,
+      "host_s": 0.6598128000000001,
+      "cabinet_s": 30924.384,
+      "mapped_host_s": 0.6564994999992289,
+      "target_action": "kept",
+      "target_rep_index": 40,
+      "actual_action": "kept",
+      "actual_rep_index": 40
+    },
+    {
+      "index": 41,
+      "host_s": 0.6759617,
+      "cabinet_s": 30924.399999999998,
+      "mapped_host_s": 0.6724994999988505,
+      "target_action": "kept",
+      "target_rep_index": 41,
+      "actual_action": "kept",
+      "actual_rep_index": 41
+    },
+    {
+      "index": 42,
+      "host_s": 0.6917204,
+      "cabinet_s": 30924.415999999997,
+      "mapped_host_s": 0.6884994999984722,
+      "target_action": "kept",
+      "target_rep_index": 42,
+      "actual_action": "kept",
+      "actual_rep_index": 42
+    },
+    {
+      "index": 43,
+      "host_s": 0.7073284000000001,
+      "cabinet_s": 30924.431999999997,
+      "mapped_host_s": 0.7044994999980938,
+      "target_action": "kept",
+      "target_rep_index": 43,
+      "actual_action": "kept",
+      "actual_rep_index": 43
+    },
+    {
+      "index": 44,
+      "host_s": 0.7232511,
+      "cabinet_s": 30924.448,
+      "mapped_host_s": 0.7204995000013534,
+      "target_action": "kept",
+      "target_rep_index": 44,
+      "actual_action": "kept",
+      "actual_rep_index": 44
+    },
+    {
+      "index": 45,
+      "host_s": 0.7392739,
+      "cabinet_s": 30924.464,
+      "mapped_host_s": 0.7364995000009751,
+      "target_action": "kept",
+      "target_rep_index": 45,
+      "actual_action": "kept",
+      "actual_rep_index": 45
+    },
+    {
+      "index": 46,
+      "host_s": 0.7549544,
+      "cabinet_s": 30924.48,
+      "mapped_host_s": 0.7524995000005967,
+      "target_action": "kept",
+      "target_rep_index": 46,
+      "actual_action": "kept",
+      "actual_rep_index": 46
+    },
+    {
+      "index": 47,
+      "host_s": 0.7706891,
+      "cabinet_s": 30924.496,
+      "mapped_host_s": 0.7684995000002184,
+      "target_action": "kept",
+      "target_rep_index": 47,
+      "actual_action": "kept",
+      "actual_rep_index": 47
+    },
+    {
+      "index": 48,
+      "host_s": 0.7862136000000001,
+      "cabinet_s": 30924.512,
+      "mapped_host_s": 0.78449949999984,
+      "target_action": "kept",
+      "target_rep_index": 48,
+      "actual_action": "kept",
+      "actual_rep_index": 48
+    },
+    {
+      "index": 49,
+      "host_s": 0.8023560000000001,
+      "cabinet_s": 30924.528,
+      "mapped_host_s": 0.8004994999994617,
+      "target_action": "kept",
+      "target_rep_index": 49,
+      "actual_action": "kept",
+      "actual_rep_index": 49
+    },
+    {
+      "index": 50,
+      "host_s": 0.8181977,
+      "cabinet_s": 30924.543999999998,
+      "mapped_host_s": 0.8164994999990833,
+      "target_action": "kept",
+      "target_rep_index": 50,
+      "actual_action": "kept",
+      "actual_rep_index": 50
+    },
+    {
+      "index": 51,
+      "host_s": 0.8345072,
+      "cabinet_s": 30924.559999999998,
+      "mapped_host_s": 0.832499499998705,
+      "target_action": "kept",
+      "target_rep_index": 51,
+      "actual_action": "kept",
+      "actual_rep_index": 51
+    },
+    {
+      "index": 52,
+      "host_s": 0.8555876,
+      "cabinet_s": 30924.575999999997,
+      "mapped_host_s": 0.8484994999983266,
+      "target_action": "kept",
+      "target_rep_index": 52,
+      "actual_action": "kept",
+      "actual_rep_index": 52
+    },
+    {
+      "index": 53,
+      "host_s": 0.8710840000000001,
+      "cabinet_s": 30924.591999999997,
+      "mapped_host_s": 0.8644994999979483,
+      "target_action": "kept",
+      "target_rep_index": 53,
+      "actual_action": "kept",
+      "actual_rep_index": 53
+    },
+    {
+      "index": 54,
+      "host_s": 0.8887704000000001,
+      "cabinet_s": 30924.615999999998,
+      "mapped_host_s": 0.8884994999991997,
+      "target_action": "kept",
+      "target_rep_index": 54,
+      "actual_action": "kept",
+      "actual_rep_index": 54
+    },
+    {
+      "index": 55,
+      "host_s": 0.9049832000000001,
+      "cabinet_s": 30924.631999999998,
+      "mapped_host_s": 0.9044994999988214,
+      "target_action": "kept",
+      "target_rep_index": 55,
+      "actual_action": "kept",
+      "actual_rep_index": 55
+    },
+    {
+      "index": 56,
+      "host_s": 0.9205924000000001,
+      "cabinet_s": 30924.647999999997,
+      "mapped_host_s": 0.920499499998443,
+      "target_action": "kept",
+      "target_rep_index": 56,
+      "actual_action": "kept",
+      "actual_rep_index": 56
+    },
+    {
+      "index": 57,
+      "host_s": 0.9365119000000001,
+      "cabinet_s": 30924.663999999997,
+      "mapped_host_s": 0.9364994999980647,
+      "target_action": "kept",
+      "target_rep_index": 57,
+      "actual_action": "kept",
+      "actual_rep_index": 57
+    },
+    {
+      "index": 58,
+      "host_s": 0.9523363,
+      "cabinet_s": 30924.672,
+      "mapped_host_s": 0.9444994999996945,
+      "target_action": "kept",
+      "target_rep_index": 58,
+      "actual_action": "kept",
+      "actual_rep_index": 58
+    },
+    {
+      "index": 59,
+      "host_s": 0.9680885,
+      "cabinet_s": 30924.688,
+      "mapped_host_s": 0.9604994999993162,
+      "target_action": "kept",
+      "target_rep_index": 59,
+      "actual_action": "kept",
+      "actual_rep_index": 59
+    },
+    {
+      "index": 60,
+      "host_s": 0.9839718000000001,
+      "cabinet_s": 30924.703999999998,
+      "mapped_host_s": 0.9764994999989378,
+      "target_action": "kept",
+      "target_rep_index": 60,
+      "actual_action": "kept",
+      "actual_rep_index": 60
+    },
+    {
+      "index": 61,
+      "host_s": 0.9995883000000001,
+      "cabinet_s": 30924.719999999998,
+      "mapped_host_s": 0.9924994999985595,
+      "target_action": "kept",
+      "target_rep_index": 61,
+      "actual_action": "kept",
+      "actual_rep_index": 61
+    },
+    {
+      "index": 62,
+      "host_s": 1.2537207000000001,
+      "cabinet_s": 30924.976,
+      "mapped_host_s": 1.2484994999997818,
+      "target_action": "bounded_hold_boundary",
+      "target_rep_index": 62,
+      "actual_action": "kept",
+      "actual_rep_index": 62
+    },
+    {
+      "index": 63,
+      "host_s": 1.2562651,
+      "cabinet_s": 30924.984,
+      "mapped_host_s": 1.2564995000014116,
+      "target_action": "kept",
+      "target_rep_index": 63,
+      "actual_action": "kept",
+      "actual_rep_index": 63
+    },
+    {
+      "index": 64,
+      "host_s": 1.2723093,
+      "cabinet_s": 30925.0,
+      "mapped_host_s": 1.2724995000010333,
+      "target_action": "kept",
+      "target_rep_index": 64,
+      "actual_action": "kept",
+      "actual_rep_index": 64
+    },
+    {
+      "index": 65,
+      "host_s": 1.288215,
+      "cabinet_s": 30925.007999999998,
+      "mapped_host_s": 1.2804994999990251,
+      "target_action": "kept",
+      "target_rep_index": 65,
+      "actual_action": "kept",
+      "actual_rep_index": 65
+    },
+    {
+      "index": 66,
+      "host_s": 1.2960639,
+      "cabinet_s": 30925.016,
+      "mapped_host_s": 1.288499500000655,
+      "target_action": "kept",
+      "target_rep_index": 66,
+      "actual_action": "kept",
+      "actual_rep_index": 66
+    },
+    {
+      "index": 67,
+      "host_s": 1.3041785000000001,
+      "cabinet_s": 30925.023999999998,
+      "mapped_host_s": 1.2964994999986468,
+      "target_action": "kept",
+      "target_rep_index": 67,
+      "actual_action": "kept",
+      "actual_rep_index": 67
+    },
+    {
+      "index": 68,
+      "host_s": 1.3122003,
+      "cabinet_s": 30925.032,
+      "mapped_host_s": 1.3044995000002766,
+      "target_action": "kept",
+      "target_rep_index": 68,
+      "actual_action": "kept",
+      "actual_rep_index": 68
+    },
+    {
+      "index": 69,
+      "host_s": 1.3201098,
+      "cabinet_s": 30925.039999999997,
+      "mapped_host_s": 1.3124994999982684,
+      "target_action": "kept",
+      "target_rep_index": 69,
+      "actual_action": "kept",
+      "actual_rep_index": 69
+    },
+    {
+      "index": 70,
+      "host_s": 1.3283977,
+      "cabinet_s": 30925.055999999997,
+      "mapped_host_s": 1.32849949999789,
+      "target_action": "kept",
+      "target_rep_index": 70,
+      "actual_action": "kept",
+      "actual_rep_index": 70
+    },
+    {
+      "index": 71,
+      "host_s": 1.3364173000000001,
+      "cabinet_s": 30925.064,
+      "mapped_host_s": 1.33649949999952,
+      "target_action": "kept",
+      "target_rep_index": 71,
+      "actual_action": "kept",
+      "actual_rep_index": 71
+    },
+    {
+      "index": 72,
+      "host_s": 1.3443831000000002,
+      "cabinet_s": 30925.072,
+      "mapped_host_s": 1.3444995000011497,
+      "target_action": "kept",
+      "target_rep_index": 72,
+      "actual_action": "kept",
+      "actual_rep_index": 72
+    },
+    {
+      "index": 73,
+      "host_s": 1.3601205,
+      "cabinet_s": 30925.079999999998,
+      "mapped_host_s": 1.3524994999991415,
+      "target_action": "kept",
+      "target_rep_index": 73,
+      "actual_action": "kept",
+      "actual_rep_index": 73
+    },
+    {
+      "index": 74,
+      "host_s": 1.3679219,
+      "cabinet_s": 30925.088,
+      "mapped_host_s": 1.3604995000007714,
+      "target_action": "kept",
+      "target_rep_index": 74,
+      "actual_action": "kept",
+      "actual_rep_index": 74
+    },
+    {
+      "index": 75,
+      "host_s": 1.37639,
+      "cabinet_s": 30925.104,
+      "mapped_host_s": 1.376499500000393,
+      "target_action": "kept",
+      "target_rep_index": 75,
+      "actual_action": "kept",
+      "actual_rep_index": 75
+    },
+    {
+      "index": 76,
+      "host_s": 1.3845331,
+      "cabinet_s": 30925.111999999997,
+      "mapped_host_s": 1.3844994999983848,
+      "target_action": "kept",
+      "target_rep_index": 76,
+      "actual_action": "kept",
+      "actual_rep_index": 76
+    },
+    {
+      "index": 77,
+      "host_s": 1.3923228,
+      "cabinet_s": 30925.12,
+      "mapped_host_s": 1.3924995000000147,
+      "target_action": "kept",
+      "target_rep_index": 77,
+      "actual_action": "kept",
+      "actual_rep_index": 77
+    },
+    {
+      "index": 78,
+      "host_s": 1.4006558,
+      "cabinet_s": 30925.127999999997,
+      "mapped_host_s": 1.4004994999980065,
+      "target_action": "kept",
+      "target_rep_index": 78,
+      "actual_action": "kept",
+      "actual_rep_index": 78
+    },
+    {
+      "index": 79,
+      "host_s": 1.4160397,
+      "cabinet_s": 30925.136,
+      "mapped_host_s": 1.4084994999996363,
+      "target_action": "kept",
+      "target_rep_index": 79,
+      "actual_action": "kept",
+      "actual_rep_index": 79
+    },
+    {
+      "index": 80,
+      "host_s": 1.4241367,
+      "cabinet_s": 30925.144,
+      "mapped_host_s": 1.4164995000012661,
+      "target_action": "kept",
+      "target_rep_index": 80,
+      "actual_action": "kept",
+      "actual_rep_index": 80
+    },
+    {
+      "index": 81,
+      "host_s": 1.4323475,
+      "cabinet_s": 30925.16,
+      "mapped_host_s": 1.4324995000008878,
+      "target_action": "kept",
+      "target_rep_index": 81,
+      "actual_action": "kept",
+      "actual_rep_index": 81
+    },
+    {
+      "index": 82,
+      "host_s": 1.4480695000000001,
+      "cabinet_s": 30925.167999999998,
+      "mapped_host_s": 1.4404994999988796,
+      "target_action": "kept",
+      "target_rep_index": 82,
+      "actual_action": "kept",
+      "actual_rep_index": 82
+    },
+    {
+      "index": 83,
+      "host_s": 1.4560997,
+      "cabinet_s": 30925.176,
+      "mapped_host_s": 1.4484995000005094,
+      "target_action": "kept",
+      "target_rep_index": 83,
+      "actual_action": "kept",
+      "actual_rep_index": 83
+    },
+    {
+      "index": 84,
+      "host_s": 1.4641594,
+      "cabinet_s": 30925.183999999997,
+      "mapped_host_s": 1.4564994999985013,
+      "target_action": "kept",
+      "target_rep_index": 84,
+      "actual_action": "kept",
+      "actual_rep_index": 84
+    },
+    {
+      "index": 85,
+      "host_s": 1.4722575,
+      "cabinet_s": 30925.192,
+      "mapped_host_s": 1.464499500000131,
+      "target_action": "kept",
+      "target_rep_index": 85,
+      "actual_action": "kept",
+      "actual_rep_index": 85
+    },
+    {
+      "index": 86,
+      "host_s": 1.4805751,
+      "cabinet_s": 30925.208,
+      "mapped_host_s": 1.4804994999997527,
+      "target_action": "kept",
+      "target_rep_index": 86,
+      "actual_action": "kept",
+      "actual_rep_index": 86
+    },
+    {
+      "index": 87,
+      "host_s": 1.4959458,
+      "cabinet_s": 30925.216,
+      "mapped_host_s": 1.4884995000013825,
+      "target_action": "kept",
+      "target_rep_index": 87,
+      "actual_action": "kept",
+      "actual_rep_index": 87
+    },
+    {
+      "index": 88,
+      "host_s": 1.5043479000000002,
+      "cabinet_s": 30925.232,
+      "mapped_host_s": 1.5044995000010042,
+      "target_action": "kept",
+      "target_rep_index": 88,
+      "actual_action": "kept",
+      "actual_rep_index": 88
+    },
+    {
+      "index": 89,
+      "host_s": 1.5203133000000002,
+      "cabinet_s": 30925.248,
+      "mapped_host_s": 1.5204995000006258,
+      "target_action": "kept",
+      "target_rep_index": 89,
+      "actual_action": "kept",
+      "actual_rep_index": 89
+    },
+    {
+      "index": 90,
+      "host_s": 1.5364324,
+      "cabinet_s": 30925.264,
+      "mapped_host_s": 1.5364995000002475,
+      "target_action": "kept",
+      "target_rep_index": 90,
+      "actual_action": "kept",
+      "actual_rep_index": 90
+    },
+    {
+      "index": 91,
+      "host_s": 1.5519982,
+      "cabinet_s": 30925.271999999997,
+      "mapped_host_s": 1.5444994999982393,
+      "target_action": "kept",
+      "target_rep_index": 91,
+      "actual_action": "kept",
+      "actual_rep_index": 91
+    },
+    {
+      "index": 92,
+      "host_s": 1.5603253000000001,
+      "cabinet_s": 30925.28,
+      "mapped_host_s": 1.5524994999998691,
+      "target_action": "excluded_local_field_inconsistency",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 92
+    },
+    {
+      "index": 93,
+      "host_s": 1.5683341000000002,
+      "cabinet_s": 30925.287999999997,
+      "mapped_host_s": 1.560499499997861,
+      "target_action": "kept",
+      "target_rep_index": 93,
+      "actual_action": "kept",
+      "actual_rep_index": 93
+    },
+    {
+      "index": 94,
+      "host_s": 1.5764103,
+      "cabinet_s": 30925.304,
+      "mapped_host_s": 1.5764995000011206,
+      "target_action": "kept",
+      "target_rep_index": 94,
+      "actual_action": "kept",
+      "actual_rep_index": 94
+    },
+    {
+      "index": 95,
+      "host_s": 1.5844763000000002,
+      "cabinet_s": 30925.311999999998,
+      "mapped_host_s": 1.5844994999991124,
+      "target_action": "kept",
+      "target_rep_index": 95,
+      "actual_action": "kept",
+      "actual_rep_index": 95
+    },
+    {
+      "index": 96,
+      "host_s": 1.6004404,
+      "cabinet_s": 30925.327999999998,
+      "mapped_host_s": 1.600499499998734,
+      "target_action": "kept",
+      "target_rep_index": 96,
+      "actual_action": "kept",
+      "actual_rep_index": 96
+    },
+    {
+      "index": 97,
+      "host_s": 1.6083826,
+      "cabinet_s": 30925.336,
+      "mapped_host_s": 1.608499500000364,
+      "target_action": "kept",
+      "target_rep_index": 97,
+      "actual_action": "kept",
+      "actual_rep_index": 97
+    },
+    {
+      "index": 98,
+      "host_s": 1.6241824,
+      "cabinet_s": 30925.352,
+      "mapped_host_s": 1.6244994999999856,
+      "target_action": "kept",
+      "target_rep_index": 98,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 99,
+      "host_s": 1.6320215,
+      "cabinet_s": 30925.352,
+      "mapped_host_s": 1.6244994999999856,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 98,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 100,
+      "host_s": 1.6403419000000001,
+      "cabinet_s": 30925.368,
+      "mapped_host_s": 1.6404994999996072,
+      "target_action": "kept",
+      "target_rep_index": 100,
+      "actual_action": "kept",
+      "actual_rep_index": 100
+    },
+    {
+      "index": 101,
+      "host_s": 1.6564222000000002,
+      "cabinet_s": 30925.384,
+      "mapped_host_s": 1.6564994999992289,
+      "target_action": "kept",
+      "target_rep_index": 101,
+      "actual_action": "kept",
+      "actual_rep_index": 101
+    },
+    {
+      "index": 102,
+      "host_s": 1.6642910000000002,
+      "cabinet_s": 30925.392,
+      "mapped_host_s": 1.6644995000008587,
+      "target_action": "kept",
+      "target_rep_index": 102,
+      "actual_action": "kept",
+      "actual_rep_index": 102
+    },
+    {
+      "index": 103,
+      "host_s": 1.6721229000000002,
+      "cabinet_s": 30925.392,
+      "mapped_host_s": 1.6644995000008587,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 102,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 102
+    },
+    {
+      "index": 104,
+      "host_s": 1.6803052,
+      "cabinet_s": 30925.399999999998,
+      "mapped_host_s": 1.6724994999988505,
+      "target_action": "kept",
+      "target_rep_index": 104,
+      "actual_action": "kept",
+      "actual_rep_index": 104
+    },
+    {
+      "index": 105,
+      "host_s": 1.6885582000000001,
+      "cabinet_s": 30925.415999999997,
+      "mapped_host_s": 1.6884994999984722,
+      "target_action": "kept",
+      "target_rep_index": 105,
+      "actual_action": "kept",
+      "actual_rep_index": 105
+    },
+    {
+      "index": 106,
+      "host_s": 1.7044573,
+      "cabinet_s": 30925.431999999997,
+      "mapped_host_s": 1.7044994999980938,
+      "target_action": "kept",
+      "target_rep_index": 106,
+      "actual_action": "kept",
+      "actual_rep_index": 106
+    },
+    {
+      "index": 107,
+      "host_s": 1.7124757000000002,
+      "cabinet_s": 30925.44,
+      "mapped_host_s": 1.7124994999997236,
+      "target_action": "kept",
+      "target_rep_index": 107,
+      "actual_action": "kept",
+      "actual_rep_index": 107
+    },
+    {
+      "index": 108,
+      "host_s": 1.7203251000000002,
+      "cabinet_s": 30925.448,
+      "mapped_host_s": 1.7204995000013534,
+      "target_action": "kept",
+      "target_rep_index": 108,
+      "actual_action": "kept",
+      "actual_rep_index": 108
+    },
+    {
+      "index": 109,
+      "host_s": 1.7361679,
+      "cabinet_s": 30925.456,
+      "mapped_host_s": 1.7284994999993453,
+      "target_action": "kept",
+      "target_rep_index": 109,
+      "actual_action": "kept",
+      "actual_rep_index": 109
+    },
+    {
+      "index": 110,
+      "host_s": 1.7443393,
+      "cabinet_s": 30925.471999999998,
+      "mapped_host_s": 1.744499499998967,
+      "target_action": "kept",
+      "target_rep_index": 110,
+      "actual_action": "kept",
+      "actual_rep_index": 110
+    },
+    {
+      "index": 111,
+      "host_s": 1.7524966000000002,
+      "cabinet_s": 30925.48,
+      "mapped_host_s": 1.7524995000005967,
+      "target_action": "kept",
+      "target_rep_index": 111,
+      "actual_action": "kept",
+      "actual_rep_index": 111
+    },
+    {
+      "index": 112,
+      "host_s": 1.7684408,
+      "cabinet_s": 30925.496,
+      "mapped_host_s": 1.7684995000002184,
+      "target_action": "kept",
+      "target_rep_index": 112,
+      "actual_action": "kept",
+      "actual_rep_index": 112
+    },
+    {
+      "index": 113,
+      "host_s": 1.7764203,
+      "cabinet_s": 30925.503999999997,
+      "mapped_host_s": 1.7764994999982102,
+      "target_action": "kept",
+      "target_rep_index": 113,
+      "actual_action": "kept",
+      "actual_rep_index": 113
+    },
+    {
+      "index": 114,
+      "host_s": 1.7844919000000001,
+      "cabinet_s": 30925.512,
+      "mapped_host_s": 1.78449949999984,
+      "target_action": "kept",
+      "target_rep_index": 114,
+      "actual_action": "kept",
+      "actual_rep_index": 114
+    },
+    {
+      "index": 115,
+      "host_s": 1.7927684000000002,
+      "cabinet_s": 30925.519999999997,
+      "mapped_host_s": 1.7924994999978319,
+      "target_action": "kept",
+      "target_rep_index": 115,
+      "actual_action": "kept",
+      "actual_rep_index": 115
+    },
+    {
+      "index": 116,
+      "host_s": 1.8083837,
+      "cabinet_s": 30925.536,
+      "mapped_host_s": 1.8084995000010915,
+      "target_action": "kept",
+      "target_rep_index": 116,
+      "actual_action": "kept",
+      "actual_rep_index": 116
+    },
+    {
+      "index": 117,
+      "host_s": 1.8163229,
+      "cabinet_s": 30925.543999999998,
+      "mapped_host_s": 1.8164994999990833,
+      "target_action": "kept",
+      "target_rep_index": 117,
+      "actual_action": "kept",
+      "actual_rep_index": 117
+    },
+    {
+      "index": 118,
+      "host_s": 1.8321372,
+      "cabinet_s": 30925.552,
+      "mapped_host_s": 1.8244995000007131,
+      "target_action": "kept",
+      "target_rep_index": 118,
+      "actual_action": "kept",
+      "actual_rep_index": 118
+    },
+    {
+      "index": 119,
+      "host_s": 1.8400003,
+      "cabinet_s": 30925.559999999998,
+      "mapped_host_s": 1.832499499998705,
+      "target_action": "kept",
+      "target_rep_index": 119,
+      "actual_action": "kept",
+      "actual_rep_index": 119
+    },
+    {
+      "index": 120,
+      "host_s": 1.8480541000000001,
+      "cabinet_s": 30925.568,
+      "mapped_host_s": 1.8404995000003348,
+      "target_action": "kept",
+      "target_rep_index": 120,
+      "actual_action": "kept",
+      "actual_rep_index": 120
+    },
+    {
+      "index": 121,
+      "host_s": 1.8561740000000002,
+      "cabinet_s": 30925.575999999997,
+      "mapped_host_s": 1.8484994999983266,
+      "target_action": "excluded_local_field_inconsistency",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 121
+    },
+    {
+      "index": 122,
+      "host_s": 1.8641496000000002,
+      "cabinet_s": 30925.584,
+      "mapped_host_s": 1.8564994999999564,
+      "target_action": "kept",
+      "target_rep_index": 122,
+      "actual_action": "kept",
+      "actual_rep_index": 122
+    },
+    {
+      "index": 123,
+      "host_s": 1.8721795,
+      "cabinet_s": 30925.591999999997,
+      "mapped_host_s": 1.8644994999979483,
+      "target_action": "kept",
+      "target_rep_index": 123,
+      "actual_action": "kept",
+      "actual_rep_index": 123
+    },
+    {
+      "index": 124,
+      "host_s": 1.8803470000000002,
+      "cabinet_s": 30925.608,
+      "mapped_host_s": 1.880499500001208,
+      "target_action": "kept",
+      "target_rep_index": 124,
+      "actual_action": "kept",
+      "actual_rep_index": 124
+    },
+    {
+      "index": 125,
+      "host_s": 1.8886053,
+      "cabinet_s": 30925.615999999998,
+      "mapped_host_s": 1.8884994999991997,
+      "target_action": "kept",
+      "target_rep_index": 125,
+      "actual_action": "kept",
+      "actual_rep_index": 125
+    },
+    {
+      "index": 126,
+      "host_s": 1.9045259,
+      "cabinet_s": 30925.631999999998,
+      "mapped_host_s": 1.9044994999988214,
+      "target_action": "kept",
+      "target_rep_index": 126,
+      "actual_action": "kept",
+      "actual_rep_index": 126
+    },
+    {
+      "index": 127,
+      "host_s": 1.9203337,
+      "cabinet_s": 30925.647999999997,
+      "mapped_host_s": 1.920499499998443,
+      "target_action": "kept",
+      "target_rep_index": 127,
+      "actual_action": "kept",
+      "actual_rep_index": 127
+    },
+    {
+      "index": 128,
+      "host_s": 1.9283748,
+      "cabinet_s": 30925.656,
+      "mapped_host_s": 1.9284995000000729,
+      "target_action": "kept",
+      "target_rep_index": 128,
+      "actual_action": "kept",
+      "actual_rep_index": 128
+    },
+    {
+      "index": 129,
+      "host_s": 1.9444764,
+      "cabinet_s": 30925.672,
+      "mapped_host_s": 1.9444994999996945,
+      "target_action": "kept",
+      "target_rep_index": 129,
+      "actual_action": "kept",
+      "actual_rep_index": 129
+    },
+    {
+      "index": 130,
+      "host_s": 1.9600662000000002,
+      "cabinet_s": 30925.68,
+      "mapped_host_s": 1.9524995000013243,
+      "target_action": "kept",
+      "target_rep_index": 130,
+      "actual_action": "kept",
+      "actual_rep_index": 130
+    },
+    {
+      "index": 131,
+      "host_s": 1.9681231000000001,
+      "cabinet_s": 30925.688,
+      "mapped_host_s": 1.9604994999993162,
+      "target_action": "kept",
+      "target_rep_index": 131,
+      "actual_action": "kept",
+      "actual_rep_index": 131
+    },
+    {
+      "index": 132,
+      "host_s": 1.9761631000000002,
+      "cabinet_s": 30925.696,
+      "mapped_host_s": 1.968499500000946,
+      "target_action": "kept",
+      "target_rep_index": 132,
+      "actual_action": "kept",
+      "actual_rep_index": 132
+    },
+    {
+      "index": 133,
+      "host_s": 1.9844482,
+      "cabinet_s": 30925.712,
+      "mapped_host_s": 1.9844995000005676,
+      "target_action": "kept",
+      "target_rep_index": 133,
+      "actual_action": "kept",
+      "actual_rep_index": 133
+    },
+    {
+      "index": 134,
+      "host_s": 1.9923914,
+      "cabinet_s": 30925.719999999998,
+      "mapped_host_s": 1.9924994999985595,
+      "target_action": "kept",
+      "target_rep_index": 134,
+      "actual_action": "kept",
+      "actual_rep_index": 134
+    },
+    {
+      "index": 135,
+      "host_s": 2.0003438,
+      "cabinet_s": 30925.728,
+      "mapped_host_s": 2.0004995000001893,
+      "target_action": "kept",
+      "target_rep_index": 135,
+      "actual_action": "kept",
+      "actual_rep_index": 135
+    },
+    {
+      "index": 136,
+      "host_s": 2.0084443000000003,
+      "cabinet_s": 30925.735999999997,
+      "mapped_host_s": 2.008499499998181,
+      "target_action": "kept",
+      "target_rep_index": 136,
+      "actual_action": "kept",
+      "actual_rep_index": 136
+    },
+    {
+      "index": 137,
+      "host_s": 2.0163934,
+      "cabinet_s": 30925.744,
+      "mapped_host_s": 2.016499499999811,
+      "target_action": "kept",
+      "target_rep_index": 137,
+      "actual_action": "kept",
+      "actual_rep_index": 137
+    },
+    {
+      "index": 138,
+      "host_s": 2.0323825,
+      "cabinet_s": 30925.76,
+      "mapped_host_s": 2.0324994999994326,
+      "target_action": "kept",
+      "target_rep_index": 138,
+      "actual_action": "kept",
+      "actual_rep_index": 138
+    },
+    {
+      "index": 139,
+      "host_s": 2.0403496000000003,
+      "cabinet_s": 30925.768,
+      "mapped_host_s": 2.0404995000010624,
+      "target_action": "kept",
+      "target_rep_index": 139,
+      "actual_action": "kept",
+      "actual_rep_index": 139
+    },
+    {
+      "index": 140,
+      "host_s": 2.0483019000000002,
+      "cabinet_s": 30925.775999999998,
+      "mapped_host_s": 2.0484994999990542,
+      "target_action": "kept",
+      "target_rep_index": 140,
+      "actual_action": "kept",
+      "actual_rep_index": 140
+    },
+    {
+      "index": 141,
+      "host_s": 2.0562654,
+      "cabinet_s": 30925.784,
+      "mapped_host_s": 2.056499500000684,
+      "target_action": "kept",
+      "target_rep_index": 141,
+      "actual_action": "kept",
+      "actual_rep_index": 141
+    },
+    {
+      "index": 142,
+      "host_s": 2.0720149,
+      "cabinet_s": 30925.791999999998,
+      "mapped_host_s": 2.064499499998676,
+      "target_action": "kept",
+      "target_rep_index": 142,
+      "actual_action": "kept",
+      "actual_rep_index": 142
+    },
+    {
+      "index": 143,
+      "host_s": 2.0803962,
+      "cabinet_s": 30925.807999999997,
+      "mapped_host_s": 2.0804994999982975,
+      "target_action": "kept",
+      "target_rep_index": 143,
+      "actual_action": "kept",
+      "actual_rep_index": 143
+    },
+    {
+      "index": 144,
+      "host_s": 2.0883591,
+      "cabinet_s": 30925.816,
+      "mapped_host_s": 2.0884994999999273,
+      "target_action": "kept",
+      "target_rep_index": 144,
+      "actual_action": "kept",
+      "actual_rep_index": 144
+    },
+    {
+      "index": 145,
+      "host_s": 2.1042268,
+      "cabinet_s": 30925.823999999997,
+      "mapped_host_s": 2.096499499997919,
+      "target_action": "kept",
+      "target_rep_index": 145,
+      "actual_action": "kept",
+      "actual_rep_index": 145
+    },
+    {
+      "index": 146,
+      "host_s": 2.1123888,
+      "cabinet_s": 30925.84,
+      "mapped_host_s": 2.112499500001179,
+      "target_action": "kept",
+      "target_rep_index": 146,
+      "actual_action": "kept",
+      "actual_rep_index": 146
+    },
+    {
+      "index": 147,
+      "host_s": 2.1281982,
+      "cabinet_s": 30925.847999999998,
+      "mapped_host_s": 2.1204994999991706,
+      "target_action": "kept",
+      "target_rep_index": 147,
+      "actual_action": "kept",
+      "actual_rep_index": 147
+    },
+    {
+      "index": 148,
+      "host_s": 2.1360174,
+      "cabinet_s": 30925.856,
+      "mapped_host_s": 2.1284995000008005,
+      "target_action": "kept",
+      "target_rep_index": 148,
+      "actual_action": "kept",
+      "actual_rep_index": 148
+    },
+    {
+      "index": 149,
+      "host_s": 2.1443044,
+      "cabinet_s": 30925.872,
+      "mapped_host_s": 2.144499500000422,
+      "target_action": "kept",
+      "target_rep_index": 149,
+      "actual_action": "kept",
+      "actual_rep_index": 149
+    },
+    {
+      "index": 150,
+      "host_s": 2.1599815,
+      "cabinet_s": 30925.879999999997,
+      "mapped_host_s": 2.152499499998414,
+      "target_action": "kept",
+      "target_rep_index": 150,
+      "actual_action": "kept",
+      "actual_rep_index": 150
+    },
+    {
+      "index": 151,
+      "host_s": 2.168181,
+      "cabinet_s": 30925.888,
+      "mapped_host_s": 2.1604995000000438,
+      "target_action": "kept",
+      "target_rep_index": 151,
+      "actual_action": "kept",
+      "actual_rep_index": 151
+    },
+    {
+      "index": 152,
+      "host_s": 2.1762065,
+      "cabinet_s": 30925.895999999997,
+      "mapped_host_s": 2.1684994999980356,
+      "target_action": "kept",
+      "target_rep_index": 152,
+      "actual_action": "kept",
+      "actual_rep_index": 152
+    },
+    {
+      "index": 153,
+      "host_s": 2.1844401,
+      "cabinet_s": 30925.912,
+      "mapped_host_s": 2.1844995000012952,
+      "target_action": "kept",
+      "target_rep_index": 153,
+      "actual_action": "kept",
+      "actual_rep_index": 153
+    },
+    {
+      "index": 154,
+      "host_s": 2.1923697,
+      "cabinet_s": 30925.92,
+      "mapped_host_s": 2.192499499999287,
+      "target_action": "kept",
+      "target_rep_index": 154,
+      "actual_action": "kept",
+      "actual_rep_index": 154
+    },
+    {
+      "index": 155,
+      "host_s": 2.2004230000000002,
+      "cabinet_s": 30925.928,
+      "mapped_host_s": 2.200499500000917,
+      "target_action": "kept",
+      "target_rep_index": 155,
+      "actual_action": "kept",
+      "actual_rep_index": 155
+    },
+    {
+      "index": 156,
+      "host_s": 2.2086465,
+      "cabinet_s": 30925.935999999998,
+      "mapped_host_s": 2.2084994999989087,
+      "target_action": "kept",
+      "target_rep_index": 156,
+      "actual_action": "kept",
+      "actual_rep_index": 156
+    },
+    {
+      "index": 157,
+      "host_s": 2.2164241000000002,
+      "cabinet_s": 30925.944,
+      "mapped_host_s": 2.2164995000005385,
+      "target_action": "kept",
+      "target_rep_index": 157,
+      "actual_action": "kept",
+      "actual_rep_index": 157
+    },
+    {
+      "index": 158,
+      "host_s": 2.2243665000000004,
+      "cabinet_s": 30925.951999999997,
+      "mapped_host_s": 2.2244994999985304,
+      "target_action": "kept",
+      "target_rep_index": 158,
+      "actual_action": "kept",
+      "actual_rep_index": 158
+    },
+    {
+      "index": 159,
+      "host_s": 2.2325143,
+      "cabinet_s": 30925.96,
+      "mapped_host_s": 2.23249950000016,
+      "target_action": "kept",
+      "target_rep_index": 159,
+      "actual_action": "kept",
+      "actual_rep_index": 159
+    },
+    {
+      "index": 160,
+      "host_s": 2.2405782000000003,
+      "cabinet_s": 30925.967999999997,
+      "mapped_host_s": 2.240499499998152,
+      "target_action": "kept",
+      "target_rep_index": 160,
+      "actual_action": "kept",
+      "actual_rep_index": 160
+    },
+    {
+      "index": 161,
+      "host_s": 2.2484218,
+      "cabinet_s": 30925.976,
+      "mapped_host_s": 2.248499499999782,
+      "target_action": "kept",
+      "target_rep_index": 161,
+      "actual_action": "kept",
+      "actual_rep_index": 161
+    },
+    {
+      "index": 162,
+      "host_s": 2.2565625000000002,
+      "cabinet_s": 30925.984,
+      "mapped_host_s": 2.2564995000014116,
+      "target_action": "kept",
+      "target_rep_index": 162,
+      "actual_action": "kept",
+      "actual_rep_index": 162
+    },
+    {
+      "index": 163,
+      "host_s": 2.2724324,
+      "cabinet_s": 30925.992,
+      "mapped_host_s": 2.2644994999994035,
+      "target_action": "kept",
+      "target_rep_index": 163,
+      "actual_action": "kept",
+      "actual_rep_index": 163
+    },
+    {
+      "index": 164,
+      "host_s": 2.2803784,
+      "cabinet_s": 30926.007999999998,
+      "mapped_host_s": 2.280499499999025,
+      "target_action": "kept",
+      "target_rep_index": 164,
+      "actual_action": "kept",
+      "actual_rep_index": 164
+    },
+    {
+      "index": 165,
+      "host_s": 2.2889434,
+      "cabinet_s": 30926.016,
+      "mapped_host_s": 2.288499500000655,
+      "target_action": "kept",
+      "target_rep_index": 165,
+      "actual_action": "kept",
+      "actual_rep_index": 165
+    },
+    {
+      "index": 166,
+      "host_s": 2.2964010000000004,
+      "cabinet_s": 30926.023999999998,
+      "mapped_host_s": 2.2964994999986468,
+      "target_action": "kept",
+      "target_rep_index": 166,
+      "actual_action": "kept",
+      "actual_rep_index": 166
+    },
+    {
+      "index": 167,
+      "host_s": 2.3123485,
+      "cabinet_s": 30926.039999999997,
+      "mapped_host_s": 2.3124994999982684,
+      "target_action": "kept",
+      "target_rep_index": 167,
+      "actual_action": "kept",
+      "actual_rep_index": 167
+    },
+    {
+      "index": 168,
+      "host_s": 2.3203891000000003,
+      "cabinet_s": 30926.048,
+      "mapped_host_s": 2.3204994999998982,
+      "target_action": "kept",
+      "target_rep_index": 168,
+      "actual_action": "kept",
+      "actual_rep_index": 168
+    },
+    {
+      "index": 169,
+      "host_s": 2.3285685000000003,
+      "cabinet_s": 30926.055999999997,
+      "mapped_host_s": 2.32849949999789,
+      "target_action": "kept",
+      "target_rep_index": 169,
+      "actual_action": "kept",
+      "actual_rep_index": 169
+    },
+    {
+      "index": 170,
+      "host_s": 2.344415,
+      "cabinet_s": 30926.072,
+      "mapped_host_s": 2.3444995000011497,
+      "target_action": "kept",
+      "target_rep_index": 170,
+      "actual_action": "kept",
+      "actual_rep_index": 170
+    },
+    {
+      "index": 171,
+      "host_s": 2.3605474,
+      "cabinet_s": 30926.088,
+      "mapped_host_s": 2.3604995000007714,
+      "target_action": "kept",
+      "target_rep_index": 171,
+      "actual_action": "kept",
+      "actual_rep_index": 171
+    },
+    {
+      "index": 172,
+      "host_s": 2.3684147,
+      "cabinet_s": 30926.095999999998,
+      "mapped_host_s": 2.368499499998763,
+      "target_action": "kept",
+      "target_rep_index": 172,
+      "actual_action": "kept",
+      "actual_rep_index": 172
+    },
+    {
+      "index": 173,
+      "host_s": 2.3840788,
+      "cabinet_s": 30926.104,
+      "mapped_host_s": 2.376499500000393,
+      "target_action": "kept",
+      "target_rep_index": 173,
+      "actual_action": "kept",
+      "actual_rep_index": 173
+    },
+    {
+      "index": 174,
+      "host_s": 2.3919319000000003,
+      "cabinet_s": 30926.111999999997,
+      "mapped_host_s": 2.384499499998385,
+      "target_action": "kept",
+      "target_rep_index": 174,
+      "actual_action": "kept",
+      "actual_rep_index": 174
+    },
+    {
+      "index": 175,
+      "host_s": 2.3999803,
+      "cabinet_s": 30926.12,
+      "mapped_host_s": 2.3924995000000147,
+      "target_action": "kept",
+      "target_rep_index": 175,
+      "actual_action": "kept",
+      "actual_rep_index": 175
+    },
+    {
+      "index": 176,
+      "host_s": 2.4080338,
+      "cabinet_s": 30926.127999999997,
+      "mapped_host_s": 2.4004994999980065,
+      "target_action": "kept",
+      "target_rep_index": 176,
+      "actual_action": "kept",
+      "actual_rep_index": 176
+    },
+    {
+      "index": 177,
+      "host_s": 2.416445,
+      "cabinet_s": 30926.144,
+      "mapped_host_s": 2.416499500001266,
+      "target_action": "kept",
+      "target_rep_index": 177,
+      "actual_action": "kept",
+      "actual_rep_index": 177
+    },
+    {
+      "index": 178,
+      "host_s": 2.4324813,
+      "cabinet_s": 30926.16,
+      "mapped_host_s": 2.4324995000008878,
+      "target_action": "kept",
+      "target_rep_index": 178,
+      "actual_action": "kept",
+      "actual_rep_index": 178
+    },
+    {
+      "index": 179,
+      "host_s": 2.4481449,
+      "cabinet_s": 30926.167999999998,
+      "mapped_host_s": 2.4404994999988796,
+      "target_action": "kept",
+      "target_rep_index": 179,
+      "actual_action": "kept",
+      "actual_rep_index": 179
+    },
+    {
+      "index": 180,
+      "host_s": 2.4561443,
+      "cabinet_s": 30926.176,
+      "mapped_host_s": 2.4484995000005094,
+      "target_action": "kept",
+      "target_rep_index": 180,
+      "actual_action": "kept",
+      "actual_rep_index": 180
+    },
+    {
+      "index": 181,
+      "host_s": 2.4640226000000003,
+      "cabinet_s": 30926.183999999997,
+      "mapped_host_s": 2.4564994999985013,
+      "target_action": "kept",
+      "target_rep_index": 181,
+      "actual_action": "kept",
+      "actual_rep_index": 181
+    },
+    {
+      "index": 182,
+      "host_s": 2.4724246,
+      "cabinet_s": 30926.199999999997,
+      "mapped_host_s": 2.472499499998123,
+      "target_action": "kept",
+      "target_rep_index": 182,
+      "actual_action": "kept",
+      "actual_rep_index": 182
+    },
+    {
+      "index": 183,
+      "host_s": 2.4886178,
+      "cabinet_s": 30926.216,
+      "mapped_host_s": 2.4884995000013825,
+      "target_action": "kept",
+      "target_rep_index": 183,
+      "actual_action": "kept",
+      "actual_rep_index": 183
+    },
+    {
+      "index": 184,
+      "host_s": 2.4963433000000004,
+      "cabinet_s": 30926.224,
+      "mapped_host_s": 2.4964994999993744,
+      "target_action": "kept",
+      "target_rep_index": 184,
+      "actual_action": "kept",
+      "actual_rep_index": 184
+    },
+    {
+      "index": 185,
+      "host_s": 2.5043544,
+      "cabinet_s": 30926.232,
+      "mapped_host_s": 2.504499500001004,
+      "target_action": "kept",
+      "target_rep_index": 185,
+      "actual_action": "kept",
+      "actual_rep_index": 185
+    },
+    {
+      "index": 186,
+      "host_s": 2.5200241,
+      "cabinet_s": 30926.239999999998,
+      "mapped_host_s": 2.512499499998996,
+      "target_action": "kept",
+      "target_rep_index": 186,
+      "actual_action": "kept",
+      "actual_rep_index": 186
+    },
+    {
+      "index": 187,
+      "host_s": 2.5282458,
+      "cabinet_s": 30926.248,
+      "mapped_host_s": 2.520499500000626,
+      "target_action": "kept",
+      "target_rep_index": 187,
+      "actual_action": "kept",
+      "actual_rep_index": 187
+    },
+    {
+      "index": 188,
+      "host_s": 2.5363678000000003,
+      "cabinet_s": 30926.264,
+      "mapped_host_s": 2.5364995000002475,
+      "target_action": "kept",
+      "target_rep_index": 188,
+      "actual_action": "kept",
+      "actual_rep_index": 188
+    },
+    {
+      "index": 189,
+      "host_s": 2.5524776,
+      "cabinet_s": 30926.28,
+      "mapped_host_s": 2.552499499999869,
+      "target_action": "kept",
+      "target_rep_index": 189,
+      "actual_action": "kept",
+      "actual_rep_index": 189
+    },
+    {
+      "index": 190,
+      "host_s": 2.5680878000000003,
+      "cabinet_s": 30926.287999999997,
+      "mapped_host_s": 2.560499499997861,
+      "target_action": "kept",
+      "target_rep_index": 190,
+      "actual_action": "kept",
+      "actual_rep_index": 190
+    },
+    {
+      "index": 191,
+      "host_s": 2.5761433,
+      "cabinet_s": 30926.296,
+      "mapped_host_s": 2.568499499999491,
+      "target_action": "kept",
+      "target_rep_index": 191,
+      "actual_action": "kept",
+      "actual_rep_index": 191
+    },
+    {
+      "index": 192,
+      "host_s": 2.5840566000000003,
+      "cabinet_s": 30926.304,
+      "mapped_host_s": 2.5764995000011206,
+      "target_action": "kept",
+      "target_rep_index": 192,
+      "actual_action": "kept",
+      "actual_rep_index": 192
+    },
+    {
+      "index": 193,
+      "host_s": 2.5920697,
+      "cabinet_s": 30926.311999999998,
+      "mapped_host_s": 2.5844994999991124,
+      "target_action": "kept",
+      "target_rep_index": 193,
+      "actual_action": "kept",
+      "actual_rep_index": 193
+    },
+    {
+      "index": 194,
+      "host_s": 2.6003044,
+      "cabinet_s": 30926.327999999998,
+      "mapped_host_s": 2.600499499998734,
+      "target_action": "kept",
+      "target_rep_index": 194,
+      "actual_action": "kept",
+      "actual_rep_index": 194
+    },
+    {
+      "index": 195,
+      "host_s": 2.6164282,
+      "cabinet_s": 30926.343999999997,
+      "mapped_host_s": 2.6164994999983557,
+      "target_action": "kept",
+      "target_rep_index": 195,
+      "actual_action": "kept",
+      "actual_rep_index": 195
+    },
+    {
+      "index": 196,
+      "host_s": 2.6322223,
+      "cabinet_s": 30926.359999999997,
+      "mapped_host_s": 2.6324994999979774,
+      "target_action": "kept",
+      "target_rep_index": 196,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 197,
+      "host_s": 2.640204,
+      "cabinet_s": 30926.359999999997,
+      "mapped_host_s": 2.6324994999979774,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 196,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 198,
+      "host_s": 2.6483282000000004,
+      "cabinet_s": 30926.376,
+      "mapped_host_s": 2.648499500001237,
+      "target_action": "kept",
+      "target_rep_index": 198,
+      "actual_action": "kept",
+      "actual_rep_index": 198
+    },
+    {
+      "index": 199,
+      "host_s": 2.6564118000000003,
+      "cabinet_s": 30926.384,
+      "mapped_host_s": 2.656499499999229,
+      "target_action": "kept",
+      "target_rep_index": 199,
+      "actual_action": "kept",
+      "actual_rep_index": 199
+    },
+    {
+      "index": 200,
+      "host_s": 2.6720087,
+      "cabinet_s": 30926.392,
+      "mapped_host_s": 2.6644995000008587,
+      "target_action": "kept",
+      "target_rep_index": 200,
+      "actual_action": "kept",
+      "actual_rep_index": 200
+    },
+    {
+      "index": 201,
+      "host_s": 2.6805187000000004,
+      "cabinet_s": 30926.408,
+      "mapped_host_s": 2.6804995000004803,
+      "target_action": "kept",
+      "target_rep_index": 201,
+      "actual_action": "kept",
+      "actual_rep_index": 201
+    },
+    {
+      "index": 202,
+      "host_s": 2.6885253000000002,
+      "cabinet_s": 30926.415999999997,
+      "mapped_host_s": 2.688499499998472,
+      "target_action": "kept",
+      "target_rep_index": 202,
+      "actual_action": "kept",
+      "actual_rep_index": 202
+    },
+    {
+      "index": 203,
+      "host_s": 2.6962393000000002,
+      "cabinet_s": 30926.424,
+      "mapped_host_s": 2.696499500000102,
+      "target_action": "kept",
+      "target_rep_index": 203,
+      "actual_action": "kept",
+      "actual_rep_index": 203
+    },
+    {
+      "index": 204,
+      "host_s": 2.7043919,
+      "cabinet_s": 30926.431999999997,
+      "mapped_host_s": 2.704499499998094,
+      "target_action": "kept",
+      "target_rep_index": 204,
+      "actual_action": "kept",
+      "actual_rep_index": 204
+    },
+    {
+      "index": 205,
+      "host_s": 2.7203233,
+      "cabinet_s": 30926.448,
+      "mapped_host_s": 2.7204995000013534,
+      "target_action": "kept",
+      "target_rep_index": 205,
+      "actual_action": "kept",
+      "actual_rep_index": 205
+    },
+    {
+      "index": 206,
+      "host_s": 2.7283578000000004,
+      "cabinet_s": 30926.456,
+      "mapped_host_s": 2.7284994999993453,
+      "target_action": "kept",
+      "target_rep_index": 206,
+      "actual_action": "kept",
+      "actual_rep_index": 206
+    },
+    {
+      "index": 207,
+      "host_s": 2.7441245000000003,
+      "cabinet_s": 30926.464,
+      "mapped_host_s": 2.736499500000975,
+      "target_action": "kept",
+      "target_rep_index": 207,
+      "actual_action": "kept",
+      "actual_rep_index": 207
+    },
+    {
+      "index": 208,
+      "host_s": 2.7524637000000003,
+      "cabinet_s": 30926.48,
+      "mapped_host_s": 2.7524995000005967,
+      "target_action": "kept",
+      "target_rep_index": 208,
+      "actual_action": "kept",
+      "actual_rep_index": 208
+    },
+    {
+      "index": 209,
+      "host_s": 2.7603692,
+      "cabinet_s": 30926.487999999998,
+      "mapped_host_s": 2.7604994999985886,
+      "target_action": "kept",
+      "target_rep_index": 209,
+      "actual_action": "kept",
+      "actual_rep_index": 209
+    },
+    {
+      "index": 210,
+      "host_s": 2.7763397000000003,
+      "cabinet_s": 30926.503999999997,
+      "mapped_host_s": 2.77649949999821,
+      "target_action": "kept",
+      "target_rep_index": 210,
+      "actual_action": "kept",
+      "actual_rep_index": 210
+    },
+    {
+      "index": 211,
+      "host_s": 2.7844596000000004,
+      "cabinet_s": 30926.512,
+      "mapped_host_s": 2.78449949999984,
+      "target_action": "kept",
+      "target_rep_index": 211,
+      "actual_action": "kept",
+      "actual_rep_index": 211
+    },
+    {
+      "index": 212,
+      "host_s": 2.8004207,
+      "cabinet_s": 30926.528,
+      "mapped_host_s": 2.8004994999994617,
+      "target_action": "kept",
+      "target_rep_index": 212,
+      "actual_action": "kept",
+      "actual_rep_index": 212
+    },
+    {
+      "index": 213,
+      "host_s": 2.8083989000000003,
+      "cabinet_s": 30926.536,
+      "mapped_host_s": 2.8084995000010915,
+      "target_action": "kept",
+      "target_rep_index": 213,
+      "actual_action": "kept",
+      "actual_rep_index": 213
+    },
+    {
+      "index": 214,
+      "host_s": 2.8243205000000002,
+      "cabinet_s": 30926.552,
+      "mapped_host_s": 2.824499500000713,
+      "target_action": "kept",
+      "target_rep_index": 214,
+      "actual_action": "kept",
+      "actual_rep_index": 214
+    },
+    {
+      "index": 215,
+      "host_s": 2.8323762,
+      "cabinet_s": 30926.559999999998,
+      "mapped_host_s": 2.832499499998705,
+      "target_action": "kept",
+      "target_rep_index": 215,
+      "actual_action": "kept",
+      "actual_rep_index": 215
+    },
+    {
+      "index": 216,
+      "host_s": 2.8403593000000003,
+      "cabinet_s": 30926.568,
+      "mapped_host_s": 2.840499500000335,
+      "target_action": "kept",
+      "target_rep_index": 216,
+      "actual_action": "kept",
+      "actual_rep_index": 216
+    },
+    {
+      "index": 217,
+      "host_s": 2.856287,
+      "cabinet_s": 30926.584,
+      "mapped_host_s": 2.8564994999999564,
+      "target_action": "kept",
+      "target_rep_index": 217,
+      "actual_action": "kept",
+      "actual_rep_index": 217
+    },
+    {
+      "index": 218,
+      "host_s": 2.8644517,
+      "cabinet_s": 30926.591999999997,
+      "mapped_host_s": 2.8644994999979483,
+      "target_action": "kept",
+      "target_rep_index": 218,
+      "actual_action": "kept",
+      "actual_rep_index": 218
+    },
+    {
+      "index": 219,
+      "host_s": 2.8803305000000003,
+      "cabinet_s": 30926.608,
+      "mapped_host_s": 2.880499500001208,
+      "target_action": "kept",
+      "target_rep_index": 219,
+      "actual_action": "kept",
+      "actual_rep_index": 219
+    },
+    {
+      "index": 220,
+      "host_s": 2.8964424,
+      "cabinet_s": 30926.624,
+      "mapped_host_s": 2.8964995000008296,
+      "target_action": "kept",
+      "target_rep_index": 220,
+      "actual_action": "kept",
+      "actual_rep_index": 220
+    },
+    {
+      "index": 221,
+      "host_s": 2.9044492,
+      "cabinet_s": 30926.631999999998,
+      "mapped_host_s": 2.9044994999988214,
+      "target_action": "kept",
+      "target_rep_index": 221,
+      "actual_action": "kept",
+      "actual_rep_index": 221
+    },
+    {
+      "index": 222,
+      "host_s": 2.9203434,
+      "cabinet_s": 30926.647999999997,
+      "mapped_host_s": 2.920499499998443,
+      "target_action": "kept",
+      "target_rep_index": 222,
+      "actual_action": "kept",
+      "actual_rep_index": 222
+    },
+    {
+      "index": 223,
+      "host_s": 2.9360563,
+      "cabinet_s": 30926.656,
+      "mapped_host_s": 2.928499500000073,
+      "target_action": "kept",
+      "target_rep_index": 223,
+      "actual_action": "kept",
+      "actual_rep_index": 223
+    },
+    {
+      "index": 224,
+      "host_s": 2.9441502,
+      "cabinet_s": 30926.663999999997,
+      "mapped_host_s": 2.9364994999980647,
+      "target_action": "kept",
+      "target_rep_index": 224,
+      "actual_action": "kept",
+      "actual_rep_index": 224
+    },
+    {
+      "index": 225,
+      "host_s": 2.9521967,
+      "cabinet_s": 30926.672,
+      "mapped_host_s": 2.9444994999996945,
+      "target_action": "kept",
+      "target_rep_index": 225,
+      "actual_action": "kept",
+      "actual_rep_index": 225
+    },
+    {
+      "index": 226,
+      "host_s": 2.9599974000000002,
+      "cabinet_s": 30926.68,
+      "mapped_host_s": 2.9524995000013243,
+      "target_action": "kept",
+      "target_rep_index": 226,
+      "actual_action": "kept",
+      "actual_rep_index": 226
+    },
+    {
+      "index": 227,
+      "host_s": 2.9681578,
+      "cabinet_s": 30926.688,
+      "mapped_host_s": 2.960499499999316,
+      "target_action": "kept",
+      "target_rep_index": 227,
+      "actual_action": "kept",
+      "actual_rep_index": 227
+    },
+    {
+      "index": 228,
+      "host_s": 2.9761290000000002,
+      "cabinet_s": 30926.696,
+      "mapped_host_s": 2.968499500000946,
+      "target_action": "kept",
+      "target_rep_index": 228,
+      "actual_action": "kept",
+      "actual_rep_index": 228
+    },
+    {
+      "index": 229,
+      "host_s": 2.9845293,
+      "cabinet_s": 30926.712,
+      "mapped_host_s": 2.9844995000005676,
+      "target_action": "kept",
+      "target_rep_index": 229,
+      "actual_action": "kept",
+      "actual_rep_index": 229
+    },
+    {
+      "index": 230,
+      "host_s": 2.9999939,
+      "cabinet_s": 30926.719999999998,
+      "mapped_host_s": 2.9924994999985595,
+      "target_action": "kept",
+      "target_rep_index": 230,
+      "actual_action": "kept",
+      "actual_rep_index": 230
+    },
+    {
+      "index": 231,
+      "host_s": 3.0083575000000002,
+      "cabinet_s": 30926.735999999997,
+      "mapped_host_s": 3.008499499998181,
+      "target_action": "kept",
+      "target_rep_index": 231,
+      "actual_action": "kept",
+      "actual_rep_index": 231
+    },
+    {
+      "index": 232,
+      "host_s": 3.0242396,
+      "cabinet_s": 30926.752,
+      "mapped_host_s": 3.0244995000014407,
+      "target_action": "kept",
+      "target_rep_index": 232,
+      "actual_action": "kept",
+      "actual_rep_index": 232
+    },
+    {
+      "index": 233,
+      "host_s": 3.0322103,
+      "cabinet_s": 30926.76,
+      "mapped_host_s": 3.0324994999994326,
+      "target_action": "kept",
+      "target_rep_index": 233,
+      "actual_action": "kept",
+      "actual_rep_index": 233
+    },
+    {
+      "index": 234,
+      "host_s": 3.0483313,
+      "cabinet_s": 30926.775999999998,
+      "mapped_host_s": 3.0484994999990542,
+      "target_action": "kept",
+      "target_rep_index": 234,
+      "actual_action": "kept",
+      "actual_rep_index": 234
+    },
+    {
+      "index": 235,
+      "host_s": 3.0564781,
+      "cabinet_s": 30926.784,
+      "mapped_host_s": 3.056499500000684,
+      "target_action": "kept",
+      "target_rep_index": 235,
+      "actual_action": "kept",
+      "actual_rep_index": 235
+    },
+    {
+      "index": 236,
+      "host_s": 3.0724628000000003,
+      "cabinet_s": 30926.8,
+      "mapped_host_s": 3.0724995000003057,
+      "target_action": "kept",
+      "target_rep_index": 236,
+      "actual_action": "kept",
+      "actual_rep_index": 236
+    },
+    {
+      "index": 237,
+      "host_s": 3.0882042000000003,
+      "cabinet_s": 30926.807999999997,
+      "mapped_host_s": 3.0804994999982975,
+      "target_action": "kept",
+      "target_rep_index": 237,
+      "actual_action": "kept",
+      "actual_rep_index": 237
+    },
+    {
+      "index": 238,
+      "host_s": 3.0965544,
+      "cabinet_s": 30926.823999999997,
+      "mapped_host_s": 3.096499499997919,
+      "target_action": "kept",
+      "target_rep_index": 238,
+      "actual_action": "kept",
+      "actual_rep_index": 238
+    },
+    {
+      "index": 239,
+      "host_s": 3.1121960000000004,
+      "cabinet_s": 30926.832,
+      "mapped_host_s": 3.104499499999549,
+      "target_action": "kept",
+      "target_rep_index": 239,
+      "actual_action": "kept",
+      "actual_rep_index": 239
+    },
+    {
+      "index": 240,
+      "host_s": 3.1203974000000003,
+      "cabinet_s": 30926.847999999998,
+      "mapped_host_s": 3.1204994999991706,
+      "target_action": "kept",
+      "target_rep_index": 240,
+      "actual_action": "kept",
+      "actual_rep_index": 240
+    },
+    {
+      "index": 241,
+      "host_s": 3.128442,
+      "cabinet_s": 30926.856,
+      "mapped_host_s": 3.1284995000008005,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 241
+    },
+    {
+      "index": 242,
+      "host_s": 3.1361379,
+      "cabinet_s": 30926.856,
+      "mapped_host_s": 3.1284995000008005,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 241
+    },
+    {
+      "index": 243,
+      "host_s": 3.144126,
+      "cabinet_s": 30926.863999999998,
+      "mapped_host_s": 3.1364994999987923,
+      "target_action": "kept",
+      "target_rep_index": 243,
+      "actual_action": "kept",
+      "actual_rep_index": 243
+    },
+    {
+      "index": 244,
+      "host_s": 3.1524692,
+      "cabinet_s": 30926.879999999997,
+      "mapped_host_s": 3.152499499998414,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 244
+    },
+    {
+      "index": 245,
+      "host_s": 3.1601967,
+      "cabinet_s": 30926.879999999997,
+      "mapped_host_s": 3.152499499998414,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 244
+    },
+    {
+      "index": 246,
+      "host_s": 3.1684084,
+      "cabinet_s": 30926.895999999997,
+      "mapped_host_s": 3.1684994999980356,
+      "target_action": "kept",
+      "target_rep_index": 246,
+      "actual_action": "kept",
+      "actual_rep_index": 246
+    },
+    {
+      "index": 247,
+      "host_s": 3.1763921,
+      "cabinet_s": 30926.904,
+      "mapped_host_s": 3.1764994999996654,
+      "target_action": "kept",
+      "target_rep_index": 247,
+      "actual_action": "kept",
+      "actual_rep_index": 247
+    },
+    {
+      "index": 248,
+      "host_s": 3.1844421,
+      "cabinet_s": 30926.912,
+      "mapped_host_s": 3.1844995000012952,
+      "target_action": "kept",
+      "target_rep_index": 248,
+      "actual_action": "kept",
+      "actual_rep_index": 248
+    },
+    {
+      "index": 249,
+      "host_s": 3.1922930000000003,
+      "cabinet_s": 30926.92,
+      "mapped_host_s": 3.192499499999287,
+      "target_action": "kept",
+      "target_rep_index": 249,
+      "actual_action": "kept",
+      "actual_rep_index": 249
+    },
+    {
+      "index": 250,
+      "host_s": 3.2086811,
+      "cabinet_s": 30926.935999999998,
+      "mapped_host_s": 3.2084994999989087,
+      "target_action": "kept",
+      "target_rep_index": 250,
+      "actual_action": "kept",
+      "actual_rep_index": 250
+    },
+    {
+      "index": 251,
+      "host_s": 3.2163096,
+      "cabinet_s": 30926.944,
+      "mapped_host_s": 3.2164995000005385,
+      "target_action": "kept",
+      "target_rep_index": 251,
+      "actual_action": "kept",
+      "actual_rep_index": 251
+    },
+    {
+      "index": 252,
+      "host_s": 3.2245203,
+      "cabinet_s": 30926.951999999997,
+      "mapped_host_s": 3.2244994999985304,
+      "target_action": "kept",
+      "target_rep_index": 252,
+      "actual_action": "kept",
+      "actual_rep_index": 252
+    },
+    {
+      "index": 253,
+      "host_s": 3.2323797,
+      "cabinet_s": 30926.96,
+      "mapped_host_s": 3.23249950000016,
+      "target_action": "kept",
+      "target_rep_index": 253,
+      "actual_action": "kept",
+      "actual_rep_index": 253
+    },
+    {
+      "index": 254,
+      "host_s": 3.2405790000000003,
+      "cabinet_s": 30926.967999999997,
+      "mapped_host_s": 3.240499499998152,
+      "target_action": "kept",
+      "target_rep_index": 254,
+      "actual_action": "kept",
+      "actual_rep_index": 254
+    },
+    {
+      "index": 255,
+      "host_s": 3.2484935000000004,
+      "cabinet_s": 30926.976,
+      "mapped_host_s": 3.248499499999782,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 255
+    },
+    {
+      "index": 256,
+      "host_s": 3.2562629000000003,
+      "cabinet_s": 30926.976,
+      "mapped_host_s": 3.248499499999782,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 255
+    },
+    {
+      "index": 257,
+      "host_s": 3.2643516000000004,
+      "cabinet_s": 30926.992,
+      "mapped_host_s": 3.2644994999994035,
+      "target_action": "kept",
+      "target_rep_index": 257,
+      "actual_action": "kept",
+      "actual_rep_index": 257
+    },
+    {
+      "index": 258,
+      "host_s": 3.2724286,
+      "cabinet_s": 30927.0,
+      "mapped_host_s": 3.2724995000010333,
+      "target_action": "kept",
+      "target_rep_index": 258,
+      "actual_action": "kept",
+      "actual_rep_index": 258
+    },
+    {
+      "index": 259,
+      "host_s": 3.2803115000000003,
+      "cabinet_s": 30927.007999999998,
+      "mapped_host_s": 3.280499499999025,
+      "target_action": "kept",
+      "target_rep_index": 259,
+      "actual_action": "kept",
+      "actual_rep_index": 259
+    },
+    {
+      "index": 260,
+      "host_s": 3.2886098,
+      "cabinet_s": 30927.016,
+      "mapped_host_s": 3.288499500000655,
+      "target_action": "kept",
+      "target_rep_index": 260,
+      "actual_action": "kept",
+      "actual_rep_index": 260
+    },
+    {
+      "index": 261,
+      "host_s": 3.2963322,
+      "cabinet_s": 30927.023999999998,
+      "mapped_host_s": 3.2964994999986468,
+      "target_action": "kept",
+      "target_rep_index": 261,
+      "actual_action": "kept",
+      "actual_rep_index": 261
+    },
+    {
+      "index": 262,
+      "host_s": 3.3043386000000003,
+      "cabinet_s": 30927.032,
+      "mapped_host_s": 3.3044995000002766,
+      "target_action": "kept",
+      "target_rep_index": 262,
+      "actual_action": "kept",
+      "actual_rep_index": 262
+    },
+    {
+      "index": 263,
+      "host_s": 3.320374,
+      "cabinet_s": 30927.048,
+      "mapped_host_s": 3.3204994999998982,
+      "target_action": "kept",
+      "target_rep_index": 263,
+      "actual_action": "kept",
+      "actual_rep_index": 263
+    },
+    {
+      "index": 264,
+      "host_s": 3.3284002000000004,
+      "cabinet_s": 30927.055999999997,
+      "mapped_host_s": 3.32849949999789,
+      "target_action": "kept",
+      "target_rep_index": 264,
+      "actual_action": "kept",
+      "actual_rep_index": 264
+    },
+    {
+      "index": 265,
+      "host_s": 3.3364062000000003,
+      "cabinet_s": 30927.064,
+      "mapped_host_s": 3.33649949999952,
+      "target_action": "kept",
+      "target_rep_index": 265,
+      "actual_action": "kept",
+      "actual_rep_index": 265
+    },
+    {
+      "index": 266,
+      "host_s": 3.3523309,
+      "cabinet_s": 30927.079999999998,
+      "mapped_host_s": 3.3524994999991415,
+      "target_action": "kept",
+      "target_rep_index": 266,
+      "actual_action": "kept",
+      "actual_rep_index": 266
+    },
+    {
+      "index": 267,
+      "host_s": 3.3604701,
+      "cabinet_s": 30927.088,
+      "mapped_host_s": 3.3604995000007714,
+      "target_action": "kept",
+      "target_rep_index": 267,
+      "actual_action": "kept",
+      "actual_rep_index": 267
+    },
+    {
+      "index": 268,
+      "host_s": 3.3763344,
+      "cabinet_s": 30927.095999999998,
+      "mapped_host_s": 3.368499499998763,
+      "target_action": "kept",
+      "target_rep_index": 268,
+      "actual_action": "kept",
+      "actual_rep_index": 268
+    },
+    {
+      "index": 269,
+      "host_s": 3.3844104,
+      "cabinet_s": 30927.111999999997,
+      "mapped_host_s": 3.384499499998385,
+      "target_action": "kept",
+      "target_rep_index": 269,
+      "actual_action": "kept",
+      "actual_rep_index": 269
+    },
+    {
+      "index": 270,
+      "host_s": 3.3999656000000003,
+      "cabinet_s": 30927.12,
+      "mapped_host_s": 3.3924995000000147,
+      "target_action": "kept",
+      "target_rep_index": 270,
+      "actual_action": "kept",
+      "actual_rep_index": 270
+    },
+    {
+      "index": 271,
+      "host_s": 3.4079446,
+      "cabinet_s": 30927.127999999997,
+      "mapped_host_s": 3.4004994999980065,
+      "target_action": "kept",
+      "target_rep_index": 271,
+      "actual_action": "kept",
+      "actual_rep_index": 271
+    },
+    {
+      "index": 272,
+      "host_s": 3.4159603,
+      "cabinet_s": 30927.136,
+      "mapped_host_s": 3.4084994999996363,
+      "target_action": "kept",
+      "target_rep_index": 272,
+      "actual_action": "kept",
+      "actual_rep_index": 272
+    },
+    {
+      "index": 273,
+      "host_s": 3.4241115000000004,
+      "cabinet_s": 30927.144,
+      "mapped_host_s": 3.416499500001266,
+      "target_action": "kept",
+      "target_rep_index": 273,
+      "actual_action": "kept",
+      "actual_rep_index": 273
+    },
+    {
+      "index": 274,
+      "host_s": 3.4323883000000004,
+      "cabinet_s": 30927.16,
+      "mapped_host_s": 3.4324995000008878,
+      "target_action": "kept",
+      "target_rep_index": 274,
+      "actual_action": "kept",
+      "actual_rep_index": 274
+    },
+    {
+      "index": 275,
+      "host_s": 3.4404004,
+      "cabinet_s": 30927.167999999998,
+      "mapped_host_s": 3.4404994999988796,
+      "target_action": "kept",
+      "target_rep_index": 275,
+      "actual_action": "kept",
+      "actual_rep_index": 275
+    },
+    {
+      "index": 276,
+      "host_s": 3.4565164000000004,
+      "cabinet_s": 30927.183999999997,
+      "mapped_host_s": 3.4564994999985013,
+      "target_action": "kept",
+      "target_rep_index": 276,
+      "actual_action": "kept",
+      "actual_rep_index": 276
+    },
+    {
+      "index": 277,
+      "host_s": 3.4643613,
+      "cabinet_s": 30927.192,
+      "mapped_host_s": 3.464499500000131,
+      "target_action": "kept",
+      "target_rep_index": 277,
+      "actual_action": "kept",
+      "actual_rep_index": 277
+    },
+    {
+      "index": 278,
+      "host_s": 3.4728309000000004,
+      "cabinet_s": 30927.199999999997,
+      "mapped_host_s": 3.472499499998123,
+      "target_action": "kept",
+      "target_rep_index": 278,
+      "actual_action": "kept",
+      "actual_rep_index": 278
+    },
+    {
+      "index": 279,
+      "host_s": 3.4803458000000003,
+      "cabinet_s": 30927.208,
+      "mapped_host_s": 3.4804994999997527,
+      "target_action": "kept",
+      "target_rep_index": 279,
+      "actual_action": "kept",
+      "actual_rep_index": 279
+    },
+    {
+      "index": 280,
+      "host_s": 3.4885468000000004,
+      "cabinet_s": 30927.216,
+      "mapped_host_s": 3.4884995000013825,
+      "target_action": "kept",
+      "target_rep_index": 280,
+      "actual_action": "kept",
+      "actual_rep_index": 280
+    },
+    {
+      "index": 281,
+      "host_s": 3.4963825,
+      "cabinet_s": 30927.224,
+      "mapped_host_s": 3.4964994999993744,
+      "target_action": "kept",
+      "target_rep_index": 281,
+      "actual_action": "kept",
+      "actual_rep_index": 281
+    },
+    {
+      "index": 282,
+      "host_s": 3.5044349,
+      "cabinet_s": 30927.232,
+      "mapped_host_s": 3.504499500001004,
+      "target_action": "kept",
+      "target_rep_index": 282,
+      "actual_action": "kept",
+      "actual_rep_index": 282
+    },
+    {
+      "index": 283,
+      "host_s": 3.5121159000000004,
+      "cabinet_s": 30927.232,
+      "mapped_host_s": 3.504499500001004,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 282,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 282
+    },
+    {
+      "index": 284,
+      "host_s": 3.5204788000000002,
+      "cabinet_s": 30927.248,
+      "mapped_host_s": 3.520499500000626,
+      "target_action": "kept",
+      "target_rep_index": 284,
+      "actual_action": "kept",
+      "actual_rep_index": 284
+    },
+    {
+      "index": 285,
+      "host_s": 3.5283680000000004,
+      "cabinet_s": 30927.255999999998,
+      "mapped_host_s": 3.5284994999986177,
+      "target_action": "kept",
+      "target_rep_index": 285,
+      "actual_action": "kept",
+      "actual_rep_index": 285
+    },
+    {
+      "index": 286,
+      "host_s": 3.5365671,
+      "cabinet_s": 30927.264,
+      "mapped_host_s": 3.5364995000002475,
+      "target_action": "kept",
+      "target_rep_index": 286,
+      "actual_action": "kept",
+      "actual_rep_index": 286
+    },
+    {
+      "index": 287,
+      "host_s": 3.5522229000000003,
+      "cabinet_s": 30927.271999999997,
+      "mapped_host_s": 3.5444994999982393,
+      "target_action": "kept",
+      "target_rep_index": 287,
+      "actual_action": "kept",
+      "actual_rep_index": 287
+    },
+    {
+      "index": 288,
+      "host_s": 3.5603879000000003,
+      "cabinet_s": 30927.287999999997,
+      "mapped_host_s": 3.560499499997861,
+      "target_action": "kept",
+      "target_rep_index": 288,
+      "actual_action": "kept",
+      "actual_rep_index": 288
+    },
+    {
+      "index": 289,
+      "host_s": 3.5765335,
+      "cabinet_s": 30927.304,
+      "mapped_host_s": 3.5764995000011206,
+      "target_action": "kept",
+      "target_rep_index": 289,
+      "actual_action": "kept",
+      "actual_rep_index": 289
+    },
+    {
+      "index": 290,
+      "host_s": 3.5844442,
+      "cabinet_s": 30927.311999999998,
+      "mapped_host_s": 3.5844994999991124,
+      "target_action": "kept",
+      "target_rep_index": 290,
+      "actual_action": "kept",
+      "actual_rep_index": 290
+    },
+    {
+      "index": 291,
+      "host_s": 3.5924221000000003,
+      "cabinet_s": 30927.32,
+      "mapped_host_s": 3.5924995000007423,
+      "target_action": "kept",
+      "target_rep_index": 291,
+      "actual_action": "kept",
+      "actual_rep_index": 291
+    },
+    {
+      "index": 292,
+      "host_s": 3.6003852000000003,
+      "cabinet_s": 30927.327999999998,
+      "mapped_host_s": 3.600499499998734,
+      "target_action": "kept",
+      "target_rep_index": 292,
+      "actual_action": "kept",
+      "actual_rep_index": 292
+    },
+    {
+      "index": 293,
+      "host_s": 3.6081789000000004,
+      "cabinet_s": 30927.327999999998,
+      "mapped_host_s": 3.600499499998734,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 292,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 292
+    },
+    {
+      "index": 294,
+      "host_s": 3.6161837,
+      "cabinet_s": 30927.336,
+      "mapped_host_s": 3.608499500000364,
+      "target_action": "kept",
+      "target_rep_index": 294,
+      "actual_action": "kept",
+      "actual_rep_index": 294
+    },
+    {
+      "index": 295,
+      "host_s": 3.624003,
+      "cabinet_s": 30927.343999999997,
+      "mapped_host_s": 3.6164994999983557,
+      "target_action": "kept",
+      "target_rep_index": 295,
+      "actual_action": "kept",
+      "actual_rep_index": 295
+    },
+    {
+      "index": 296,
+      "host_s": 3.6320591,
+      "cabinet_s": 30927.352,
+      "mapped_host_s": 3.6244994999999856,
+      "target_action": "kept",
+      "target_rep_index": 296,
+      "actual_action": "kept",
+      "actual_rep_index": 296
+    },
+    {
+      "index": 297,
+      "host_s": 3.6404078,
+      "cabinet_s": 30927.368,
+      "mapped_host_s": 3.640499499999607,
+      "target_action": "kept",
+      "target_rep_index": 297,
+      "actual_action": "kept",
+      "actual_rep_index": 297
+    },
+    {
+      "index": 298,
+      "host_s": 3.6483026,
+      "cabinet_s": 30927.376,
+      "mapped_host_s": 3.648499500001237,
+      "target_action": "kept",
+      "target_rep_index": 298,
+      "actual_action": "kept",
+      "actual_rep_index": 298
+    },
+    {
+      "index": 299,
+      "host_s": 3.6563472000000004,
+      "cabinet_s": 30927.384,
+      "mapped_host_s": 3.656499499999229,
+      "target_action": "kept",
+      "target_rep_index": 299,
+      "actual_action": "kept",
+      "actual_rep_index": 299
+    },
+    {
+      "index": 300,
+      "host_s": 3.6720611,
+      "cabinet_s": 30927.392,
+      "mapped_host_s": 3.6644995000008587,
+      "target_action": "kept",
+      "target_rep_index": 300,
+      "actual_action": "kept",
+      "actual_rep_index": 300
+    },
+    {
+      "index": 301,
+      "host_s": 3.6802878000000003,
+      "cabinet_s": 30927.408,
+      "mapped_host_s": 3.6804995000004803,
+      "target_action": "kept",
+      "target_rep_index": 301,
+      "actual_action": "kept",
+      "actual_rep_index": 301
+    },
+    {
+      "index": 302,
+      "host_s": 3.6963705000000004,
+      "cabinet_s": 30927.424,
+      "mapped_host_s": 3.696499500000102,
+      "target_action": "kept",
+      "target_rep_index": 302,
+      "actual_action": "kept",
+      "actual_rep_index": 302
+    },
+    {
+      "index": 303,
+      "host_s": 3.7042809,
+      "cabinet_s": 30927.431999999997,
+      "mapped_host_s": 3.704499499998094,
+      "target_action": "kept",
+      "target_rep_index": 303,
+      "actual_action": "kept",
+      "actual_rep_index": 303
+    },
+    {
+      "index": 304,
+      "host_s": 3.7122897000000004,
+      "cabinet_s": 30927.44,
+      "mapped_host_s": 3.7124994999997236,
+      "target_action": "kept",
+      "target_rep_index": 304,
+      "actual_action": "kept",
+      "actual_rep_index": 304
+    },
+    {
+      "index": 305,
+      "host_s": 3.7279631,
+      "cabinet_s": 30927.448,
+      "mapped_host_s": 3.7204995000013534,
+      "target_action": "kept",
+      "target_rep_index": 305,
+      "actual_action": "kept",
+      "actual_rep_index": 305
+    },
+    {
+      "index": 306,
+      "host_s": 3.7362427,
+      "cabinet_s": 30927.464,
+      "mapped_host_s": 3.736499500000975,
+      "target_action": "kept",
+      "target_rep_index": 306,
+      "actual_action": "kept",
+      "actual_rep_index": 306
+    },
+    {
+      "index": 307,
+      "host_s": 3.7524331,
+      "cabinet_s": 30927.48,
+      "mapped_host_s": 3.7524995000005967,
+      "target_action": "kept",
+      "target_rep_index": 307,
+      "actual_action": "kept",
+      "actual_rep_index": 307
+    },
+    {
+      "index": 308,
+      "host_s": 3.7604092000000002,
+      "cabinet_s": 30927.487999999998,
+      "mapped_host_s": 3.7604994999985886,
+      "target_action": "kept",
+      "target_rep_index": 308,
+      "actual_action": "kept",
+      "actual_rep_index": 308
+    },
+    {
+      "index": 309,
+      "host_s": 3.7682521,
+      "cabinet_s": 30927.496,
+      "mapped_host_s": 3.7684995000002184,
+      "target_action": "kept",
+      "target_rep_index": 309,
+      "actual_action": "kept",
+      "actual_rep_index": 309
+    },
+    {
+      "index": 310,
+      "host_s": 3.7762961,
+      "cabinet_s": 30927.503999999997,
+      "mapped_host_s": 3.77649949999821,
+      "target_action": "kept",
+      "target_rep_index": 310,
+      "actual_action": "kept",
+      "actual_rep_index": 310
+    },
+    {
+      "index": 311,
+      "host_s": 3.7844839,
+      "cabinet_s": 30927.512,
+      "mapped_host_s": 3.78449949999984,
+      "target_action": "kept",
+      "target_rep_index": 311,
+      "actual_action": "kept",
+      "actual_rep_index": 311
+    },
+    {
+      "index": 312,
+      "host_s": 3.7999681,
+      "cabinet_s": 30927.519999999997,
+      "mapped_host_s": 3.792499499997832,
+      "target_action": "kept",
+      "target_rep_index": 312,
+      "actual_action": "kept",
+      "actual_rep_index": 312
+    },
+    {
+      "index": 313,
+      "host_s": 3.8082003,
+      "cabinet_s": 30927.536,
+      "mapped_host_s": 3.8084995000010915,
+      "target_action": "kept",
+      "target_rep_index": 313,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 314,
+      "host_s": 3.8160911000000004,
+      "cabinet_s": 30927.536,
+      "mapped_host_s": 3.8084995000010915,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 313,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 315,
+      "host_s": 3.8241373000000003,
+      "cabinet_s": 30927.543999999998,
+      "mapped_host_s": 3.8164994999990833,
+      "target_action": "kept",
+      "target_rep_index": 315,
+      "actual_action": "kept",
+      "actual_rep_index": 315
+    },
+    {
+      "index": 316,
+      "host_s": 3.8324938000000004,
+      "cabinet_s": 30927.559999999998,
+      "mapped_host_s": 3.832499499998705,
+      "target_action": "kept",
+      "target_rep_index": 316,
+      "actual_action": "kept",
+      "actual_rep_index": 316
+    },
+    {
+      "index": 317,
+      "host_s": 3.8403199000000003,
+      "cabinet_s": 30927.568,
+      "mapped_host_s": 3.840499500000335,
+      "target_action": "kept",
+      "target_rep_index": 317,
+      "actual_action": "kept",
+      "actual_rep_index": 317
+    },
+    {
+      "index": 318,
+      "host_s": 3.8562493000000004,
+      "cabinet_s": 30927.584,
+      "mapped_host_s": 3.8564994999999564,
+      "target_action": "kept",
+      "target_rep_index": 318,
+      "actual_action": "kept",
+      "actual_rep_index": 318
+    },
+    {
+      "index": 319,
+      "host_s": 3.8720678000000004,
+      "cabinet_s": 30927.591999999997,
+      "mapped_host_s": 3.8644994999979483,
+      "target_action": "kept",
+      "target_rep_index": 319,
+      "actual_action": "kept",
+      "actual_rep_index": 319
+    },
+    {
+      "index": 320,
+      "host_s": 3.8802481,
+      "cabinet_s": 30927.608,
+      "mapped_host_s": 3.880499500001208,
+      "target_action": "kept",
+      "target_rep_index": 320,
+      "actual_action": "kept",
+      "actual_rep_index": 320
+    },
+    {
+      "index": 321,
+      "host_s": 3.8962424,
+      "cabinet_s": 30927.624,
+      "mapped_host_s": 3.8964995000008296,
+      "target_action": "kept",
+      "target_rep_index": 321,
+      "actual_action": "kept",
+      "actual_rep_index": 321
+    },
+    {
+      "index": 322,
+      "host_s": 3.9043171,
+      "cabinet_s": 30927.631999999998,
+      "mapped_host_s": 3.9044994999988214,
+      "target_action": "kept",
+      "target_rep_index": 322,
+      "actual_action": "kept",
+      "actual_rep_index": 322
+    },
+    {
+      "index": 323,
+      "host_s": 3.9122692000000003,
+      "cabinet_s": 30927.64,
+      "mapped_host_s": 3.912499500000451,
+      "target_action": "kept",
+      "target_rep_index": 323,
+      "actual_action": "kept",
+      "actual_rep_index": 323
+    },
+    {
+      "index": 324,
+      "host_s": 3.9202882000000003,
+      "cabinet_s": 30927.647999999997,
+      "mapped_host_s": 3.920499499998443,
+      "target_action": "kept",
+      "target_rep_index": 324,
+      "actual_action": "kept",
+      "actual_rep_index": 324
+    },
+    {
+      "index": 325,
+      "host_s": 3.9282278,
+      "cabinet_s": 30927.656,
+      "mapped_host_s": 3.928499500000073,
+      "target_action": "kept",
+      "target_rep_index": 325,
+      "actual_action": "kept",
+      "actual_rep_index": 325
+    },
+    {
+      "index": 326,
+      "host_s": 3.9365331,
+      "cabinet_s": 30927.663999999997,
+      "mapped_host_s": 3.9364994999980647,
+      "target_action": "kept",
+      "target_rep_index": 326,
+      "actual_action": "kept",
+      "actual_rep_index": 326
+    },
+    {
+      "index": 327,
+      "host_s": 3.9443356,
+      "cabinet_s": 30927.672,
+      "mapped_host_s": 3.9444994999996945,
+      "target_action": "kept",
+      "target_rep_index": 327,
+      "actual_action": "kept",
+      "actual_rep_index": 327
+    },
+    {
+      "index": 328,
+      "host_s": 3.9604875,
+      "cabinet_s": 30927.688,
+      "mapped_host_s": 3.960499499999316,
+      "target_action": "kept",
+      "target_rep_index": 328,
+      "actual_action": "kept",
+      "actual_rep_index": 328
+    },
+    {
+      "index": 329,
+      "host_s": 3.9761749,
+      "cabinet_s": 30927.696,
+      "mapped_host_s": 3.968499500000946,
+      "target_action": "kept",
+      "target_rep_index": 329,
+      "actual_action": "kept",
+      "actual_rep_index": 329
+    },
+    {
+      "index": 330,
+      "host_s": 3.9840232,
+      "cabinet_s": 30927.703999999998,
+      "mapped_host_s": 3.976499499998938,
+      "target_action": "kept",
+      "target_rep_index": 330,
+      "actual_action": "kept",
+      "actual_rep_index": 330
+    },
+    {
+      "index": 331,
+      "host_s": 3.9919448,
+      "cabinet_s": 30927.712,
+      "mapped_host_s": 3.9844995000005676,
+      "target_action": "kept",
+      "target_rep_index": 331,
+      "actual_action": "kept",
+      "actual_rep_index": 331
+    },
+    {
+      "index": 332,
+      "host_s": 4.0004318,
+      "cabinet_s": 30927.728,
+      "mapped_host_s": 4.000499500000189,
+      "target_action": "kept",
+      "target_rep_index": 332,
+      "actual_action": "kept",
+      "actual_rep_index": 332
+    },
+    {
+      "index": 333,
+      "host_s": 4.0083351,
+      "cabinet_s": 30927.735999999997,
+      "mapped_host_s": 4.008499499998181,
+      "target_action": "kept",
+      "target_rep_index": 333,
+      "actual_action": "kept",
+      "actual_rep_index": 333
+    },
+    {
+      "index": 334,
+      "host_s": 4.0162895,
+      "cabinet_s": 30927.744,
+      "mapped_host_s": 4.016499499999811,
+      "target_action": "kept",
+      "target_rep_index": 334,
+      "actual_action": "kept",
+      "actual_rep_index": 334
+    },
+    {
+      "index": 335,
+      "host_s": 4.032662800000001,
+      "cabinet_s": 30927.76,
+      "mapped_host_s": 4.032499499999433,
+      "target_action": "kept",
+      "target_rep_index": 335,
+      "actual_action": "kept",
+      "actual_rep_index": 335
+    },
+    {
+      "index": 336,
+      "host_s": 4.040272,
+      "cabinet_s": 30927.768,
+      "mapped_host_s": 4.040499500001062,
+      "target_action": "kept",
+      "target_rep_index": 336,
+      "actual_action": "kept",
+      "actual_rep_index": 336
+    },
+    {
+      "index": 337,
+      "host_s": 4.0563795,
+      "cabinet_s": 30927.784,
+      "mapped_host_s": 4.056499500000684,
+      "target_action": "kept",
+      "target_rep_index": 337,
+      "actual_action": "kept",
+      "actual_rep_index": 337
+    },
+    {
+      "index": 338,
+      "host_s": 4.0720644,
+      "cabinet_s": 30927.791999999998,
+      "mapped_host_s": 4.064499499998676,
+      "target_action": "kept",
+      "target_rep_index": 338,
+      "actual_action": "kept",
+      "actual_rep_index": 338
+    },
+    {
+      "index": 339,
+      "host_s": 4.0804421,
+      "cabinet_s": 30927.807999999997,
+      "mapped_host_s": 4.0804994999982975,
+      "target_action": "kept",
+      "target_rep_index": 339,
+      "actual_action": "kept",
+      "actual_rep_index": 339
+    },
+    {
+      "index": 340,
+      "host_s": 4.0964277000000004,
+      "cabinet_s": 30927.823999999997,
+      "mapped_host_s": 4.096499499997919,
+      "target_action": "kept",
+      "target_rep_index": 340,
+      "actual_action": "kept",
+      "actual_rep_index": 340
+    },
+    {
+      "index": 341,
+      "host_s": 4.112288,
+      "cabinet_s": 30927.84,
+      "mapped_host_s": 4.112499500001179,
+      "target_action": "kept",
+      "target_rep_index": 341,
+      "actual_action": "kept",
+      "actual_rep_index": 341
+    },
+    {
+      "index": 342,
+      "host_s": 4.120320400000001,
+      "cabinet_s": 30927.847999999998,
+      "mapped_host_s": 4.120499499999171,
+      "target_action": "kept",
+      "target_rep_index": 342,
+      "actual_action": "kept",
+      "actual_rep_index": 342
+    },
+    {
+      "index": 343,
+      "host_s": 4.128601300000001,
+      "cabinet_s": 30927.856,
+      "mapped_host_s": 4.1284995000008005,
+      "target_action": "kept",
+      "target_rep_index": 343,
+      "actual_action": "kept",
+      "actual_rep_index": 343
+    },
+    {
+      "index": 344,
+      "host_s": 4.1362235,
+      "cabinet_s": 30927.863999999998,
+      "mapped_host_s": 4.136499499998792,
+      "target_action": "kept",
+      "target_rep_index": 344,
+      "actual_action": "kept",
+      "actual_rep_index": 344
+    },
+    {
+      "index": 345,
+      "host_s": 4.1520997,
+      "cabinet_s": 30927.872,
+      "mapped_host_s": 4.144499500000422,
+      "target_action": "kept",
+      "target_rep_index": 345,
+      "actual_action": "kept",
+      "actual_rep_index": 345
+    },
+    {
+      "index": 346,
+      "host_s": 4.1605357000000005,
+      "cabinet_s": 30927.888,
+      "mapped_host_s": 4.160499500000044,
+      "target_action": "kept",
+      "target_rep_index": 346,
+      "actual_action": "kept",
+      "actual_rep_index": 346
+    },
+    {
+      "index": 347,
+      "host_s": 4.1683523000000005,
+      "cabinet_s": 30927.895999999997,
+      "mapped_host_s": 4.168499499998036,
+      "target_action": "kept",
+      "target_rep_index": 347,
+      "actual_action": "kept",
+      "actual_rep_index": 347
+    },
+    {
+      "index": 348,
+      "host_s": 4.176449600000001,
+      "cabinet_s": 30927.904,
+      "mapped_host_s": 4.176499499999665,
+      "target_action": "kept",
+      "target_rep_index": 348,
+      "actual_action": "kept",
+      "actual_rep_index": 348
+    },
+    {
+      "index": 349,
+      "host_s": 4.1844345,
+      "cabinet_s": 30927.912,
+      "mapped_host_s": 4.184499500001295,
+      "target_action": "kept",
+      "target_rep_index": 349,
+      "actual_action": "kept",
+      "actual_rep_index": 349
+    },
+    {
+      "index": 350,
+      "host_s": 4.1924203,
+      "cabinet_s": 30927.92,
+      "mapped_host_s": 4.192499499999287,
+      "target_action": "kept",
+      "target_rep_index": 350,
+      "actual_action": "kept",
+      "actual_rep_index": 350
+    },
+    {
+      "index": 351,
+      "host_s": 4.2084434,
+      "cabinet_s": 30927.935999999998,
+      "mapped_host_s": 4.208499499998909,
+      "target_action": "kept",
+      "target_rep_index": 351,
+      "actual_action": "kept",
+      "actual_rep_index": 351
+    },
+    {
+      "index": 352,
+      "host_s": 4.216419,
+      "cabinet_s": 30927.944,
+      "mapped_host_s": 4.2164995000005385,
+      "target_action": "kept",
+      "target_rep_index": 352,
+      "actual_action": "kept",
+      "actual_rep_index": 352
+    },
+    {
+      "index": 353,
+      "host_s": 4.2243586,
+      "cabinet_s": 30927.951999999997,
+      "mapped_host_s": 4.22449949999853,
+      "target_action": "kept",
+      "target_rep_index": 353,
+      "actual_action": "kept",
+      "actual_rep_index": 353
+    },
+    {
+      "index": 354,
+      "host_s": 4.2324254,
+      "cabinet_s": 30927.96,
+      "mapped_host_s": 4.23249950000016,
+      "target_action": "kept",
+      "target_rep_index": 354,
+      "actual_action": "kept",
+      "actual_rep_index": 354
+    },
+    {
+      "index": 355,
+      "host_s": 4.240347,
+      "cabinet_s": 30927.967999999997,
+      "mapped_host_s": 4.240499499998152,
+      "target_action": "kept",
+      "target_rep_index": 355,
+      "actual_action": "kept",
+      "actual_rep_index": 355
+    },
+    {
+      "index": 356,
+      "host_s": 4.2564515,
+      "cabinet_s": 30927.984,
+      "mapped_host_s": 4.256499500001412,
+      "target_action": "kept",
+      "target_rep_index": 356,
+      "actual_action": "kept",
+      "actual_rep_index": 356
+    },
+    {
+      "index": 357,
+      "host_s": 4.2642964,
+      "cabinet_s": 30927.992,
+      "mapped_host_s": 4.2644994999994035,
+      "target_action": "kept",
+      "target_rep_index": 357,
+      "actual_action": "kept",
+      "actual_rep_index": 357
+    },
+    {
+      "index": 358,
+      "host_s": 4.2723911,
+      "cabinet_s": 30928.0,
+      "mapped_host_s": 4.272499500001033,
+      "target_action": "kept",
+      "target_rep_index": 358,
+      "actual_action": "kept",
+      "actual_rep_index": 358
+    },
+    {
+      "index": 359,
+      "host_s": 4.2802486,
+      "cabinet_s": 30928.007999999998,
+      "mapped_host_s": 4.280499499999025,
+      "target_action": "kept",
+      "target_rep_index": 359,
+      "actual_action": "kept",
+      "actual_rep_index": 359
+    },
+    {
+      "index": 360,
+      "host_s": 4.2884772,
+      "cabinet_s": 30928.016,
+      "mapped_host_s": 4.288499500000655,
+      "target_action": "kept",
+      "target_rep_index": 360,
+      "actual_action": "kept",
+      "actual_rep_index": 360
+    },
+    {
+      "index": 361,
+      "host_s": 4.3042881,
+      "cabinet_s": 30928.032,
+      "mapped_host_s": 4.304499500000277,
+      "target_action": "kept",
+      "target_rep_index": 361,
+      "actual_action": "kept",
+      "actual_rep_index": 361
+    },
+    {
+      "index": 362,
+      "host_s": 4.3203198,
+      "cabinet_s": 30928.048,
+      "mapped_host_s": 4.320499499999898,
+      "target_action": "kept",
+      "target_rep_index": 362,
+      "actual_action": "kept",
+      "actual_rep_index": 362
+    },
+    {
+      "index": 363,
+      "host_s": 4.3283458,
+      "cabinet_s": 30928.055999999997,
+      "mapped_host_s": 4.32849949999789,
+      "target_action": "kept",
+      "target_rep_index": 363,
+      "actual_action": "kept",
+      "actual_rep_index": 363
+    },
+    {
+      "index": 364,
+      "host_s": 4.3362061,
+      "cabinet_s": 30928.064,
+      "mapped_host_s": 4.33649949999952,
+      "target_action": "kept",
+      "target_rep_index": 364,
+      "actual_action": "kept",
+      "actual_rep_index": 364
+    },
+    {
+      "index": 365,
+      "host_s": 4.3444991,
+      "cabinet_s": 30928.072,
+      "mapped_host_s": 4.34449950000115,
+      "target_action": "kept",
+      "target_rep_index": 365,
+      "actual_action": "kept",
+      "actual_rep_index": 365
+    },
+    {
+      "index": 366,
+      "host_s": 4.3522778,
+      "cabinet_s": 30928.079999999998,
+      "mapped_host_s": 4.3524994999991415,
+      "target_action": "kept",
+      "target_rep_index": 366,
+      "actual_action": "kept",
+      "actual_rep_index": 366
+    },
+    {
+      "index": 367,
+      "host_s": 4.3603649,
+      "cabinet_s": 30928.088,
+      "mapped_host_s": 4.360499500000771,
+      "target_action": "kept",
+      "target_rep_index": 367,
+      "actual_action": "kept",
+      "actual_rep_index": 367
+    },
+    {
+      "index": 368,
+      "host_s": 4.3763692,
+      "cabinet_s": 30928.104,
+      "mapped_host_s": 4.376499500000393,
+      "target_action": "kept",
+      "target_rep_index": 368,
+      "actual_action": "kept",
+      "actual_rep_index": 368
+    },
+    {
+      "index": 369,
+      "host_s": 4.3844441000000005,
+      "cabinet_s": 30928.111999999997,
+      "mapped_host_s": 4.384499499998385,
+      "target_action": "kept",
+      "target_rep_index": 369,
+      "actual_action": "kept",
+      "actual_rep_index": 369
+    },
+    {
+      "index": 370,
+      "host_s": 4.3923807,
+      "cabinet_s": 30928.12,
+      "mapped_host_s": 4.392499500000015,
+      "target_action": "kept",
+      "target_rep_index": 370,
+      "actual_action": "kept",
+      "actual_rep_index": 370
+    },
+    {
+      "index": 371,
+      "host_s": 4.408566,
+      "cabinet_s": 30928.136,
+      "mapped_host_s": 4.408499499999636,
+      "target_action": "kept",
+      "target_rep_index": 371,
+      "actual_action": "kept",
+      "actual_rep_index": 371
+    },
+    {
+      "index": 372,
+      "host_s": 4.4242974,
+      "cabinet_s": 30928.152,
+      "mapped_host_s": 4.424499499999258,
+      "target_action": "kept",
+      "target_rep_index": 372,
+      "actual_action": "kept",
+      "actual_rep_index": 372
+    },
+    {
+      "index": 373,
+      "host_s": 4.4323635,
+      "cabinet_s": 30928.16,
+      "mapped_host_s": 4.432499500000888,
+      "target_action": "kept",
+      "target_rep_index": 373,
+      "actual_action": "kept",
+      "actual_rep_index": 373
+    },
+    {
+      "index": 374,
+      "host_s": 4.4403579,
+      "cabinet_s": 30928.167999999998,
+      "mapped_host_s": 4.44049949999888,
+      "target_action": "kept",
+      "target_rep_index": 374,
+      "actual_action": "kept",
+      "actual_rep_index": 374
+    },
+    {
+      "index": 375,
+      "host_s": 4.448279,
+      "cabinet_s": 30928.176,
+      "mapped_host_s": 4.448499500000509,
+      "target_action": "kept",
+      "target_rep_index": 375,
+      "actual_action": "kept",
+      "actual_rep_index": 375
+    },
+    {
+      "index": 376,
+      "host_s": 4.456437,
+      "cabinet_s": 30928.183999999997,
+      "mapped_host_s": 4.456499499998501,
+      "target_action": "kept",
+      "target_rep_index": 376,
+      "actual_action": "kept",
+      "actual_rep_index": 376
+    },
+    {
+      "index": 377,
+      "host_s": 4.4644892,
+      "cabinet_s": 30928.192,
+      "mapped_host_s": 4.464499500000131,
+      "target_action": "kept",
+      "target_rep_index": 377,
+      "actual_action": "kept",
+      "actual_rep_index": 377
+    },
+    {
+      "index": 378,
+      "host_s": 4.4804314000000005,
+      "cabinet_s": 30928.208,
+      "mapped_host_s": 4.480499499999753,
+      "target_action": "kept",
+      "target_rep_index": 378,
+      "actual_action": "kept",
+      "actual_rep_index": 378
+    },
+    {
+      "index": 379,
+      "host_s": 4.4962725,
+      "cabinet_s": 30928.224,
+      "mapped_host_s": 4.496499499999374,
+      "target_action": "kept",
+      "target_rep_index": 379,
+      "actual_action": "kept",
+      "actual_rep_index": 379
+    },
+    {
+      "index": 380,
+      "host_s": 4.504222100000001,
+      "cabinet_s": 30928.232,
+      "mapped_host_s": 4.504499500001004,
+      "target_action": "kept",
+      "target_rep_index": 380,
+      "actual_action": "kept",
+      "actual_rep_index": 380
+    },
+    {
+      "index": 381,
+      "host_s": 4.5201281,
+      "cabinet_s": 30928.239999999998,
+      "mapped_host_s": 4.512499499998996,
+      "target_action": "kept",
+      "target_rep_index": 381,
+      "actual_action": "kept",
+      "actual_rep_index": 381
+    },
+    {
+      "index": 382,
+      "host_s": 4.5283405000000005,
+      "cabinet_s": 30928.255999999998,
+      "mapped_host_s": 4.528499499998618,
+      "target_action": "kept",
+      "target_rep_index": 382,
+      "actual_action": "kept",
+      "actual_rep_index": 382
+    },
+    {
+      "index": 383,
+      "host_s": 4.5362672,
+      "cabinet_s": 30928.264,
+      "mapped_host_s": 4.5364995000002475,
+      "target_action": "kept",
+      "target_rep_index": 383,
+      "actual_action": "kept",
+      "actual_rep_index": 383
+    },
+    {
+      "index": 384,
+      "host_s": 4.5523189,
+      "cabinet_s": 30928.28,
+      "mapped_host_s": 4.552499499999869,
+      "target_action": "kept",
+      "target_rep_index": 384,
+      "actual_action": "kept",
+      "actual_rep_index": 384
+    },
+    {
+      "index": 385,
+      "host_s": 4.5603441,
+      "cabinet_s": 30928.287999999997,
+      "mapped_host_s": 4.560499499997861,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 385
+    },
+    {
+      "index": 386,
+      "host_s": 4.5682561,
+      "cabinet_s": 30928.287999999997,
+      "mapped_host_s": 4.560499499997861,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 385
+    },
+    {
+      "index": 387,
+      "host_s": 4.5761428,
+      "cabinet_s": 30928.296,
+      "mapped_host_s": 4.568499499999491,
+      "target_action": "kept",
+      "target_rep_index": 387,
+      "actual_action": "kept",
+      "actual_rep_index": 387
+    },
+    {
+      "index": 388,
+      "host_s": 4.5840156,
+      "cabinet_s": 30928.304,
+      "mapped_host_s": 4.576499500001121,
+      "target_action": "kept",
+      "target_rep_index": 388,
+      "actual_action": "kept",
+      "actual_rep_index": 388
+    },
+    {
+      "index": 389,
+      "host_s": 4.592012400000001,
+      "cabinet_s": 30928.311999999998,
+      "mapped_host_s": 4.584499499999112,
+      "target_action": "kept",
+      "target_rep_index": 389,
+      "actual_action": "kept",
+      "actual_rep_index": 389
+    },
+    {
+      "index": 390,
+      "host_s": 4.6001498000000005,
+      "cabinet_s": 30928.32,
+      "mapped_host_s": 4.592499500000742,
+      "target_action": "kept",
+      "target_rep_index": 390,
+      "actual_action": "kept",
+      "actual_rep_index": 390
+    },
+    {
+      "index": 391,
+      "host_s": 4.6083131,
+      "cabinet_s": 30928.336,
+      "mapped_host_s": 4.608499500000364,
+      "target_action": "kept",
+      "target_rep_index": 391,
+      "actual_action": "kept",
+      "actual_rep_index": 391
+    },
+    {
+      "index": 392,
+      "host_s": 4.6162038,
+      "cabinet_s": 30928.343999999997,
+      "mapped_host_s": 4.616499499998356,
+      "target_action": "kept",
+      "target_rep_index": 392,
+      "actual_action": "kept",
+      "actual_rep_index": 392
+    },
+    {
+      "index": 393,
+      "host_s": 4.6241179,
+      "cabinet_s": 30928.352,
+      "mapped_host_s": 4.6244994999999856,
+      "target_action": "kept",
+      "target_rep_index": 393,
+      "actual_action": "kept",
+      "actual_rep_index": 393
+    },
+    {
+      "index": 394,
+      "host_s": 4.6322997,
+      "cabinet_s": 30928.359999999997,
+      "mapped_host_s": 4.632499499997977,
+      "target_action": "kept",
+      "target_rep_index": 394,
+      "actual_action": "kept",
+      "actual_rep_index": 394
+    },
+    {
+      "index": 395,
+      "host_s": 4.6481858,
+      "cabinet_s": 30928.368,
+      "mapped_host_s": 4.640499499999607,
+      "target_action": "excluded_local_field_inconsistency",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 395
+    },
+    {
+      "index": 396,
+      "host_s": 4.6565178000000005,
+      "cabinet_s": 30928.384,
+      "mapped_host_s": 4.656499499999229,
+      "target_action": "kept",
+      "target_rep_index": 396,
+      "actual_action": "kept",
+      "actual_rep_index": 396
+    },
+    {
+      "index": 397,
+      "host_s": 4.6724999,
+      "cabinet_s": 30928.399999999998,
+      "mapped_host_s": 4.6724994999988505,
+      "target_action": "kept",
+      "target_rep_index": 397,
+      "actual_action": "kept",
+      "actual_rep_index": 397
+    },
+    {
+      "index": 398,
+      "host_s": 4.6802704,
+      "cabinet_s": 30928.408,
+      "mapped_host_s": 4.68049950000048,
+      "target_action": "kept",
+      "target_rep_index": 398,
+      "actual_action": "kept",
+      "actual_rep_index": 398
+    },
+    {
+      "index": 399,
+      "host_s": 4.6883056000000005,
+      "cabinet_s": 30928.415999999997,
+      "mapped_host_s": 4.688499499998472,
+      "target_action": "kept",
+      "target_rep_index": 399,
+      "actual_action": "kept",
+      "actual_rep_index": 399
+    },
+    {
+      "index": 400,
+      "host_s": 4.6961896,
+      "cabinet_s": 30928.424,
+      "mapped_host_s": 4.696499500000102,
+      "target_action": "kept",
+      "target_rep_index": 400,
+      "actual_action": "kept",
+      "actual_rep_index": 400
+    },
+    {
+      "index": 401,
+      "host_s": 4.7043322000000005,
+      "cabinet_s": 30928.431999999997,
+      "mapped_host_s": 4.704499499998094,
+      "target_action": "kept",
+      "target_rep_index": 401,
+      "actual_action": "kept",
+      "actual_rep_index": 401
+    },
+    {
+      "index": 402,
+      "host_s": 4.7122205,
+      "cabinet_s": 30928.44,
+      "mapped_host_s": 4.712499499999724,
+      "target_action": "kept",
+      "target_rep_index": 402,
+      "actual_action": "kept",
+      "actual_rep_index": 402
+    },
+    {
+      "index": 403,
+      "host_s": 4.7203789,
+      "cabinet_s": 30928.448,
+      "mapped_host_s": 4.720499500001353,
+      "target_action": "kept",
+      "target_rep_index": 403,
+      "actual_action": "kept",
+      "actual_rep_index": 403
+    },
+    {
+      "index": 404,
+      "host_s": 4.7281981,
+      "cabinet_s": 30928.456,
+      "mapped_host_s": 4.728499499999345,
+      "target_action": "kept",
+      "target_rep_index": 404,
+      "actual_action": "kept",
+      "actual_rep_index": 404
+    },
+    {
+      "index": 405,
+      "host_s": 4.736381000000001,
+      "cabinet_s": 30928.464,
+      "mapped_host_s": 4.736499500000975,
+      "target_action": "kept",
+      "target_rep_index": 405,
+      "actual_action": "kept",
+      "actual_rep_index": 405
+    },
+    {
+      "index": 406,
+      "host_s": 4.7442664,
+      "cabinet_s": 30928.471999999998,
+      "mapped_host_s": 4.744499499998967,
+      "target_action": "kept",
+      "target_rep_index": 406,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 407,
+      "host_s": 4.7521527,
+      "cabinet_s": 30928.471999999998,
+      "mapped_host_s": 4.744499499998967,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 406,
+      "actual_action": "excluded_conflicting_timestamp",
+      "actual_rep_index": null
+    },
+    {
+      "index": 408,
+      "host_s": 4.7603574,
+      "cabinet_s": 30928.487999999998,
+      "mapped_host_s": 4.760499499998589,
+      "target_action": "kept",
+      "target_rep_index": 408,
+      "actual_action": "kept",
+      "actual_rep_index": 408
+    },
+    {
+      "index": 409,
+      "host_s": 4.7680305,
+      "cabinet_s": 30928.487999999998,
+      "mapped_host_s": 4.760499499998589,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 408,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 408
+    },
+    {
+      "index": 410,
+      "host_s": 4.776254300000001,
+      "cabinet_s": 30928.503999999997,
+      "mapped_host_s": 4.77649949999821,
+      "target_action": "kept",
+      "target_rep_index": 410,
+      "actual_action": "kept",
+      "actual_rep_index": 410
+    },
+    {
+      "index": 411,
+      "host_s": 4.7923729,
+      "cabinet_s": 30928.519999999997,
+      "mapped_host_s": 4.792499499997832,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 411
+    },
+    {
+      "index": 412,
+      "host_s": 4.8001319,
+      "cabinet_s": 30928.519999999997,
+      "mapped_host_s": 4.792499499997832,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 411
+    },
+    {
+      "index": 413,
+      "host_s": 4.8083789,
+      "cabinet_s": 30928.536,
+      "mapped_host_s": 4.8084995000010915,
+      "target_action": "kept",
+      "target_rep_index": 413,
+      "actual_action": "kept",
+      "actual_rep_index": 413
+    },
+    {
+      "index": 414,
+      "host_s": 4.8162194000000005,
+      "cabinet_s": 30928.543999999998,
+      "mapped_host_s": 4.816499499999083,
+      "target_action": "kept",
+      "target_rep_index": 414,
+      "actual_action": "kept",
+      "actual_rep_index": 414
+    },
+    {
+      "index": 415,
+      "host_s": 4.8322912,
+      "cabinet_s": 30928.559999999998,
+      "mapped_host_s": 4.832499499998705,
+      "target_action": "kept",
+      "target_rep_index": 415,
+      "actual_action": "kept",
+      "actual_rep_index": 415
+    },
+    {
+      "index": 416,
+      "host_s": 4.8402585,
+      "cabinet_s": 30928.568,
+      "mapped_host_s": 4.840499500000335,
+      "target_action": "kept",
+      "target_rep_index": 416,
+      "actual_action": "kept",
+      "actual_rep_index": 416
+    },
+    {
+      "index": 417,
+      "host_s": 4.8564319000000005,
+      "cabinet_s": 30928.584,
+      "mapped_host_s": 4.8564994999999564,
+      "target_action": "kept",
+      "target_rep_index": 417,
+      "actual_action": "kept",
+      "actual_rep_index": 417
+    },
+    {
+      "index": 418,
+      "host_s": 4.8721190000000005,
+      "cabinet_s": 30928.591999999997,
+      "mapped_host_s": 4.864499499997948,
+      "target_action": "kept",
+      "target_rep_index": 418,
+      "actual_action": "kept",
+      "actual_rep_index": 418
+    },
+    {
+      "index": 419,
+      "host_s": 4.8804679,
+      "cabinet_s": 30928.608,
+      "mapped_host_s": 4.880499500001208,
+      "target_action": "kept",
+      "target_rep_index": 419,
+      "actual_action": "kept",
+      "actual_rep_index": 419
+    },
+    {
+      "index": 420,
+      "host_s": 4.8962455,
+      "cabinet_s": 30928.615999999998,
+      "mapped_host_s": 4.8884994999992,
+      "target_action": "kept",
+      "target_rep_index": 420,
+      "actual_action": "kept",
+      "actual_rep_index": 420
+    },
+    {
+      "index": 421,
+      "host_s": 4.9040815,
+      "cabinet_s": 30928.624,
+      "mapped_host_s": 4.89649950000083,
+      "target_action": "kept",
+      "target_rep_index": 421,
+      "actual_action": "kept",
+      "actual_rep_index": 421
+    },
+    {
+      "index": 422,
+      "host_s": 4.9123163000000005,
+      "cabinet_s": 30928.631999999998,
+      "mapped_host_s": 4.904499499998821,
+      "target_action": "kept",
+      "target_rep_index": 422,
+      "actual_action": "kept",
+      "actual_rep_index": 422
+    },
+    {
+      "index": 423,
+      "host_s": 4.920340700000001,
+      "cabinet_s": 30928.647999999997,
+      "mapped_host_s": 4.920499499998443,
+      "target_action": "kept",
+      "target_rep_index": 423,
+      "actual_action": "kept",
+      "actual_rep_index": 423
+    },
+    {
+      "index": 424,
+      "host_s": 4.9282330000000005,
+      "cabinet_s": 30928.656,
+      "mapped_host_s": 4.928499500000073,
+      "target_action": "kept",
+      "target_rep_index": 424,
+      "actual_action": "kept",
+      "actual_rep_index": 424
+    },
+    {
+      "index": 425,
+      "host_s": 4.9441242,
+      "cabinet_s": 30928.663999999997,
+      "mapped_host_s": 4.936499499998065,
+      "target_action": "kept",
+      "target_rep_index": 425,
+      "actual_action": "kept",
+      "actual_rep_index": 425
+    },
+    {
+      "index": 426,
+      "host_s": 4.9520923,
+      "cabinet_s": 30928.672,
+      "mapped_host_s": 4.9444994999996945,
+      "target_action": "kept",
+      "target_rep_index": 426,
+      "actual_action": "kept",
+      "actual_rep_index": 426
+    },
+    {
+      "index": 427,
+      "host_s": 4.9603298,
+      "cabinet_s": 30928.688,
+      "mapped_host_s": 4.960499499999316,
+      "target_action": "kept",
+      "target_rep_index": 427,
+      "actual_action": "kept",
+      "actual_rep_index": 427
+    },
+    {
+      "index": 428,
+      "host_s": 4.9764076,
+      "cabinet_s": 30928.703999999998,
+      "mapped_host_s": 4.976499499998938,
+      "target_action": "kept",
+      "target_rep_index": 428,
+      "actual_action": "kept",
+      "actual_rep_index": 428
+    },
+    {
+      "index": 429,
+      "host_s": 4.9843783,
+      "cabinet_s": 30928.712,
+      "mapped_host_s": 4.984499500000568,
+      "target_action": "kept",
+      "target_rep_index": 429,
+      "actual_action": "kept",
+      "actual_rep_index": 429
+    },
+    {
+      "index": 430,
+      "host_s": 4.9921673,
+      "cabinet_s": 30928.719999999998,
+      "mapped_host_s": 4.9924994999985595,
+      "target_action": "kept",
+      "target_rep_index": 430,
+      "actual_action": "kept",
+      "actual_rep_index": 430
+    },
+    {
+      "index": 431,
+      "host_s": 5.0004489,
+      "cabinet_s": 30928.728,
+      "mapped_host_s": 5.000499500000189,
+      "target_action": "kept",
+      "target_rep_index": 431,
+      "actual_action": "kept",
+      "actual_rep_index": 431
+    },
+    {
+      "index": 432,
+      "host_s": 5.0083924,
+      "cabinet_s": 30928.735999999997,
+      "mapped_host_s": 5.008499499998181,
+      "target_action": "kept",
+      "target_rep_index": 432,
+      "actual_action": "kept",
+      "actual_rep_index": 432
+    },
+    {
+      "index": 433,
+      "host_s": 5.0163212,
+      "cabinet_s": 30928.744,
+      "mapped_host_s": 5.016499499999811,
+      "target_action": "kept",
+      "target_rep_index": 433,
+      "actual_action": "kept",
+      "actual_rep_index": 433
+    },
+    {
+      "index": 434,
+      "host_s": 5.0322717,
+      "cabinet_s": 30928.76,
+      "mapped_host_s": 5.032499499999433,
+      "target_action": "kept",
+      "target_rep_index": 434,
+      "actual_action": "kept",
+      "actual_rep_index": 434
+    },
+    {
+      "index": 435,
+      "host_s": 5.0484079,
+      "cabinet_s": 30928.775999999998,
+      "mapped_host_s": 5.048499499999054,
+      "target_action": "kept",
+      "target_rep_index": 435,
+      "actual_action": "kept",
+      "actual_rep_index": 435
+    },
+    {
+      "index": 436,
+      "host_s": 5.0645256000000005,
+      "cabinet_s": 30928.791999999998,
+      "mapped_host_s": 5.064499499998676,
+      "target_action": "kept",
+      "target_rep_index": 436,
+      "actual_action": "kept",
+      "actual_rep_index": 436
+    },
+    {
+      "index": 437,
+      "host_s": 5.0804311,
+      "cabinet_s": 30928.807999999997,
+      "mapped_host_s": 5.0804994999982975,
+      "target_action": "kept",
+      "target_rep_index": 437,
+      "actual_action": "kept",
+      "actual_rep_index": 437
+    },
+    {
+      "index": 438,
+      "host_s": 5.0881759,
+      "cabinet_s": 30928.816,
+      "mapped_host_s": 5.088499499999927,
+      "target_action": "kept",
+      "target_rep_index": 438,
+      "actual_action": "kept",
+      "actual_rep_index": 438
+    },
+    {
+      "index": 439,
+      "host_s": 5.0962882,
+      "cabinet_s": 30928.823999999997,
+      "mapped_host_s": 5.096499499997919,
+      "target_action": "kept",
+      "target_rep_index": 439,
+      "actual_action": "kept",
+      "actual_rep_index": 439
+    },
+    {
+      "index": 440,
+      "host_s": 5.1043651,
+      "cabinet_s": 30928.832,
+      "mapped_host_s": 5.104499499999549,
+      "target_action": "kept",
+      "target_rep_index": 440,
+      "actual_action": "kept",
+      "actual_rep_index": 440
+    },
+    {
+      "index": 441,
+      "host_s": 5.11231,
+      "cabinet_s": 30928.84,
+      "mapped_host_s": 5.112499500001179,
+      "target_action": "kept",
+      "target_rep_index": 441,
+      "actual_action": "kept",
+      "actual_rep_index": 441
+    },
+    {
+      "index": 442,
+      "host_s": 5.1199312,
+      "cabinet_s": 30928.84,
+      "mapped_host_s": 5.112499500001179,
+      "target_action": "merged_identical_payload",
+      "target_rep_index": 441,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 441
+    },
+    {
+      "index": 443,
+      "host_s": 5.1279973000000005,
+      "cabinet_s": 30928.847999999998,
+      "mapped_host_s": 5.120499499999171,
+      "target_action": "kept",
+      "target_rep_index": 443,
+      "actual_action": "kept",
+      "actual_rep_index": 443
+    },
+    {
+      "index": 444,
+      "host_s": 5.1362836000000005,
+      "cabinet_s": 30928.863999999998,
+      "mapped_host_s": 5.136499499998792,
+      "target_action": "kept",
+      "target_rep_index": 444,
+      "actual_action": "kept",
+      "actual_rep_index": 444
+    },
+    {
+      "index": 445,
+      "host_s": 5.152364400000001,
+      "cabinet_s": 30928.872,
+      "mapped_host_s": 5.144499500000422,
+      "target_action": "kept",
+      "target_rep_index": 445,
+      "actual_action": "kept",
+      "actual_rep_index": 445
+    },
+    {
+      "index": 446,
+      "host_s": 5.1599900000000005,
+      "cabinet_s": 30928.879999999997,
+      "mapped_host_s": 5.152499499998414,
+      "target_action": "kept",
+      "target_rep_index": 446,
+      "actual_action": "kept",
+      "actual_rep_index": 446
+    },
+    {
+      "index": 447,
+      "host_s": 5.1680342,
+      "cabinet_s": 30928.888,
+      "mapped_host_s": 5.160499500000044,
+      "target_action": "kept",
+      "target_rep_index": 447,
+      "actual_action": "kept",
+      "actual_rep_index": 447
+    },
+    {
+      "index": 448,
+      "host_s": 5.1761749,
+      "cabinet_s": 30928.895999999997,
+      "mapped_host_s": 5.168499499998036,
+      "target_action": "kept",
+      "target_rep_index": 448,
+      "actual_action": "kept",
+      "actual_rep_index": 448
+    },
+    {
+      "index": 449,
+      "host_s": 5.184062900000001,
+      "cabinet_s": 30928.904,
+      "mapped_host_s": 5.176499499999665,
+      "target_action": "kept",
+      "target_rep_index": 449,
+      "actual_action": "kept",
+      "actual_rep_index": 449
+    },
+    {
+      "index": 450,
+      "host_s": 5.1923580000000005,
+      "cabinet_s": 30928.92,
+      "mapped_host_s": 5.192499499999287,
+      "target_action": "kept",
+      "target_rep_index": 450,
+      "actual_action": "kept",
+      "actual_rep_index": 450
+    },
+    {
+      "index": 451,
+      "host_s": 5.2083301,
+      "cabinet_s": 30928.935999999998,
+      "mapped_host_s": 5.208499499998909,
+      "target_action": "kept",
+      "target_rep_index": 451,
+      "actual_action": "kept",
+      "actual_rep_index": 451
+    },
+    {
+      "index": 452,
+      "host_s": 5.2163754,
+      "cabinet_s": 30928.944,
+      "mapped_host_s": 5.2164995000005385,
+      "target_action": "kept",
+      "target_rep_index": 452,
+      "actual_action": "kept",
+      "actual_rep_index": 452
+    },
+    {
+      "index": 453,
+      "host_s": 5.2243757,
+      "cabinet_s": 30928.951999999997,
+      "mapped_host_s": 5.22449949999853,
+      "target_action": "kept",
+      "target_rep_index": 453,
+      "actual_action": "kept",
+      "actual_rep_index": 453
+    },
+    {
+      "index": 454,
+      "host_s": 5.232266500000001,
+      "cabinet_s": 30928.96,
+      "mapped_host_s": 5.23249950000016,
+      "target_action": "kept",
+      "target_rep_index": 454,
+      "actual_action": "kept",
+      "actual_rep_index": 454
+    },
+    {
+      "index": 455,
+      "host_s": 5.2402746,
+      "cabinet_s": 30928.967999999997,
+      "mapped_host_s": 5.240499499998152,
+      "target_action": "kept",
+      "target_rep_index": 455,
+      "actual_action": "kept",
+      "actual_rep_index": 455
+    },
+    {
+      "index": 456,
+      "host_s": 5.2483642,
+      "cabinet_s": 30928.976,
+      "mapped_host_s": 5.248499499999782,
+      "target_action": "kept",
+      "target_rep_index": 456,
+      "actual_action": "kept",
+      "actual_rep_index": 456
+    },
+    {
+      "index": 457,
+      "host_s": 5.2562749,
+      "cabinet_s": 30928.984,
+      "mapped_host_s": 5.256499500001412,
+      "target_action": "kept",
+      "target_rep_index": 457,
+      "actual_action": "kept",
+      "actual_rep_index": 457
+    },
+    {
+      "index": 458,
+      "host_s": 5.2642489,
+      "cabinet_s": 30928.992,
+      "mapped_host_s": 5.2644994999994035,
+      "target_action": "kept",
+      "target_rep_index": 458,
+      "actual_action": "kept",
+      "actual_rep_index": 458
+    },
+    {
+      "index": 459,
+      "host_s": 5.2723528,
+      "cabinet_s": 30929.0,
+      "mapped_host_s": 5.272499500001033,
+      "target_action": "kept",
+      "target_rep_index": 459,
+      "actual_action": "kept",
+      "actual_rep_index": 459
+    },
+    {
+      "index": 460,
+      "host_s": 5.280443900000001,
+      "cabinet_s": 30929.007999999998,
+      "mapped_host_s": 5.280499499999025,
+      "target_action": "kept",
+      "target_rep_index": 460,
+      "actual_action": "kept",
+      "actual_rep_index": 460
+    },
+    {
+      "index": 461,
+      "host_s": 5.2963667,
+      "cabinet_s": 30929.023999999998,
+      "mapped_host_s": 5.296499499998647,
+      "target_action": "kept",
+      "target_rep_index": 461,
+      "actual_action": "kept",
+      "actual_rep_index": 461
+    },
+    {
+      "index": 462,
+      "host_s": 5.3121160000000005,
+      "cabinet_s": 30929.032,
+      "mapped_host_s": 5.304499500000277,
+      "target_action": "kept",
+      "target_rep_index": 462,
+      "actual_action": "kept",
+      "actual_rep_index": 462
+    },
+    {
+      "index": 463,
+      "host_s": 5.3203488000000005,
+      "cabinet_s": 30929.048,
+      "mapped_host_s": 5.320499499999898,
+      "target_action": "kept",
+      "target_rep_index": 463,
+      "actual_action": "kept",
+      "actual_rep_index": 463
+    },
+    {
+      "index": 464,
+      "host_s": 5.3284004000000005,
+      "cabinet_s": 30929.055999999997,
+      "mapped_host_s": 5.32849949999789,
+      "target_action": "kept",
+      "target_rep_index": 464,
+      "actual_action": "kept",
+      "actual_rep_index": 464
+    },
+    {
+      "index": 465,
+      "host_s": 5.3361929,
+      "cabinet_s": 30929.064,
+      "mapped_host_s": 5.33649949999952,
+      "target_action": "kept",
+      "target_rep_index": 465,
+      "actual_action": "kept",
+      "actual_rep_index": 465
+    },
+    {
+      "index": 466,
+      "host_s": 5.3443562,
+      "cabinet_s": 30929.072,
+      "mapped_host_s": 5.34449950000115,
+      "target_action": "kept",
+      "target_rep_index": 466,
+      "actual_action": "kept",
+      "actual_rep_index": 466
+    },
+    {
+      "index": 467,
+      "host_s": 5.360032100000001,
+      "cabinet_s": 30929.079999999998,
+      "mapped_host_s": 5.3524994999991415,
+      "target_action": "kept",
+      "target_rep_index": 467,
+      "actual_action": "kept",
+      "actual_rep_index": 467
+    },
+    {
+      "index": 468,
+      "host_s": 5.3682033,
+      "cabinet_s": 30929.088,
+      "mapped_host_s": 5.360499500000771,
+      "target_action": "kept",
+      "target_rep_index": 468,
+      "actual_action": "kept",
+      "actual_rep_index": 468
+    },
+    {
+      "index": 469,
+      "host_s": 5.376134400000001,
+      "cabinet_s": 30929.095999999998,
+      "mapped_host_s": 5.368499499998763,
+      "target_action": "kept",
+      "target_rep_index": 469,
+      "actual_action": "kept",
+      "actual_rep_index": 469
+    },
+    {
+      "index": 470,
+      "host_s": 5.384444800000001,
+      "cabinet_s": 30929.111999999997,
+      "mapped_host_s": 5.384499499998385,
+      "target_action": "kept",
+      "target_rep_index": 470,
+      "actual_action": "kept",
+      "actual_rep_index": 470
+    },
+    {
+      "index": 471,
+      "host_s": 5.400115400000001,
+      "cabinet_s": 30929.12,
+      "mapped_host_s": 5.392499500000015,
+      "target_action": "kept",
+      "target_rep_index": 471,
+      "actual_action": "kept",
+      "actual_rep_index": 471
+    },
+    {
+      "index": 472,
+      "host_s": 5.4083851,
+      "cabinet_s": 30929.136,
+      "mapped_host_s": 5.408499499999636,
+      "target_action": "kept",
+      "target_rep_index": 472,
+      "actual_action": "kept",
+      "actual_rep_index": 472
+    },
+    {
+      "index": 473,
+      "host_s": 5.424551,
+      "cabinet_s": 30929.152,
+      "mapped_host_s": 5.424499499999258,
+      "target_action": "kept",
+      "target_rep_index": 473,
+      "actual_action": "kept",
+      "actual_rep_index": 473
+    },
+    {
+      "index": 474,
+      "host_s": 5.4405403,
+      "cabinet_s": 30929.167999999998,
+      "mapped_host_s": 5.44049949999888,
+      "target_action": "kept",
+      "target_rep_index": 474,
+      "actual_action": "kept",
+      "actual_rep_index": 474
+    },
+    {
+      "index": 475,
+      "host_s": 5.4560957000000005,
+      "cabinet_s": 30929.176,
+      "mapped_host_s": 5.448499500000509,
+      "target_action": "kept",
+      "target_rep_index": 475,
+      "actual_action": "kept",
+      "actual_rep_index": 475
+    },
+    {
+      "index": 476,
+      "host_s": 5.464610400000001,
+      "cabinet_s": 30929.192,
+      "mapped_host_s": 5.464499500000131,
+      "target_action": "kept",
+      "target_rep_index": 476,
+      "actual_action": "kept",
+      "actual_rep_index": 476
+    },
+    {
+      "index": 477,
+      "host_s": 5.4804903000000005,
+      "cabinet_s": 30929.208,
+      "mapped_host_s": 5.480499499999753,
+      "target_action": "kept",
+      "target_rep_index": 477,
+      "actual_action": "kept",
+      "actual_rep_index": 477
+    },
+    {
+      "index": 478,
+      "host_s": 5.496097600000001,
+      "cabinet_s": 30929.216,
+      "mapped_host_s": 5.4884995000013825,
+      "target_action": "kept",
+      "target_rep_index": 478,
+      "actual_action": "kept",
+      "actual_rep_index": 478
+    },
+    {
+      "index": 479,
+      "host_s": 5.5043929,
+      "cabinet_s": 30929.232,
+      "mapped_host_s": 5.504499500001004,
+      "target_action": "kept",
+      "target_rep_index": 479,
+      "actual_action": "kept",
+      "actual_rep_index": 479
+    },
+    {
+      "index": 480,
+      "host_s": 5.5204345,
+      "cabinet_s": 30929.248,
+      "mapped_host_s": 5.520499500000626,
+      "target_action": "kept",
+      "target_rep_index": 480,
+      "actual_action": "kept",
+      "actual_rep_index": 480
+    },
+    {
+      "index": 481,
+      "host_s": 5.5366118,
+      "cabinet_s": 30929.264,
+      "mapped_host_s": 5.5364995000002475,
+      "target_action": "kept",
+      "target_rep_index": 481,
+      "actual_action": "kept",
+      "actual_rep_index": 481
+    },
+    {
+      "index": 482,
+      "host_s": 5.5523531,
+      "cabinet_s": 30929.271999999997,
+      "mapped_host_s": 5.544499499998239,
+      "target_action": "kept",
+      "target_rep_index": 482,
+      "actual_action": "kept",
+      "actual_rep_index": 482
+    },
+    {
+      "index": 483,
+      "host_s": 5.560175,
+      "cabinet_s": 30929.28,
+      "mapped_host_s": 5.552499499999869,
+      "target_action": "kept",
+      "target_rep_index": 483,
+      "actual_action": "kept",
+      "actual_rep_index": 483
+    },
+    {
+      "index": 484,
+      "host_s": 5.5684268,
+      "cabinet_s": 30929.296,
+      "mapped_host_s": 5.568499499999491,
+      "target_action": "kept",
+      "target_rep_index": 484,
+      "actual_action": "kept",
+      "actual_rep_index": 484
+    },
+    {
+      "index": 485,
+      "host_s": 5.5763676,
+      "cabinet_s": 30929.304,
+      "mapped_host_s": 5.576499500001121,
+      "target_action": "kept",
+      "target_rep_index": 485,
+      "actual_action": "kept",
+      "actual_rep_index": 485
+    },
+    {
+      "index": 486,
+      "host_s": 5.584383000000001,
+      "cabinet_s": 30929.311999999998,
+      "mapped_host_s": 5.584499499999112,
+      "target_action": "kept",
+      "target_rep_index": 486,
+      "actual_action": "kept",
+      "actual_rep_index": 486
+    },
+    {
+      "index": 487,
+      "host_s": 5.6001621,
+      "cabinet_s": 30929.32,
+      "mapped_host_s": 5.592499500000742,
+      "target_action": "kept",
+      "target_rep_index": 487,
+      "actual_action": "kept",
+      "actual_rep_index": 487
+    },
+    {
+      "index": 488,
+      "host_s": 5.608446600000001,
+      "cabinet_s": 30929.336,
+      "mapped_host_s": 5.608499500000364,
+      "target_action": "kept",
+      "target_rep_index": 488,
+      "actual_action": "kept",
+      "actual_rep_index": 488
+    },
+    {
+      "index": 489,
+      "host_s": 5.616285100000001,
+      "cabinet_s": 30929.343999999997,
+      "mapped_host_s": 5.616499499998356,
+      "target_action": "kept",
+      "target_rep_index": 489,
+      "actual_action": "kept",
+      "actual_rep_index": 489
+    },
+    {
+      "index": 490,
+      "host_s": 5.6322555,
+      "cabinet_s": 30929.359999999997,
+      "mapped_host_s": 5.632499499997977,
+      "target_action": "kept",
+      "target_rep_index": 490,
+      "actual_action": "kept",
+      "actual_rep_index": 490
+    },
+    {
+      "index": 491,
+      "host_s": 5.6402559000000005,
+      "cabinet_s": 30929.368,
+      "mapped_host_s": 5.640499499999607,
+      "target_action": "kept",
+      "target_rep_index": 491,
+      "actual_action": "kept",
+      "actual_rep_index": 491
+    },
+    {
+      "index": 492,
+      "host_s": 5.648542600000001,
+      "cabinet_s": 30929.376,
+      "mapped_host_s": 5.648499500001237,
+      "target_action": "kept",
+      "target_rep_index": 492,
+      "actual_action": "kept",
+      "actual_rep_index": 492
+    },
+    {
+      "index": 493,
+      "host_s": 5.6563469,
+      "cabinet_s": 30929.384,
+      "mapped_host_s": 5.656499499999229,
+      "target_action": "kept",
+      "target_rep_index": 493,
+      "actual_action": "kept",
+      "actual_rep_index": 493
+    },
+    {
+      "index": 494,
+      "host_s": 5.6643451,
+      "cabinet_s": 30929.392,
+      "mapped_host_s": 5.664499500000859,
+      "target_action": "kept",
+      "target_rep_index": 494,
+      "actual_action": "kept",
+      "actual_rep_index": 494
+    },
+    {
+      "index": 495,
+      "host_s": 5.672240700000001,
+      "cabinet_s": 30929.399999999998,
+      "mapped_host_s": 5.6724994999988505,
+      "target_action": "kept",
+      "target_rep_index": 495,
+      "actual_action": "kept",
+      "actual_rep_index": 495
+    },
+    {
+      "index": 496,
+      "host_s": 5.6802532,
+      "cabinet_s": 30929.408,
+      "mapped_host_s": 5.68049950000048,
+      "target_action": "kept",
+      "target_rep_index": 496,
+      "actual_action": "kept",
+      "actual_rep_index": 496
+    },
+    {
+      "index": 497,
+      "host_s": 5.6965005,
+      "cabinet_s": 30929.424,
+      "mapped_host_s": 5.696499500000102,
+      "target_action": "kept",
+      "target_rep_index": 497,
+      "actual_action": "kept",
+      "actual_rep_index": 497
+    },
+    {
+      "index": 498,
+      "host_s": 5.7043453,
+      "cabinet_s": 30929.431999999997,
+      "mapped_host_s": 5.704499499998094,
+      "target_action": "kept",
+      "target_rep_index": 498,
+      "actual_action": "kept",
+      "actual_rep_index": 498
+    },
+    {
+      "index": 499,
+      "host_s": 5.7199868,
+      "cabinet_s": 30929.44,
+      "mapped_host_s": 5.712499499999724,
+      "target_action": "kept",
+      "target_rep_index": 499,
+      "actual_action": "kept",
+      "actual_rep_index": 499
+    },
+    {
+      "index": 500,
+      "host_s": 5.728315800000001,
+      "cabinet_s": 30929.456,
+      "mapped_host_s": 5.728499499999345,
+      "target_action": "kept",
+      "target_rep_index": 500,
+      "actual_action": "kept",
+      "actual_rep_index": 500
+    },
+    {
+      "index": 501,
+      "host_s": 5.736202700000001,
+      "cabinet_s": 30929.464,
+      "mapped_host_s": 5.736499500000975,
+      "target_action": "kept",
+      "target_rep_index": 501,
+      "actual_action": "kept",
+      "actual_rep_index": 501
+    },
+    {
+      "index": 502,
+      "host_s": 5.7443814,
+      "cabinet_s": 30929.471999999998,
+      "mapped_host_s": 5.744499499998967,
+      "target_action": "kept",
+      "target_rep_index": 502,
+      "actual_action": "kept",
+      "actual_rep_index": 502
+    },
+    {
+      "index": 503,
+      "host_s": 5.760263200000001,
+      "cabinet_s": 30929.48,
+      "mapped_host_s": 5.752499500000597,
+      "target_action": "kept",
+      "target_rep_index": 503,
+      "actual_action": "kept",
+      "actual_rep_index": 503
+    },
+    {
+      "index": 504,
+      "host_s": 5.7684242,
+      "cabinet_s": 30929.496,
+      "mapped_host_s": 5.768499500000218,
+      "target_action": "kept",
+      "target_rep_index": 504,
+      "actual_action": "kept",
+      "actual_rep_index": 504
+    },
+    {
+      "index": 505,
+      "host_s": 5.776409500000001,
+      "cabinet_s": 30929.503999999997,
+      "mapped_host_s": 5.77649949999821,
+      "target_action": "kept",
+      "target_rep_index": 505,
+      "actual_action": "kept",
+      "actual_rep_index": 505
+    },
+    {
+      "index": 506,
+      "host_s": 5.784460200000001,
+      "cabinet_s": 30929.512,
+      "mapped_host_s": 5.78449949999984,
+      "target_action": "kept",
+      "target_rep_index": 506,
+      "actual_action": "kept",
+      "actual_rep_index": 506
+    },
+    {
+      "index": 507,
+      "host_s": 5.792742700000001,
+      "cabinet_s": 30929.519999999997,
+      "mapped_host_s": 5.792499499997832,
+      "target_action": "kept",
+      "target_rep_index": 507,
+      "actual_action": "kept",
+      "actual_rep_index": 507
+    },
+    {
+      "index": 508,
+      "host_s": 5.8003657,
+      "cabinet_s": 30929.528,
+      "mapped_host_s": 5.800499499999462,
+      "target_action": "kept",
+      "target_rep_index": 508,
+      "actual_action": "kept",
+      "actual_rep_index": 508
+    },
+    {
+      "index": 509,
+      "host_s": 5.8085019,
+      "cabinet_s": 30929.536,
+      "mapped_host_s": 5.8084995000010915,
+      "target_action": "kept",
+      "target_rep_index": 509,
+      "actual_action": "kept",
+      "actual_rep_index": 509
+    },
+    {
+      "index": 510,
+      "host_s": 5.8163055,
+      "cabinet_s": 30929.543999999998,
+      "mapped_host_s": 5.816499499999083,
+      "target_action": "kept",
+      "target_rep_index": 510,
+      "actual_action": "kept",
+      "actual_rep_index": 510
+    },
+    {
+      "index": 511,
+      "host_s": 5.824580200000001,
+      "cabinet_s": 30929.552,
+      "mapped_host_s": 5.824499500000713,
+      "target_action": "kept",
+      "target_rep_index": 511,
+      "actual_action": "kept",
+      "actual_rep_index": 511
+    },
+    {
+      "index": 512,
+      "host_s": 5.8323232,
+      "cabinet_s": 30929.559999999998,
+      "mapped_host_s": 5.832499499998705,
+      "target_action": "kept",
+      "target_rep_index": 512,
+      "actual_action": "kept",
+      "actual_rep_index": 512
+    },
+    {
+      "index": 513,
+      "host_s": 5.848061700000001,
+      "cabinet_s": 30929.568,
+      "mapped_host_s": 5.840499500000335,
+      "target_action": "kept",
+      "target_rep_index": 513,
+      "actual_action": "kept",
+      "actual_rep_index": 513
+    },
+    {
+      "index": 514,
+      "host_s": 5.8563095,
+      "cabinet_s": 30929.575999999997,
+      "mapped_host_s": 5.848499499998327,
+      "target_action": "kept",
+      "target_rep_index": 514,
+      "actual_action": "kept",
+      "actual_rep_index": 514
+    },
+    {
+      "index": 515,
+      "host_s": 5.8639852,
+      "cabinet_s": 30929.584,
+      "mapped_host_s": 5.8564994999999564,
+      "target_action": "kept",
+      "target_rep_index": 515,
+      "actual_action": "kept",
+      "actual_rep_index": 515
+    },
+    {
+      "index": 516,
+      "host_s": 5.8724843,
+      "cabinet_s": 30929.6,
+      "mapped_host_s": 5.872499499999578,
+      "target_action": "kept",
+      "target_rep_index": 516,
+      "actual_action": "kept",
+      "actual_rep_index": 516
+    },
+    {
+      "index": 517,
+      "host_s": 5.8802913000000006,
+      "cabinet_s": 30929.608,
+      "mapped_host_s": 5.880499500001208,
+      "target_action": "kept",
+      "target_rep_index": 517,
+      "actual_action": "kept",
+      "actual_rep_index": 517
+    },
+    {
+      "index": 518,
+      "host_s": 5.8884635,
+      "cabinet_s": 30929.615999999998,
+      "mapped_host_s": 5.8884994999992,
+      "target_action": "kept",
+      "target_rep_index": 518,
+      "actual_action": "kept",
+      "actual_rep_index": 518
+    },
+    {
+      "index": 519,
+      "host_s": 5.8963896,
+      "cabinet_s": 30929.624,
+      "mapped_host_s": 5.89649950000083,
+      "target_action": "kept",
+      "target_rep_index": 519,
+      "actual_action": "kept",
+      "actual_rep_index": 519
+    },
+    {
+      "index": 520,
+      "host_s": 5.904677,
+      "cabinet_s": 30929.631999999998,
+      "mapped_host_s": 5.904499499998821,
+      "target_action": "kept",
+      "target_rep_index": 520,
+      "actual_action": "kept",
+      "actual_rep_index": 520
+    },
+    {
+      "index": 521,
+      "host_s": 5.9203353000000005,
+      "cabinet_s": 30929.647999999997,
+      "mapped_host_s": 5.920499499998443,
+      "target_action": "kept",
+      "target_rep_index": 521,
+      "actual_action": "kept",
+      "actual_rep_index": 521
+    },
+    {
+      "index": 522,
+      "host_s": 5.9282032000000005,
+      "cabinet_s": 30929.656,
+      "mapped_host_s": 5.928499500000073,
+      "target_action": "kept",
+      "target_rep_index": 522,
+      "actual_action": "kept",
+      "actual_rep_index": 522
+    },
+    {
+      "index": 523,
+      "host_s": 5.936221000000001,
+      "cabinet_s": 30929.663999999997,
+      "mapped_host_s": 5.936499499998065,
+      "target_action": "kept",
+      "target_rep_index": 523,
+      "actual_action": "kept",
+      "actual_rep_index": 523
+    },
+    {
+      "index": 524,
+      "host_s": 5.9442243,
+      "cabinet_s": 30929.672,
+      "mapped_host_s": 5.9444994999996945,
+      "target_action": "kept",
+      "target_rep_index": 524,
+      "actual_action": "kept",
+      "actual_rep_index": 524
+    },
+    {
+      "index": 525,
+      "host_s": 5.9604192000000005,
+      "cabinet_s": 30929.688,
+      "mapped_host_s": 5.960499499999316,
+      "target_action": "kept",
+      "target_rep_index": 525,
+      "actual_action": "kept",
+      "actual_rep_index": 525
+    },
+    {
+      "index": 526,
+      "host_s": 5.976154,
+      "cabinet_s": 30929.696,
+      "mapped_host_s": 5.968499500000946,
+      "target_action": "kept",
+      "target_rep_index": 526,
+      "actual_action": "kept",
+      "actual_rep_index": 526
+    },
+    {
+      "index": 527,
+      "host_s": 5.9845651,
+      "cabinet_s": 30929.712,
+      "mapped_host_s": 5.984499500000568,
+      "target_action": "kept",
+      "target_rep_index": 527,
+      "actual_action": "kept",
+      "actual_rep_index": 527
+    },
+    {
+      "index": 528,
+      "host_s": 5.9999526,
+      "cabinet_s": 30929.719999999998,
+      "mapped_host_s": 5.9924994999985595,
+      "target_action": "kept",
+      "target_rep_index": 528,
+      "actual_action": "kept",
+      "actual_rep_index": 528
+    },
+    {
+      "index": 529,
+      "host_s": 6.0083396,
+      "cabinet_s": 30929.735999999997,
+      "mapped_host_s": 6.008499499998181,
+      "target_action": "kept",
+      "target_rep_index": 529,
+      "actual_action": "kept",
+      "actual_rep_index": 529
+    },
+    {
+      "index": 530,
+      "host_s": 6.0161781,
+      "cabinet_s": 30929.744,
+      "mapped_host_s": 6.016499499999811,
+      "target_action": "kept",
+      "target_rep_index": 530,
+      "actual_action": "kept",
+      "actual_rep_index": 530
+    },
+    {
+      "index": 531,
+      "host_s": 6.0319232000000005,
+      "cabinet_s": 30929.752,
+      "mapped_host_s": 6.024499500001441,
+      "target_action": "kept",
+      "target_rep_index": 531,
+      "actual_action": "kept",
+      "actual_rep_index": 531
+    },
+    {
+      "index": 532,
+      "host_s": 6.0401544000000005,
+      "cabinet_s": 30929.768,
+      "mapped_host_s": 6.040499500001062,
+      "target_action": "kept",
+      "target_rep_index": 532,
+      "actual_action": "kept",
+      "actual_rep_index": 532
+    },
+    {
+      "index": 533,
+      "host_s": 6.0562014,
+      "cabinet_s": 30929.784,
+      "mapped_host_s": 6.056499500000684,
+      "target_action": "kept",
+      "target_rep_index": 533,
+      "actual_action": "kept",
+      "actual_rep_index": 533
+    },
+    {
+      "index": 534,
+      "host_s": 6.064225,
+      "cabinet_s": 30929.791999999998,
+      "mapped_host_s": 6.064499499998676,
+      "target_action": "kept",
+      "target_rep_index": 534,
+      "actual_action": "kept",
+      "actual_rep_index": 534
+    },
+    {
+      "index": 535,
+      "host_s": 6.072227600000001,
+      "cabinet_s": 30929.8,
+      "mapped_host_s": 6.072499500000306,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "kept",
+      "actual_rep_index": 535
+    },
+    {
+      "index": 536,
+      "host_s": 6.0802215,
+      "cabinet_s": 30929.8,
+      "mapped_host_s": 6.072499500000306,
+      "target_action": "excluded_conflicting_timestamp",
+      "target_rep_index": null,
+      "actual_action": "merged_identical_payload",
+      "actual_rep_index": 535
+    },
+    {
+      "index": 537,
+      "host_s": 6.0882041000000005,
+      "cabinet_s": 30929.816,
+      "mapped_host_s": 6.088499499999927,
+      "target_action": "kept",
+      "target_rep_index": 537,
+      "actual_action": "kept",
+      "actual_rep_index": 537
+    },
+    {
+      "index": 538,
+      "host_s": 6.1041971,
+      "cabinet_s": 30929.832,
+      "mapped_host_s": 6.104499499999549,
+      "target_action": "kept",
+      "target_rep_index": 538,
+      "actual_action": "kept",
+      "actual_rep_index": 538
+    },
+    {
+      "index": 539,
+      "host_s": 6.112234300000001,
+      "cabinet_s": 30929.84,
+      "mapped_host_s": 6.112499500001179,
+      "target_action": "kept",
+      "target_rep_index": 539,
+      "actual_action": "kept",
+      "actual_rep_index": 539
+    },
+    {
+      "index": 540,
+      "host_s": 6.1202465,
+      "cabinet_s": 30929.847999999998,
+      "mapped_host_s": 6.120499499999171,
+      "target_action": "kept",
+      "target_rep_index": 540,
+      "actual_action": "kept",
+      "actual_rep_index": 540
+    },
+    {
+      "index": 541,
+      "host_s": 6.3137384,
+      "cabinet_s": 30930.039999999997,
+      "mapped_host_s": 6.312499499998268,
+      "target_action": "bounded_hold_boundary",
+      "target_rep_index": 541,
+      "actual_action": "kept",
+      "actual_rep_index": 541
+    },
+    {
+      "index": 542,
+      "host_s": 6.336544300000001,
+      "cabinet_s": 30930.064,
+      "mapped_host_s": 6.33649949999952,
+      "target_action": "kept",
+      "target_rep_index": 542,
+      "actual_action": "kept",
+      "actual_rep_index": 542
+    },
+    {
+      "index": 543,
+      "host_s": 6.3523575,
+      "cabinet_s": 30930.079999999998,
+      "mapped_host_s": 6.3524994999991415,
+      "target_action": "kept",
+      "target_rep_index": 543,
+      "actual_action": "kept",
+      "actual_rep_index": 543
+    },
+    {
+      "index": 544,
+      "host_s": 6.3680197000000005,
+      "cabinet_s": 30930.088,
+      "mapped_host_s": 6.360499500000771,
+      "target_action": "kept",
+      "target_rep_index": 544,
+      "actual_action": "kept",
+      "actual_rep_index": 544
+    },
+    {
+      "index": 545,
+      "host_s": 6.383936800000001,
+      "cabinet_s": 30930.104,
+      "mapped_host_s": 6.376499500000393,
+      "target_action": "kept",
+      "target_rep_index": 545,
+      "actual_action": "kept",
+      "actual_rep_index": 545
+    },
+    {
+      "index": 546,
+      "host_s": 6.3994935,
+      "cabinet_s": 30930.12,
+      "mapped_host_s": 6.392499500000015,
+      "target_action": "kept",
+      "target_rep_index": 546,
+      "actual_action": "kept",
+      "actual_rep_index": 546
+    },
+    {
+      "index": 547,
+      "host_s": 6.415229900000001,
+      "cabinet_s": 30930.136,
+      "mapped_host_s": 6.408499499999636,
+      "target_action": "kept",
+      "target_rep_index": 547,
+      "actual_action": "kept",
+      "actual_rep_index": 547
+    },
+    {
+      "index": 548,
+      "host_s": 6.4313378000000005,
+      "cabinet_s": 30930.152,
+      "mapped_host_s": 6.424499499999258,
+      "target_action": "kept",
+      "target_rep_index": 548,
+      "actual_action": "kept",
+      "actual_rep_index": 548
+    },
+    {
+      "index": 549,
+      "host_s": 6.4530614,
+      "cabinet_s": 30930.176,
+      "mapped_host_s": 6.448499500000509,
+      "target_action": "kept",
+      "target_rep_index": 549,
+      "actual_action": "kept",
+      "actual_rep_index": 549
+    },
+    {
+      "index": 550,
+      "host_s": 6.4680495,
+      "cabinet_s": 30930.192,
+      "mapped_host_s": 6.464499500000131,
+      "target_action": "kept",
+      "target_rep_index": 550,
+      "actual_action": "kept",
+      "actual_rep_index": 550
+    },
+    {
+      "index": 551,
+      "host_s": 6.489916600000001,
+      "cabinet_s": 30930.216,
+      "mapped_host_s": 6.4884995000013825,
+      "target_action": "kept",
+      "target_rep_index": 551,
+      "actual_action": "kept",
+      "actual_rep_index": 551
+    },
+    {
+      "index": 552,
+      "host_s": 6.5058346,
+      "cabinet_s": 30930.232,
+      "mapped_host_s": 6.504499500001004,
+      "target_action": "kept",
+      "target_rep_index": 552,
+      "actual_action": "kept",
+      "actual_rep_index": 552
+    },
+    {
+      "index": 553,
+      "host_s": 6.521426300000001,
+      "cabinet_s": 30930.248,
+      "mapped_host_s": 6.520499500000626,
+      "target_action": "kept",
+      "target_rep_index": 553,
+      "actual_action": "kept",
+      "actual_rep_index": 553
+    },
+    {
+      "index": 554,
+      "host_s": 6.537209300000001,
+      "cabinet_s": 30930.264,
+      "mapped_host_s": 6.5364995000002475,
+      "target_action": "kept",
+      "target_rep_index": 554,
+      "actual_action": "kept",
+      "actual_rep_index": 554
+    },
+    {
+      "index": 555,
+      "host_s": 6.5531071,
+      "cabinet_s": 30930.28,
+      "mapped_host_s": 6.552499499999869,
+      "target_action": "kept",
+      "target_rep_index": 555,
+      "actual_action": "kept",
+      "actual_rep_index": 555
+    },
+    {
+      "index": 556,
+      "host_s": 6.5690203,
+      "cabinet_s": 30930.296,
+      "mapped_host_s": 6.568499499999491,
+      "target_action": "kept",
+      "target_rep_index": 556,
+      "actual_action": "kept",
+      "actual_rep_index": 556
+    },
+    {
+      "index": 557,
+      "host_s": 6.5850765,
+      "cabinet_s": 30930.311999999998,
+      "mapped_host_s": 6.584499499999112,
+      "target_action": "kept",
+      "target_rep_index": 557,
+      "actual_action": "kept",
+      "actual_rep_index": 557
+    },
+    {
+      "index": 558,
+      "host_s": 6.600879600000001,
+      "cabinet_s": 30930.327999999998,
+      "mapped_host_s": 6.600499499998734,
+      "target_action": "kept",
+      "target_rep_index": 558,
+      "actual_action": "kept",
+      "actual_rep_index": 558
+    },
+    {
+      "index": 559,
+      "host_s": 6.616793100000001,
+      "cabinet_s": 30930.343999999997,
+      "mapped_host_s": 6.616499499998356,
+      "target_action": "kept",
+      "target_rep_index": 559,
+      "actual_action": "kept",
+      "actual_rep_index": 559
+    },
+    {
+      "index": 560,
+      "host_s": 6.6328486,
+      "cabinet_s": 30930.359999999997,
+      "mapped_host_s": 6.632499499997977,
+      "target_action": "kept",
+      "target_rep_index": 560,
+      "actual_action": "kept",
+      "actual_rep_index": 560
+    },
+    {
+      "index": 561,
+      "host_s": 6.6481862000000005,
+      "cabinet_s": 30930.368,
+      "mapped_host_s": 6.640499499999607,
+      "target_action": "kept",
+      "target_rep_index": 561,
+      "actual_action": "kept",
+      "actual_rep_index": 561
+    },
+    {
+      "index": 562,
+      "host_s": 6.664087,
+      "cabinet_s": 30930.384,
+      "mapped_host_s": 6.656499499999229,
+      "target_action": "kept",
+      "target_rep_index": 562,
+      "actual_action": "kept",
+      "actual_rep_index": 562
+    },
+    {
+      "index": 563,
+      "host_s": 6.680046000000001,
+      "cabinet_s": 30930.399999999998,
+      "mapped_host_s": 6.6724994999988505,
+      "target_action": "kept",
+      "target_rep_index": 563,
+      "actual_action": "kept",
+      "actual_rep_index": 563
+    },
+    {
+      "index": 564,
+      "host_s": 6.6957165000000005,
+      "cabinet_s": 30930.415999999997,
+      "mapped_host_s": 6.688499499998472,
+      "target_action": "kept",
+      "target_rep_index": 564,
+      "actual_action": "kept",
+      "actual_rep_index": 564
+    },
+    {
+      "index": 565,
+      "host_s": 6.7114172000000005,
+      "cabinet_s": 30930.431999999997,
+      "mapped_host_s": 6.704499499998094,
+      "target_action": "kept",
+      "target_rep_index": 565,
+      "actual_action": "kept",
+      "actual_rep_index": 565
+    },
+    {
+      "index": 566,
+      "host_s": 6.7272392000000005,
+      "cabinet_s": 30930.448,
+      "mapped_host_s": 6.720499500001353,
+      "target_action": "kept",
+      "target_rep_index": 566,
+      "actual_action": "kept",
+      "actual_rep_index": 566
+    },
+    {
+      "index": 567,
+      "host_s": 6.7433091,
+      "cabinet_s": 30930.464,
+      "mapped_host_s": 6.736499500000975,
+      "target_action": "kept",
+      "target_rep_index": 567,
+      "actual_action": "kept",
+      "actual_rep_index": 567
+    },
+    {
+      "index": 568,
+      "host_s": 6.7590167,
+      "cabinet_s": 30930.48,
+      "mapped_host_s": 6.752499500000597,
+      "target_action": "kept",
+      "target_rep_index": 568,
+      "actual_action": "kept",
+      "actual_rep_index": 568
+    },
+    {
+      "index": 569,
+      "host_s": 6.775108800000001,
+      "cabinet_s": 30930.496,
+      "mapped_host_s": 6.768499500000218,
+      "target_action": "kept",
+      "target_rep_index": 569,
+      "actual_action": "kept",
+      "actual_rep_index": 569
+    },
+    {
+      "index": 570,
+      "host_s": 6.7903278,
+      "cabinet_s": 30930.512,
+      "mapped_host_s": 6.78449949999984,
+      "target_action": "kept",
+      "target_rep_index": 570,
+      "actual_action": "kept",
+      "actual_rep_index": 570
+    },
+    {
+      "index": 571,
+      "host_s": 6.8064456,
+      "cabinet_s": 30930.528,
+      "mapped_host_s": 6.800499499999462,
+      "target_action": "kept",
+      "target_rep_index": 571,
+      "actual_action": "kept",
+      "actual_rep_index": 571
+    },
+    {
+      "index": 572,
+      "host_s": 6.8224143,
+      "cabinet_s": 30930.543999999998,
+      "mapped_host_s": 6.816499499999083,
+      "target_action": "kept",
+      "target_rep_index": 572,
+      "actual_action": "kept",
+      "actual_rep_index": 572
+    },
+    {
+      "index": 573,
+      "host_s": 6.8385132,
+      "cabinet_s": 30930.559999999998,
+      "mapped_host_s": 6.832499499998705,
+      "target_action": "kept",
+      "target_rep_index": 573,
+      "actual_action": "kept",
+      "actual_rep_index": 573
+    },
+    {
+      "index": 574,
+      "host_s": 6.8546163,
+      "cabinet_s": 30930.575999999997,
+      "mapped_host_s": 6.848499499998327,
+      "target_action": "kept",
+      "target_rep_index": 574,
+      "actual_action": "kept",
+      "actual_rep_index": 574
+    },
+    {
+      "index": 575,
+      "host_s": 6.8705461,
+      "cabinet_s": 30930.591999999997,
+      "mapped_host_s": 6.864499499997948,
+      "target_action": "kept",
+      "target_rep_index": 575,
+      "actual_action": "kept",
+      "actual_rep_index": 575
+    },
+    {
+      "index": 576,
+      "host_s": 6.8865471000000005,
+      "cabinet_s": 30930.608,
+      "mapped_host_s": 6.880499500001208,
+      "target_action": "kept",
+      "target_rep_index": 576,
+      "actual_action": "kept",
+      "actual_rep_index": 576
+    },
+    {
+      "index": 577,
+      "host_s": 6.9022005,
+      "cabinet_s": 30930.624,
+      "mapped_host_s": 6.89649950000083,
+      "target_action": "kept",
+      "target_rep_index": 577,
+      "actual_action": "kept",
+      "actual_rep_index": 577
+    },
+    {
+      "index": 578,
+      "host_s": 6.917992300000001,
+      "cabinet_s": 30930.64,
+      "mapped_host_s": 6.912499500000451,
+      "target_action": "kept",
+      "target_rep_index": 578,
+      "actual_action": "kept",
+      "actual_rep_index": 578
+    },
+    {
+      "index": 579,
+      "host_s": 6.934086000000001,
+      "cabinet_s": 30930.656,
+      "mapped_host_s": 6.928499500000073,
+      "target_action": "kept",
+      "target_rep_index": 579,
+      "actual_action": "kept",
+      "actual_rep_index": 579
+    },
+    {
+      "index": 580,
+      "host_s": 6.9541309,
+      "cabinet_s": 30930.68,
+      "mapped_host_s": 6.952499500001324,
+      "target_action": "kept",
+      "target_rep_index": 580,
+      "actual_action": "kept",
+      "actual_rep_index": 580
+    },
+    {
+      "index": 581,
+      "host_s": 6.969863,
+      "cabinet_s": 30930.696,
+      "mapped_host_s": 6.968499500000946,
+      "target_action": "kept",
+      "target_rep_index": 581,
+      "actual_action": "kept",
+      "actual_rep_index": 581
+    },
+    {
+      "index": 582,
+      "host_s": 6.988654800000001,
+      "cabinet_s": 30930.712,
+      "mapped_host_s": 6.984499500000568,
+      "target_action": "kept",
+      "target_rep_index": 582,
+      "actual_action": "kept",
+      "actual_rep_index": 582
+    },
+    {
+      "index": 583,
+      "host_s": 7.0046311,
+      "cabinet_s": 30930.728,
+      "mapped_host_s": 7.000499500000189,
+      "target_action": "kept",
+      "target_rep_index": 583,
+      "actual_action": "kept",
+      "actual_rep_index": 583
+    },
+    {
+      "index": 584,
+      "host_s": 7.020740300000001,
+      "cabinet_s": 30930.744,
+      "mapped_host_s": 7.016499499999811,
+      "target_action": "kept",
+      "target_rep_index": 584,
+      "actual_action": "kept",
+      "actual_rep_index": 584
+    },
+    {
+      "index": 585,
+      "host_s": 7.0364117,
+      "cabinet_s": 30930.76,
+      "mapped_host_s": 7.032499499999433,
+      "target_action": "kept",
+      "target_rep_index": 585,
+      "actual_action": "kept",
+      "actual_rep_index": 585
+    },
+    {
+      "index": 586,
+      "host_s": 7.0524462,
+      "cabinet_s": 30930.775999999998,
+      "mapped_host_s": 7.048499499999054,
+      "target_action": "kept",
+      "target_rep_index": 586,
+      "actual_action": "kept",
+      "actual_rep_index": 586
+    },
+    {
+      "index": 587,
+      "host_s": 7.0684882,
+      "cabinet_s": 30930.791999999998,
+      "mapped_host_s": 7.064499499998676,
+      "target_action": "kept",
+      "target_rep_index": 587,
+      "actual_action": "kept",
+      "actual_rep_index": 587
+    },
+    {
+      "index": 588,
+      "host_s": 7.0845867,
+      "cabinet_s": 30930.807999999997,
+      "mapped_host_s": 7.0804994999982975,
+      "target_action": "kept",
+      "target_rep_index": 588,
+      "actual_action": "kept",
+      "actual_rep_index": 588
+    },
+    {
+      "index": 589,
+      "host_s": 7.100447000000001,
+      "cabinet_s": 30930.823999999997,
+      "mapped_host_s": 7.096499499997919,
+      "target_action": "kept",
+      "target_rep_index": 589,
+      "actual_action": "kept",
+      "actual_rep_index": 589
+    },
+    {
+      "index": 590,
+      "host_s": 7.116371300000001,
+      "cabinet_s": 30930.84,
+      "mapped_host_s": 7.112499500001179,
+      "target_action": "kept",
+      "target_rep_index": 590,
+      "actual_action": "kept",
+      "actual_rep_index": 590
+    },
+    {
+      "index": 591,
+      "host_s": 7.132123000000001,
+      "cabinet_s": 30930.856,
+      "mapped_host_s": 7.1284995000008005,
+      "target_action": "kept",
+      "target_rep_index": 591,
+      "actual_action": "kept",
+      "actual_rep_index": 591
+    },
+    {
+      "index": 592,
+      "host_s": 7.1476626,
+      "cabinet_s": 30930.872,
+      "mapped_host_s": 7.144499500000422,
+      "target_action": "kept",
+      "target_rep_index": 592,
+      "actual_action": "kept",
+      "actual_rep_index": 592
+    },
+    {
+      "index": 593,
+      "host_s": 7.1636312,
+      "cabinet_s": 30930.888,
+      "mapped_host_s": 7.160499500000044,
+      "target_action": "kept",
+      "target_rep_index": 593,
+      "actual_action": "kept",
+      "actual_rep_index": 593
+    },
+    {
+      "index": 594,
+      "host_s": 7.179175300000001,
+      "cabinet_s": 30930.904,
+      "mapped_host_s": 7.176499499999665,
+      "target_action": "kept",
+      "target_rep_index": 594,
+      "actual_action": "kept",
+      "actual_rep_index": 594
+    },
+    {
+      "index": 595,
+      "host_s": 7.1949008,
+      "cabinet_s": 30930.92,
+      "mapped_host_s": 7.192499499999287,
+      "target_action": "kept",
+      "target_rep_index": 595,
+      "actual_action": "kept",
+      "actual_rep_index": 595
+    },
+    {
+      "index": 596,
+      "host_s": 7.2109414,
+      "cabinet_s": 30930.935999999998,
+      "mapped_host_s": 7.208499499998909,
+      "target_action": "kept",
+      "target_rep_index": 596,
+      "actual_action": "kept",
+      "actual_rep_index": 596
+    },
+    {
+      "index": 597,
+      "host_s": 7.226877300000001,
+      "cabinet_s": 30930.951999999997,
+      "mapped_host_s": 7.22449949999853,
+      "target_action": "kept",
+      "target_rep_index": 597,
+      "actual_action": "kept",
+      "actual_rep_index": 597
+    },
+    {
+      "index": 598,
+      "host_s": 7.242822,
+      "cabinet_s": 30930.967999999997,
+      "mapped_host_s": 7.240499499998152,
+      "target_action": "kept",
+      "target_rep_index": 598,
+      "actual_action": "kept",
+      "actual_rep_index": 598
+    },
+    {
+      "index": 599,
+      "host_s": 7.2589756,
+      "cabinet_s": 30930.984,
+      "mapped_host_s": 7.256499500001412,
+      "target_action": "kept",
+      "target_rep_index": 599,
+      "actual_action": "kept",
+      "actual_rep_index": 599
+    },
+    {
+      "index": 600,
+      "host_s": 7.274548,
+      "cabinet_s": 30931.0,
+      "mapped_host_s": 7.272499500001033,
+      "target_action": "kept",
+      "target_rep_index": 600,
+      "actual_action": "kept",
+      "actual_rep_index": 600
+    },
+    {
+      "index": 601,
+      "host_s": 7.290695700000001,
+      "cabinet_s": 30931.016,
+      "mapped_host_s": 7.288499500000655,
+      "target_action": "kept",
+      "target_rep_index": 601,
+      "actual_action": "kept",
+      "actual_rep_index": 601
+    },
+    {
+      "index": 602,
+      "host_s": 7.3065486,
+      "cabinet_s": 30931.032,
+      "mapped_host_s": 7.304499500000277,
+      "target_action": "kept",
+      "target_rep_index": 602,
+      "actual_action": "kept",
+      "actual_rep_index": 602
+    },
+    {
+      "index": 603,
+      "host_s": 7.3221964,
+      "cabinet_s": 30931.048,
+      "mapped_host_s": 7.320499499999898,
+      "target_action": "kept",
+      "target_rep_index": 603,
+      "actual_action": "kept",
+      "actual_rep_index": 603
+    }
+  ]
+}

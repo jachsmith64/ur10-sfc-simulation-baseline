@@ -1,0 +1,664 @@
+{
+  "input_pass": true,
+  "legacy_nominal": {
+    "stable": {
+      "outbound": {
+        "count": 141,
+        "min": 0.0,
+        "median": 9.991507226039237,
+        "max": 20.135917813036702,
+        "exceeding_15_mm_s": 17,
+        "max_error_mm_s": 10.135917813036702
+      },
+      "return_straight": {
+        "count": 95,
+        "min": -19.605440538704983,
+        "median": -10.006692057101393,
+        "max": 0.0,
+        "exceeding_15_mm_s": 12,
+        "max_error_mm_s": 10.0
+      }
+    },
+    "max_nominal_abs_vx_mm_s": 20.135917813036702,
+    "source_velocity_on_knot_rule": {
+      "events": {
+        "start10": {
+          "time_s": 1.29556021855504,
+          "bracket_s": [
+            1.295,
+            1.296
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start50": {
+          "time_s": 1.3619535841909927,
+          "bracket_s": [
+            1.361,
+            1.362
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start80": {
+          "time_s": 1.4456533705399384,
+          "bracket_s": [
+            1.445,
+            1.446
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 6
+        },
+        "start90": {
+          "time_s": 1.464014051772158,
+          "bracket_s": [
+            1.464,
+            1.465
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 6
+        },
+        "zero": {
+          "time_s": 3.71549966544022,
+          "bracket_s": [
+            3.715,
+            3.716
+          ],
+          "rule": "single confirmed sign exchange"
+        },
+        "decel50": {
+          "time_s": 3.6781776542728974,
+          "bracket_s": [
+            3.678,
+            3.6790000000000003
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel80": {
+          "time_s": 3.6406692160191647,
+          "bracket_s": [
+            3.64,
+            3.641
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel90": {
+          "time_s": 3.639421115185831,
+          "bracket_s": [
+            3.6390000000000002,
+            3.64
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 2
+        },
+        "return50": {
+          "time_s": 3.776482757664774,
+          "bracket_s": [
+            3.7760000000000002,
+            3.777
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "return80": {
+          "time_s": 3.79052183270826,
+          "bracket_s": [
+            3.79,
+            3.791
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 4
+        },
+        "return90": {
+          "time_s": 3.816119866540289,
+          "bracket_s": [
+            3.8160000000000003,
+            3.817
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 4
+        },
+        "turn_xmax": {
+          "time_s": 3.7279631,
+          "bracket_s": [
+            3.7122897000000004,
+            3.7362427
+          ],
+          "rule": "raw position maximum"
+        }
+      },
+      "spans_ms": {
+        "rise_10_90": 168.45383321711793,
+        "reversal_90_90": 176.69875135445778,
+        "reversal_50_50": 98.3051033918767,
+        "reversal_80_80": 149.85261668909544
+      },
+      "native_brackets_s": {
+        "start10": [
+          1.288215,
+          1.2960639
+        ],
+        "start50": [
+          1.3601205,
+          1.3679219
+        ],
+        "start80": [
+          1.4323475,
+          1.4480695000000001
+        ],
+        "start90": [
+          1.4560997,
+          1.4641594
+        ],
+        "zero": [
+          3.7122897000000004,
+          3.7279631
+        ],
+        "decel50": [
+          3.6720611,
+          3.6802878000000003
+        ],
+        "decel80": [
+          3.6404078,
+          3.6483026
+        ],
+        "decel90": [
+          3.6320591,
+          3.6404078
+        ],
+        "return50": [
+          3.7762961,
+          3.7844839
+        ],
+        "return80": [
+          3.7844839,
+          3.7999681
+        ],
+        "return90": [
+          3.8160911000000004,
+          3.8241373000000003
+        ],
+        "turn_xmax": [
+          3.7122897000000004,
+          3.7279631
+        ]
+      }
+    },
+    "first_x_mm": 196.8379677348131,
+    "last_x_mm": 196.83803713939596,
+    "span_x_mm": 22.999809652797467,
+    "x_maximum_s": 3.7279631
+  },
+  "mapped_nominal": {
+    "stable": {
+      "outbound": {
+        "count": 133,
+        "min": 9.99999999691802,
+        "median": 10.000000007988541,
+        "max": 10.000000286161372,
+        "exceeding_15_mm_s": 0,
+        "max_error_mm_s": 2.8616137193182567e-07
+      },
+      "return_straight": {
+        "count": 94,
+        "min": -10.000000831202051,
+        "median": -10.00000006938214,
+        "max": -10.000000004224676,
+        "exceeding_15_mm_s": 0,
+        "max_error_mm_s": 8.312020511880291e-07
+      }
+    },
+    "max_nominal_abs_vx_mm_s": 10.00029775907664,
+    "source_velocity_on_knot_rule": {
+      "events": {
+        "start10": {
+          "time_s": 1.2773481464830563,
+          "bracket_s": [
+            1.2770000000000001,
+            1.278
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start50": {
+          "time_s": 1.3700141991591992,
+          "bracket_s": [
+            1.37,
+            1.371
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start80": {
+          "time_s": 1.4126225515024644,
+          "bracket_s": [
+            1.412,
+            1.413
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "start90": {
+          "time_s": 1.4524990676668899,
+          "bracket_s": [
+            1.452,
+            1.453
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "zero": {
+          "time_s": 3.716449059831922,
+          "bracket_s": [
+            3.716,
+            3.717
+          ],
+          "rule": "single confirmed sign exchange"
+        },
+        "decel50": {
+          "time_s": 3.6645400729204525,
+          "bracket_s": [
+            3.664,
+            3.665
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel80": {
+          "time_s": 3.63773426159283,
+          "bracket_s": [
+            3.637,
+            3.638
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "decel90": {
+          "time_s": 3.624542734589067,
+          "bracket_s": [
+            3.624,
+            3.625
+          ],
+          "rule": "last connected descent before confirmed zero",
+          "alternatives": 1
+        },
+        "return50": {
+          "time_s": 3.7684227265074846,
+          "bracket_s": [
+            3.7680000000000002,
+            3.769
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "return80": {
+          "time_s": 3.79506380203818,
+          "bracket_s": [
+            3.795,
+            3.7960000000000003
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "return90": {
+          "time_s": 3.808322162379546,
+          "bracket_s": [
+            3.8080000000000003,
+            3.809
+          ],
+          "rule": "crossing and elapsed persistence",
+          "alternatives": 1
+        },
+        "turn_xmax": {
+          "time_s": 3.7204995000013534,
+          "bracket_s": [
+            3.7124994999997236,
+            3.736499500000975
+          ],
+          "rule": "raw position maximum"
+        }
+      },
+      "spans_ms": {
+        "rise_10_90": 175.1509211838336,
+        "reversal_90_90": 183.77942779047896,
+        "reversal_50_50": 103.88265358703208,
+        "reversal_80_80": 157.3295404453501
+      },
+      "native_brackets_s": {
+        "start10": [
+          1.2724995000010333,
+          1.2804994999990251
+        ],
+        "start50": [
+          1.3604995000007714,
+          1.376499500000393
+        ],
+        "start80": [
+          1.4084994999996363,
+          1.4164995000012661
+        ],
+        "start90": [
+          1.4484995000005094,
+          1.4564994999985013
+        ],
+        "zero": [
+          3.7124994999997236,
+          3.7204995000013534
+        ],
+        "decel50": [
+          3.6644995000008587,
+          3.6804995000004803
+        ],
+        "decel80": [
+          3.6244994999999856,
+          3.640499499999607
+        ],
+        "decel90": [
+          3.6244994999999856,
+          3.640499499999607
+        ],
+        "return50": [
+          3.7604994999985886,
+          3.7684995000002184
+        ],
+        "return80": [
+          3.792499499997832,
+          3.8084995000010915
+        ],
+        "return90": [
+          3.792499499997832,
+          3.8084995000010915
+        ],
+        "turn_xmax": [
+          3.7124994999997236,
+          3.7204995000013534
+        ]
+      }
+    },
+    "first_x_mm": 196.8379677348131,
+    "last_x_mm": 196.83803713939596,
+    "span_x_mm": 22.999809652797467,
+    "x_maximum_s": 3.7204995000013534
+  },
+  "legacy_actual_events": {
+    "start10": {
+      "time_s": 1.3158647115873103,
+      "bracket_s": [
+        1.3122003,
+        1.3201098
+      ],
+      "unresolved_gap": false
+    },
+    "start50": {
+      "time_s": 1.3676675914782146,
+      "bracket_s": [
+        1.3601205,
+        1.3679219
+      ],
+      "unresolved_gap": false
+    },
+    "start90": {
+      "time_s": 1.4588213855408136,
+      "bracket_s": [
+        1.4560997,
+        1.4641594
+      ],
+      "unresolved_gap": false
+    },
+    "decel90": {
+      "time_s": 3.63590932883597,
+      "bracket_s": [
+        3.6320591,
+        3.6404078
+      ],
+      "unresolved_gap": false
+    },
+    "zero": {
+      "time_s": 3.7261095288430885,
+      "bracket_s": [
+        3.7122897000000004,
+        3.7279631
+      ],
+      "unresolved_gap": false
+    },
+    "return50": {
+      "time_s": 3.7782519391925904,
+      "bracket_s": [
+        3.7762961,
+        3.7844839
+      ],
+      "unresolved_gap": false
+    },
+    "return90": {
+      "time_s": 3.8227916699458144,
+      "bracket_s": [
+        3.8160911000000004,
+        3.8241373000000003
+      ],
+      "unresolved_gap": false
+    },
+    "stop90": {
+      "time_s": 6.03622847143079,
+      "bracket_s": [
+        6.0319232000000005,
+        6.0401544000000005
+      ],
+      "unresolved_gap": false
+    },
+    "stop10": {
+      "time_s": 6.109836669870412,
+      "bracket_s": [
+        6.1041971,
+        6.112234300000001
+      ],
+      "unresolved_gap": false
+    },
+    "turn_xmax": {
+      "time_s": 3.7279631
+    }
+  },
+  "mapped_actual": {
+    "events": {
+      "start10": {
+        "time_s": 1.3082058395528557,
+        "bracket_s": [
+          1.308,
+          1.309
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start50": {
+        "time_s": 1.3604248928052662,
+        "bracket_s": [
+          1.36,
+          1.361
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start80": {
+        "time_s": 1.4166019960087974,
+        "bracket_s": [
+          1.416,
+          1.417
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start90": {
+        "time_s": 1.4512010254072918,
+        "bracket_s": [
+          1.451,
+          1.452
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "zero": {
+        "time_s": 3.7195534022013668,
+        "bracket_s": [
+          3.719,
+          3.72
+        ],
+        "rule": "single confirmed sign exchange"
+      },
+      "decel50": {
+        "time_s": 3.6741462566678593,
+        "bracket_s": [
+          3.674,
+          3.6750000000000003
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel80": {
+        "time_s": 3.640190796230515,
+        "bracket_s": [
+          3.64,
+          3.641
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel90": {
+        "time_s": 3.6318783327971946,
+        "bracket_s": [
+          3.6310000000000002,
+          3.632
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "return50": {
+        "time_s": 3.7784104789600694,
+        "bracket_s": [
+          3.778,
+          3.779
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return80": {
+        "time_s": 3.807787067380638,
+        "bracket_s": [
+          3.807,
+          3.8080000000000003
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return90": {
+        "time_s": 3.815106892296362,
+        "bracket_s": [
+          3.815,
+          3.8160000000000003
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "turn_xmax": {
+        "time_s": 3.7204995000013534,
+        "bracket_s": [
+          3.7124994999997236,
+          3.736499500000975
+        ],
+        "rule": "raw position maximum"
+      }
+    },
+    "spans_ms": {
+      "rise_10_90": 142.99518585443604,
+      "reversal_90_90": 183.22855949916718,
+      "reversal_50_50": 104.2642222922101,
+      "reversal_80_80": 167.59627115012333
+    },
+    "native_brackets_s": {
+      "start10": [
+        1.3044995000002766,
+        1.3124994999982684
+      ],
+      "start50": [
+        1.3524994999991415,
+        1.3604995000007714
+      ],
+      "start80": [
+        1.4164995000012661,
+        1.4324995000008878
+      ],
+      "start90": [
+        1.4484995000005094,
+        1.4564994999985013
+      ],
+      "zero": [
+        3.7124994999997236,
+        3.7204995000013534
+      ],
+      "decel50": [
+        3.6644995000008587,
+        3.6804995000004803
+      ],
+      "decel80": [
+        3.6244994999999856,
+        3.640499499999607
+      ],
+      "decel90": [
+        3.6244994999999856,
+        3.640499499999607
+      ],
+      "return50": [
+        3.77649949999821,
+        3.78449949999984
+      ],
+      "return80": [
+        3.792499499997832,
+        3.8164994999990833
+      ],
+      "return90": [
+        3.792499499997832,
+        3.8164994999990833
+      ],
+      "turn_xmax": [
+        3.7124994999997236,
+        3.7204995000013534
+      ]
+    }
+  },
+  "spike_example": {
+    "row": 163,
+    "old_host_s": 2.2724324,
+    "dx_um": 160.0000029423898,
+    "host_dt_ms": 7.946000000000009,
+    "cabinet_dt_ms": 15.99999999962165,
+    "host_speed_mm_s": 20.135917813036702,
+    "cabinet_speed_mm_s": 10.000000184135832
+  },
+  "source_hash": "f3ee5773dde6170a2fc503854a3455ce2284253da1fdf85ab5741dfe08d7b28b",
+  "observed_actual_stop_gaps": [
+    {
+      "source_indices": [
+        61,
+        62
+      ],
+      "mapped_s": [
+        0.9924994999985595,
+        1.2484994999997818
+      ],
+      "seconds": 0.25600000000122236
+    },
+    {
+      "source_indices": [
+        540,
+        541
+      ],
+      "mapped_s": [
+        6.120499499999171,
+        6.312499499998268
+      ],
+      "seconds": 0.19199999999909778
+    }
+  ],
+  "frozen_window_sha256": "89cd3a47b8e69757b86661dea8e7fcf1b7e718cc77f35e0635b833cf974023ad",
+  "locked_rule_sha256": "b4783051d9cd27a82c95f4b70eed9f6f82d977d6c63a5a0987561e0ba0aae70b"
+}

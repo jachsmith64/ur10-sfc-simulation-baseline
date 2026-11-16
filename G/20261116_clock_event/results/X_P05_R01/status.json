@@ -1,0 +1,1552 @@
+{
+  "trial": "X_P05_R01",
+  "conditions": {
+    "velocity_off": {
+      "status": "OK",
+      "guard_clear": true,
+      "guard": null,
+      "saturation_rows": {
+        "ctrl_saturation": 0,
+        "joint_saturation": 0,
+        "force_saturation": 0
+      },
+      "steps": 7763,
+      "max_abs_actuator_Nm": [
+        1.530806967008175,
+        36.50667671298015,
+        39.999859508017835,
+        3.208347819361734,
+        0.459563842145144,
+        0.43958064760590787
+      ],
+      "axis": {
+        "source": {
+          "start10": {
+            "time_s": 1.2952766836322358,
+            "bracket_s": [
+              1.2907169500014408,
+              1.2987169499994327
+            ],
+            "unresolved_gap": false
+          },
+          "start50": {
+            "time_s": 1.3278067217043836,
+            "bracket_s": [
+              1.3227169500006841,
+              1.330716949998676
+            ],
+            "unresolved_gap": false
+          },
+          "start90": {
+            "time_s": 1.443575455327707,
+            "bracket_s": [
+              1.4427169499996655,
+              1.4507169500012953
+            ],
+            "unresolved_gap": false
+          },
+          "decel90": {
+            "time_s": 3.8179920156137492,
+            "bracket_s": [
+              3.8107169500018774,
+              3.818716949999869
+            ],
+            "unresolved_gap": false
+          },
+          "zero": {
+            "time_s": 3.9535791414409305,
+            "bracket_s": [
+              3.9467169500004804,
+              3.9547169499984722
+            ],
+            "unresolved_gap": false
+          },
+          "return50": {
+            "time_s": 3.9836675372742265,
+            "bracket_s": [
+              3.9787169499997237,
+              3.9867169500013535
+            ],
+            "unresolved_gap": false
+          },
+          "return90": {
+            "time_s": 4.077530419308872,
+            "bracket_s": [
+              4.074716950001092,
+              4.082716949999083
+            ],
+            "unresolved_gap": false
+          },
+          "stop90": {
+            "time_s": 6.554569951986411,
+            "bracket_s": [
+              6.546716949999025,
+              6.554716950000655
+            ],
+            "unresolved_gap": false
+          },
+          "stop10": {
+            "time_s": null,
+            "bracket_s": [
+              6.60271694999952,
+              6.754716950001383
+            ],
+            "unresolved_gap": true
+          },
+          "turn_xmax": {
+            "time_s": 3.9387169499988506
+          }
+        },
+        "candidate": {
+          "start10": {
+            "time_s": 1.3170434519509935,
+            "bracket_s": [
+              1.317,
+              1.318
+            ],
+            "unresolved_gap": false
+          },
+          "start50": {
+            "time_s": 1.4249472887928387,
+            "bracket_s": [
+              1.424,
+              1.425
+            ],
+            "unresolved_gap": false
+          },
+          "start90": {
+            "time_s": 1.5787928189553735,
+            "bracket_s": [
+              1.578,
+              1.579
+            ],
+            "unresolved_gap": false
+          },
+          "decel90": {
+            "time_s": 3.9409718297559375,
+            "bracket_s": [
+              3.94,
+              3.9410000000000003
+            ],
+            "unresolved_gap": false
+          },
+          "zero": {
+            "time_s": 4.034713667049681,
+            "bracket_s": [
+              4.034,
+              4.035
+            ],
+            "unresolved_gap": false
+          },
+          "return50": {
+            "time_s": 4.105052015703839,
+            "bracket_s": [
+              4.105,
+              4.106
+            ],
+            "unresolved_gap": false
+          },
+          "return90": {
+            "time_s": 4.314299728947876,
+            "bracket_s": [
+              4.314,
+              4.315
+            ],
+            "unresolved_gap": false
+          },
+          "stop90": {
+            "time_s": 6.601009169418855,
+            "bracket_s": [
+              6.601,
+              6.602
+            ],
+            "unresolved_gap": false
+          },
+          "stop10": {
+            "time_s": 6.812724943953234,
+            "bracket_s": [
+              6.812,
+              6.813
+            ],
+            "unresolved_gap": false
+          },
+          "turn_xmax": {
+            "time_s": 4.034
+          }
+        },
+        "delay_ms": {
+          "start10": 21.766768318757677,
+          "start50": 97.14056708845509,
+          "start90": 135.21736362766657,
+          "decel90": 122.97981414218827,
+          "zero": 81.13452560875078,
+          "return50": 121.3844784296123,
+          "return90": 236.769309639004,
+          "stop90": 46.43921743244395,
+          "stop10": null,
+          "turn_xmax": 95.28305000114923
+        },
+        "durations": {
+          "rise_10_90": {
+            "A_ms": 148.29877169547112,
+            "candidate_ms": 261.74936700438
+          },
+          "reversal_90_90": {
+            "A_ms": 259.5384036951232,
+            "candidate_ms": 373.32789919193885
+          },
+          "stop_90_10": {
+            "A_ms": null,
+            "candidate_ms": 211.71577453437874
+          }
+        },
+        "shape": {
+          "start": {
+            "samples": 88,
+            "v_RMSE_mm_s": 1.0949473896669484,
+            "v_peak_error_mm_s": 2.7419287202458693,
+            "x_RMSE_um": 347.52125657003415
+          },
+          "turn": {
+            "samples": 99,
+            "v_RMSE_mm_s": 2.100024442002423,
+            "v_peak_error_mm_s": 6.419762173996473,
+            "x_RMSE_um": 454.30201978347577
+          },
+          "outbound": {
+            "samples": 200,
+            "v_RMSE_mm_s": 0.46539657714156757,
+            "v_peak_error_mm_s": 1.0288930667190952,
+            "x_RMSE_um": 484.3079348511345
+          },
+          "return_straight": {
+            "samples": 175,
+            "v_RMSE_mm_s": 0.4846746747564565,
+            "v_peak_error_mm_s": 1.3007047905246534,
+            "x_RMSE_um": 552.5670420739011
+          },
+          "stop": {
+            "samples": 51,
+            "v_RMSE_mm_s": 0.9631914551905716,
+            "v_peak_error_mm_s": 3.344114571752826,
+            "x_RMSE_um": 379.4514762683729
+          }
+        },
+        "gate_50ms": false,
+        "gate_markers": [
+          "start50",
+          "turn_xmax",
+          "return50"
+        ],
+        "shape_acceptance": "Inspect unshifted X/Vx and independent duration/shape errors; 50 ms gate alone is insufficient."
+      },
+      "stable": {
+        "outbound": {
+          "count": 200,
+          "actual_x_error_bias_mm": -0.48173565319496736,
+          "actual_x_RMSE_mm": 0.48430793485113455,
+          "nominal_x_error_bias_mm": -0.5002604030670543,
+          "nominal_tracking_scale_ms": 100.05208061341087,
+          "actual_v_RMSE_mm_s": 0.46539657714156757
+        },
+        "return_straight": {
+          "count": 175,
+          "actual_x_error_bias_mm": 0.5461899012296489,
+          "actual_x_RMSE_mm": 0.5525670420739012,
+          "nominal_x_error_bias_mm": 0.5499013441336575,
+          "nominal_tracking_scale_ms": 109.9802688267315,
+          "actual_v_RMSE_mm_s": 0.4846746747564565
+        }
+      },
+      "overshoot": {
+        "speed": {
+          "start": {
+            "A_abs_peak_mm_s": 6.132475574387481,
+            "model_abs_peak_mm_s": 5.123565463452572,
+            "excess_over_A_mm_s": 0.0
+          },
+          "turn": {
+            "A_abs_peak_mm_s": 6.200676852386529,
+            "model_abs_peak_mm_s": 5.064060309337795,
+            "excess_over_A_mm_s": 0.0
+          },
+          "stop": {
+            "A_abs_peak_mm_s": 5.901640143688394,
+            "model_abs_peak_mm_s": 5.2605309096564445,
+            "excess_over_A_mm_s": 0.0
+          }
+        },
+        "far_X_excess_over_A_mm": 0.0,
+        "near_X_excess_over_A_mm": 0.0
+      },
+      "robust": {
+        "events": {
+          "start10": {
+            "time_s": 1.3170434519509935,
+            "bracket_s": [
+              1.317,
+              1.318
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "start50": {
+            "time_s": 1.424937853445981,
+            "bracket_s": [
+              1.424,
+              1.425
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "start80": {
+            "time_s": 1.5267281012455665,
+            "bracket_s": [
+              1.526,
+              1.5270000000000001
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "start90": {
+            "time_s": 1.5815879143420224,
+            "bracket_s": [
+              1.581,
+              1.582
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "zero": {
+            "time_s": 4.034713667049681,
+            "bracket_s": [
+              4.034,
+              4.035
+            ],
+            "rule": "single confirmed sign exchange"
+          },
+          "decel50": {
+            "time_s": 3.9922465378528305,
+            "bracket_s": [
+              3.992,
+              3.993
+            ],
+            "rule": "last connected descent before confirmed zero",
+            "alternatives": 1
+          },
+          "decel80": {
+            "time_s": 3.958184299457461,
+            "bracket_s": [
+              3.958,
+              3.959
+            ],
+            "rule": "last connected descent before confirmed zero",
+            "alternatives": 1
+          },
+          "decel90": {
+            "time_s": 3.9409718297559375,
+            "bracket_s": [
+              3.94,
+              3.9410000000000003
+            ],
+            "rule": "last connected descent before confirmed zero",
+            "alternatives": 1
+          },
+          "return50": {
+            "time_s": 4.105052015703839,
+            "bracket_s": [
+              4.105,
+              4.106
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "return80": {
+            "time_s": 4.226651030889613,
+            "bracket_s": [
+              4.226,
+              4.227
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "return90": {
+            "time_s": 4.318550206146137,
+            "bracket_s": [
+              4.3180000000000005,
+              4.319
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "turn_xmax": {
+            "time_s": 4.034,
+            "bracket_s": [
+              4.033,
+              4.035
+            ],
+            "rule": "raw position maximum"
+          }
+        },
+        "spans_ms": {
+          "rise_10_90": 264.5444623910289,
+          "reversal_90_90": 377.5783763901992,
+          "reversal_50_50": 112.80547785100836,
+          "reversal_80_80": 268.46673143215185
+        },
+        "native_brackets_s": {
+          "start10": [
+            1.317,
+            1.318
+          ],
+          "start50": [
+            1.424,
+            1.425
+          ],
+          "start80": [
+            1.526,
+            1.5270000000000001
+          ],
+          "start90": [
+            1.581,
+            1.582
+          ],
+          "zero": [
+            4.034,
+            4.035
+          ],
+          "decel50": [
+            3.992,
+            3.993
+          ],
+          "decel80": [
+            3.958,
+            3.959
+          ],
+          "decel90": [
+            3.94,
+            3.9410000000000003
+          ],
+          "return50": [
+            4.105,
+            4.106
+          ],
+          "return80": [
+            4.226,
+            4.227
+          ],
+          "return90": [
+            4.3180000000000005,
+            4.319
+          ],
+          "turn_xmax": [
+            4.033,
+            4.034
+          ]
+        }
+      }
+    },
+    "velocity_on": {
+      "status": "OK",
+      "guard_clear": true,
+      "guard": null,
+      "saturation_rows": {
+        "ctrl_saturation": 0,
+        "joint_saturation": 0,
+        "force_saturation": 0
+      },
+      "steps": 7763,
+      "max_abs_actuator_Nm": [
+        1.530806967008175,
+        36.50667671298015,
+        39.999859508017835,
+        3.624960640365316,
+        0.4864960372324276,
+        1.1909124894782508
+      ],
+      "axis": {
+        "source": {
+          "start10": {
+            "time_s": 1.2952766836322358,
+            "bracket_s": [
+              1.2907169500014408,
+              1.2987169499994327
+            ],
+            "unresolved_gap": false
+          },
+          "start50": {
+            "time_s": 1.3278067217043836,
+            "bracket_s": [
+              1.3227169500006841,
+              1.330716949998676
+            ],
+            "unresolved_gap": false
+          },
+          "start90": {
+            "time_s": 1.443575455327707,
+            "bracket_s": [
+              1.4427169499996655,
+              1.4507169500012953
+            ],
+            "unresolved_gap": false
+          },
+          "decel90": {
+            "time_s": 3.8179920156137492,
+            "bracket_s": [
+              3.8107169500018774,
+              3.818716949999869
+            ],
+            "unresolved_gap": false
+          },
+          "zero": {
+            "time_s": 3.9535791414409305,
+            "bracket_s": [
+              3.9467169500004804,
+              3.9547169499984722
+            ],
+            "unresolved_gap": false
+          },
+          "return50": {
+            "time_s": 3.9836675372742265,
+            "bracket_s": [
+              3.9787169499997237,
+              3.9867169500013535
+            ],
+            "unresolved_gap": false
+          },
+          "return90": {
+            "time_s": 4.077530419308872,
+            "bracket_s": [
+              4.074716950001092,
+              4.082716949999083
+            ],
+            "unresolved_gap": false
+          },
+          "stop90": {
+            "time_s": 6.554569951986411,
+            "bracket_s": [
+              6.546716949999025,
+              6.554716950000655
+            ],
+            "unresolved_gap": false
+          },
+          "stop10": {
+            "time_s": null,
+            "bracket_s": [
+              6.60271694999952,
+              6.754716950001383
+            ],
+            "unresolved_gap": true
+          },
+          "turn_xmax": {
+            "time_s": 3.9387169499988506
+          }
+        },
+        "candidate": {
+          "start10": {
+            "time_s": 1.272808526242252,
+            "bracket_s": [
+              1.272,
+              1.2730000000000001
+            ],
+            "unresolved_gap": false
+          },
+          "start50": {
+            "time_s": 1.3286016995693763,
+            "bracket_s": [
+              1.328,
+              1.329
+            ],
+            "unresolved_gap": false
+          },
+          "start90": {
+            "time_s": 1.443415292711101,
+            "bracket_s": [
+              1.443,
+              1.444
+            ],
+            "unresolved_gap": false
+          },
+          "decel90": {
+            "time_s": 3.9198498486202364,
+            "bracket_s": [
+              3.919,
+              3.92
+            ],
+            "unresolved_gap": false
+          },
+          "zero": {
+            "time_s": 3.963819037934183,
+            "bracket_s": [
+              3.963,
+              3.964
+            ],
+            "unresolved_gap": false
+          },
+          "return50": {
+            "time_s": 3.98810996471326,
+            "bracket_s": [
+              3.988,
+              3.989
+            ],
+            "unresolved_gap": false
+          },
+          "return90": {
+            "time_s": 4.008881214344905,
+            "bracket_s": [
+              4.008,
+              4.009
+            ],
+            "unresolved_gap": false
+          },
+          "stop90": {
+            "time_s": 6.572422534282123,
+            "bracket_s": [
+              6.572,
+              6.573
+            ],
+            "unresolved_gap": false
+          },
+          "stop10": {
+            "time_s": 6.611140404706718,
+            "bracket_s": [
+              6.611,
+              6.612
+            ],
+            "unresolved_gap": false
+          },
+          "turn_xmax": {
+            "time_s": 3.963
+          }
+        },
+        "delay_ms": {
+          "start10": -22.468157389983865,
+          "start50": 0.7949778649927186,
+          "start90": -0.1601626166058967,
+          "decel90": 101.85783300648721,
+          "zero": 10.23989649325241,
+          "return50": 4.442427439033558,
+          "return90": -68.64920496396732,
+          "stop90": 17.852582295711628,
+          "stop10": null,
+          "turn_xmax": 24.283050001149498
+        },
+        "durations": {
+          "rise_10_90": {
+            "A_ms": 148.29877169547112,
+            "candidate_ms": 170.6067664688491
+          },
+          "reversal_90_90": {
+            "A_ms": 259.5384036951232,
+            "candidate_ms": 89.03136572466863
+          },
+          "stop_90_10": {
+            "A_ms": null,
+            "candidate_ms": 38.717870424594736
+          }
+        },
+        "shape": {
+          "start": {
+            "samples": 88,
+            "v_RMSE_mm_s": 0.5584320535503037,
+            "v_peak_error_mm_s": 1.4952970228047304,
+            "x_RMSE_um": 65.79930002750372
+          },
+          "turn": {
+            "samples": 99,
+            "v_RMSE_mm_s": 0.6536050489361275,
+            "v_peak_error_mm_s": 1.590138606614806,
+            "x_RMSE_um": 41.76062544049059
+          },
+          "outbound": {
+            "samples": 200,
+            "v_RMSE_mm_s": 0.4654082482417899,
+            "v_peak_error_mm_s": 1.0290982428149293,
+            "x_RMSE_um": 30.135198158471045
+          },
+          "return_straight": {
+            "samples": 175,
+            "v_RMSE_mm_s": 0.48467297544646043,
+            "v_peak_error_mm_s": 1.300696553695781,
+            "x_RMSE_um": 59.38650936426029
+          },
+          "stop": {
+            "samples": 51,
+            "v_RMSE_mm_s": 0.4590584476833681,
+            "v_peak_error_mm_s": 1.9352858014612493,
+            "x_RMSE_um": 49.9399556444432
+          }
+        },
+        "gate_50ms": true,
+        "gate_markers": [
+          "start50",
+          "turn_xmax",
+          "return50"
+        ],
+        "shape_acceptance": "Inspect unshifted X/Vx and independent duration/shape errors; 50 ms gate alone is insufficient."
+      },
+      "stable": {
+        "outbound": {
+          "count": 200,
+          "actual_x_error_bias_mm": 0.018012250210419634,
+          "actual_x_RMSE_mm": 0.030135198158471047,
+          "nominal_x_error_bias_mm": -0.000511306828654412,
+          "nominal_tracking_scale_ms": 0.1022613657308824,
+          "actual_v_RMSE_mm_s": 0.4654082482417899
+        },
+        "return_straight": {
+          "count": 175,
+          "actual_x_error_bias_mm": 0.04660487231333832,
+          "actual_x_RMSE_mm": 0.0593865093642603,
+          "nominal_x_error_bias_mm": 0.05033316200675486,
+          "nominal_tracking_scale_ms": 10.066632401350972,
+          "actual_v_RMSE_mm_s": 0.48467297544646043
+        }
+      },
+      "overshoot": {
+        "speed": {
+          "start": {
+            "A_abs_peak_mm_s": 6.132475574387481,
+            "model_abs_peak_mm_s": 5.200446042959842,
+            "excess_over_A_mm_s": 0.0
+          },
+          "turn": {
+            "A_abs_peak_mm_s": 6.200676852386529,
+            "model_abs_peak_mm_s": 5.436235663442488,
+            "excess_over_A_mm_s": 0.0
+          },
+          "stop": {
+            "A_abs_peak_mm_s": 5.901640143688394,
+            "model_abs_peak_mm_s": 5.260527972884926,
+            "excess_over_A_mm_s": 0.0
+          }
+        },
+        "far_X_excess_over_A_mm": 0.03797764264840131,
+        "near_X_excess_over_A_mm": 0.0
+      },
+      "robust": {
+        "events": {
+          "start10": {
+            "time_s": 1.272808526242252,
+            "bracket_s": [
+              1.272,
+              1.2730000000000001
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "start50": {
+            "time_s": 1.3286016995693763,
+            "bracket_s": [
+              1.328,
+              1.329
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "start80": {
+            "time_s": 1.4016903569786558,
+            "bracket_s": [
+              1.401,
+              1.4020000000000001
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "start90": {
+            "time_s": 1.446156447313342,
+            "bracket_s": [
+              1.446,
+              1.447
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "zero": {
+            "time_s": 3.963819037934183,
+            "bracket_s": [
+              3.963,
+              3.964
+            ],
+            "rule": "single confirmed sign exchange"
+          },
+          "decel50": {
+            "time_s": 3.9397631168386136,
+            "bracket_s": [
+              3.939,
+              3.94
+            ],
+            "rule": "last connected descent before confirmed zero",
+            "alternatives": 1
+          },
+          "decel80": {
+            "time_s": 3.9249282398139385,
+            "bracket_s": [
+              3.924,
+              3.9250000000000003
+            ],
+            "rule": "last connected descent before confirmed zero",
+            "alternatives": 1
+          },
+          "decel90": {
+            "time_s": 3.9198498486202364,
+            "bracket_s": [
+              3.919,
+              3.92
+            ],
+            "rule": "last connected descent before confirmed zero",
+            "alternatives": 1
+          },
+          "return50": {
+            "time_s": 3.98810996471326,
+            "bracket_s": [
+              3.988,
+              3.989
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "return80": {
+            "time_s": 4.002782744434657,
+            "bracket_s": [
+              4.002,
+              4.003
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "return90": {
+            "time_s": 4.008881214344905,
+            "bracket_s": [
+              4.008,
+              4.009
+            ],
+            "rule": "crossing and elapsed persistence",
+            "alternatives": 1
+          },
+          "turn_xmax": {
+            "time_s": 3.963,
+            "bracket_s": [
+              3.962,
+              3.964
+            ],
+            "rule": "raw position maximum"
+          }
+        },
+        "spans_ms": {
+          "rise_10_90": 173.34792107108998,
+          "reversal_90_90": 89.03136572466863,
+          "reversal_50_50": 48.34684787464649,
+          "reversal_80_80": 77.85450462071842
+        },
+        "native_brackets_s": {
+          "start10": [
+            1.272,
+            1.2730000000000001
+          ],
+          "start50": [
+            1.328,
+            1.329
+          ],
+          "start80": [
+            1.401,
+            1.4020000000000001
+          ],
+          "start90": [
+            1.446,
+            1.447
+          ],
+          "zero": [
+            3.963,
+            3.964
+          ],
+          "decel50": [
+            3.939,
+            3.94
+          ],
+          "decel80": [
+            3.924,
+            3.9250000000000003
+          ],
+          "decel90": [
+            3.919,
+            3.92
+          ],
+          "return50": [
+            3.988,
+            3.989
+          ],
+          "return80": [
+            4.002,
+            4.003
+          ],
+          "return90": [
+            4.008,
+            4.009
+          ],
+          "turn_xmax": [
+            3.962,
+            3.963
+          ]
+        }
+      }
+    }
+  },
+  "gate": {
+    "timing_pass": true,
+    "durations_pass": true,
+    "shape_pass": true,
+    "stable_shape_pass": true,
+    "overshoot_pass": true,
+    "protection_pass": true,
+    "pass_all": true,
+    "markers": {
+      "start50": {
+        "delay_ms": -20.41151894618487,
+        "reported_resolution_ms": 13.654550000189225
+      },
+      "turn_xmax": {
+        "delay_ms": 24.283050001149498,
+        "reported_resolution_ms": 13.654549996551246
+      },
+      "return50": {
+        "delay_ms": -2.4521772842178713,
+        "reported_resolution_ms": 13.654549996551246
+      }
+    },
+    "spans": {
+      "rise_10_90": {
+        "measured_ms": 148.29877169547112,
+        "original_ms": 264.5444623910289,
+        "candidate_ms": 173.34792107108998,
+        "original_error_ms": 116.24569069555778,
+        "candidate_error_ms": 25.049149375618867
+      },
+      "reversal_90_90": {
+        "measured_ms": 118.52006916398227,
+        "original_ms": 377.5783763901992,
+        "candidate_ms": 89.03136572466863,
+        "original_error_ms": 259.0583072262169,
+        "candidate_error_ms": 29.48870343931364
+      },
+      "reversal_50_50": {
+        "measured_ms": 65.26167543232519,
+        "original_ms": 112.80547785100836,
+        "candidate_ms": 48.34684787464649,
+        "original_error_ms": 47.54380241868317,
+        "candidate_error_ms": 16.9148275576787
+      },
+      "reversal_80_80": {
+        "measured_ms": 90.69418431496734,
+        "original_ms": 268.46673143215185,
+        "candidate_ms": 77.85450462071842,
+        "original_error_ms": 177.7725471171845,
+        "candidate_error_ms": 12.839679694248929
+      }
+    },
+    "raw_gate_details": {
+      "timing_ms": {
+        "start50": 0.7949778649927186,
+        "turn_xmax": 24.283050001149498,
+        "return50": 4.442427439033558
+      },
+      "timing_pass": true,
+      "duration_errors": {
+        "rise_10_90": {
+          "original_ms": 113.4505953089089,
+          "candidate_ms": 22.30799477337797
+        },
+        "reversal_90_90": {
+          "original_ms": 113.78949549681568,
+          "candidate_ms": 170.50703797045455
+        }
+      },
+      "duration_pass": false,
+      "speed_RMSE": {
+        "start": [
+          1.0949473896669484,
+          0.5584320535503037
+        ],
+        "turn": [
+          2.100024442002423,
+          0.6536050489361275
+        ]
+      },
+      "shape_pass": true,
+      "speed_overshoot_change_mm_s": {
+        "start": 0.0,
+        "turn": 0.0,
+        "stop": 0.0
+      },
+      "spatial_overshoot_change_mm": {
+        "far_X_excess_over_A_mm": 0.03797764264840131,
+        "near_X_excess_over_A_mm": 0.0
+      },
+      "overshoot_pass": true,
+      "protection_pass": true,
+      "pass_all": false
+    },
+    "stable_velocity_RMSE_mm_s": {
+      "outbound": [
+        0.46539657714156757,
+        0.4654082482417899
+      ],
+      "return_straight": [
+        0.4846746747564565,
+        0.48467297544646043
+      ]
+    }
+  },
+  "legacy_previous_gate": {
+    "timing_ms": {
+      "start50": 1.084346723943641,
+      "turn_xmax": 24.10869999999976,
+      "return50": 4.03340948409836
+    },
+    "timing_pass": true,
+    "duration_errors": {
+      "rise_10_90": {
+        "original_ms": 113.00039817432949,
+        "candidate_ms": 25.982150626425067
+      },
+      "reversal_90_90": {
+        "original_ms": 113.64739964328407,
+        "candidate_ms": 168.36086916639204
+      }
+    },
+    "duration_pass": false,
+    "speed_RMSE": {
+      "start": [
+        1.102420608865786,
+        0.5643886071071773
+      ],
+      "turn": [
+        2.1002549303004567,
+        0.659314943750954
+      ]
+    },
+    "shape_pass": true,
+    "speed_overshoot_change_mm_s": {
+      "start": 0.0,
+      "turn": 0.0,
+      "stop": 0.0
+    },
+    "spatial_overshoot_change_mm": {
+      "far_X_excess_over_A_mm": 0.038085866439663274,
+      "near_X_excess_over_A_mm": 0.0
+    },
+    "overshoot_pass": true,
+    "protection_pass": true,
+    "pass_all": false
+  },
+  "mapped_input_sha256": "dad2a9bd34d88034689673c7e90165e780670f4487e12321d0cc84fa9fdef5fd",
+  "actual_model": {
+    "actuator_trntype": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_trnid": [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ],
+      [
+        3,
+        -1
+      ],
+      [
+        4,
+        -1
+      ],
+      [
+        5,
+        -1
+      ]
+    ],
+    "actuator_gear": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "actuator_gaintype": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_biastype": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "actuator_dyntype": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_actadr": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "actuator_actnum": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_gainprm": [
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "actuator_biasprm": [
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "actuator_ctrllimited": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "actuator_ctrlrange": [
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -3.1415,
+        3.1415
+      ],
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -6.2831,
+        6.2831
+      ]
+    ],
+    "actuator_forcelimited": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "actuator_forcerange": [
+      [
+        -330.0,
+        330.0
+      ],
+      [
+        -330.0,
+        330.0
+      ],
+      [
+        -150.0,
+        150.0
+      ],
+      [
+        -56.0,
+        56.0
+      ],
+      [
+        -56.0,
+        56.0
+      ],
+      [
+        -56.0,
+        56.0
+      ]
+    ],
+    "actuator_actlimited": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "actuator_actrange": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "jnt_type": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "jnt_qposadr": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "jnt_dofadr": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "jnt_actfrclimited": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "jnt_actfrcrange": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "dof_damping": [
+      10.0,
+      10.0,
+      5.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "dof_armature": [
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "nq": 6,
+    "nv": 6,
+    "nu": 6,
+    "na": 0,
+    "dt": 0.001,
+    "integrator": 3,
+    "integrator_name": "mjINT_IMPLICITFAST",
+    "disableflags": 0,
+    "enableflags": 0,
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "actuator_names": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow",
+      "wrist_1",
+      "wrist_2",
+      "wrist_3"
+    ],
+    "joint_names": [
+      "shoulder_pan_joint",
+      "shoulder_lift_joint",
+      "elbow_joint",
+      "wrist_1_joint",
+      "wrist_2_joint",
+      "wrist_3_joint"
+    ],
+    "meaning": "actuator_force是执行器标量力；经transmission moment映射为qfrc_actuator广义关节力矩；本模型unit gear一一映射才可数值等同",
+    "conditions": {
+      "six_independent_hinges": true,
+      "joint_transmission": true,
+      "identity_dof_order": true,
+      "unit_gear": true,
+      "fixed_positive_gain": true,
+      "affine_servo_bias": true,
+      "no_activation": true,
+      "actuation_enabled": true
+    },
+    "simple_mapping_applicable": true,
+    "Kp_Nm_per_rad": [
+      5000.0,
+      5000.0,
+      5000.0,
+      5000.0,
+      5000.0,
+      5000.0
+    ],
+    "Kd_Nms_per_rad": [
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ]
+  },
+  "reference": "No movement of frozen Y windows or feedback reference, no external fitted force or physical correction"
+}

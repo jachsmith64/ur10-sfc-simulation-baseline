@@ -1,0 +1,48 @@
+{
+  "parent": "0fd746f487cb9e5382b7e4249a3824c5c0c8bfe3",
+  "clock": {
+    "scale": 1,
+    "offset": "median(host time minus normalized cabinet time) from singleton timestamp groups",
+    "same_stamp_target": "merge only exact identical pose, discard the whole group on any target-pose disagreement",
+    "same_stamp_actual": "independently merge only exact identical actual TCP pose and speed, discard conflicting groups",
+    "long_gap_s": 0.04,
+    "quiet_nominal_gap_max_translation_m": 2e-06,
+    "noncritical_long_gap": "hold previous target across bracket, suppress right endpoint at the hold boundary, rejoin only in the following short bracket. Actual states are unfilled. Block if gap overlaps start or turn or exceeds the nominal translation limit.",
+    "singleton_target_consistency": {
+      "max_bridge_s": 0.04,
+      "plateau_tolerance_fraction": 0.02,
+      "local_bad_slope_departure_fraction": 0.25,
+      "rule": "Reject the single interior row only when the exterior pre/post intervals and the short bridge agree with the same signed plateau, and an interior interval disagrees. Retain bracket timestamps and interpolate from the two endpoints."
+    }
+  },
+  "events": {
+    "grid_s": 0.001,
+    "median_half_width_s": 0.012,
+    "min_persistence_s": 0.024,
+    "persistence_hysteresis_fraction": 0.025,
+    "zero_prepost_confirm_s": 0.1,
+    "zero_prepost_speed_fraction": 0.15,
+    "primary_start": [
+      0.1,
+      0.9
+    ],
+    "primary_reversal": [
+      0.9,
+      -0.9
+    ],
+    "diagnostic_spans": [
+      0.5,
+      0.8
+    ],
+    "deceleration": "last descending crossing at each threshold before the main zero, with evidence of the preceding positive plateau",
+    "gap": "interpolate only brackets at most 40 ms; keep event uncertain when the detector crosses unavailable data"
+  },
+  "gates": {
+    "main_marker_ms": 50,
+    "max_new_speed_peak_fraction": 0.1,
+    "max_new_axial_endpoint_excess_mm": 0.05,
+    "max_added_stable_speed_rmse_mm_s": 0.25,
+    "nominal_stable_speed_error_fraction": 0.02,
+    "nominal_max_physical_speed_fraction": 1.5
+  }
+}

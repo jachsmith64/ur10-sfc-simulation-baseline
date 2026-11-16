@@ -1,0 +1,105 @@
+{
+  "ik": {
+    "knot_count": 797,
+    "host_bracket_ms": 239.99999999796273,
+    "max_position_back_error_m": 4.100751921555102e-10,
+    "max_rotation_back_error_rad": 5.092954134797417e-10,
+    "max_adjacent_joint_step_rad": 8.868636785486217e-05,
+    "max_gravity_offset_rad": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "derivative": {
+    "method": "median(host time minus normalized cabinet time) from singleton timestamp groups; analytic slope of the same re-timed linear q knots",
+    "first_qdot_rad_s": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "final_qdot_rad_s": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "native_dt_ms": [
+      7.999999997991836,
+      8.000000001629815,
+      15.99999999962165,
+      239.99999999796273
+    ],
+    "max_abs_qdot_rad_s": [
+      0.008229979185382144,
+      0.0024547555363680367,
+      0.0006663309885276722,
+      0.009311305213800934,
+      0.0011082246002969906,
+      0.011085795979599296
+    ],
+    "max_abs_slope_change_rad_s": [
+      0.0014708259331920352,
+      0.0004029343061995996,
+      0.00010699511186608018,
+      0.0016572718019535074,
+      0.00019839550991062523,
+      0.0019793468353088576
+    ],
+    "max_abs_held_speed_step_rad_s": [
+      0.0014708259331920352,
+      0.0004029343061995996,
+      0.00010699511186608018,
+      0.0016572718019535074,
+      0.00019839550991062523,
+      0.0019793468353088576
+    ],
+    "max_abs_offset_rad": [
+      0.0008229979185382145,
+      0.00024547555363680366,
+      6.663309885276722e-05,
+      0.0009311305213800935,
+      0.00011082246002969907,
+      0.0011085795979599298
+    ],
+    "max_abs_equivalent_torque_Nm": [
+      4.114989592691072,
+      1.2273777681840183,
+      0.33316549426383607,
+      4.655652606900467,
+      0.5541123001484953,
+      5.542897989799648
+    ],
+    "raw_nominal_vx_tick_mm_s_minmax": [
+      -5.00000000065642,
+      5.000000001183776
+    ],
+    "max_kinematic_twist_error": [
+      4.613477708973607e-08,
+      1.625835627401732e-07,
+      8.414880781358644e-09,
+      1.9212088904138613e-08,
+      2.073896676995897e-07,
+      2.701546240706232e-08
+    ],
+    "nominal_movement_native_intervals": 670,
+    "shape_rad_s": [
+      7678,
+      6
+    ]
+  },
+  "integrated_q_displacement_error_max_rad": 0.0,
+  "source_trajectory_ends_delta_old_to_new_mm": [
+    0.0,
+    0.0
+  ],
+  "knot_position_interpolation": "piecewise linear for q and target request, no extra planner or smoothing"
+}

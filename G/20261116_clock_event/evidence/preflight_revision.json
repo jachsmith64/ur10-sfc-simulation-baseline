@@ -1,0 +1,11 @@
+{
+  "old_stage": "runs/input_locked, plotted and reviewed before dynamics",
+  "finding": "Source-only plot revealed three remaining P10 0/20 or 5/20 secant pairs outside the two scored stable windows. No physical integration used this preliminary input.",
+  "evidence_mapped_preview_t_s": [
+    1.5525,
+    1.8485,
+    4.6405
+  ],
+  "correction": "Reject only a center pose with inconsistent interior secants when preceding/following and bridged secants agree on the same plateau; short bracket at most 40 ms.",
+  "scope": "One completed timestamp/field-consistency scheme before outcome access; no smoothing filter search and no repetitions of preceding physical runs."
+}

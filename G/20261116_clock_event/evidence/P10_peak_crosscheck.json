@@ -1,0 +1,21 @@
+{
+  "original_raw_A_xmax_m": 0.21980208380316302,
+  "mapped_A_xmax_m": 0.21980208380316302,
+  "actual_max_source_index": 305,
+  "actual_max_survived_mapping": true,
+  "mapped_nominal_xmax_m": 0.21983748142372347,
+  "conditions": {
+    "velocity_off": {
+      "xmax_m": 0.21953091644535663,
+      "peak_s": 3.8120000000000003,
+      "absolute_extreme_error_vs_A_mm": -0.27116735780638446,
+      "error_vs_nominal_peak_mm": -0.30656497836684116
+    },
+    "velocity_on": {
+      "xmax_m": 0.21991083426170832,
+      "peak_s": 3.729,
+      "absolute_extreme_error_vs_A_mm": 0.10875045854530363,
+      "error_vs_nominal_peak_mm": 0.07335283798484693
+    }
+  }
+}

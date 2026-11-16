@@ -1,0 +1,353 @@
+{
+  "X_P05_R01": {
+    "markers": {
+      "start10": {
+        "time_s": 1.2662905153106374,
+        "bracket_s": [
+          1.266,
+          1.2670000000000001
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start50": {
+        "time_s": 1.3220620278330308,
+        "bracket_s": [
+          1.322,
+          1.323
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start80": {
+        "time_s": 1.3940030172960067,
+        "bracket_s": [
+          1.3940000000000001,
+          1.395
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start90": {
+        "time_s": 1.4340028604065636,
+        "bracket_s": [
+          1.434,
+          1.435
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "zero": {
+        "time_s": 3.9548694718145008,
+        "bracket_s": [
+          3.954,
+          3.955
+        ],
+        "rule": "single confirmed sign exchange"
+      },
+      "decel50": {
+        "time_s": 3.930744761074377,
+        "bracket_s": [
+          3.93,
+          3.931
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel80": {
+        "time_s": 3.9148670040564078,
+        "bracket_s": [
+          3.914,
+          3.915
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel90": {
+        "time_s": 3.914229050158512,
+        "bracket_s": [
+          3.914,
+          3.915
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "return50": {
+        "time_s": 3.9789942790526114,
+        "bracket_s": [
+          3.978,
+          3.979
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return80": {
+        "time_s": 3.9948692790536535,
+        "bracket_s": [
+          3.994,
+          3.995
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return90": {
+        "time_s": 4.002527767764662,
+        "bracket_s": [
+          4.002,
+          4.003
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "turn_xmax": {
+        "time_s": 3.955,
+        "bracket_s": [
+          3.954,
+          3.956
+        ],
+        "rule": "raw position maximum"
+      }
+    },
+    "spans_ms": {
+      "rise_10_90": 167.71234509592614,
+      "reversal_90_90": 88.29871760615005,
+      "reversal_50_50": 48.249517978234294,
+      "reversal_80_80": 80.00227499724576
+    },
+    "scope": "command grid explicitly includes the bounded nominal hold; actual RTDE still has missing samples"
+  },
+  "X_P05_R02": {
+    "markers": {
+      "start10": {
+        "time_s": 1.2642905153121589,
+        "bracket_s": [
+          1.264,
+          1.2650000000000001
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start50": {
+        "time_s": 1.3200620278303383,
+        "bracket_s": [
+          1.32,
+          1.321
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start80": {
+        "time_s": 1.3920030172825975,
+        "bracket_s": [
+          1.3920000000000001,
+          1.393
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start90": {
+        "time_s": 1.4320028603930703,
+        "bracket_s": [
+          1.432,
+          1.433
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "zero": {
+        "time_s": 3.952868977964701,
+        "bracket_s": [
+          3.952,
+          3.9530000000000003
+        ],
+        "rule": "single confirmed sign exchange"
+      },
+      "decel50": {
+        "time_s": 3.928744266742262,
+        "bracket_s": [
+          3.928,
+          3.9290000000000003
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel80": {
+        "time_s": 3.912866510887608,
+        "bracket_s": [
+          3.912,
+          3.9130000000000003
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel90": {
+        "time_s": 3.9122286110543283,
+        "bracket_s": [
+          3.912,
+          3.9130000000000003
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "return50": {
+        "time_s": 3.976993785598942,
+        "bracket_s": [
+          3.976,
+          3.977
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return80": {
+        "time_s": 3.9928687855994416,
+        "bracket_s": [
+          3.992,
+          3.993
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return90": {
+        "time_s": 4.000527287181759,
+        "bracket_s": [
+          4.0,
+          4.001
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "turn_xmax": {
+        "time_s": 3.9530000000000003,
+        "bracket_s": [
+          3.952,
+          3.954
+        ],
+        "rule": "raw position maximum"
+      }
+    },
+    "spans_ms": {
+      "rise_10_90": 167.7123450809115,
+      "reversal_90_90": 88.29867612743092,
+      "reversal_50_50": 48.249518856680055,
+      "reversal_80_80": 80.00227471183364
+    },
+    "scope": "command grid explicitly includes the bounded nominal hold; actual RTDE still has missing samples"
+  },
+  "X_P10_R01": {
+    "markers": {
+      "start10": {
+        "time_s": 1.2808779749768995,
+        "bracket_s": [
+          1.28,
+          1.281
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start50": {
+        "time_s": 1.3765946686974158,
+        "bracket_s": [
+          1.3760000000000001,
+          1.377
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start80": {
+        "time_s": 1.4165153814377485,
+        "bracket_s": [
+          1.416,
+          1.417
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "start90": {
+        "time_s": 1.4564999459584231,
+        "bracket_s": [
+          1.456,
+          1.457
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "zero": {
+        "time_s": 3.7204936949789245,
+        "bracket_s": [
+          3.72,
+          3.721
+        ],
+        "rule": "single confirmed sign exchange"
+      },
+      "decel50": {
+        "time_s": 3.664993808824856,
+        "bracket_s": [
+          3.664,
+          3.665
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel80": {
+        "time_s": 3.6408271725995722,
+        "bracket_s": [
+          3.64,
+          3.641
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "decel90": {
+        "time_s": 3.6249923921183576,
+        "bracket_s": [
+          3.624,
+          3.625
+        ],
+        "rule": "last connected descent before confirmed zero",
+        "alternatives": 1
+      },
+      "return50": {
+        "time_s": 3.7689904033132753,
+        "bracket_s": [
+          3.7680000000000002,
+          3.769
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return80": {
+        "time_s": 3.8081602688774896,
+        "bracket_s": [
+          3.8080000000000003,
+          3.809
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "return90": {
+        "time_s": 3.8089936022079853,
+        "bracket_s": [
+          3.8080000000000003,
+          3.809
+        ],
+        "rule": "crossing and elapsed persistence",
+        "alternatives": 1
+      },
+      "turn_xmax": {
+        "time_s": 3.72,
+        "bracket_s": [
+          3.719,
+          3.721
+        ],
+        "rule": "raw position maximum"
+      }
+    },
+    "spans_ms": {
+      "rise_10_90": 175.62197098152365,
+      "reversal_90_90": 184.00121008962776,
+      "reversal_50_50": 103.99659448841936,
+      "reversal_80_80": 167.33309627791738
+    },
+    "scope": "command grid explicitly includes the bounded nominal hold; actual RTDE still has missing samples"
+  }
+}
