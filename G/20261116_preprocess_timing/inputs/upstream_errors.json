@@ -1,0 +1,86 @@
+{
+  "X_P05_R01": {
+    "dq": {
+      "sha256": "92e85fe48a37a5cb92bfc321dc42838e83053a2e5d08566cf5f3f06ef6918419",
+      "np_dtype": "float64",
+      "shape": [
+        7763,
+        6
+      ],
+      "peak_abs": 0.00015685003368244306
+    },
+    "dqd": {
+      "sha256": "de16abd40b490e075756a146cd424dee511a9bd35493edba5ca132ed0c2425be",
+      "np_dtype": "float64",
+      "shape": [
+        7763,
+        6
+      ],
+      "peak_abs": 0.001622741113290704
+    },
+    "pressure": {
+      "sha256": "786ee55257cc747d73f2d9d6c18b802598e1ffe18250dad6bd8a59774e22284b",
+      "np_dtype": "float64",
+      "shape": [
+        1250
+      ],
+      "peak_abs": 3.4742607582747264e-05
+    }
+  },
+  "X_P05_R02": {
+    "dq": {
+      "sha256": "c84b3d694bb870c1b386f57f5160dfe4c30a61dd3b14b1bccdac515842b54c9f",
+      "np_dtype": "float64",
+      "shape": [
+        7678,
+        6
+      ],
+      "peak_abs": 0.00015685003368244306
+    },
+    "dqd": {
+      "sha256": "bcd9fc3bcd295e41e9061b97bad712cbfc28ef449751b8ec1202456905600f0b",
+      "np_dtype": "float64",
+      "shape": [
+        7678,
+        6
+      ],
+      "peak_abs": 0.001622741113290704
+    },
+    "pressure": {
+      "sha256": "786ee55257cc747d73f2d9d6c18b802598e1ffe18250dad6bd8a59774e22284b",
+      "np_dtype": "float64",
+      "shape": [
+        1250
+      ],
+      "peak_abs": 3.4742607582747264e-05
+    }
+  },
+  "X_P10_R01": {
+    "dq": {
+      "sha256": "fc50264f5cac714c044c0d9ce594770465c6b8df681457b17d563fd85c6fa456",
+      "np_dtype": "float64",
+      "shape": [
+        7321,
+        6
+      ],
+      "peak_abs": 0.00015685003368244306
+    },
+    "dqd": {
+      "sha256": "06dca732ab8d27eeac65a1580d57ad5eccb172171d999ab81b8f35796508f7e1",
+      "np_dtype": "float64",
+      "shape": [
+        7321,
+        6
+      ],
+      "peak_abs": 0.001622741113290704
+    },
+    "pressure": {
+      "sha256": "786ee55257cc747d73f2d9d6c18b802598e1ffe18250dad6bd8a59774e22284b",
+      "np_dtype": "float64",
+      "shape": [
+        1250
+      ],
+      "peak_abs": 3.4742607582747264e-05
+    }
+  }
+}

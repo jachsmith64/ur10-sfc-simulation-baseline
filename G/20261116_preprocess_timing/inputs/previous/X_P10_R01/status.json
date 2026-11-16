@@ -1,0 +1,19 @@
+{
+  "provenance": {
+    "original_rundir": "runs/A_P10_host/X_P10_R01",
+    "best_trace_full_sha256": "83e04ba9cd6d995c27b5e568d7c9f33ea374d73e992561a28b1457fe809f571f",
+    "plant_sha256": "71c7c656e63b99a9a33a256f73930a60596c09f39f49db901723b5a58611620a"
+  },
+  "source_timing": {
+    "start_speed_s": 0.11307810000000007,
+    "turn_xmax_s": 0.08903689999999997,
+    "return_speed_s": 0.0965161000000001,
+    "along_speed_model_mm_s": {
+      "outbound": 9.982472968680156,
+      "return_straight": -9.954259719265224
+    },
+    "rmse_x_model_vs_A_um": 796.5641742581728,
+    "rmse_x_model_vs_nominal_um": 810.9200113594786,
+    "pass": false
+  }
+}

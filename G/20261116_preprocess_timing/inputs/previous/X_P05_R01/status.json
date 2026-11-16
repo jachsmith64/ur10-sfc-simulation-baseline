@@ -1,0 +1,19 @@
+{
+  "provenance": {
+    "original_rundir": "runs/A_portable_replay/X_P05_R01",
+    "best_trace_full_sha256": "dc3828dc85feb9cd411e76bfeed70bb4b607d19808dc69886449762b7a49eba8",
+    "plant_sha256": "9a03ad6651a1339906511cfb20189cba7d920134901e34604a7fe31989781f36"
+  },
+  "source_timing": {
+    "start_speed_s": 0.07843849999999986,
+    "turn_xmax_s": 0.0901086999999996,
+    "return_speed_s": 0.09937070000000015,
+    "along_speed_model_mm_s": {
+      "outbound": 4.988111010533203,
+      "return_straight": -5.0403911150027625
+    },
+    "rmse_x_model_vs_A_um": 407.5221964219579,
+    "rmse_x_model_vs_nominal_um": 418.47639376238027,
+    "pass": false
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "sha256": "9a03ad6651a1339906511cfb20189cba7d920134901e34604a7fe31989781f36",
+  "pass_hz": 30.0,
+  "stop_hz": 45.0,
+  "same_nominal_q_verified": true,
+  "source_trial": "X_P05_R01",
+  "solver": "original V02 inverse, two-second edge padding"
+}

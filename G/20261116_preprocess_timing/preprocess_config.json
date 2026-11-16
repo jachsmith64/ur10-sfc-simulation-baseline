@@ -1,0 +1,14 @@
+{
+  "minimum_material_fit_gain": 0.5,
+  "consecutive_iterations_without_material_gain": 2,
+  "camera_noise_m": 0,
+  "remaining_m": 0,
+  "remaining_dot_m_s": 0,
+  "observer_N_law_active_force": false,
+  "encoder_observer_cutoff_hz": 5,
+  "encoder_observer_rho": 0,
+  "slow_trend_model": "zero pending repeatable within-phase evidence",
+  "initial_pose_method": "actual_q once at original first-camera host time; confirmed stationary TCP; qdot zero",
+  "motion_timing_ms": 50,
+  "formal_L1_L4_SFC": false
+}

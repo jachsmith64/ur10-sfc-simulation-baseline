@@ -1,0 +1,1128 @@
+{
+  "old_initial": {
+    "source": {
+      "start10": {
+        "time_s": 1.295266024803989,
+        "bracket_s": [
+          1.290675,
+          1.2987299
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.327727519686307,
+        "bracket_s": [
+          1.3227711,
+          1.3305615000000002
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.4436786843383789,
+        "bracket_s": [
+          1.4428064,
+          1.4509348000000002
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.8180013502135286,
+        "bracket_s": [
+          3.8109439000000003,
+          3.8187046000000002
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.9534713906452397,
+        "bracket_s": [
+          3.9466297000000004,
+          3.9546058000000004
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.983662831299655,
+        "bracket_s": [
+          3.9788469,
+          3.9866293
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.0775453811999975,
+        "bracket_s": [
+          4.0748652000000005,
+          4.0824862
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.554494376600681,
+        "bracket_s": [
+          6.546928500000001,
+          6.554636
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": null,
+        "bracket_s": [
+          6.602590500000001,
+          6.7544708
+        ],
+        "unresolved_gap": true
+      },
+      "turn_xmax": {
+        "time_s": 3.9388913000000003
+      }
+    },
+    "candidate": {
+      "start10": {
+        "time_s": 1.317338163456625,
+        "bracket_s": [
+          1.317,
+          1.318
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.4249254090170906,
+        "bracket_s": [
+          1.424,
+          1.425
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.5787512516795823,
+        "bracket_s": [
+          1.578,
+          1.579
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.941009401015973,
+        "bracket_s": [
+          3.9410000000000003,
+          3.942
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 4.034880342935659,
+        "bracket_s": [
+          4.034,
+          4.035
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 4.105182102678131,
+        "bracket_s": [
+          4.105,
+          4.106
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.314200831645723,
+        "bracket_s": [
+          4.314,
+          4.315
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.601051961740042,
+        "bracket_s": [
+          6.601,
+          6.602
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": 6.812062075256356,
+        "bracket_s": [
+          6.812,
+          6.813
+        ],
+        "unresolved_gap": false
+      },
+      "turn_xmax": {
+        "time_s": 4.034
+      }
+    },
+    "delay_ms": {
+      "start10": 22.07213865263613,
+      "start50": 97.19788933078365,
+      "start90": 135.07256734120344,
+      "decel90": 123.00805080244447,
+      "zero": 81.40895229041911,
+      "return50": 121.51927137847585,
+      "return90": 236.65545044572588,
+      "stop90": 46.557585139360924,
+      "stop10": null,
+      "turn_xmax": 95.10869999999949
+    },
+    "durations": {
+      "rise_10_90": {
+        "A_ms": 148.41265953438997,
+        "candidate_ms": 261.4130882229573
+      },
+      "reversal_90_90": {
+        "A_ms": 259.54403098646895,
+        "candidate_ms": 373.19143062975036
+      },
+      "stop_90_10": {
+        "A_ms": null,
+        "candidate_ms": 211.0101135163136
+      }
+    },
+    "shape": {
+      "start": {
+        "samples": 87,
+        "v_RMSE_mm_s": 1.1024205575007382,
+        "v_peak_error_mm_s": 2.7468195601497576,
+        "x_RMSE_um": 349.32794509774664
+      },
+      "turn": {
+        "samples": 99,
+        "v_RMSE_mm_s": 2.1002549303007276,
+        "v_peak_error_mm_s": 6.427960954547025,
+        "x_RMSE_um": 454.3033083653953
+      },
+      "outbound": {
+        "samples": 200,
+        "v_RMSE_mm_s": 0.465352860933939,
+        "v_peak_error_mm_s": 1.032134454343245,
+        "x_RMSE_um": 484.31393038713253
+      },
+      "return_straight": {
+        "samples": 175,
+        "v_RMSE_mm_s": 0.4846682396138516,
+        "v_peak_error_mm_s": 1.2977628541782424,
+        "x_RMSE_um": 552.5639801689313
+      },
+      "stop": {
+        "samples": 51,
+        "v_RMSE_mm_s": 0.9627862574437598,
+        "v_peak_error_mm_s": 3.349202189277138,
+        "x_RMSE_um": 379.41671543639507
+      }
+    },
+    "gate_50ms": false,
+    "gate_markers": [
+      "start50",
+      "turn_xmax",
+      "return50"
+    ],
+    "shape_acceptance": "Inspect unshifted X/Vx and independent duration/shape errors; 50 ms gate alone is insufficient."
+  },
+  "measured_initial": {
+    "source": {
+      "start10": {
+        "time_s": 1.295266024803989,
+        "bracket_s": [
+          1.290675,
+          1.2987299
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.327727519686307,
+        "bracket_s": [
+          1.3227711,
+          1.3305615000000002
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.4436786843383789,
+        "bracket_s": [
+          1.4428064,
+          1.4509348000000002
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.8180013502135286,
+        "bracket_s": [
+          3.8109439000000003,
+          3.8187046000000002
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.9534713906452397,
+        "bracket_s": [
+          3.9466297000000004,
+          3.9546058000000004
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.983662831299655,
+        "bracket_s": [
+          3.9788469,
+          3.9866293
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.0775453811999975,
+        "bracket_s": [
+          4.0748652000000005,
+          4.0824862
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.554494376600681,
+        "bracket_s": [
+          6.546928500000001,
+          6.554636
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": null,
+        "bracket_s": [
+          6.602590500000001,
+          6.7544708
+        ],
+        "unresolved_gap": true
+      },
+      "turn_xmax": {
+        "time_s": 3.9388913000000003
+      }
+    },
+    "candidate": {
+      "start10": {
+        "time_s": 1.3173381948667104,
+        "bracket_s": [
+          1.317,
+          1.318
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.4249254106507365,
+        "bracket_s": [
+          1.424,
+          1.425
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.57875125257543,
+        "bracket_s": [
+          1.578,
+          1.579
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.9410094010159775,
+        "bracket_s": [
+          3.9410000000000003,
+          3.942
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 4.034880342935637,
+        "bracket_s": [
+          4.034,
+          4.035
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 4.105182102678099,
+        "bracket_s": [
+          4.105,
+          4.106
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.3142008316457305,
+        "bracket_s": [
+          4.314,
+          4.315
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.601051961740044,
+        "bracket_s": [
+          6.601,
+          6.602
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": 6.81206207525637,
+        "bracket_s": [
+          6.812,
+          6.813
+        ],
+        "unresolved_gap": false
+      },
+      "turn_xmax": {
+        "time_s": 4.034
+      }
+    },
+    "delay_ms": {
+      "start10": 22.072170062721554,
+      "start50": 97.19789096442955,
+      "start90": 135.07256823705106,
+      "decel90": 123.00805080244892,
+      "zero": 81.40895229039691,
+      "return50": 121.51927137844388,
+      "return90": 236.65545044573298,
+      "stop90": 46.5575851393627,
+      "stop10": null,
+      "turn_xmax": 95.10869999999949
+    },
+    "durations": {
+      "rise_10_90": {
+        "A_ms": 148.41265953438997,
+        "candidate_ms": 261.41305770871946
+      },
+      "reversal_90_90": {
+        "A_ms": 259.54403098646895,
+        "candidate_ms": 373.19143062975303
+      },
+      "stop_90_10": {
+        "A_ms": null,
+        "candidate_ms": 211.01011351632604
+      }
+    },
+    "shape": {
+      "start": {
+        "samples": 87,
+        "v_RMSE_mm_s": 1.102420608865786,
+        "v_peak_error_mm_s": 2.746819786315779,
+        "x_RMSE_um": 349.3279438533806
+      },
+      "turn": {
+        "samples": 99,
+        "v_RMSE_mm_s": 2.1002549303004567,
+        "v_peak_error_mm_s": 6.427960954547002,
+        "x_RMSE_um": 454.3033083653995
+      },
+      "outbound": {
+        "samples": 200,
+        "v_RMSE_mm_s": 0.4653528609336658,
+        "v_peak_error_mm_s": 1.032134454336191,
+        "x_RMSE_um": 484.31393038701367
+      },
+      "return_straight": {
+        "samples": 175,
+        "v_RMSE_mm_s": 0.4846682396138513,
+        "v_peak_error_mm_s": 1.297762854178135,
+        "x_RMSE_um": 552.5639801689305
+      },
+      "stop": {
+        "samples": 51,
+        "v_RMSE_mm_s": 0.96278625744377,
+        "v_peak_error_mm_s": 3.349202189277186,
+        "x_RMSE_um": 379.4167154363953
+      }
+    },
+    "gate_50ms": false,
+    "gate_markers": [
+      "start50",
+      "turn_xmax",
+      "return50"
+    ],
+    "shape_acceptance": "Inspect unshifted X/Vx and independent duration/shape errors; 50 ms gate alone is insufficient."
+  },
+  "RTDE_target_host": {
+    "source": {
+      "start10": {
+        "time_s": 1.295266024803989,
+        "bracket_s": [
+          1.290675,
+          1.2987299
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.327727519686307,
+        "bracket_s": [
+          1.3227711,
+          1.3305615000000002
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.4436786843383789,
+        "bracket_s": [
+          1.4428064,
+          1.4509348000000002
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.8180013502135286,
+        "bracket_s": [
+          3.8109439000000003,
+          3.8187046000000002
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.9534713906452397,
+        "bracket_s": [
+          3.9466297000000004,
+          3.9546058000000004
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.983662831299655,
+        "bracket_s": [
+          3.9788469,
+          3.9866293
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.0775453811999975,
+        "bracket_s": [
+          4.0748652000000005,
+          4.0824862
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.554494376600681,
+        "bracket_s": [
+          6.546928500000001,
+          6.554636
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": null,
+        "bracket_s": [
+          6.602590500000001,
+          6.7544708
+        ],
+        "unresolved_gap": true
+      },
+      "turn_xmax": {
+        "time_s": 3.9388913000000003
+      }
+    },
+    "candidate": {
+      "start10": {
+        "time_s": 1.2668432795886495,
+        "bracket_s": [
+          1.2668076000000001,
+          1.2749215
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.318846633021004,
+        "bracket_s": [
+          1.3144855,
+          1.3227711
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.431523102913157,
+        "bracket_s": [
+          1.4268134000000001,
+          1.4347275000000002
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.911619139052904,
+        "bracket_s": [
+          3.9067031,
+          3.9150371
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.957685166057267,
+        "bracket_s": [
+          3.9546058000000004,
+          3.9627722000000003
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.9825770912697043,
+        "bracket_s": [
+          3.9788469,
+          3.9866293
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.002852721113234,
+        "bracket_s": [
+          4.0026913,
+          4.0107868
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.561808903366415,
+        "bracket_s": [
+          6.554636,
+          6.5626258
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": null,
+        "bracket_s": [
+          6.602590500000001,
+          6.7544708
+        ],
+        "unresolved_gap": true
+      },
+      "turn_xmax": {
+        "time_s": 3.9546058000000004
+      }
+    },
+    "delay_ms": {
+      "start10": -28.422745215339383,
+      "start50": -8.880886665302956,
+      "start90": -12.155581425221884,
+      "decel90": 93.61778883937521,
+      "zero": 4.213775412027498,
+      "return50": -1.0857400299508768,
+      "return90": -74.69266008676368,
+      "stop90": 7.314526765733298,
+      "stop10": null,
+      "turn_xmax": 15.714500000000076
+    },
+    "durations": {
+      "rise_10_90": {
+        "A_ms": 148.41265953438997,
+        "candidate_ms": 164.67982332450748
+      },
+      "reversal_90_90": {
+        "A_ms": 259.54403098646895,
+        "candidate_ms": 91.23358206033005
+      },
+      "stop_90_10": {
+        "A_ms": null,
+        "candidate_ms": null
+      }
+    },
+    "shape": {
+      "start": {
+        "samples": 87,
+        "v_RMSE_mm_s": 0.631166390059305,
+        "v_peak_error_mm_s": 1.8814564030032983,
+        "x_RMSE_um": 62.42053973771677
+      },
+      "turn": {
+        "samples": 99,
+        "v_RMSE_mm_s": 0.6151290104398272,
+        "v_peak_error_mm_s": 2.063885751006443,
+        "x_RMSE_um": 25.310282098585976
+      },
+      "outbound": {
+        "samples": 200,
+        "v_RMSE_mm_s": 0.46758510414444143,
+        "v_peak_error_mm_s": 1.0270268122885602,
+        "x_RMSE_um": 27.65478762481098
+      },
+      "return_straight": {
+        "samples": 175,
+        "v_RMSE_mm_s": 0.47203491959072436,
+        "v_peak_error_mm_s": 1.2182592989569452,
+        "x_RMSE_um": 19.86277610317742
+      },
+      "stop": {
+        "samples": 51,
+        "v_RMSE_mm_s": 0.32005702318110385,
+        "v_peak_error_mm_s": 0.8882913346408747,
+        "x_RMSE_um": 20.92220493270103
+      }
+    },
+    "gate_50ms": true,
+    "gate_markers": [
+      "start50",
+      "turn_xmax",
+      "return50"
+    ],
+    "shape_acceptance": "Inspect unshifted X/Vx and independent duration/shape errors; 50 ms gate alone is insufficient."
+  },
+  "reconstructed_nominal": {
+    "source": {
+      "start10": {
+        "time_s": 1.295266024803989,
+        "bracket_s": [
+          1.290675,
+          1.2987299
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.327727519686307,
+        "bracket_s": [
+          1.3227711,
+          1.3305615000000002
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.4436786843383789,
+        "bracket_s": [
+          1.4428064,
+          1.4509348000000002
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.8180013502135286,
+        "bracket_s": [
+          3.8109439000000003,
+          3.8187046000000002
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.9534713906452397,
+        "bracket_s": [
+          3.9466297000000004,
+          3.9546058000000004
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.983662831299655,
+        "bracket_s": [
+          3.9788469,
+          3.9866293
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.0775453811999975,
+        "bracket_s": [
+          4.0748652000000005,
+          4.0824862
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.554494376600681,
+        "bracket_s": [
+          6.546928500000001,
+          6.554636
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": null,
+        "bracket_s": [
+          6.602590500000001,
+          6.7544708
+        ],
+        "unresolved_gap": true
+      },
+      "turn_xmax": {
+        "time_s": 3.9388913000000003
+      }
+    },
+    "candidate": {
+      "start10": {
+        "time_s": 1.2515445967984002,
+        "bracket_s": [
+          1.2510000000000001,
+          1.252
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.3221613576267475,
+        "bracket_s": [
+          1.322,
+          1.323
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.4275287270430241,
+        "bracket_s": [
+          1.427,
+          1.428
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.9079676463230224,
+        "bracket_s": [
+          3.907,
+          3.908
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.9555778294209043,
+        "bracket_s": [
+          3.955,
+          3.956
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.9797963636756903,
+        "bracket_s": [
+          3.979,
+          3.98
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.002703260499959,
+        "bracket_s": [
+          4.002,
+          4.003
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.562472518139038,
+        "bracket_s": [
+          6.562,
+          6.563
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": 6.602475855231609,
+        "bracket_s": [
+          6.602,
+          6.603
+        ],
+        "unresolved_gap": false
+      },
+      "turn_xmax": {
+        "time_s": 3.955
+      }
+    },
+    "delay_ms": {
+      "start10": -43.72142800558865,
+      "start50": -5.56616205955951,
+      "start90": -16.14995729535473,
+      "decel90": 89.96629610949381,
+      "zero": 2.106438775664632,
+      "return50": -3.866467623964809,
+      "return90": -74.8421207000387,
+      "stop90": 7.978141538356631,
+      "stop10": null,
+      "turn_xmax": 16.108699999999754
+    },
+    "durations": {
+      "rise_10_90": {
+        "A_ms": 148.41265953438997,
+        "candidate_ms": 175.98413024462388
+      },
+      "reversal_90_90": {
+        "A_ms": 259.54403098646895,
+        "candidate_ms": 94.73561417693644
+      },
+      "stop_90_10": {
+        "A_ms": null,
+        "candidate_ms": 40.0033370925712
+      }
+    },
+    "shape": {
+      "start": {
+        "samples": 87,
+        "v_RMSE_mm_s": 0.6326754060195777,
+        "v_peak_error_mm_s": 1.8727523526910113,
+        "x_RMSE_um": 62.41895068330153
+      },
+      "turn": {
+        "samples": 99,
+        "v_RMSE_mm_s": 0.6135897966479679,
+        "v_peak_error_mm_s": 2.051243417209153,
+        "x_RMSE_um": 25.291687548651574
+      },
+      "outbound": {
+        "samples": 200,
+        "v_RMSE_mm_s": 0.4677475292093804,
+        "v_peak_error_mm_s": 1.027527737211761,
+        "x_RMSE_um": 27.65032254671505
+      },
+      "return_straight": {
+        "samples": 175,
+        "v_RMSE_mm_s": 0.4722983529295598,
+        "v_peak_error_mm_s": 1.218261451159698,
+        "x_RMSE_um": 19.858740228476734
+      },
+      "stop": {
+        "samples": 51,
+        "v_RMSE_mm_s": 0.33144316448202565,
+        "v_peak_error_mm_s": 0.8913471757219051,
+        "x_RMSE_um": 20.93628998484061
+      }
+    },
+    "gate_50ms": true,
+    "gate_markers": [
+      "start50",
+      "turn_xmax",
+      "return50"
+    ],
+    "shape_acceptance": "Inspect unshifted X/Vx and independent duration/shape errors; 50 ms gate alone is insufficient."
+  },
+  "command_grid_nominal": {
+    "source": {
+      "start10": {
+        "time_s": 1.295266024803989,
+        "bracket_s": [
+          1.290675,
+          1.2987299
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.327727519686307,
+        "bracket_s": [
+          1.3227711,
+          1.3305615000000002
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.4436786843383789,
+        "bracket_s": [
+          1.4428064,
+          1.4509348000000002
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.8180013502135286,
+        "bracket_s": [
+          3.8109439000000003,
+          3.8187046000000002
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.9534713906452397,
+        "bracket_s": [
+          3.9466297000000004,
+          3.9546058000000004
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.983662831299655,
+        "bracket_s": [
+          3.9788469,
+          3.9866293
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.0775453811999975,
+        "bracket_s": [
+          4.0748652000000005,
+          4.0824862
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.554494376600681,
+        "bracket_s": [
+          6.546928500000001,
+          6.554636
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": null,
+        "bracket_s": [
+          6.602590500000001,
+          6.7544708
+        ],
+        "unresolved_gap": true
+      },
+      "turn_xmax": {
+        "time_s": 3.9388913000000003
+      }
+    },
+    "candidate": {
+      "start10": {
+        "time_s": 1.2674748345094033,
+        "bracket_s": [
+          1.264,
+          1.272
+        ],
+        "unresolved_gap": false
+      },
+      "start50": {
+        "time_s": 1.3189497850988492,
+        "bracket_s": [
+          1.312,
+          1.32
+        ],
+        "unresolved_gap": false
+      },
+      "start90": {
+        "time_s": 1.431632838820104,
+        "bracket_s": [
+          1.424,
+          1.432
+        ],
+        "unresolved_gap": false
+      },
+      "decel90": {
+        "time_s": 3.911376456652476,
+        "bracket_s": [
+          3.904,
+          3.912
+        ],
+        "unresolved_gap": false
+      },
+      "zero": {
+        "time_s": 3.9576887888133023,
+        "bracket_s": [
+          3.952,
+          3.96
+        ],
+        "unresolved_gap": false
+      },
+      "return50": {
+        "time_s": 3.982648549143132,
+        "bracket_s": [
+          3.976,
+          3.984
+        ],
+        "unresolved_gap": false
+      },
+      "return90": {
+        "time_s": 4.004012354109926,
+        "bracket_s": [
+          4.0,
+          4.008
+        ],
+        "unresolved_gap": false
+      },
+      "stop90": {
+        "time_s": 6.561412587884422,
+        "bracket_s": [
+          6.5600000000000005,
+          6.5680000000000005
+        ],
+        "unresolved_gap": false
+      },
+      "stop10": {
+        "time_s": 6.6032062044444775,
+        "bracket_s": [
+          6.6000000000000005,
+          6.6080000000000005
+        ],
+        "unresolved_gap": false
+      },
+      "turn_xmax": {
+        "time_s": 3.96
+      }
+    },
+    "delay_ms": {
+      "start10": -27.791190294585544,
+      "start50": -8.777734587457786,
+      "start90": -12.045845518274811,
+      "decel90": 93.37510643894743,
+      "zero": 4.217398168062658,
+      "return50": -1.0142821565231053,
+      "return90": -73.53302709007181,
+      "stop90": 6.918211283740483,
+      "stop10": null,
+      "turn_xmax": 21.108699999999647
+    },
+    "durations": {
+      "rise_10_90": {
+        "A_ms": 148.41265953438997,
+        "candidate_ms": 164.1580043107007
+      },
+      "reversal_90_90": {
+        "A_ms": 259.54403098646895,
+        "candidate_ms": 92.63589745744972
+      },
+      "stop_90_10": {
+        "A_ms": null,
+        "candidate_ms": 41.793616560055646
+      }
+    },
+    "shape": {
+      "start": {
+        "samples": 87,
+        "v_RMSE_mm_s": 0.6323219838730313,
+        "v_peak_error_mm_s": 1.8883161624994722,
+        "x_RMSE_um": 62.488883806128015
+      },
+      "turn": {
+        "samples": 99,
+        "v_RMSE_mm_s": 0.610083009983675,
+        "v_peak_error_mm_s": 2.055637351229058,
+        "x_RMSE_um": 25.22524364443754
+      },
+      "outbound": {
+        "samples": 200,
+        "v_RMSE_mm_s": 0.46230217424952985,
+        "v_peak_error_mm_s": 0.9899776058781686,
+        "x_RMSE_um": 27.682180003728536
+      },
+      "return_straight": {
+        "samples": 175,
+        "v_RMSE_mm_s": 0.46938743908150987,
+        "v_peak_error_mm_s": 1.2061137209002508,
+        "x_RMSE_um": 19.848052048861327
+      },
+      "stop": {
+        "samples": 51,
+        "v_RMSE_mm_s": 0.3338240533213933,
+        "v_peak_error_mm_s": 0.8945353078961031,
+        "x_RMSE_um": 21.03930943851261
+      }
+    },
+    "gate_50ms": true,
+    "gate_markers": [
+      "start50",
+      "turn_xmax",
+      "return50"
+    ],
+    "shape_acceptance": "Inspect unshifted X/Vx and independent duration/shape errors; 50 ms gate alone is insufficient."
+  },
+  "code_clock": {
+    "physical_dt_s": 0.001,
+    "command_period_s": 0.008,
+    "execution_extra_s": 0.0,
+    "sampling": "model q and J qdot logged before integration step; command at same pre-step tick",
+    "input": "original host axis, unchanged samples; elementwise linear IK nominal interpolation",
+    "cabinet_max_gap_s": 0.25003339999999996,
+    "source_initial_speed_m_s": [
+      -2.2112026282227145e-06,
+      7.542586059675098e-06,
+      -1.44969515270125e-05
+    ],
+    "initial_actual_minus_nominal_rad": [
+      4.360681853743387e-05,
+      2.1535747942058592e-05,
+      -6.3388113082929465e-06,
+      1.120291673295526e-05,
+      -8.803162912174312e-05,
+      2.181898317332731e-05
+    ]
+  }
+}

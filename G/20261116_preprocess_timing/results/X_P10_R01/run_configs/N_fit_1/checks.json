@@ -1,0 +1,11 @@
+{
+  "complete": true,
+  "pre_step_time_exact": true,
+  "remaining_identically_zero": true,
+  "remaining_dot_identically_zero": true,
+  "frame_reference_checked": true,
+  "held_command_exact": true,
+  "command_publication_causal": true,
+  "external_force_path_exact": true,
+  "observer_replay": false
+}

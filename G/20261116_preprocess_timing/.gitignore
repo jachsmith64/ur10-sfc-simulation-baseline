@@ -1,0 +1,6 @@
+/local/
+/runs/
+__pycache__/
+/G_preprocess_timing_review_20261116.zip
+/results/**/*.npz
+/delivery.json
