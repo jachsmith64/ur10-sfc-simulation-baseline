@@ -1,0 +1,22 @@
+--- a/01_工程/sweep.py
++++ b/01_工程/sweep.py
+@@ -109,7 +109,7 @@
+              log: Callable[[str], None] = print,
+              c_input=None, refresh_state: bool = True, compatibility_mode: bool = False,
+              execution_mode='TORQUE_DIRECT', control_update_steps=1, precise_logger=None,
+-             common_position_correction=None, e_extension=None, measurement_adapter=None, final_command_hold=False) -> dict[str, Any]:
++             common_position_correction=None, e_extension=None, measurement_adapter=None, final_command_hold=False, command_channel=None) -> dict[str, Any]:
+     """跑一组并返回统计行。异常/发散不会抛出，而是以 status 标记返回。
+ 
+     fd_scale  : 测试A 用。施加的力按 Fd_scale = fd_scale · Fd(t)，其余完全相同。
+@@ -249,7 +249,9 @@
+             command = actuation.command(base_ctrl)
+             if e_extension is not None:
+                 command = e_extension.command(i, env, command, out, actuation)
+-            if final_command_hold:
++            if command_channel is not None:
++                command = command_channel.tick(i, env, command, base_ctrl, out, updated)
++            elif final_command_hold:
+                 if updated or held_final_command is None:held_final_command=command.copy()
+                 command=held_final_command
+             env.set_ctrl(command) # optional hold covers entirefinalsixjointcommand

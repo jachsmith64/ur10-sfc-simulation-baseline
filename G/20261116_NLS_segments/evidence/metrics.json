@@ -1,0 +1,5786 @@
+{
+  "windows": [
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "full",
+      "n": 7763,
+      "complete_run": true,
+      "score_um": {
+        "rms": 36.774725268416674,
+        "peak": 144.50875222221097
+      },
+      "peak_time_s": 4.274,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.10528881966448,
+        "peak": 54.405059632822045
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "pre_static",
+      "n": 1255,
+      "complete_run": true,
+      "score_um": {
+        "rms": 1.6252603419808394,
+        "peak": 7.096890509082966
+      },
+      "peak_time_s": 0.008,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.064728254771886,
+        "peak": 54.405059632822045
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "start",
+      "n": 705,
+      "complete_run": true,
+      "score_um": {
+        "rms": 67.92139296195502,
+        "peak": 122.48350201087172
+      },
+      "peak_time_s": 1.7530000000000001,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.064908606228315,
+        "peak": 51.514301096415934
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "start_transition",
+      "n": 280,
+      "complete_run": true,
+      "score_um": {
+        "rms": 26.269457379944104,
+        "peak": 50.5615029093442
+      },
+      "peak_time_s": 1.987,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.101234163575306,
+        "peak": 51.5643991512809
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "outbound",
+      "n": 1600,
+      "complete_run": true,
+      "score_um": {
+        "rms": 16.075963541401926,
+        "peak": 34.87242114636477
+      },
+      "peak_time_s": 2.2680000000000002,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.161458052790984,
+        "peak": 51.53843287632432
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "turn",
+      "n": 790,
+      "complete_run": true,
+      "score_um": {
+        "rms": 82.27626401022584,
+        "peak": 144.50875222221097
+      },
+      "peak_time_s": 4.274,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.21061779252951,
+        "peak": 51.63868183766486
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "turn_transition",
+      "n": 390,
+      "complete_run": true,
+      "score_um": {
+        "rms": 44.875292618931596,
+        "peak": 73.76346149777896
+      },
+      "peak_time_s": 4.66,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.190074959815824,
+        "peak": 51.47488837214448
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "return_straight",
+      "n": 1400,
+      "complete_run": true,
+      "score_um": {
+        "rms": 15.745975904333598,
+        "peak": 47.05584082587134
+      },
+      "peak_time_s": 6.356,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.10558783310696,
+        "peak": 51.748449376063654
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "stop",
+      "n": 780,
+      "complete_run": true,
+      "score_um": {
+        "rms": 12.209355136250855,
+        "peak": 25.17065532281492
+      },
+      "peak_time_s": 7.174,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.017711223744435,
+        "peak": 51.836728585441044
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "stop_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 13.696521159733832,
+        "peak": 21.916111381277496
+      },
+      "peak_time_s": 7.237,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.02774652309386,
+        "peak": 51.15057168014474
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "N",
+      "window": "post_static",
+      "n": 362,
+      "complete_run": true,
+      "score_um": {
+        "rms": 2.3436031262272006,
+        "peak": 5.179271403595429
+      },
+      "peak_time_s": 7.455,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 50.98821651186258,
+        "peak": 51.10496573825344
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "full",
+      "n": 7763,
+      "complete_run": true,
+      "score_um": {
+        "rms": 30.256687277664895,
+        "peak": 119.4451229271031
+      },
+      "peak_time_s": 4.273,
+      "requested_N": {
+        "rms": 0.22537019252095977,
+        "peak": 0.89173764011377
+      },
+      "spring_N": {
+        "rms": 0.15081823177828688,
+        "peak": 0.5970391681304625
+      },
+      "linear_N": {
+        "rms": 0.14201935473219446,
+        "peak": 0.8565525670327055
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 2.184130906496267e-05,
+        "peak": 8.583555183779141e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.10920654532483401,
+        "peak": 0.42917775918892864
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.10539687339721,
+        "peak": 54.42344216705872
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.10920654532482933,
+        "peak": 0.42917775918899465
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 20.67095785769774,
+        "peak": 424.3571894756961
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "pre_static",
+      "n": 1255,
+      "complete_run": true,
+      "score_um": {
+        "rms": 2.3067776554769233,
+        "peak": 8.162459507144947
+      },
+      "peak_time_s": 0.11,
+      "requested_N": {
+        "rms": 0.14110131605865647,
+        "peak": 0.89173764011377
+      },
+      "spring_N": {
+        "rms": 0.011551469102463546,
+        "peak": 0.04015156037942327
+      },
+      "linear_N": {
+        "rms": 0.13765449421690723,
+        "peak": 0.8565525670327055
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.3590340227661857e-05,
+        "peak": 8.583555183779141e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.06795170113839101,
+        "peak": 0.42917775918892864
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06481197608692,
+        "peak": 54.42344216705872
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.06795170113832472,
+        "peak": 0.42917775918899465
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.69252663720023,
+        "peak": 424.3571894756961
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "start",
+      "n": 705,
+      "complete_run": true,
+      "score_um": {
+        "rms": 55.756991412039795,
+        "peak": 101.68681155180332
+      },
+      "peak_time_s": 1.7530000000000001,
+      "requested_N": {
+        "rms": 0.3529421851919319,
+        "peak": 0.7466790729880464
+      },
+      "spring_N": {
+        "rms": 0.27636696176755543,
+        "peak": 0.5041851714623294
+      },
+      "linear_N": {
+        "rms": 0.1694756891123983,
+        "peak": 0.61966548025734
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 3.405989272670415e-05,
+        "peak": 7.20754666607185e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.1702994636335767,
+        "peak": 0.3603773333042014
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06575268230012,
+        "peak": 51.517227248589954
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.17029946363357637,
+        "peak": 0.36037733330461214
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 20.508502701871706,
+        "peak": 183.29420468632517
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "start_transition",
+      "n": 280,
+      "complete_run": true,
+      "score_um": {
+        "rms": 21.64079746104912,
+        "peak": 45.31550186670665
+      },
+      "peak_time_s": 1.986,
+      "requested_N": {
+        "rms": 0.1864767632680428,
+        "peak": 0.41803435956023594
+      },
+      "spring_N": {
+        "rms": 0.11326339614931207,
+        "peak": 0.22505181953960293
+      },
+      "linear_N": {
+        "rms": 0.1322834532473796,
+        "peak": 0.29278578541338346
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.802587477354997e-05,
+        "peak": 4.040069722034917e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.09012937386783118,
+        "peak": 0.20200348610157332
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.1020547750646,
+        "peak": 51.55815487693471
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.09012937386777478,
+        "peak": 0.2020034861019341
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 22.23435327082456,
+        "peak": 137.67362847718837
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "outbound",
+      "n": 1600,
+      "complete_run": true,
+      "score_um": {
+        "rms": 14.475471064843743,
+        "peak": 32.61834893559255
+      },
+      "peak_time_s": 2.267,
+      "requested_N": {
+        "rms": 0.18874490776074107,
+        "peak": 0.4516280831446755
+      },
+      "spring_N": {
+        "rms": 0.07220119642801745,
+        "peak": 0.16118210072928335
+      },
+      "linear_N": {
+        "rms": 0.14560664496931136,
+        "peak": 0.3549355004104297
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.8329497933916613e-05,
+        "peak": 4.3702201205488607e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.09164748966960178,
+        "peak": 0.21851100602805662
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.16151039168125,
+        "peak": 51.53941613755156
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.09164748966958108,
+        "peak": 0.21851100602648799
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 20.35656746319395,
+        "peak": 162.2505545008054
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "turn",
+      "n": 790,
+      "complete_run": true,
+      "score_um": {
+        "rms": 66.83107111559784,
+        "peak": 119.4451229271031
+      },
+      "peak_time_s": 4.273,
+      "requested_N": {
+        "rms": 0.39940052695394795,
+        "peak": 0.8509524544043098
+      },
+      "spring_N": {
+        "rms": 0.3323072853942583,
+        "peak": 0.5970391681304625
+      },
+      "linear_N": {
+        "rms": 0.17506609561483974,
+        "peak": 0.44778320010656547
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 3.8886603199607864e-05,
+        "peak": 8.283421929775552e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.1944330159980349,
+        "peak": 0.41417109648859773
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.2101228205777,
+        "peak": 51.652197663432766
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.1944330159980702,
+        "peak": 0.41417109648733563
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.176746987006698,
+        "peak": 178.8156945085036
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "turn_transition",
+      "n": 390,
+      "complete_run": true,
+      "score_um": {
+        "rms": 36.352644684780124,
+        "peak": 63.66164629106843
+      },
+      "peak_time_s": 4.659,
+      "requested_N": {
+        "rms": 0.2488477097521078,
+        "peak": 0.5578778462920491
+      },
+      "spring_N": {
+        "rms": 0.18569161978415238,
+        "peak": 0.318268435591347
+      },
+      "linear_N": {
+        "rms": 0.14861294455662113,
+        "peak": 0.353650558855731
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 2.4173366075927215e-05,
+        "peak": 5.421603486374113e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.12086683037965927,
+        "peak": 0.2710801743183839
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.18974115376694,
+        "peak": 51.482051968801926
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.120866830379633,
+        "peak": 0.27108017431822884
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.091960184038186,
+        "peak": 136.18631397071553
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "return_straight",
+      "n": 1400,
+      "complete_run": true,
+      "score_um": {
+        "rms": 14.11983161384932,
+        "peak": 40.80174555320937
+      },
+      "peak_time_s": 6.355,
+      "requested_N": {
+        "rms": 0.17088170468988143,
+        "peak": 0.5404163433977044
+      },
+      "spring_N": {
+        "rms": 0.06990758731141465,
+        "peak": 0.19213650073282315
+      },
+      "linear_N": {
+        "rms": 0.13131215956011838,
+        "peak": 0.46707352924671414
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.6527314599555763e-05,
+        "peak": 5.212225033356851e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.08263657299773278,
+        "peak": 0.2606112516675985
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.10534944707493,
+        "peak": 51.74646191041879
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.08263657299778983,
+        "peak": 0.26061125166817173
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 19.316123992854124,
+        "peak": 137.9278974235595
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "stop",
+      "n": 780,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.966801426752442,
+        "peak": 23.86172279777988
+      },
+      "peak_time_s": 6.44,
+      "requested_N": {
+        "rms": 0.15146017081861143,
+        "peak": 0.4866713371834507
+      },
+      "spring_N": {
+        "rms": 0.055372851419497646,
+        "peak": 0.11906655030666931
+      },
+      "linear_N": {
+        "rms": 0.1201210332053187,
+        "peak": 0.3826634991265667
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.4599262146207403e-05,
+        "peak": 4.6936874784120764e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.0729963107311108,
+        "peak": 0.2346843739207031
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.01823459355878,
+        "peak": 51.862622695165854
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.07299631073106676,
+        "peak": 0.23468437392080607
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 23.260558761623024,
+        "peak": 191.25635763456228
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "stop_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.712946846989327,
+        "peak": 18.108818788951865
+      },
+      "peak_time_s": 7.236,
+      "requested_N": {
+        "rms": 0.11142514060554173,
+        "peak": 0.20070946682262597
+      },
+      "spring_N": {
+        "rms": 0.05718731229687501,
+        "peak": 0.09048723975629498
+      },
+      "linear_N": {
+        "rms": 0.10510490877124924,
+        "peak": 0.24283866159366896
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.0738289754369198e-05,
+        "peak": 1.9342861668343074e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.05369144877173279,
+        "peak": 0.09671430834208988
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.02913245303411,
+        "peak": 51.15298957868251
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.05369144877186813,
+        "peak": 0.0967143083417542
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 16.76660092996559,
+        "peak": 97.95472475165283
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "L",
+      "window": "post_static",
+      "n": 362,
+      "complete_run": true,
+      "score_um": {
+        "rms": 2.4809304211735608,
+        "peak": 5.391349100887908
+      },
+      "peak_time_s": 7.453,
+      "requested_N": {
+        "rms": 0.0958041936663718,
+        "peak": 0.2390402532598994
+      },
+      "spring_N": {
+        "rms": 0.012588584587363906,
+        "peak": 0.026790682819573607
+      },
+      "linear_N": {
+        "rms": 0.09537714252217358,
+        "peak": 0.23078608063486472
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 9.232799186544707e-06,
+        "peak": 2.3036199127500084e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.04616399593278137,
+        "peak": 0.11518099563747543
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 50.988219951202765,
+        "peak": 51.11376995276938
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.04616399593256955,
+        "peak": 0.11518099563587236
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 16.19577689661728,
+        "peak": 112.87974769663671
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "full",
+      "n": 7763,
+      "complete_run": true,
+      "score_um": {
+        "rms": 27.838321055996882,
+        "peak": 102.8855067595701
+      },
+      "peak_time_s": 4.272,
+      "requested_N": {
+        "rms": 0.7527144734739485,
+        "peak": 7.915375064188111
+      },
+      "spring_N": {
+        "rms": 0.1388330426956216,
+        "peak": 0.5137477930049048
+      },
+      "linear_N": {
+        "rms": 0.1348342411147348,
+        "peak": 0.8565525670327055
+      },
+      "nonlinear_N": {
+        "rms": 0.5882459591654898,
+        "peak": 7.023637424074341
+      },
+      "micro_q_rad": {
+        "rms": 7.282902070328927e-05,
+        "peak": 0.0007619063680558422
+      },
+      "request_tau_Nm": {
+        "rms": 0.3641451035164478,
+        "peak": 3.809531840278454
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.10626881467091,
+        "peak": 54.57243256241476
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.36414510351645846,
+        "peak": 3.809531840279168
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 113.67643160900113,
+        "peak": 3804.7112705207874
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "pre_static",
+      "n": 1255,
+      "complete_run": true,
+      "score_um": {
+        "rms": 9.738079933308232,
+        "peak": 39.360348206242065
+      },
+      "peak_time_s": 0.044,
+      "requested_N": {
+        "rms": 0.8939741564893733,
+        "peak": 7.915375064188111
+      },
+      "spring_N": {
+        "rms": 0.04840030520472475,
+        "peak": 0.19635865458771506
+      },
+      "linear_N": {
+        "rms": 0.13797513444666973,
+        "peak": 0.8565525670327055
+      },
+      "nonlinear_N": {
+        "rms": 0.759702716302062,
+        "peak": 7.023637424074341
+      },
+      "micro_q_rad": {
+        "rms": 8.6084893598797e-05,
+        "peak": 0.0007619063680558422
+      },
+      "request_tau_Nm": {
+        "rms": 0.43042446799396344,
+        "peak": 3.809531840278454
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.066227748343785,
+        "peak": 54.57243256241476
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.43042446799389616,
+        "peak": 3.809531840279168
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 157.41359787579202,
+        "peak": 3804.7112705207874
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "start",
+      "n": 705,
+      "complete_run": true,
+      "score_um": {
+        "rms": 50.90498011738741,
+        "peak": 91.41967096275467
+      },
+      "peak_time_s": 1.752,
+      "requested_N": {
+        "rms": 0.8668729840865517,
+        "peak": 3.3811519114910444
+      },
+      "spring_N": {
+        "rms": 0.2515880301261031,
+        "peak": 0.4541406245575033
+      },
+      "linear_N": {
+        "rms": 0.14183789184333068,
+        "peak": 0.48709975852123494
+      },
+      "nonlinear_N": {
+        "rms": 0.6545552326871725,
+        "peak": 3.0120205054818716
+      },
+      "micro_q_rad": {
+        "rms": 8.367254827533435e-05,
+        "peak": 0.00032657493125475896
+      },
+      "request_tau_Nm": {
+        "rms": 0.4183627413765986,
+        "peak": 1.6328746562729315
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.066472339356515,
+        "peak": 51.62710115210982
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.4183627413767177,
+        "peak": 1.6328746562735306
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 109.70967498283355,
+        "peak": 1265.2021716815748
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "start_transition",
+      "n": 280,
+      "complete_run": true,
+      "score_um": {
+        "rms": 25.711682288531623,
+        "peak": 48.772497338636526
+      },
+      "peak_time_s": 1.985,
+      "requested_N": {
+        "rms": 0.6311654792059088,
+        "peak": 1.4682336194782086
+      },
+      "spring_N": {
+        "rms": 0.135349175279864,
+        "peak": 0.2438247596634071
+      },
+      "linear_N": {
+        "rms": 0.13108917746280657,
+        "peak": 0.24250862107153887
+      },
+      "nonlinear_N": {
+        "rms": 0.487496750763615,
+        "peak": 1.058088090255016
+      },
+      "micro_q_rad": {
+        "rms": 6.102239645157184e-05,
+        "peak": 0.00014189167097772827
+      },
+      "request_tau_Nm": {
+        "rms": 0.3051119822578804,
+        "peak": 0.7094583548890971
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.104088932918174,
+        "peak": 51.57123867003021
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.3051119822579465,
+        "peak": 0.7094583548881749
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 99.18715302189506,
+        "peak": 547.3780719506822
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "outbound",
+      "n": 1600,
+      "complete_run": true,
+      "score_um": {
+        "rms": 12.406374278644476,
+        "peak": 35.771401794621
+      },
+      "peak_time_s": 2.266,
+      "requested_N": {
+        "rms": 0.7052875579705812,
+        "peak": 2.010278622692677
+      },
+      "spring_N": {
+        "rms": 0.06247245630306028,
+        "peak": 0.17876533290333907
+      },
+      "linear_N": {
+        "rms": 0.1375779382159585,
+        "peak": 0.32433172357440637
+      },
+      "nonlinear_N": {
+        "rms": 0.5409310527346588,
+        "peak": 1.6364969407585483
+      },
+      "micro_q_rad": {
+        "rms": 6.848742203041605e-05,
+        "peak": 0.00019529402115804
+      },
+      "request_tau_Nm": {
+        "rms": 0.3424371101521023,
+        "peak": 0.9764701057903075
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.161989892608126,
+        "peak": 51.542828194959874
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.34243711015206263,
+        "peak": 0.9764701057901367
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 105.2285060376637,
+        "peak": 810.1611716417583
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "turn",
+      "n": 790,
+      "complete_run": true,
+      "score_um": {
+        "rms": 58.872175682546235,
+        "peak": 102.8855067595701
+      },
+      "peak_time_s": 4.272,
+      "requested_N": {
+        "rms": 0.9341937238174808,
+        "peak": 2.7141514258970507
+      },
+      "spring_N": {
+        "rms": 0.2925094079331107,
+        "peak": 0.5137477930049048
+      },
+      "linear_N": {
+        "rms": 0.15762710349463877,
+        "peak": 0.3721062756925586
+      },
+      "nonlinear_N": {
+        "rms": 0.6793423788494367,
+        "peak": 2.0110901766349953
+      },
+      "micro_q_rad": {
+        "rms": 9.096835420799465e-05,
+        "peak": 0.00026436896979361327
+      },
+      "request_tau_Nm": {
+        "rms": 0.4548417710399318,
+        "peak": 1.3218448489670125
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.21086823977588,
+        "peak": 51.696453220690685
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.45484177104006496,
+        "peak": 1.3218448489691421
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 113.96547739967143,
+        "peak": 866.1938767870037
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "turn_transition",
+      "n": 390,
+      "complete_run": true,
+      "score_um": {
+        "rms": 38.692034006009514,
+        "peak": 66.01025130282216
+      },
+      "peak_time_s": 4.657,
+      "requested_N": {
+        "rms": 0.7160119726238481,
+        "peak": 1.9217453208783928
+      },
+      "spring_N": {
+        "rms": 0.19728016629054165,
+        "peak": 0.328010802712362
+      },
+      "linear_N": {
+        "rms": 0.13744436357205092,
+        "peak": 0.3261056025146504
+      },
+      "nonlinear_N": {
+        "rms": 0.5547368836825015,
+        "peak": 1.6499411073406303
+      },
+      "micro_q_rad": {
+        "rms": 6.953781866096466e-05,
+        "peak": 0.00018661462158507533
+      },
+      "request_tau_Nm": {
+        "rms": 0.347689093304932,
+        "peak": 0.9330731079261091
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.19088484088295,
+        "peak": 51.51485710815698
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.34768909330487857,
+        "peak": 0.9330731079266915
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 102.65863097637111,
+        "peak": 809.0863804391639
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "return_straight",
+      "n": 1400,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.757835889220061,
+        "peak": 35.41349096258796
+      },
+      "peak_time_s": 6.355,
+      "requested_N": {
+        "rms": 0.642625301120675,
+        "peak": 2.8913786867497286
+      },
+      "spring_N": {
+        "rms": 0.05834159536438791,
+        "peak": 0.16482458631998673
+      },
+      "linear_N": {
+        "rms": 0.1251998216269954,
+        "peak": 0.4168744466277434
+      },
+      "nonlinear_N": {
+        "rms": 0.4966679156321378,
+        "peak": 2.3847286257301925
+      },
+      "micro_q_rad": {
+        "rms": 6.216526713348234e-05,
+        "peak": 0.0002788686566110397
+      },
+      "request_tau_Nm": {
+        "rms": 0.3108263356674639,
+        "peak": 1.3943432830552458
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.10470939120889,
+        "peak": 51.75911531417066
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.3108263356674567,
+        "peak": 1.3943432830561349
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 90.24541129152993,
+        "peak": 793.4603782286736
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "stop",
+      "n": 780,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.062289919002092,
+        "peak": 35.80425084137573
+      },
+      "peak_time_s": 6.439,
+      "requested_N": {
+        "rms": 0.6934854764578858,
+        "peak": 2.6067560005346273
+      },
+      "spring_N": {
+        "rms": 0.05558718749600425,
+        "peak": 0.17834734676411712
+      },
+      "linear_N": {
+        "rms": 0.13024438503774055,
+        "peak": 0.3856902299533781
+      },
+      "nonlinear_N": {
+        "rms": 0.5371957914061963,
+        "peak": 2.1222131897181926
+      },
+      "micro_q_rad": {
+        "rms": 6.684909477244384e-05,
+        "peak": 0.00025129246834146985
+      },
+      "request_tau_Nm": {
+        "rms": 0.33424547386222564,
+        "peak": 1.2564623417072194
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.021454288036566,
+        "peak": 52.030783039155516
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.33424547386230585,
+        "peak": 1.256462341707135
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 116.70966830188124,
+        "peak": 931.356051044815
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "stop_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.326518077872933,
+        "peak": 16.833266428166432
+      },
+      "peak_time_s": 7.231,
+      "requested_N": {
+        "rms": 0.4774708621915973,
+        "peak": 1.3681079510619698
+      },
+      "spring_N": {
+        "rms": 0.05269211527229124,
+        "peak": 0.08305404967540164
+      },
+      "linear_N": {
+        "rms": 0.10660199725666684,
+        "peak": 0.25599975644514295
+      },
+      "nonlinear_N": {
+        "rms": 0.37675479359233904,
+        "peak": 1.1475995808516943
+      },
+      "micro_q_rad": {
+        "rms": 4.601490966162737e-05,
+        "peak": 0.00013184778500012606
+      },
+      "request_tau_Nm": {
+        "rms": 0.23007454830813642,
+        "peak": 0.6592389250004342
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.031165780520155,
+        "peak": 51.16405131860781
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.2300745483082329,
+        "peak": 0.659238925000674
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 85.02074637292773,
+        "peak": 579.9907161464834
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "mode": "S",
+      "window": "post_static",
+      "n": 362,
+      "complete_run": true,
+      "score_um": {
+        "rms": 4.26120243876663,
+        "peak": 8.873973296027025
+      },
+      "peak_time_s": 7.445,
+      "requested_N": {
+        "rms": 0.4392021594635074,
+        "peak": 1.3500000289144893
+      },
+      "spring_N": {
+        "rms": 0.022775147683622078,
+        "peak": 0.04400712970133933
+      },
+      "linear_N": {
+        "rms": 0.09849751946984556,
+        "peak": 0.24667390054023253
+      },
+      "nonlinear_N": {
+        "rms": 0.33941603792109154,
+        "peak": 1.0854650749599233
+      },
+      "micro_q_rad": {
+        "rms": 4.232660542304918e-05,
+        "peak": 0.0001300987795686301
+      },
+      "request_tau_Nm": {
+        "rms": 0.21163302711523843,
+        "peak": 0.6504938978430957
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 50.988536983648615,
+        "peak": 51.144212770079385
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.2116330271150383,
+        "peak": 0.6504938978415566
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 79.37046179407933,
+        "peak": 480.33877004920504
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "full",
+      "n": 7678,
+      "complete_run": true,
+      "score_um": {
+        "rms": 37.695959090260914,
+        "peak": 149.8287121593627
+      },
+      "peak_time_s": 4.261,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.107294373701585,
+        "peak": 54.42407050680937
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "pre_static",
+      "n": 1275,
+      "complete_run": true,
+      "score_um": {
+        "rms": 2.4904761555684716,
+        "peak": 5.034727077630173
+      },
+      "peak_time_s": 0.36,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06094379574367,
+        "peak": 54.42407050680937
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "start",
+      "n": 705,
+      "complete_run": true,
+      "score_um": {
+        "rms": 66.56475223263048,
+        "peak": 123.5255238021765
+      },
+      "peak_time_s": 1.754,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.066158224157356,
+        "peak": 51.614246789454064
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "start_transition",
+      "n": 290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 31.840524353761033,
+        "peak": 62.296590382436335
+      },
+      "peak_time_s": 1.999,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.11181056449211,
+        "peak": 51.454628031883686
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "outbound",
+      "n": 1560,
+      "complete_run": true,
+      "score_um": {
+        "rms": 15.874514654700718,
+        "peak": 45.980344633835216
+      },
+      "peak_time_s": 2.966,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.15865635786621,
+        "peak": 51.54018359920155
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "turn",
+      "n": 750,
+      "complete_run": true,
+      "score_um": {
+        "rms": 84.831210553479,
+        "peak": 149.8287121593627
+      },
+      "peak_time_s": 4.261,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.22153840720998,
+        "peak": 51.97022825992775
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "turn_transition",
+      "n": 440,
+      "complete_run": true,
+      "score_um": {
+        "rms": 40.88374256202528,
+        "peak": 65.87506093305075
+      },
+      "peak_time_s": 4.704,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.18625744756777,
+        "peak": 51.89271091387693
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "return_straight",
+      "n": 1290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 13.664415106884134,
+        "peak": 40.475583808202686
+      },
+      "peak_time_s": 5.086,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.109686976152155,
+        "peak": 51.64790994753196
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "stop",
+      "n": 910,
+      "complete_run": true,
+      "score_um": {
+        "rms": 26.135090811960897,
+        "peak": 60.79314124956545
+      },
+      "peak_time_s": 6.51,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.028245981302,
+        "peak": 51.794272741096584
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "stop_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 21.864822285268477,
+        "peak": 36.104521536413515
+      },
+      "peak_time_s": 7.242,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.025146546235206,
+        "peak": 51.106948242924446
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "N",
+      "window": "post_static",
+      "n": 257,
+      "complete_run": true,
+      "score_um": {
+        "rms": 1.740845743877451,
+        "peak": 3.3634250602035287
+      },
+      "peak_time_s": 7.513,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 50.99588616339113,
+        "peak": 51.12150279238265
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "full",
+      "n": 7678,
+      "complete_run": true,
+      "score_um": {
+        "rms": 31.083687970352212,
+        "peak": 125.11396103349776
+      },
+      "peak_time_s": 4.261,
+      "requested_N": {
+        "rms": 0.23625818881096114,
+        "peak": 0.9339902283043504
+      },
+      "spring_N": {
+        "rms": 0.15499145145943063,
+        "peak": 0.6183396120052994
+      },
+      "linear_N": {
+        "rms": 0.14936300948575604,
+        "peak": 0.8570878194478225
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 2.2890946733343627e-05,
+        "peak": 9.091940207258173e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.11445473366672322,
+        "peak": 0.45459701036297895
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.10744826706416,
+        "peak": 54.44237913651129
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.1144547336667092,
+        "peak": 0.4545970103637781
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.69863806764059,
+        "peak": 424.43188604082263
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "pre_static",
+      "n": 1275,
+      "complete_run": true,
+      "score_um": {
+        "rms": 2.42910478808147,
+        "peak": 5.636080185949545
+      },
+      "peak_time_s": 0.088,
+      "requested_N": {
+        "rms": 0.139103092958087,
+        "peak": 0.8731336638052297
+      },
+      "spring_N": {
+        "rms": 0.012035883744616485,
+        "peak": 0.02780343221158758
+      },
+      "linear_N": {
+        "rms": 0.13813638767671388,
+        "peak": 0.8570878194478225
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.3397879014544843e-05,
+        "peak": 8.404541369446372e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.06698939507276204,
+        "peak": 0.4202270684731499
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06106035192718,
+        "peak": 54.44237913651129
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.06698939507266895,
+        "peak": 0.42022706847163743
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.458760705819664,
+        "peak": 424.43188604082263
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "start",
+      "n": 705,
+      "complete_run": true,
+      "score_um": {
+        "rms": 54.993228529187384,
+        "peak": 101.84850116761788
+      },
+      "peak_time_s": 1.7530000000000001,
+      "requested_N": {
+        "rms": 0.3764087350153244,
+        "peak": 0.7706056213439008
+      },
+      "spring_N": {
+        "rms": 0.27239840475668226,
+        "peak": 0.505786279227624
+      },
+      "linear_N": {
+        "rms": 0.1960462181335695,
+        "peak": 0.7075855053454985
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 3.6326860168321815e-05,
+        "peak": 7.43856619005842e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.1816343008415494,
+        "peak": 0.3719283095028563
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06696969970553,
+        "peak": 51.62975857734433
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.18163430084160503,
+        "peak": 0.3719283095028075
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 23.970545297544035,
+        "peak": 244.29476330537608
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "start_transition",
+      "n": 290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 25.775081337005105,
+        "peak": 53.14181592670335
+      },
+      "peak_time_s": 1.999,
+      "requested_N": {
+        "rms": 0.17677492916988588,
+        "peak": 0.4849731111453671
+      },
+      "spring_N": {
+        "rms": 0.13403044407101405,
+        "peak": 0.2647845587408405
+      },
+      "linear_N": {
+        "rms": 0.11627658584565237,
+        "peak": 0.2960771423412118
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.7091886501445056e-05,
+        "peak": 4.686866828920833e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.08545943250735263,
+        "peak": 0.23434334144580252
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.11265710060223,
+        "peak": 51.46110188311415
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0854594325072759,
+        "peak": 0.23434334144679198
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 18.88660611101995,
+        "peak": 134.058523300484
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "outbound",
+      "n": 1560,
+      "complete_run": true,
+      "score_um": {
+        "rms": 13.989567488650781,
+        "peak": 41.10713769740643
+      },
+      "peak_time_s": 2.965,
+      "requested_N": {
+        "rms": 0.18321773552434828,
+        "peak": 0.5058755960539771
+      },
+      "spring_N": {
+        "rms": 0.07141125644846551,
+        "peak": 0.2040149212013452
+      },
+      "linear_N": {
+        "rms": 0.1433485068082729,
+        "peak": 0.3713904756960301
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.779223454024559e-05,
+        "peak": 4.909546558564551e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.08896117270127524,
+        "peak": 0.24547732792895546
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.15867492278728,
+        "peak": 51.5408129582656
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.08896117270123112,
+        "peak": 0.245477327927816
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 20.68765693815399,
+        "peak": 162.09988722287113
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "turn",
+      "n": 750,
+      "complete_run": true,
+      "score_um": {
+        "rms": 68.99078866478396,
+        "peak": 125.11396103349776
+      },
+      "peak_time_s": 4.261,
+      "requested_N": {
+        "rms": 0.41225722562167466,
+        "peak": 0.9339902283043504
+      },
+      "spring_N": {
+        "rms": 0.3431877994484878,
+        "peak": 0.6183396120052994
+      },
+      "linear_N": {
+        "rms": 0.17953370684504275,
+        "peak": 0.41200206571946724
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 4.013909674559974e-05,
+        "peak": 9.091940207258173e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.20069548372799925,
+        "peak": 0.45459701036297895
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.22091197486591,
+        "peak": 51.98612075899536
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.20069548372792587,
+        "peak": 0.4545970103637781
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 23.131273187934134,
+        "peak": 182.05263785918973
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "turn_transition",
+      "n": 440,
+      "complete_run": true,
+      "score_um": {
+        "rms": 33.75078839185198,
+        "peak": 56.27076769501312
+      },
+      "peak_time_s": 4.651,
+      "requested_N": {
+        "rms": 0.2664051120996772,
+        "peak": 0.7084475220063807
+      },
+      "spring_N": {
+        "rms": 0.16875058211039132,
+        "peak": 0.28132592352367636
+      },
+      "linear_N": {
+        "rms": 0.170887381294317,
+        "peak": 0.6098885487029448
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 2.587743112545458e-05,
+        "peak": 6.879795901505633e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.12938715562726538,
+        "peak": 0.3439897950751841
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.18658814074094,
+        "peak": 51.898483589804385
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.12938715562730332,
+        "peak": 0.343989795075847
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 25.143271308007556,
+        "peak": 176.58032799284115
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "return_straight",
+      "n": 1290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 12.496664209341677,
+        "peak": 41.069096668283606
+      },
+      "peak_time_s": 5.086,
+      "requested_N": {
+        "rms": 0.16562919581858537,
+        "peak": 0.6078773948235338
+      },
+      "spring_N": {
+        "rms": 0.06242002233142063,
+        "peak": 0.20087064792364998
+      },
+      "linear_N": {
+        "rms": 0.12775264219635818,
+        "peak": 0.40700674689988375
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.6036377000739255e-05,
+        "peak": 5.896484422851875e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.08018188500371495,
+        "peak": 0.2948242211428035
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.109859391817324,
+        "peak": 51.66305998559153
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0801818850037197,
+        "peak": 0.2948242211435387
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 20.045926013110513,
+        "peak": 158.60900147113352
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "stop",
+      "n": 910,
+      "complete_run": true,
+      "score_um": {
+        "rms": 22.192765081449476,
+        "peak": 57.76342925628006
+      },
+      "peak_time_s": 6.51,
+      "requested_N": {
+        "rms": 0.2130832561536651,
+        "peak": 0.7983314165753548
+      },
+      "spring_N": {
+        "rms": 0.11084177927492124,
+        "peak": 0.28426682777362067
+      },
+      "linear_N": {
+        "rms": 0.14952754647949096,
+        "peak": 0.6271675399986659
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 2.054264807634294e-05,
+        "peak": 7.698106593319284e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.10271324038169273,
+        "peak": 0.3849053296656759
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.028534302448655,
+        "peak": 51.81836115467941
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.1027132403817814,
+        "peak": 0.38490532966592117
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 23.8013784660203,
+        "peak": 216.0767323951652
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "stop_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 17.207947369751835,
+        "peak": 29.712037435044817
+      },
+      "peak_time_s": 7.239,
+      "requested_N": {
+        "rms": 0.15714075101292688,
+        "peak": 0.2971815612679449
+      },
+      "spring_N": {
+        "rms": 0.09186042756628021,
+        "peak": 0.14820131604560072
+      },
+      "linear_N": {
+        "rms": 0.12838839997712628,
+        "peak": 0.33181174569590244
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.51440408535802e-05,
+        "peak": 2.8640039057914228e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.07572020426784985,
+        "peak": 0.1432001952901079
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.02552226904378,
+        "peak": 51.1169785725198
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.07572020426767266,
+        "peak": 0.1432001952890079
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 19.417814086591076,
+        "peak": 118.98131135097323
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "L",
+      "window": "post_static",
+      "n": 257,
+      "complete_run": true,
+      "score_um": {
+        "rms": 1.9546154454978588,
+        "peak": 4.157687982857805
+      },
+      "peak_time_s": 7.513,
+      "requested_N": {
+        "rms": 0.09303772877551585,
+        "peak": 0.2168806311152527
+      },
+      "spring_N": {
+        "rms": 0.009886629888074858,
+        "peak": 0.020133525350496832
+      },
+      "linear_N": {
+        "rms": 0.09150663097138606,
+        "peak": 0.22892568888442996
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 8.966250397210807e-06,
+        "peak": 2.0901325423381895e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.0448312519860893,
+        "peak": 0.10450662711752275
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 50.99572354900147,
+        "peak": 51.117047721180626
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.04483125198603323,
+        "peak": 0.1045066271168656
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 16.16080719109689,
+        "peak": 76.74082940390875
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "full",
+      "n": 7678,
+      "complete_run": true,
+      "score_um": {
+        "rms": 28.750957085602064,
+        "peak": 108.0233046665951
+      },
+      "peak_time_s": 4.261,
+      "requested_N": {
+        "rms": 0.8332867828266901,
+        "peak": 7.903355633215602
+      },
+      "spring_N": {
+        "rms": 0.14330221377244634,
+        "peak": 0.5325409961490543
+      },
+      "linear_N": {
+        "rms": 0.14109639531806553,
+        "peak": 0.8570878194478225
+      },
+      "nonlinear_N": {
+        "rms": 0.660531338913804,
+        "peak": 7.0302219694103725
+      },
+      "micro_q_rad": {
+        "rms": 8.060303275544728e-05,
+        "peak": 0.0007607549923965699
+      },
+      "request_tau_Nm": {
+        "rms": 0.4030151637772551,
+        "peak": 3.8037749619831525
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.108594761855194,
+        "peak": 54.585882555370496
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.4030151637772068,
+        "peak": 3.8037749619820675
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 122.70474454153705,
+        "peak": 3807.979779516759
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "pre_static",
+      "n": 1275,
+      "complete_run": true,
+      "score_um": {
+        "rms": 9.598020152791685,
+        "peak": 40.11263138931578
+      },
+      "peak_time_s": 0.045,
+      "requested_N": {
+        "rms": 0.8856682345986624,
+        "peak": 7.903355633215602
+      },
+      "spring_N": {
+        "rms": 0.0476995984739665,
+        "peak": 0.2003399542561577
+      },
+      "linear_N": {
+        "rms": 0.13712673678514511,
+        "peak": 0.8570878194478225
+      },
+      "nonlinear_N": {
+        "rms": 0.7554102926812132,
+        "peak": 7.0302219694103725
+      },
+      "micro_q_rad": {
+        "rms": 8.528470462360812e-05,
+        "peak": 0.0007607549923965699
+      },
+      "request_tau_Nm": {
+        "rms": 0.42642352311810794,
+        "peak": 3.8037749619831525
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06253511168496,
+        "peak": 54.585882555370496
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.42642352311796256,
+        "peak": 3.8037749619820675
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 155.57659857321607,
+        "peak": 3807.979779516759
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "start",
+      "n": 705,
+      "complete_run": true,
+      "score_um": {
+        "rms": 50.78501961312454,
+        "peak": 91.19056566547266
+      },
+      "peak_time_s": 1.7530000000000001,
+      "requested_N": {
+        "rms": 1.1418060134796069,
+        "peak": 5.06382881526342
+      },
+      "spring_N": {
+        "rms": 0.25127245798333236,
+        "peak": 0.4531755827466315
+      },
+      "linear_N": {
+        "rms": 0.17006557833949423,
+        "peak": 0.6347892333871006
+      },
+      "nonlinear_N": {
+        "rms": 0.9009644069457938,
+        "peak": 4.481004509001461
+      },
+      "micro_q_rad": {
+        "rms": 0.00011022447797035723,
+        "peak": 0.0004890151122684408
+      },
+      "request_tau_Nm": {
+        "rms": 0.5511223898517972,
+        "peak": 2.445075561341827
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06891631708424,
+        "peak": 51.69708408336158
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.5511223898517499,
+        "peak": 2.4450755613416266
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 135.88203195882525,
+        "peak": 1496.0228080015333
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "start_transition",
+      "n": 290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 28.643879922490296,
+        "peak": 52.05876002886969
+      },
+      "peak_time_s": 1.998,
+      "requested_N": {
+        "rms": 0.5470108365930466,
+        "peak": 1.5427903778265832
+      },
+      "spring_N": {
+        "rms": 0.1490897523174129,
+        "peak": 0.259144288565485
+      },
+      "linear_N": {
+        "rms": 0.1172397544720037,
+        "peak": 0.24508334983683439
+      },
+      "nonlinear_N": {
+        "rms": 0.4214763030030321,
+        "peak": 1.0749834159130844
+      },
+      "micro_q_rad": {
+        "rms": 5.2903298111016956e-05,
+        "peak": 0.00014909839453008185
+      },
+      "request_tau_Nm": {
+        "rms": 0.264516490555181,
+        "peak": 0.7454919726508357
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.11254650748755,
+        "peak": 51.50513972773094
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.2645164905551873,
+        "peak": 0.7454919726512951
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 92.44353591650709,
+        "peak": 569.7780072100367
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "outbound",
+      "n": 1560,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.219842508004787,
+        "peak": 31.512091650600038
+      },
+      "peak_time_s": 2.958,
+      "requested_N": {
+        "rms": 0.6797943872088718,
+        "peak": 2.320843937016624
+      },
+      "spring_N": {
+        "rms": 0.05778900061139806,
+        "peak": 0.16644662406845967
+      },
+      "linear_N": {
+        "rms": 0.13207592269516497,
+        "peak": 0.3577755916255039
+      },
+      "nonlinear_N": {
+        "rms": 0.5272799479288475,
+        "peak": 1.8960383425203904
+      },
+      "micro_q_rad": {
+        "rms": 6.60061512538497e-05,
+        "peak": 0.0002256531390706764
+      },
+      "request_tau_Nm": {
+        "rms": 0.33003075626924183,
+        "peak": 1.128265695353665
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.15902153138051,
+        "peak": 51.55061937158378
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.3300307562692872,
+        "peak": 1.1282656953536576
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 107.03676540057324,
+        "peak": 974.1088678427359
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "turn",
+      "n": 750,
+      "complete_run": true,
+      "score_um": {
+        "rms": 61.2102045512636,
+        "peak": 108.0233046665951
+      },
+      "peak_time_s": 4.261,
+      "requested_N": {
+        "rms": 0.9704495688051532,
+        "peak": 2.7095899803284116
+      },
+      "spring_N": {
+        "rms": 0.30353745182467823,
+        "peak": 0.5325409961490543
+      },
+      "linear_N": {
+        "rms": 0.16297755779785117,
+        "peak": 0.36947237565877594
+      },
+      "nonlinear_N": {
+        "rms": 0.7106670356070172,
+        "peak": 1.9897751940099344
+      },
+      "micro_q_rad": {
+        "rms": 9.449525445342252e-05,
+        "peak": 0.0002639231122453591
+      },
+      "request_tau_Nm": {
+        "rms": 0.47247627226714,
+        "peak": 1.3196155612273857
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.22253931198652,
+        "peak": 52.04446679802039
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.4724762722670719,
+        "peak": 1.3196155612274112
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 120.56309252529398,
+        "peak": 875.8602654561532
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "turn_transition",
+      "n": 440,
+      "complete_run": true,
+      "score_um": {
+        "rms": 37.46647477480126,
+        "peak": 60.141597192389725
+      },
+      "peak_time_s": 4.651,
+      "requested_N": {
+        "rms": 0.9621715364771556,
+        "peak": 4.337957218319028
+      },
+      "spring_N": {
+        "rms": 0.18824446055694954,
+        "peak": 0.3004462468129289
+      },
+      "linear_N": {
+        "rms": 0.1585845465958189,
+        "peak": 0.5605445946598542
+      },
+      "nonlinear_N": {
+        "rms": 0.7702217284633925,
+        "peak": 3.7183160932324855
+      },
+      "micro_q_rad": {
+        "rms": 9.343825883894178e-05,
+        "peak": 0.00042126078473265555
+      },
+      "request_tau_Nm": {
+        "rms": 0.46719129419476474,
+        "peak": 2.106303923663972
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.18904148114002,
+        "peak": 51.91472990105588
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.4671912941946394,
+        "peak": 2.106303923663349
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 136.69900316846793,
+        "peak": 1229.4775483594005
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "return_straight",
+      "n": 1290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.467288553554777,
+        "peak": 34.43693776721821
+      },
+      "peak_time_s": 5.085,
+      "requested_N": {
+        "rms": 0.6341294927714616,
+        "peak": 2.7052902101668055
+      },
+      "spring_N": {
+        "rms": 0.05254061722668743,
+        "peak": 0.1704784939895725
+      },
+      "linear_N": {
+        "rms": 0.12229626019514396,
+        "peak": 0.3885932477427294
+      },
+      "nonlinear_N": {
+        "rms": 0.4870590583904389,
+        "peak": 2.146218468434504
+      },
+      "micro_q_rad": {
+        "rms": 6.140121018688528e-05,
+        "peak": 0.000262415517883837
+      },
+      "request_tau_Nm": {
+        "rms": 0.307006050934381,
+        "peak": 1.3120775894185468
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.1103645043574,
+        "peak": 51.716864935564125
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.30700605093439387,
+        "peak": 1.3120775894192742
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 96.85899816310771,
+        "peak": 741.002674599973
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "stop",
+      "n": 910,
+      "complete_run": true,
+      "score_um": {
+        "rms": 19.44137425971975,
+        "peak": 50.33882566234935
+      },
+      "peak_time_s": 6.509,
+      "requested_N": {
+        "rms": 0.967428088781936,
+        "peak": 4.1344672902607185
+      },
+      "spring_N": {
+        "rms": 0.09710551819073338,
+        "peak": 0.24911609367123483
+      },
+      "linear_N": {
+        "rms": 0.1541447886409824,
+        "peak": 0.5318145580230442
+      },
+      "nonlinear_N": {
+        "rms": 0.7735128609368692,
+        "peak": 3.4361442334921883
+      },
+      "micro_q_rad": {
+        "rms": 9.326739993556791e-05,
+        "peak": 0.0003986746282194491
+      },
+      "request_tau_Nm": {
+        "rms": 0.466336999677865,
+        "peak": 1.9933731410965978
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.031192808642984,
+        "peak": 51.91979990809235
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.4663369996778048,
+        "peak": 1.9933731410959665
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 135.22936511291525,
+        "peak": 1581.9223639036047
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "stop_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 16.8054067176898,
+        "peak": 28.600808011803696
+      },
+      "peak_time_s": 7.2250000000000005,
+      "requested_N": {
+        "rms": 0.6076446883876735,
+        "peak": 1.983556784969957
+      },
+      "spring_N": {
+        "rms": 0.08871629210398818,
+        "peak": 0.14241610136424918
+      },
+      "linear_N": {
+        "rms": 0.12250184029019369,
+        "peak": 0.33092505333309735
+      },
+      "nonlinear_N": {
+        "rms": 0.4837331371474522,
+        "peak": 1.6866521491853124
+      },
+      "micro_q_rad": {
+        "rms": 5.8560238065385705e-05,
+        "peak": 0.0001911602361760984
+      },
+      "request_tau_Nm": {
+        "rms": 0.2928011903268566,
+        "peak": 0.9558011808801432
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.02313896290943,
+        "peak": 51.18952827491964
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.2928011903267993,
+        "peak": 0.9558011808798386
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 101.97164737399781,
+        "peak": 654.2220865021844
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "mode": "S",
+      "window": "post_static",
+      "n": 257,
+      "complete_run": true,
+      "score_um": {
+        "rms": 5.324053866380523,
+        "peak": 10.528508712930584
+      },
+      "peak_time_s": 7.441,
+      "requested_N": {
+        "rms": 0.4239490955571275,
+        "peak": 1.210635000425014
+      },
+      "spring_N": {
+        "rms": 0.027439580551201905,
+        "peak": 0.052129679396111656
+      },
+      "linear_N": {
+        "rms": 0.09605278063594351,
+        "peak": 0.2347329412269372
+      },
+      "nonlinear_N": {
+        "rms": 0.3275678156724707,
+        "peak": 1.0076091754260585
+      },
+      "micro_q_rad": {
+        "rms": 4.0857018124278e-05,
+        "peak": 0.00011667212317523065
+      },
+      "request_tau_Nm": {
+        "rms": 0.2042850906214486,
+        "peak": 0.5833606158766182
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 50.996359246789346,
+        "peak": 51.12476970147834
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.20428509062141434,
+        "peak": 0.5833606158771681
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 77.74258585622516,
+        "peak": 510.8020696907719
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "full",
+      "n": 7321,
+      "complete_run": true,
+      "score_um": {
+        "rms": 32.16682648338867,
+        "peak": 128.75856652089388
+      },
+      "peak_time_s": 1.595,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.170503741838324,
+        "peak": 54.43559139461095
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "pre_static",
+      "n": 1290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 5.0565632511575584,
+        "peak": 22.123122083329974
+      },
+      "peak_time_s": 0.01,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06230976236984,
+        "peak": 54.43559139461095
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "start",
+      "n": 690,
+      "complete_run": true,
+      "score_um": {
+        "rms": 68.85546755843879,
+        "peak": 128.75856652089388
+      },
+      "peak_time_s": 1.595,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06996678737766,
+        "peak": 51.555309196212214
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "start_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.05121082860249,
+        "peak": 26.701820821602297
+      },
+      "peak_time_s": 2.003,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.112102337010526,
+        "peak": 51.47008492307432
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "outbound",
+      "n": 1440,
+      "complete_run": true,
+      "score_um": {
+        "rms": 12.343373741700514,
+        "peak": 29.73617079031292
+      },
+      "peak_time_s": 2.6270000000000002,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.288999296330665,
+        "peak": 51.65380063616895
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "turn",
+      "n": 1060,
+      "complete_run": true,
+      "score_um": {
+        "rms": 58.90110755895254,
+        "peak": 114.62458651208458
+      },
+      "peak_time_s": 3.942,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.408439175175545,
+        "peak": 51.83349189356961
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "turn_transition",
+      "n": 290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 17.09674852491685,
+        "peak": 29.824512602231856
+      },
+      "peak_time_s": 4.843,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.29652685487019,
+        "peak": 51.65029585028207
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "return_straight",
+      "n": 970,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.80834168936256,
+        "peak": 25.20080429873441
+      },
+      "peak_time_s": 5.642,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.152841177908044,
+        "peak": 51.54266435973003
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "stop",
+      "n": 790,
+      "complete_run": true,
+      "score_um": {
+        "rms": 12.512000237061807,
+        "peak": 32.974311445839824
+      },
+      "peak_time_s": 6.103,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.006188002643924,
+        "peak": 51.54727338750652
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "stop_transition",
+      "n": 210,
+      "complete_run": true,
+      "score_um": {
+        "rms": 5.061004580815342,
+        "peak": 9.570961102715742
+      },
+      "peak_time_s": 6.774,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.01302852737566,
+        "peak": 51.108310591720546
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "N",
+      "window": "post_static",
+      "n": 380,
+      "complete_run": true,
+      "score_um": {
+        "rms": 0.9594299886652503,
+        "peak": 2.336760512083556
+      },
+      "peak_time_s": 6.94,
+      "requested_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "spring_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "linear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "request_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.01257780497727,
+        "peak": 51.07346325667313
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "full",
+      "n": 7321,
+      "complete_run": true,
+      "score_um": {
+        "rms": 26.439870116086315,
+        "peak": 108.81680335422958
+      },
+      "peak_time_s": 1.593,
+      "requested_N": {
+        "rms": 0.20536462769351252,
+        "peak": 1.0794241501595145
+      },
+      "spring_N": {
+        "rms": 0.1321847602759024,
+        "peak": 0.5423421013767973
+      },
+      "linear_N": {
+        "rms": 0.1356569631033369,
+        "peak": 0.9709528018871224
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.995248361233768e-05,
+        "peak": 0.0001039013422587542
+      },
+      "request_tau_Nm": {
+        "rms": 0.09976241806166782,
+        "peak": 0.519506711292742
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.17065425753532,
+        "peak": 54.457614032629266
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.09976241806167065,
+        "peak": 0.5195067112946395
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.05268324001168,
+        "peak": 485.07612526329876
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "pre_static",
+      "n": 1290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 3.584748689488016,
+        "peak": 22.112028694677846
+      },
+      "peak_time_s": 0.009000000000000001,
+      "requested_N": {
+        "rms": 0.15682768958301754,
+        "peak": 1.0794241501595145
+      },
+      "spring_N": {
+        "rms": 0.018570672973315272,
+        "peak": 0.10847134827239219
+      },
+      "linear_N": {
+        "rms": 0.1443818668445452,
+        "peak": 0.9709528018871224
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.5103284929120133e-05,
+        "peak": 0.0001039013422587542
+      },
+      "request_tau_Nm": {
+        "rms": 0.07551642464556996,
+        "peak": 0.519506711292742
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06253736073249,
+        "peak": 54.457614032629266
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.07551642464558066,
+        "peak": 0.5195067112946395
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 22.713645737168445,
+        "peak": 485.07612526329876
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "start",
+      "n": 690,
+      "complete_run": true,
+      "score_um": {
+        "rms": 56.237773094657406,
+        "peak": 108.81680335422958
+      },
+      "peak_time_s": 1.593,
+      "requested_N": {
+        "rms": 0.35014999192534313,
+        "peak": 0.7723265277816267
+      },
+      "spring_N": {
+        "rms": 0.28270676824043856,
+        "peak": 0.5423421013767973
+      },
+      "linear_N": {
+        "rms": 0.16694642801082565,
+        "peak": 0.5042848449301659
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 3.380028355279555e-05,
+        "peak": 7.456472995309973e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.16900141776399194,
+        "peak": 0.37282364976462945
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.07105354161744,
+        "peak": 51.57748718898832
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.1690014177639364,
+        "peak": 0.37282364976650945
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.656886546320692,
+        "peak": 196.12785080975092
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "start_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.27210247076984,
+        "peak": 23.675092978688163
+      },
+      "peak_time_s": 2.003,
+      "requested_N": {
+        "rms": 0.14667235028559156,
+        "peak": 0.3089073546218847
+      },
+      "spring_N": {
+        "rms": 0.05374691181460685,
+        "peak": 0.11489149642507375
+      },
+      "linear_N": {
+        "rms": 0.11884648737002088,
+        "peak": 0.280671366001681
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.4224816250609316e-05,
+        "peak": 2.996595667630113e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.07112408125301878,
+        "peak": 0.14982978338163055
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.11141541560736,
+        "peak": 51.472980701519
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.07112408125289944,
+        "peak": 0.14982978338049893
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 20.39266882996758,
+        "peak": 147.858720927511
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "outbound",
+      "n": 1440,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.487038874423538,
+        "peak": 27.123914321731377
+      },
+      "peak_time_s": 2.625,
+      "requested_N": {
+        "rms": 0.17183279474834365,
+        "peak": 0.48942579825990573
+      },
+      "spring_N": {
+        "rms": 0.05676143067432862,
+        "peak": 0.13334983983486443
+      },
+      "linear_N": {
+        "rms": 0.14088658832260822,
+        "peak": 0.38893283663800005
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.6767064419760857e-05,
+        "peak": 4.7590837710388054e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.08383532209878553,
+        "peak": 0.23795418855130182
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.289334529153464,
+        "peak": 51.65096708655366
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.08383532209878097,
+        "peak": 0.23795418855325512
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.999698504959404,
+        "peak": 159.98119484752297
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "turn",
+      "n": 1060,
+      "complete_run": true,
+      "score_um": {
+        "rms": 47.84388996147107,
+        "peak": 96.44066073062814
+      },
+      "peak_time_s": 3.9410000000000003,
+      "requested_N": {
+        "rms": 0.2846533666616154,
+        "peak": 0.7380385403729703
+      },
+      "spring_N": {
+        "rms": 0.23826785645105347,
+        "peak": 0.4818361098163731
+      },
+      "linear_N": {
+        "rms": 0.12990083680778125,
+        "peak": 0.37646691645921143
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 2.7923213261590726e-05,
+        "peak": 7.24609270718094e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.13961606630785398,
+        "peak": 0.3623046353593154
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.40789327462225,
+        "peak": 51.831517407691585
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.1396160663080076,
+        "peak": 0.3623046353581042
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 17.59741436677336,
+        "peak": 131.09857122142725
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "turn_transition",
+      "n": 290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 15.090414014432746,
+        "peak": 27.80285612046433
+      },
+      "peak_time_s": 4.8420000000000005,
+      "requested_N": {
+        "rms": 0.18877907392105717,
+        "peak": 0.35755001276617926
+      },
+      "spring_N": {
+        "rms": 0.07198312999086912,
+        "peak": 0.13822224443834247
+      },
+      "linear_N": {
+        "rms": 0.14828749761391066,
+        "peak": 0.30506117173943886
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.8389418382143986e-05,
+        "peak": 3.4850343905083535e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.09194709191075123,
+        "peak": 0.17425171952493507
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.296408131090445,
+        "peak": 51.682466558452504
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.09194709191065323,
+        "peak": 0.17425171952487536
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 26.622274313236648,
+        "peak": 214.06393162735682
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "return_straight",
+      "n": 970,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.808428995587866,
+        "peak": 23.232901467932685
+      },
+      "peak_time_s": 5.642,
+      "requested_N": {
+        "rms": 0.16967599811745565,
+        "peak": 0.42126813661628254
+      },
+      "spring_N": {
+        "rms": 0.05336113016264644,
+        "peak": 0.11464509773968035
+      },
+      "linear_N": {
+        "rms": 0.13849637458509206,
+        "peak": 0.35225075710709064
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.6454970099788096e-05,
+        "peak": 4.085461171614576e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.08227485049896274,
+        "peak": 0.20427305858140565
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.15316873828744,
+        "peak": 51.547446005851654
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.08227485049889537,
+        "peak": 0.20427305858064534
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 21.835419782014338,
+        "peak": 159.08045748000958
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "stop",
+      "n": 790,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.150347292164076,
+        "peak": 32.87449145290176
+      },
+      "peak_time_s": 6.102,
+      "requested_N": {
+        "rms": 0.14960940491603114,
+        "peak": 0.4558076949227844
+      },
+      "spring_N": {
+        "rms": 0.05688053852543318,
+        "peak": 0.1586165961602526
+      },
+      "linear_N": {
+        "rms": 0.11509463707120084,
+        "peak": 0.3127656216885391
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 1.4422037359159804e-05,
+        "peak": 4.392605815525206e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.07211018679582154,
+        "peak": 0.2196302907762075
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.00614454889005,
+        "peak": 51.57480664800492
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.07211018679575994,
+        "peak": 0.2196302907757429
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 20.83415874682607,
+        "peak": 190.51253803527646
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "stop_transition",
+      "n": 210,
+      "complete_run": true,
+      "score_um": {
+        "rms": 4.106569657068536,
+        "peak": 8.090590291380579
+      },
+      "peak_time_s": 6.776,
+      "requested_N": {
+        "rms": 0.08739597940408242,
+        "peak": 0.1676506713370342
+      },
+      "spring_N": {
+        "rms": 0.02176138792603313,
+        "peak": 0.042804164034640324
+      },
+      "linear_N": {
+        "rms": 0.09182736242290414,
+        "peak": 0.17932370708722611
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 8.422402031142823e-06,
+        "peak": 1.6156578080755606e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.0421120101556712,
+        "peak": 0.08078289040340363
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.013770038161255,
+        "peak": 51.10243620100783
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.04211201015574562,
+        "peak": 0.08078289040347977
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 18.544038017769235,
+        "peak": 121.27137454370056
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "L",
+      "window": "post_static",
+      "n": 380,
+      "complete_run": true,
+      "score_um": {
+        "rms": 1.054343073548042,
+        "peak": 2.6682021831922125
+      },
+      "peak_time_s": 7.077,
+      "requested_N": {
+        "rms": 0.07530420084157369,
+        "peak": 0.1701978772222886
+      },
+      "spring_N": {
+        "rms": 0.005494490687523074,
+        "peak": 0.013238285731911789
+      },
+      "linear_N": {
+        "rms": 0.07378366909981242,
+        "peak": 0.1658181196062282
+      },
+      "nonlinear_N": {
+        "rms": 0.0,
+        "peak": 0.0
+      },
+      "micro_q_rad": {
+        "rms": 7.257182245188196e-06,
+        "peak": 1.640202863208129e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.03628591122595582,
+        "peak": 0.0820101431606257
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.012271981386455,
+        "peak": 51.08197015197606
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.036285911225801826,
+        "peak": 0.08201014315909212
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 13.034800173046282,
+        "peak": 85.71023128044753
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "full",
+      "n": 7321,
+      "complete_run": true,
+      "score_um": {
+        "rms": 24.888260396657408,
+        "peak": 94.61983792241764
+      },
+      "peak_time_s": 1.589,
+      "requested_N": {
+        "rms": 0.7766370071022194,
+        "peak": 9.556151836666878
+      },
+      "spring_N": {
+        "rms": 0.1246647000822732,
+        "peak": 0.47266400715873214
+      },
+      "linear_N": {
+        "rms": 0.13542809418615545,
+        "peak": 0.9709528018871224
+      },
+      "nonlinear_N": {
+        "rms": 0.6154464549829645,
+        "peak": 8.476727686507363
+      },
+      "micro_q_rad": {
+        "rms": 7.528245847190065e-05,
+        "peak": 0.000919839529724831
+      },
+      "request_tau_Nm": {
+        "rms": 0.3764122923594915,
+        "peak": 4.599197648623358
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.171859845321514,
+        "peak": 54.63813303030672
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.3764122923595085,
+        "peak": 4.599197648625235
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 121.40294521344066,
+        "peak": 4564.767060562373
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "pre_static",
+      "n": 1290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 8.077684635052803,
+        "peak": 35.22194313326635
+      },
+      "peak_time_s": 0.045,
+      "requested_N": {
+        "rms": 1.0025803025859767,
+        "peak": 9.556151836666878
+      },
+      "spring_N": {
+        "rms": 0.04052483445410368,
+        "peak": 0.1760703230271811
+      },
+      "linear_N": {
+        "rms": 0.14315240667096116,
+        "peak": 0.9709528018871224
+      },
+      "nonlinear_N": {
+        "rms": 0.856599152717387,
+        "peak": 8.476727686507363
+      },
+      "micro_q_rad": {
+        "rms": 9.653402252864866e-05,
+        "peak": 0.000919839529724831
+      },
+      "request_tau_Nm": {
+        "rms": 0.4826701126432151,
+        "peak": 4.599197648623358
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.06453237405319,
+        "peak": 54.63813303030672
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.48267011264334986,
+        "peak": 4.599197648625235
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 176.66009153938276,
+        "peak": 4564.767060562373
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "start",
+      "n": 690,
+      "complete_run": true,
+      "score_um": {
+        "rms": 51.58859674005499,
+        "peak": 94.61983792241764
+      },
+      "peak_time_s": 1.589,
+      "requested_N": {
+        "rms": 0.9060815814124029,
+        "peak": 2.9346547804220693
+      },
+      "spring_N": {
+        "rms": 0.2595926198923521,
+        "peak": 0.47266400715873214
+      },
+      "linear_N": {
+        "rms": 0.1520698735059204,
+        "peak": 0.45147478567790394
+      },
+      "nonlinear_N": {
+        "rms": 0.6879472743054329,
+        "peak": 2.6877031698524645
+      },
+      "micro_q_rad": {
+        "rms": 8.75128687914214e-05,
+        "peak": 0.00028365986807947155
+      },
+      "request_tau_Nm": {
+        "rms": 0.43756434395704785,
+        "peak": 1.4182993403970028
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.07199765905719,
+        "peak": 51.74900681477939
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.437564343957023,
+        "peak": 1.4182993403971218
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 113.50134965012978,
+        "peak": 1030.6238742331182
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "start_transition",
+      "n": 200,
+      "complete_run": true,
+      "score_um": {
+        "rms": 12.539095902230768,
+        "peak": 28.37787554516732
+      },
+      "peak_time_s": 2.003,
+      "requested_N": {
+        "rms": 0.613382094073613,
+        "peak": 1.7077081028285455
+      },
+      "spring_N": {
+        "rms": 0.06837180201297548,
+        "peak": 0.13794923917576102
+      },
+      "linear_N": {
+        "rms": 0.12352197622496269,
+        "peak": 0.28601149585345703
+      },
+      "nonlinear_N": {
+        "rms": 0.4751135833904791,
+        "peak": 1.3552090301161943
+      },
+      "micro_q_rad": {
+        "rms": 5.948816957812945e-05,
+        "peak": 0.00016564721444506874
+      },
+      "request_tau_Nm": {
+        "rms": 0.2974408478905853,
+        "peak": 0.8282360722245162
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.11315249409751,
+        "peak": 51.517927757394375
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.29744084789052233,
+        "peak": 0.8282360722249341
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 97.79698878722803,
+        "peak": 608.2231372201019
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "outbound",
+      "n": 1440,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.267556473043777,
+        "peak": 25.031930753911233
+      },
+      "peak_time_s": 2.254,
+      "requested_N": {
+        "rms": 0.7634846332562176,
+        "peak": 2.5096161551618854
+      },
+      "spring_N": {
+        "rms": 0.05122394364454676,
+        "peak": 0.12120719861918185
+      },
+      "linear_N": {
+        "rms": 0.14282922651809804,
+        "peak": 0.3874425901713688
+      },
+      "nonlinear_N": {
+        "rms": 0.5987383411969117,
+        "peak": 2.1366928262794618
+      },
+      "micro_q_rad": {
+        "rms": 7.451472202049215e-05,
+        "peak": 0.000243788088443775
+      },
+      "request_tau_Nm": {
+        "rms": 0.3725736101024057,
+        "peak": 1.218940442218553
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.29056581839531,
+        "peak": 51.67048474176105
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.372573610102498,
+        "peak": 1.2189404422195191
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 118.3539336603211,
+        "peak": 980.9390470839348
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "turn",
+      "n": 1060,
+      "complete_run": true,
+      "score_um": {
+        "rms": 44.70497912839004,
+        "peak": 78.77697227983067
+      },
+      "peak_time_s": 4.003,
+      "requested_N": {
+        "rms": 0.6469288865735797,
+        "peak": 2.3319776561655727
+      },
+      "spring_N": {
+        "rms": 0.2229809415456701,
+        "peak": 0.3916178630856374
+      },
+      "linear_N": {
+        "rms": 0.1202642995842464,
+        "peak": 0.3424141268710021
+      },
+      "nonlinear_N": {
+        "rms": 0.46360399517364154,
+        "peak": 1.7752460853448326
+      },
+      "micro_q_rad": {
+        "rms": 6.344775622652555e-05,
+        "peak": 0.00022909480216023678
+      },
+      "request_tau_Nm": {
+        "rms": 0.3172387811326195,
+        "peak": 1.1454740108020092
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.408322818740295,
+        "peak": 51.82591370489513
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.3172387811325718,
+        "peak": 1.1454740108005805
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 87.24516142073956,
+        "peak": 774.8648523471884
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "turn_transition",
+      "n": 290,
+      "complete_run": true,
+      "score_um": {
+        "rms": 18.001115279480402,
+        "peak": 31.897808022112986
+      },
+      "peak_time_s": 4.841,
+      "requested_N": {
+        "rms": 0.9085730862735054,
+        "peak": 2.1619151772243654
+      },
+      "spring_N": {
+        "rms": 0.08646076713178728,
+        "peak": 0.15942920242388772
+      },
+      "linear_N": {
+        "rms": 0.16388826295501724,
+        "peak": 0.3465754930498932
+      },
+      "nonlinear_N": {
+        "rms": 0.7112964821390335,
+        "peak": 1.8077061160672927
+      },
+      "micro_q_rad": {
+        "rms": 8.849569051154273e-05,
+        "peak": 0.00021068038613493567
+      },
+      "request_tau_Nm": {
+        "rms": 0.4424784525579151,
+        "peak": 1.053401930675152
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.29628126457486,
+        "peak": 51.804945740667534
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.44247845255779866,
+        "peak": 1.0534019306752747
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 141.34277879424178,
+        "peak": 1065.1396458254255
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "return_straight",
+      "n": 970,
+      "complete_run": true,
+      "score_um": {
+        "rms": 11.32138064784744,
+        "peak": 29.357156960459577
+      },
+      "peak_time_s": 4.981,
+      "requested_N": {
+        "rms": 0.784271939962499,
+        "peak": 2.440078035865171
+      },
+      "spring_N": {
+        "rms": 0.05677237511698367,
+        "peak": 0.14251097478183675
+      },
+      "linear_N": {
+        "rms": 0.14689312571332638,
+        "peak": 0.37833821174987226
+      },
+      "nonlinear_N": {
+        "rms": 0.6086251291138646,
+        "peak": 2.0618229192041846
+      },
+      "micro_q_rad": {
+        "rms": 7.608276277298073e-05,
+        "peak": 0.00023731947799318756
+      },
+      "request_tau_Nm": {
+        "rms": 0.3804138138648774,
+        "peak": 1.186597389966189
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.15563732206404,
+        "peak": 51.57136562160615
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.38041381386482737,
+        "peak": 1.1865973899660438
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 115.15142352600127,
+        "peak": 928.5429711398752
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "stop",
+      "n": 790,
+      "complete_run": true,
+      "score_um": {
+        "rms": 10.751558298066834,
+        "peak": 34.76882702885995
+      },
+      "peak_time_s": 6.099,
+      "requested_N": {
+        "rms": 0.6049449697798575,
+        "peak": 1.902913498273888
+      },
+      "spring_N": {
+        "rms": 0.054924618959667576,
+        "peak": 0.17329679034831402
+      },
+      "linear_N": {
+        "rms": 0.1189923198827625,
+        "peak": 0.29981349503281984
+      },
+      "nonlinear_N": {
+        "rms": 0.4579808865371887,
+        "peak": 1.4544802166860618
+      },
+      "micro_q_rad": {
+        "rms": 5.831267321998137e-05,
+        "peak": 0.0001833831567973399
+      },
+      "request_tau_Nm": {
+        "rms": 0.29156336609999617,
+        "peak": 0.9169157839866257
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.00695220874569,
+        "peak": 51.67158617724668
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.2915633660999247,
+        "peak": 0.916915783987139
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 96.67297608319545,
+        "peak": 878.7910145224098
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "stop_transition",
+      "n": 210,
+      "complete_run": true,
+      "score_um": {
+        "rms": 3.0073092478502557,
+        "peak": 6.380486603707656
+      },
+      "peak_time_s": 6.781000000000001,
+      "requested_N": {
+        "rms": 0.36958553606404515,
+        "peak": 0.8469481769412156
+      },
+      "spring_N": {
+        "rms": 0.014275774726051405,
+        "peak": 0.02724616610847253
+      },
+      "linear_N": {
+        "rms": 0.0929404930945967,
+        "peak": 0.18039590503771719
+      },
+      "nonlinear_N": {
+        "rms": 0.2792466128416442,
+        "peak": 0.6788456901427072
+      },
+      "micro_q_rad": {
+        "rms": 3.5617159984564436e-05,
+        "peak": 8.16207958590958e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.17808579992281237,
+        "peak": 0.4081039792950038
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.01562167495894,
+        "peak": 51.0850849126775
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.1780857999227073,
+        "peak": 0.4081039792951547
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 78.85211240754387,
+        "peak": 548.7362891225548
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "mode": "S",
+      "window": "post_static",
+      "n": 380,
+      "complete_run": true,
+      "score_um": {
+        "rms": 1.6674040680375357,
+        "peak": 3.7544209238124164
+      },
+      "peak_time_s": 7.075,
+      "requested_N": {
+        "rms": 0.32541253870631803,
+        "peak": 0.84059119982588
+      },
+      "spring_N": {
+        "rms": 0.007920075636841644,
+        "peak": 0.018650482866409922
+      },
+      "linear_N": {
+        "rms": 0.07922202993253352,
+        "peak": 0.17637304803519135
+      },
+      "nonlinear_N": {
+        "rms": 0.24283975773164107,
+        "peak": 0.6562652119184459
+      },
+      "micro_q_rad": {
+        "rms": 3.136052718113555e-05,
+        "peak": 8.101040355891367e-05
+      },
+      "request_tau_Nm": {
+        "rms": 0.15680263590571678,
+        "peak": 0.405052017795461
+      },
+      "actuator_total_tau_Nm": {
+        "rms": 51.01125703398663,
+        "peak": 51.12634166306589
+      },
+      "realized_increment_tau_Nm": {
+        "rms": 0.15680263590563528,
+        "peak": 0.405052017794868
+      },
+      "realized_increment_tau_rate_Nm_s": {
+        "rms": 58.510231072198025,
+        "peak": 400.0332071595177
+      },
+      "saturation_steps": {
+        "ctrl_saturation": 0,
+        "force_saturation": 0,
+        "joint_saturation": 0
+      }
+    }
+  ],
+  "reductions_percent": [
+    {
+      "trial": "X_P05_R01",
+      "window": "full",
+      "LN": {
+        "rms": 17.724232997464924,
+        "peak": 17.34402166629157
+      },
+      "SN": {
+        "rms": 24.3003969361932,
+        "peak": 28.80326957542118
+      },
+      "SL": {
+        "rms": 7.9928321282324255,
+        "peak": 13.863785947660052
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "pre_static",
+      "LN": {
+        "rms": -41.932808910199725,
+        "peak": -15.01458979391341
+      },
+      "SN": {
+        "rms": -499.17046406482956,
+        "peak": -454.6139982837083
+      },
+      "SL": {
+        "rms": -322.1507829411889,
+        "peak": -382.21186484034973
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "start",
+      "LN": {
+        "rms": 17.909528970833833,
+        "peak": 16.97917688312216
+      },
+      "SN": {
+        "rms": 25.053097562500017,
+        "peak": 25.361645069031262
+      },
+      "SL": {
+        "rms": 8.702067977083631,
+        "peak": 10.096826159032592
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "start_transition",
+      "LN": {
+        "rms": 17.619929684687044,
+        "peak": 10.375484787395521
+      },
+      "SN": {
+        "rms": 2.1232836420836168,
+        "peak": 3.5382760949873764
+      },
+      "SL": {
+        "rms": -18.811159037968046,
+        "peak": -7.628725997779885
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "outbound",
+      "LN": {
+        "rms": 9.955810564239492,
+        "peak": 6.463767460571617
+      },
+      "SN": {
+        "rms": 22.826558752181885,
+        "peak": -2.5779129142856783
+      },
+      "SL": {
+        "rms": 14.293813147293266,
+        "peak": -9.666500487975021
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "turn",
+      "LN": {
+        "rms": 18.772355648900607,
+        "peak": 17.34402166629157
+      },
+      "SN": {
+        "rms": 28.4457353639329,
+        "peak": 28.80326957542118
+      },
+      "SL": {
+        "rms": 11.908974822930915,
+        "peak": 13.863785947660052
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "turn_transition",
+      "LN": {
+        "rms": 18.991849271097593,
+        "peak": 13.694876842262483
+      },
+      "SN": {
+        "rms": 13.7787594287765,
+        "peak": 10.510908839588906
+      },
+      "SL": {
+        "rms": -6.435265828702773,
+        "peak": -3.689199303793734
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "return_straight",
+      "LN": {
+        "rms": 10.327364276206799,
+        "peak": 13.290794857550317
+      },
+      "SN": {
+        "rms": 25.327995161074288,
+        "peak": 24.74156164027657
+      },
+      "SL": {
+        "rms": 16.72821453700988,
+        "peak": 13.205941357569166
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "stop",
+      "LN": {
+        "rms": 10.177062552707152,
+        "peak": 5.200232207894131
+      },
+      "SN": {
+        "rms": 9.394969713371722,
+        "peak": -42.24600187076744
+      },
+      "SL": {
+        "rms": -0.8707050354419251,
+        "peak": -50.04889271744871
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "stop_transition",
+      "LN": {
+        "rms": 21.783446160882548,
+        "peak": 17.372117371050262
+      },
+      "SN": {
+        "rms": 24.604810539542797,
+        "peak": 23.1922756034779
+      },
+      "SL": {
+        "rms": 3.6071192607941733,
+        "peak": 7.04381868111488
+      }
+    },
+    {
+      "trial": "X_P05_R01",
+      "window": "post_static",
+      "LN": {
+        "rms": -5.859665120324089,
+        "peak": -4.094739988818799
+      },
+      "SN": {
+        "rms": -81.82269818125886,
+        "peak": -71.33632521877013
+      },
+      "SL": {
+        "rms": -71.75824047298121,
+        "peak": -64.59652547013806
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "full",
+      "LN": {
+        "rms": 17.541060844415657,
+        "peak": 16.495337088379653
+      },
+      "SN": {
+        "rms": 23.729339219730505,
+        "peak": 27.902133636643704
+      },
+      "SL": {
+        "rms": 7.504678617849721,
+        "peak": 13.660071366717297
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "pre_static",
+      "LN": {
+        "rms": 2.4642423236930386,
+        "peak": -11.944105391357724
+      },
+      "SN": {
+        "rms": -285.3889599115981,
+        "peak": -696.7190826994469
+      },
+      "SL": {
+        "rms": -295.1258175392381,
+        "peak": -611.7115098772811
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "start",
+      "LN": {
+        "rms": 17.38386054980411,
+        "peak": 17.54861826716388
+      },
+      "SN": {
+        "rms": 23.70583843587209,
+        "peak": 26.176742377945775
+      },
+      "SL": {
+        "rms": 7.652231063010527,
+        "peak": 10.464499113840517
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "start_transition",
+      "LN": {
+        "rms": 19.049444504639485,
+        "peak": 14.695466316105232
+      },
+      "SN": {
+        "rms": 10.039547074522806,
+        "peak": 16.434013949586973
+      },
+      "SL": {
+        "rms": -11.130124277693266,
+        "peak": 2.0380483409288854
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "outbound",
+      "LN": {
+        "rms": 11.874045960150168,
+        "peak": 10.59845674328151
+      },
+      "SN": {
+        "rms": 29.321665877309847,
+        "peak": 31.46616907387974
+      },
+      "SL": {
+        "rms": 19.798503298211113,
+        "peak": 23.341557170524602
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "turn",
+      "LN": {
+        "rms": 18.67287026242419,
+        "peak": 16.495337088379653
+      },
+      "SN": {
+        "rms": 27.844711690544983,
+        "peak": 27.902133636643704
+      },
+      "SL": {
+        "rms": 11.277714408114784,
+        "peak": 13.660071366717297
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "turn_transition",
+      "LN": {
+        "rms": 17.446920764046503,
+        "peak": 14.579558792057183
+      },
+      "SN": {
+        "rms": 8.358500404016674,
+        "peak": 8.703542219851576
+      },
+      "SL": {
+        "rms": -11.00918396278505,
+        "peak": -6.878934935376132
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "return_straight",
+      "LN": {
+        "rms": 8.54592668920123,
+        "peak": -1.4663478676264106
+      },
+      "SN": {
+        "rms": 23.39746361861214,
+        "peak": 14.91923147940042
+      },
+      "SL": {
+        "rms": 16.239338929102964,
+        "peak": 16.148782026138907
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "stop",
+      "LN": {
+        "rms": 15.084415657385774,
+        "peak": 4.98364113288363
+      },
+      "SN": {
+        "rms": 25.61198887886673,
+        "peak": 17.1965379191371
+      },
+      "SL": {
+        "rms": 12.397692723875863,
+        "peak": 12.853467478514542
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "stop_transition",
+      "LN": {
+        "rms": 21.29848052162872,
+        "peak": 17.705494573363907
+      },
+      "SN": {
+        "rms": 23.139522935832336,
+        "peak": 20.783306924707162
+      },
+      "SL": {
+        "rms": 2.3392717528275524,
+        "peak": 3.73999738547194
+      }
+    },
+    {
+      "trial": "X_P05_R02",
+      "window": "post_static",
+      "LN": {
+        "rms": -12.279646394416924,
+        "peak": -23.614705499227433
+      },
+      "SN": {
+        "rms": -205.8314549181169,
+        "peak": -213.0293829794287
+      },
+      "SL": {
+        "rms": -172.38369975248185,
+        "peak": -153.22989017790044
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "full",
+      "LN": {
+        "rms": 17.80392097510714,
+        "peak": 15.487717598524458
+      },
+      "SN": {
+        "rms": 22.627554168236017,
+        "peak": 26.51375323671104
+      },
+      "SL": {
+        "rms": 5.868446829036766,
+        "peak": 13.046666502044523
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "pre_static",
+      "LN": {
+        "rms": 29.10701376735695,
+        "peak": 0.05014386581759656
+      },
+      "SN": {
+        "rms": -59.74653601344042,
+        "peak": -59.20873645499831
+      },
+      "SL": {
+        "rms": -125.33475383476548,
+        "peak": -59.28860992182022
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "start",
+      "LN": {
+        "rms": 18.324898386714946,
+        "peak": 15.487717598524458
+      },
+      "SN": {
+        "rms": 25.07697853293802,
+        "peak": 26.51375323671104
+      },
+      "SL": {
+        "rms": 8.266999382740654,
+        "peak": 13.046666502044523
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "start_transition",
+      "LN": {
+        "rms": 7.049981851908761,
+        "peak": 11.335286320494864
+      },
+      "SN": {
+        "rms": -13.463547992201606,
+        "peak": -6.276930456401919
+      },
+      "SL": {
+        "rms": -22.069419945058527,
+        "peak": -19.86383990429312
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "outbound",
+      "LN": {
+        "rms": 6.937607863107619,
+        "peak": 8.784777592925751
+      },
+      "SN": {
+        "rms": 16.817260111340975,
+        "peak": 15.819925401875128
+      },
+      "SL": {
+        "rms": 10.61615978418075,
+        "peak": 7.71269051732725
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "turn",
+      "LN": {
+        "rms": 18.772512191582468,
+        "peak": 15.863896511887834
+      },
+      "SN": {
+        "rms": 24.101632412181676,
+        "peak": 31.273931119895103
+      },
+      "SL": {
+        "rms": 6.560734997946046,
+        "peak": 18.31560289713749
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "turn_transition",
+      "LN": {
+        "rms": 11.735181736808423,
+        "peak": 6.7785063539185515
+      },
+      "SN": {
+        "rms": -5.289700279825278,
+        "peak": -6.95164895913833
+      },
+      "SL": {
+        "rms": -19.288412248092126,
+        "peak": -14.728529629855407
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "return_straight",
+      "LN": {
+        "rms": 8.467850271265924,
+        "peak": 7.808888984152601
+      },
+      "SN": {
+        "rms": 4.123873227294868,
+        "peak": -16.492936544624087
+      },
+      "SL": {
+        "rms": -4.7458483787881365,
+        "peak": -26.36026972773901
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "stop",
+      "LN": {
+        "rms": 10.882775887938186,
+        "peak": 0.3027204771266264
+      },
+      "SN": {
+        "rms": 14.070028018224983,
+        "peak": -5.442162411693155
+      },
+      "SL": {
+        "rms": 3.576471509344746,
+        "peak": -5.76232663149223
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "stop_transition",
+      "LN": {
+        "rms": 18.858606201716658,
+        "peak": 15.467316139390753
+      },
+      "SN": {
+        "rms": 40.578808024596384,
+        "peak": 33.33494374042326
+      },
+      "SL": {
+        "rms": 26.768337104087614,
+        "peak": 21.13694583564324
+      }
+    },
+    {
+      "trial": "X_P10_R01",
+      "window": "post_static",
+      "LN": {
+        "rms": -9.892653555142022,
+        "peak": -14.183809996563529
+      },
+      "SN": {
+        "rms": -73.79111427997077,
+        "peak": -60.66776652541144
+      },
+      "SL": {
+        "rms": -58.146253327812964,
+        "peak": -40.7097613315293
+      }
+    }
+  ],
+  "historical_costs": {
+    "implemented": "V02 strong.py: per-sample six-joint realized incremental torque vector norm RMS/peak, and adjacent 1 ms finite difference vector norm RMS/peak. Joint actuator total RMS/peak and requested effort are separately labeled.",
+    "integral_position_velocity_total_torque_and_rate_costs": "Unavailable as separately defined cost integrals for this archived controller path. Physical 1 ms Y/Y velocity/total actuator torque and native command e/v are exported at original precision.",
+    "predicted_residual": "Not applicable; no prediction runs."
+  }
+}

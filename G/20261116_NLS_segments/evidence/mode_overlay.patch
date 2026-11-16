@@ -1,0 +1,20 @@
+--- a/G/20261116_preprocess_timing/run_preprocess.py
++++ b/G/20261116_preprocess_timing/run_preprocess.py
+@@ -66,7 +66,7 @@
+     fd_sha=sha256(fd_values.tobytes()).hexdigest()
+     fd=old.disturbance.FrozenDisturbance(Path("physical_only"),t,fd_values,{"frozen":{"sha256":fd_sha}})
+     sweep.SimEnv=initial_factory(initial_q)
+-    row=sweep.run_case(path.name,"A0",p["K"],p["B0"],p["n"],p["mu"],p["r"],p["v_ref"],fd,
++    row=sweep.run_case(path.name,core.MODES[case["law"]],p["K"],p["B0"],p["n"],p["mu"],p["r"],p["v_ref"],fd,
+                        ctx["c"]["along"],ctx["c"]["q"],phase_code=ctx["c"]["phase"],c_input=ctx["scaled"],
+                        execution_mode=old.POSITION_EQUIV,control_update_steps=case["command_ms"],
+                        precise_logger=logger,common_position_correction=ctx["corr"]["common_delta_q"],
+@@ -106,7 +106,7 @@
+     np.testing.assert_allclose([f.e for f in cframes],
+         np.interp([f.sample/1000 for f in cframes],t,trace["physical_e_um"]*1e-6)-sensor.camera_reference_m,
+         atol=2e-13,rtol=0)
+-    if not pulse:
++    if case["law"] == "N" and not pulse:
+         assert not np.any(trace["F_requested"]) and not np.any(trace["actual_micro_q"])
+     save(path/"checks.json",dict(complete=True,pre_step_time_exact=True,remaining_identically_zero=True,
+         remaining_dot_identically_zero=True,frame_reference_checked=True,held_command_exact=True,
