@@ -1,0 +1,353 @@
+{
+  "clock": {
+    "robot_rows": 829,
+    "unique_cabinet_rows": 797,
+    "duplicates": 32,
+    "target_tcp_pose_rows": 829,
+    "target_q_rows": 0,
+    "vision_sidecar_runlog_rows": 970,
+    "camera_missing_frames": 46,
+    "unique_cabinet_intervals_ms": {
+      "8": 673,
+      "16": 114,
+      "24": 7,
+      "72": 1,
+      "240": 1
+    },
+    "cabinet_long_gaps_host_s": [
+      [
+        1.0080775,
+        1.2460292000000002
+      ],
+      [
+        6.6008487,
+        6.6702617
+      ]
+    ],
+    "median_host_minus_cabinet_s": 80329.2551531,
+    "median_hardware_tick_per_frame_id": 756117.0,
+    "host_review_window": {
+      "robot_rows": 120,
+      "camera_rows": 123,
+      "max_cabinet_interval_ms": 8.000000001629815,
+      "missing_frames": 4
+    }
+  },
+  "identity": {
+    "UR10": {
+      "path": "data/original/X_P05_R02/20260901_184044_B05_X_P05_R02_UR10.txt",
+      "sha256": "9385d8e2bbea4f4de876ad589d8b687bfce310d009e7aa502c9e1d4c4aa728ed"
+    },
+    "RUNLOG": {
+      "path": "data/original/X_P05_R02/20260901_184044_B05_X_P05_R02_RUNLOG.txt",
+      "sha256": "b9f95826ee2b790787842df94369d02725d59e5feaa37e9fbbf129a94ec3e49b"
+    },
+    "VISION": {
+      "path": "data/original/X_P05_R02/20260901_184044_B05_X_P05_R02_VISION.txt",
+      "sha256": "5d69074b6ca2d401971e6896c070e09c72f96d1ffa35d225a18bd0bb1541d724"
+    },
+    "META": {
+      "path": "data/original/X_P05_R02/20260901_184044_B05_X_P05_R02_META.json",
+      "sha256": "b9a883ce31c8998e17e8b7e8a3fb9d3bc0629af6ea8eec061dd957f325cf9561"
+    },
+    "FRAME_TIMESTAMPS": {
+      "path": "data/original/X_P05_R02/20260901_184044_B05_X_P05_R02_FRAME_TIMESTAMPS.csv",
+      "sha256": "ea6e6cab40d050941a639306a7646ccf786141d4c64b3e30d681abebfdded3b9"
+    },
+    "axis_mapping": {
+      "path": "data/batch/axis_mapping.json",
+      "sha256": "8caff58f9f8587591d3554513d1589b1337fe9e7ea1769e2ff4d222772895246"
+    },
+    "20260901_184044_B05_X_P05_R02_derived": {
+      "path": "data/derived/20260901_184044_B05_X_P05_R02_derived.csv",
+      "sha256": "c022634b8e2521cfea981ae954609bf63f397672294cb442c20e4250f9597708"
+    },
+    "A_X_P05_R02": {
+      "path": "data/B_reference/A_X_P05_R02.csv",
+      "sha256": "f8e810b3b26bc85b870554b620ba98a300988bd803c9655d71a020f3ce0af384"
+    },
+    "phase_summary": {
+      "path": "data/batch/phase_summary.csv",
+      "sha256": "f131fd0dde9ab31e7e4a60771a312caac1f6f7794bdb51f32ea3f48b6860b5e4"
+    }
+  },
+  "meta": {
+    "kind": "BATCH_SEGMENT_META",
+    "batch_id": "20260901_184044_B05",
+    "condition_id": "P05",
+    "trajectory_type": "x_line",
+    "preset_id": "P05",
+    "repeat_index": 2,
+    "speed_mm_s": 5.0,
+    "one_way_time_s": 2.6,
+    "nominal_one_way_distance_mm": 13.0,
+    "blend_radius_mm": 0.0,
+    "corner_mode": "STOP",
+    "acceleration_m_s2": 0.1,
+    "flash": {
+      "flash_system_ns": 111229748521700,
+      "flash_system_time": "2026-09-01T18:40:49.974+08:00",
+      "flash_frame_id": 794,
+      "camera_actual_fps": 132.3000030517578
+    },
+    "segment": {
+      "batch_id": "20260901_184044_B05",
+      "execution_order": 7,
+      "condition_id": "P05",
+      "trajectory_type": "x_line",
+      "preset_id": "P05",
+      "repeat_index": 2,
+      "speed_mm_s": 5.0,
+      "one_way_time_s": 2.6,
+      "nominal_one_way_distance_mm": 13.0,
+      "actual_start_pose": [
+        0.1968430663227164,
+        -0.6072726511788257,
+        0.4325518855336134,
+        -1.215937413036798,
+        2.0971678192959864,
+        -0.40147317656348136
+      ],
+      "actual_end_pose": [
+        0.19686751637793265,
+        -0.60727425670633,
+        0.4324895935672442,
+        -1.2158873269498118,
+        2.0972516506213306,
+        -0.40137898316464665
+      ],
+      "system_start_time": "2026-09-01T18:41:35.039+08:00",
+      "system_end_time": "2026-09-01T18:41:42.716+08:00",
+      "batch_elapsed_start_s": 45.0659139,
+      "batch_elapsed_end_s": 52.7426666,
+      "first_frame_id": 6488,
+      "last_frame_id": 7503,
+      "flash_system_time": "2026-09-01T18:40:49.974+08:00",
+      "status": "COMPLETED",
+      "output_video": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\UR10_vibration_pretest\\UR10_vibration_pretest_v1\\UR10_vibration_pretest\\outputs\\20260901_184044_B05\\20260901_184044_B05_X_P05_R02_HIK.avi",
+      "manual_label": ""
+    },
+    "vision_processing_status": "COMPLETED",
+    "vision_processing": {
+      "mode": "explicit_batch_vision_offline",
+      "processed_at": "2026-09-01T23:51:08",
+      "frame_count": 970,
+      "timestamp_sidecar": "C:\\Users\\kinli\\Documents\\ChatGPT\\ur10实验\\UR10_vibration_pretest\\UR10_vibration_pretest_v1\\UR10_vibration_pretest\\outputs\\20260901_184044_B05\\20260901_184044_B05_X_P05_R02_FRAME_TIMESTAMPS.csv",
+      "uses_original_hardware_frame_id_and_host_ns": true
+    }
+  },
+  "trajectory": {
+    "kind": "TRAJECTORY",
+    "computed": {
+      "experiment_mode": "x_line_experiment",
+      "start_pose_a": [
+        0.1968383934029561,
+        -0.6072878389102511,
+        0.4325556253244205,
+        -1.2158505921654026,
+        2.0971416312102464,
+        -0.40143982596514827
+      ],
+      "relative_workspace_limits_m": {
+        "x": [
+          -0.003161606597043898,
+          0.3968383934029561
+        ],
+        "y": [
+          -0.8072878389102511,
+          -0.40728783891025105
+        ],
+        "z": [
+          0.23255562532442048,
+          0.6325556253244204
+        ]
+      },
+      "x_direction": "+X",
+      "y_direction": "+Y",
+      "acceleration_m_s2": 0.1,
+      "input_parameters": {
+        "speed_mm_s": 5.0,
+        "one_way_time_s": 2.6,
+        "angle_deg": 45.0,
+        "x_direction": "+X",
+        "y_direction": "+Y",
+        "blend_mm": 1.0,
+        "acceleration_m_s2": 0.1
+      },
+      "one_way_time_s": 2.6,
+      "nominal_total_motion_time_s": 5.2,
+      "nominal_one_way_distance_mm": 13.000000000000002,
+      "one_way_distance_m": 0.013000000000000001,
+      "dx_m": 0.013000000000000001,
+      "dy_m": 0.0,
+      "point_b": [
+        0.20983839340295612,
+        -0.6072878389102511,
+        0.4325556253244205,
+        -1.2158505921654026,
+        2.0971416312102464,
+        -0.40143982596514827
+      ]
+    },
+    "waypoints": [
+      {
+        "name": "A",
+        "pose": [
+          0.1968383934029561,
+          -0.6072878389102511,
+          0.4325556253244205,
+          -1.2158505921654026,
+          2.0971416312102464,
+          -0.40143982596514827
+        ],
+        "speed_m_s": 0.001,
+        "acceleration_m_s2": 0.1,
+        "blend_radius_m": 0.0
+      },
+      {
+        "name": "B",
+        "pose": [
+          0.20983839340295612,
+          -0.6072878389102511,
+          0.4325556253244205,
+          -1.2158505921654026,
+          2.0971416312102464,
+          -0.40143982596514827
+        ],
+        "speed_m_s": 0.005,
+        "acceleration_m_s2": 0.1,
+        "blend_radius_m": 0.0
+      },
+      {
+        "name": "A_return",
+        "pose": [
+          0.1968383934029561,
+          -0.6072878389102511,
+          0.4325556253244205,
+          -1.2158505921654026,
+          2.0971416312102464,
+          -0.40143982596514827
+        ],
+        "speed_m_s": 0.005,
+        "acceleration_m_s2": 0.1,
+        "blend_radius_m": 0.0
+      }
+    ]
+  },
+  "runlog_events": [
+    {
+      "kind": "EVENT",
+      "name": "segment_opened",
+      "host_ns": 111274809197700,
+      "segment_base": "20260901_184044_B05_X_P05_R02"
+    }
+  ],
+  "raw_visual_zero_um": -0.5955968796513386,
+  "phase_host_bounds_s": {
+    "pre_motion": [
+      0.0,
+      1.2930727000000002
+    ],
+    "X_outbound": [
+      1.3088656,
+      3.8548726
+    ],
+    "far_end_turn": [
+      3.8609962,
+      4.045380000000001
+    ],
+    "X_return": [
+      4.0572073,
+      7.5841022
+    ],
+    "post_stop": [
+      7.5916613,
+      7.676752700000001
+    ]
+  },
+  "windows_s": {
+    "full": [
+      0.0,
+      7.676752700000001
+    ],
+    "start": [
+      1.2738656000000002,
+      1.5989760000000002
+    ],
+    "turn": [
+      3.7109962000000003,
+      4.275380000000001
+    ],
+    "outbound": [
+      1.718976,
+      3.6309962000000002
+    ],
+    "return_straight": [
+      4.355380000000001,
+      6.440538800000001
+    ],
+    "pre_static": [
+      0.7,
+      0.96
+    ],
+    "post_static": [
+      7.15,
+      7.55
+    ]
+  },
+  "platform_names": [
+    "pre_static",
+    "outbound",
+    "return_straight",
+    "post_static"
+  ],
+  "turn_actual_xmax_s": 3.9366047,
+  "host_gap_evidence": [
+    [
+      -0.0084729,
+      0.013525800000000001,
+      0.0
+    ],
+    [
+      0.4285069,
+      0.4516966,
+      0.0
+    ],
+    [
+      1.0080775,
+      1.2460292000000002,
+      0.0006195200022152125
+    ],
+    [
+      6.6008487,
+      6.6702617,
+      0.00121794156771049
+    ],
+    [
+      6.6702617,
+      6.694009800000001,
+      0.0
+    ],
+    [
+      7.0107007,
+      7.031532100000001,
+      0.0
+    ],
+    [
+      7.512250300000001,
+      7.5333354,
+      0.0
+    ]
+  ],
+  "missing_frame_count": 46,
+  "source_clock_origin_ns": 111274814435600,
+  "pre_stationary_axial_speed_mm_s": -0.010259425882828856,
+  "source_median_vx_mm_s": {
+    "outbound": 4.969149412585523,
+    "return_straight": -4.968816008258313
+  },
+  "speed_mm_s": 5.0,
+  "first_half_speed_s": 1.3289760000000002,
+  "last_return_90_percent_speed_s": 6.560538800000001,
+  "source_kind": "original_vision_cabinet_runlog_and_sidecar"
+}

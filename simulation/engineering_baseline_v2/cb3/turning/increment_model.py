@@ -88,7 +88,7 @@ def stationary(cfg, q):
                         positive_at_500ms_um=float(plus[-1]*1e6), position_external_max_diff_m=equivalence)
 
 
-def reconstruct(cfg, obs, t):
+def reconstruct(cfg, obs, t, *, gravity_support=True):
     env = aligned_model(cfg)
     host = obs["host_time_s"]
     i0 = np.searchsorted(host, t[0], side="right") - 1
@@ -117,8 +117,10 @@ def reconstruct(cfg, obs, t):
     if np.max(abs(target[:, 3:]-target[0, 3:])) > 1e-8:
         raise ValueError("This B05 entry requires the recorded constant target orientation")
     nominal_tcp = np.stack([np.interp(t, source_t, col) for col in target.T], axis=1)
-    support = GravitySupport(env)
-    offset = np.stack([support.offset(q) for q in nominal_q])
+    offset = np.zeros_like(nominal_q)
+    if gravity_support:
+        support = GravitySupport(env)
+        offset = np.stack([support.offset(q) for q in nominal_q])
     back = np.array([pose_error(flange(env, q), recorded_pose(p)) for q, p in zip(nominal_q, nominal_tcp)])
     max_pos = float(np.linalg.norm(back[:, :3], axis=1).max())
     max_angle = float(np.linalg.norm(back[:, 3:], axis=1).max())

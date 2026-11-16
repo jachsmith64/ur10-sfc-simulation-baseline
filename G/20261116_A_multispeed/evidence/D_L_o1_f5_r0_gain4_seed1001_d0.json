@@ -1,0 +1,20 @@
+{
+  "group": "D",
+  "estimator": "Q",
+  "law": "L",
+  "seed": 1001,
+  "camera_delay_ms": 4,
+  "command_ms": 8,
+  "execution_delay_ms": 0,
+  "pressure": "path-six-v1-r1",
+  "branch": "V",
+  "fc": 5,
+  "rho": 0,
+  "gamma": 1.0,
+  "linear_multiplier": 4,
+  "scenario": "main",
+  "measurement_injection": false,
+  "force_hz": [],
+  "force_amplitude_N": [],
+  "id": "D_L_o1_f5_r0_gain4_seed1001_d0"
+}

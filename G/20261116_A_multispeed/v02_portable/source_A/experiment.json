@@ -1,0 +1,11 @@
+{
+  "hold_steps": [8, 2],
+  "methods": {"baseline": "A0", "linear": "Alinear", "sfc": "ASFC"},
+  "physics_dt_s": 0.001,
+  "measurement_hz": 132,
+  "frame_noise_std_m": 0.000003,
+  "frame_noise_seed": 13220261015,
+  "review_seed": 13220261109,
+  "visual_delay_steps": 4,
+  "expected_input_id": "d2489c4ed0406761079ce55fc37c0a728bd92c071bad00acede316b32d892715"
+}

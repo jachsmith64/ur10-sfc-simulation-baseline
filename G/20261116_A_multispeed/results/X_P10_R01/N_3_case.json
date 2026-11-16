@@ -1,0 +1,597 @@
+{
+  "case": {
+    "group": "D",
+    "estimator": "N",
+    "law": "N",
+    "seed": 1001,
+    "camera_delay_ms": 4,
+    "command_ms": 8,
+    "execution_delay_ms": 0,
+    "pressure": "path-six-v1-r1",
+    "branch": "V",
+    "fc": null,
+    "rho": 1,
+    "gamma": 1.0,
+    "linear_multiplier": 1.0,
+    "scenario": "main",
+    "measurement_injection": false,
+    "force_hz": [],
+    "force_amplitude_N": [],
+    "id": "D_N_o1_fraw_r1_gain1_seed1001_d0"
+  },
+  "parameters": {
+    "case_id": "ASFC_strong",
+    "mode": "ASFC",
+    "K": 5000.0,
+    "B0": 400.0,
+    "n": 1.5,
+    "mu": 70879.56438014314,
+    "r": 4.0,
+    "v_ref": 0.000509563,
+    "w_gamma": 0.01
+  },
+  "diagnostic_pulse_N": 0.0,
+  "plan": {
+    "physics_ms": 1,
+    "command_ms": 8,
+    "encoder_ms": 8,
+    "encoder_delay_ms": 0,
+    "execution_delay_ms": 0,
+    "camera_hz": 132,
+    "camera_delay_ms": 4,
+    "camera_noise_m": 0.0,
+    "encoder_pressure": "path-six-v1-r1",
+    "filter_order": 1,
+    "cutoffs_hz": [
+      5,
+      20
+    ],
+    "rho": 0.0,
+    "position_prefilter": false,
+    "gamma": 1.0,
+    "seed": 1001,
+    "flat_reference_um": 1.0,
+    "fit_min": 80.0,
+    "fit_target": 90.0,
+    "event_timing_tolerance_s": 0.05,
+    "pass_hz": 30.0,
+    "stop_hz": 45.0,
+    "iterations": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "compiled": {
+    "actuator_trntype": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_trnid": [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ],
+      [
+        3,
+        -1
+      ],
+      [
+        4,
+        -1
+      ],
+      [
+        5,
+        -1
+      ]
+    ],
+    "actuator_gear": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "actuator_gaintype": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_biastype": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "actuator_dyntype": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_actadr": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "actuator_actnum": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actuator_gainprm": [
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        5000.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "actuator_biasprm": [
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -5000.0,
+        -500.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "actuator_ctrllimited": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "actuator_ctrlrange": [
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -3.1415,
+        3.1415
+      ],
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -6.2831,
+        6.2831
+      ],
+      [
+        -6.2831,
+        6.2831
+      ]
+    ],
+    "actuator_forcelimited": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "actuator_forcerange": [
+      [
+        -330.0,
+        330.0
+      ],
+      [
+        -330.0,
+        330.0
+      ],
+      [
+        -150.0,
+        150.0
+      ],
+      [
+        -56.0,
+        56.0
+      ],
+      [
+        -56.0,
+        56.0
+      ],
+      [
+        -56.0,
+        56.0
+      ]
+    ],
+    "actuator_actlimited": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "actuator_actrange": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "jnt_type": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "jnt_qposadr": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "jnt_dofadr": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "jnt_actfrclimited": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "jnt_actfrcrange": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "dof_damping": [
+      10.0,
+      10.0,
+      5.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "dof_armature": [
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "nq": 6,
+    "nv": 6,
+    "nu": 6,
+    "na": 0,
+    "dt": 0.001,
+    "integrator": 3,
+    "integrator_name": "mjINT_IMPLICITFAST",
+    "disableflags": 0,
+    "enableflags": 0,
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "actuator_names": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow",
+      "wrist_1",
+      "wrist_2",
+      "wrist_3"
+    ],
+    "joint_names": [
+      "shoulder_pan_joint",
+      "shoulder_lift_joint",
+      "elbow_joint",
+      "wrist_1_joint",
+      "wrist_2_joint",
+      "wrist_3_joint"
+    ],
+    "meaning": "actuator_force是执行器标量力；经transmission moment映射为qfrc_actuator广义关节力矩；本模型unit gear一一映射才可数值等同",
+    "conditions": {
+      "six_independent_hinges": true,
+      "joint_transmission": true,
+      "identity_dof_order": true,
+      "unit_gear": true,
+      "fixed_positive_gain": true,
+      "affine_servo_bias": true,
+      "no_activation": true,
+      "actuation_enabled": true
+    },
+    "simple_mapping_applicable": true,
+    "Kp_Nm_per_rad": [
+      5000.0,
+      5000.0,
+      5000.0,
+      5000.0,
+      5000.0,
+      5000.0
+    ],
+    "Kd_Nms_per_rad": [
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "gravity_m_s2": [
+      0.0,
+      0.0,
+      -9.81
+    ]
+  },
+  "nominal_y_m": -0.6072879999998781,
+  "force_sha256": "15d4535d65aa1dd81e242fa0a5bed0c8e25dda517c86c50f7f42b37f5fa7a33e",
+  "input_hashes": {
+    "t": "15f248170eb4c362a0befb6c91c673ca37915b37dfcd4142ef4cbe5f77433e0c",
+    "q": "6ec1f0e815be5eb0c8cfe3dd2f82780dd390dada083171fa1b1ed49a99781184",
+    "along": "b2a80660f7af0b249090dbc9eef5cec10ebf4734b1de44ffb8ca2afebb66959b",
+    "phase": "400cbfc80f41e2e7badc17c65a7b9ae6442ea498f5fdce48954b4cfaff3c2a37",
+    "dq": "fc50264f5cac714c044c0d9ce594770465c6b8df681457b17d563fd85c6fa456",
+    "dqd": "06dca732ab8d27eeac65a1580d57ad5eccb172171d999ab81b8f35796508f7e1",
+    "remaining": "bc73b51f1f77a3b2fb9ca8f0580e0ebbbb6c5d5525d616d1923b2163aba5ae0a",
+    "remaining_dot": "bb7dde131c609aa2ab1192b7c94def70279362ea107f41a6295378f5e4f1291e",
+    "common_delta_q": "523bceadb7324a45339ead35371b73462387450bc9fd0edc1311dcce0fcd5676",
+    "common_delta_q_dot": "538d343f120c88f897e3ffcb37a99ff8f98a19150c504384d18012926fc5c57a",
+    "common_delta_q_ddot": "3b7deeb6071018c1b16d7968c72a8d080c42c3b0b72ccfa4a8104fcb0273d2f1",
+    "common_baseline_um": "89e77e22478209ef9e9f4eb5fd12ae0b4b5319a68b86f3bb78ffa4a867ce96e3",
+    "common_delta_y_m": "3010474f73145653097c1affc6dffaa04447b34e07ac2ef48fe2cf2f82c0b4dc",
+    "pressure": "786ee55257cc747d73f2d9d6c18b802598e1ffe18250dad6bd8a59774e22284b"
+  }
+}

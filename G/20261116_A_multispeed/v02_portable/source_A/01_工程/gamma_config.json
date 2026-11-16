@@ -1,0 +1,14 @@
+{
+  "default_w_gamma": 0.01,
+  "new_coupled_w_gamma_values": [0.001, 0.0001],
+  "new_scenes": ["ON", "OFF"],
+  "additional_case": {"scene": "ON", "method": "sp_only", "w_gamma": 0.01},
+  "physics_budget_steps": 60000,
+  "case_steps": 10000,
+  "changed_research_parameter": "w_gamma",
+  "gamma_targets": [0.9, 1.0, 1.1],
+  "rho_gamma_per_s": 1.0,
+  "decision_steps": 32,
+  "prediction_steps": 160,
+  "dt_s": 0.001
+}

@@ -1,0 +1,4 @@
+numpy==2.5.3
+scipy==1.18.1
+mujoco==3.15.0
+ruckig==0.19.4

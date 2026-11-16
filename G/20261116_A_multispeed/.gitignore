@@ -1,0 +1,5 @@
+/local/
+/runs/
+__pycache__/
+/G_A_multispeed_review_20261116.zip
+/results/**/*.npz

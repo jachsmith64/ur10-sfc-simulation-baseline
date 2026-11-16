@@ -1,0 +1,805 @@
+diff --git a/G/20261116_A_multispeed/g_config.json b/G/20261116_A_multispeed/g_config.json
+new file mode 100644
+index 0000000..7cc3a92
+--- /dev/null
++++ b/G/20261116_A_multispeed/g_config.json
+@@ -0,0 +1,24 @@
++{
++  "physics_ms": 1,
++  "command_ms": 8,
++  "encoder_ms": 8,
++  "encoder_delay_ms": 0,
++  "execution_delay_ms": 0,
++  "camera_hz": 132,
++  "camera_delay_ms": 4,
++  "camera_noise_m": 0.0,
++  "encoder_pressure": "path-six-v1-r1",
++  "filter_order": 1,
++  "cutoffs_hz": [5, 20],
++  "rho": 0.0,
++  "position_prefilter": false,
++  "gamma": 1.0,
++  "seed": 1001,
++  "flat_reference_um": 1.0,
++  "fit_min": 80.0,
++  "fit_target": 90.0,
++  "event_timing_tolerance_s": 0.05,
++  "pass_hz": 30.0,
++  "stop_hz": 45.0,
++  "iterations": [1.0, 1.0, 1.0, 1.0]
++}
+diff --git a/G/20261116_A_multispeed/prepare_v02.py b/G/20261116_A_multispeed/prepare_v02.py
+new file mode 100644
+index 0000000..6a4dd81
+--- /dev/null
++++ b/G/20261116_A_multispeed/prepare_v02.py
+@@ -0,0 +1,37 @@
++"""Materialize the portable G inputs; asset bytes are pinned to the inherited Git tree."""
++from hashlib import sha256
++import json
++from pathlib import Path
++from shutil import copy2, copytree
++import sys
++
++HERE = Path(__file__).resolve().parent
++REPO = HERE.parents[1]
++
++
++def checked(path, identity):
++    return path.stat().st_size == identity["bytes"] and sha256(path.read_bytes()).hexdigest() == identity["sha256"]
++
++
++def main():
++    if len(sys.argv) != 2:
++        raise SystemExit("Usage: python prepare_v02.py <new-output-directory>")
++    destination = Path(sys.argv[1]).resolve()
++    assets = json.loads((HERE/"evidence/v02_assets_from_repo.json").read_text(encoding="utf-8"))
++    inputs = json.loads((HERE/"evidence/ready_inputs_sha256.json").read_text(encoding="utf-8"))
++    for name, identity in inputs.items():
++        if not checked(HERE/name, identity):
++            raise ValueError(f"Portable Git input differs from run receipt: {name}")
++    for name, identity in assets.items():
++        if not checked(REPO/identity["repo_path"], identity):
++            raise ValueError(f"Inherited Git asset differs from V02: {name}")
++    copytree(HERE/"v02_portable", destination)
++    for name, identity in assets.items():
++        target = destination/name
++        target.parent.mkdir(parents=True,exist_ok=True)
++        copy2(REPO/identity["repo_path"],target)
++    print(destination)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/G/20261116_A_multispeed/regress_v02.py b/G/20261116_A_multispeed/regress_v02.py
+new file mode 100644
+index 0000000..2e6fc25
+--- /dev/null
++++ b/G/20261116_A_multispeed/regress_v02.py
+@@ -0,0 +1,43 @@
++import argparse
++import json
++from pathlib import Path
++import numpy as np
++import run_campaign as core
++
++parser = argparse.ArgumentParser()
++parser.add_argument("--historical", required=True, type=Path)
++parser.add_argument("--out", required=True, type=Path)
++args = parser.parse_args()
++project = Path(__file__).resolve().parent
++args.out.mkdir(parents=True, exist_ok=True)
++anchors = json.loads((project / "evidence/v02_historical_hashes.json").read_text(encoding="utf-8"))
++sweep, context = core.initialize(args.out)
++receipt = {}
++for case_path in sorted((project / "evidence").glob("D_*.json"), key=lambda p: "NLS".index(p.name[2])):
++    case = core.read(case_path)
++    name = case["id"]
++    result = core.run_case(args.out, sweep, context, case)
++    old = args.historical / name
++    new = args.out / "runs" / name
++    with np.load(old / "trace.npz", allow_pickle=False) as a, np.load(new / "trace.npz", allow_pickle=False) as b:
++        deltas = {}
++        equal = set(a.files) == set(b.files)
++        for key in sorted(set(a.files) & set(b.files)):
++            same_shape = a[key].shape == b[key].shape
++            same = same_shape and np.array_equal(a[key], b[key], equal_nan=True)
++            equal &= same
++            if a[key].dtype.kind in "fiub" and same_shape:
++                x, y = a[key].astype(float), b[key].astype(float)
++                valid = np.isfinite(x) & np.isfinite(y)
++                delta = float(np.max(abs(x[valid] - y[valid]), initial=0))
++            else:
++                delta = None
++            deltas[key] = dict(equal=bool(same), max_abs_finite=delta)
++    old_guard, new_guard = core.read(old / "guard.json"), core.read(new / "guard.json")
++    receipt[name] = dict(completed=result["completed"], old_sha=core.sha(old / "trace.npz"),
++                         new_sha=core.sha(new / "trace.npz"), all_arrays_equal=bool(equal),
++                         old_guard=old_guard, new_guard=new_guard, deltas=deltas,
++                         inputs_equal=core.read(old / "inputs.json") == core.read(new / "inputs.json"),
++                         pinned_by_history=core.sha(old / "trace.npz") in json.dumps(anchors))
++    core.write(args.out / "regression_receipt.json", receipt)
++    print(name, "arrays equal", equal, "guard equal", old_guard == new_guard, flush=True)
+diff --git a/G/20261116_A_multispeed/reproduce.ps1 b/G/20261116_A_multispeed/reproduce.ps1
+new file mode 100644
+index 0000000..5dfa37c
+--- /dev/null
++++ b/G/20261116_A_multispeed/reproduce.ps1
+@@ -0,0 +1,36 @@
++param(
++    [string]$Python = 'python',
++    [string]$V02Root = (Join-Path $PSScriptRoot 'local/frozen_V02'),
++    [string]$MuJoCoRuntime,
++    [string]$ScienceRuntime,
++    [string]$SourceRoot,
++    [string]$PreparedRoot,
++    [string]$HistoricalRuns,
++    [string[]]$Trials,
++    [switch]$WithControls,
++    [Parameter(Mandatory=$true)][string]$Out
++)
++$ErrorActionPreference = 'Stop'
++if (Test-Path -LiteralPath $Python -PathType Leaf) { $Python = (Resolve-Path -LiteralPath $Python).Path }
++$Out = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Out)
++if ($MuJoCoRuntime) { $env:B_SFC_RUNTIME_DIR = (Resolve-Path -LiteralPath $MuJoCoRuntime).Path }
++if ($ScienceRuntime) { $env:FILTER_SFC_SCIENCE_DIR = (Resolve-Path -LiteralPath $ScienceRuntime).Path }
++$env:OPENBLAS_NUM_THREADS = '1'
++$entry = Join-Path $PSScriptRoot 'run_g.py'
++$arguments = @('--out',$Out)
++if ($HistoricalRuns) {
++    $entry = Join-Path $PSScriptRoot 'regress_v02.py'
++    $arguments += @('--historical',(Resolve-Path -LiteralPath $HistoricalRuns).Path)
++} else {
++    if ($SourceRoot) { $arguments += @('--source-root',(Resolve-Path -LiteralPath $SourceRoot).Path) }
++    if ($PreparedRoot) { $arguments += @('--prepared-root',(Resolve-Path -LiteralPath $PreparedRoot).Path) }
++    if ($Trials) { $arguments += @('--trials') + $Trials }
++    if ($WithControls) { $arguments += '--with-controls' }
++}
++Push-Location -LiteralPath $V02Root
++try {
++    & $Python -B -I -X utf8 offline.py $entry @arguments
++    if ($LASTEXITCODE -ne 0) { throw "Offline run failed with exit code $LASTEXITCODE" }
++} finally {
++    Pop-Location
++}
+diff --git a/G/20261116_A_multispeed/run_g.py b/G/20261116_A_multispeed/run_g.py
+new file mode 100644
+index 0000000..165e34e
+--- /dev/null
++++ b/G/20261116_A_multispeed/run_g.py
+@@ -0,0 +1,366 @@
++"""Offline G adapter for the copied V02 integration, guard and measurement loop."""
++import argparse
++from hashlib import sha256
++import json
++from pathlib import Path
++import sys
++
++import run_campaign as core
++
++PROJECT = Path(__file__).resolve().parent
++REPO = PROJECT.parents[1]
++BASELINE = REPO / "simulation/engineering_baseline_v2"
++TURNING = BASELINE / "cb3/turning"
++sys.path.insert(0, str(TURNING))
++
++import mujoco
++import numpy as np
++import disturbance
++from b132_common import save
++from filter_sensing import Measurement
++from increment_model import aligned_model
++from position_execution import POSITION_EQUIV, compiled_mapping
++from score_g import evaluate
++from source_a import TRIALS, load_source, nominal, speed
++
++PLAN = core.read(PROJECT / "g_config.json")
++CB3 = core.read(TURNING / "increment_config.json")
++
++
++def model():
++    return aligned_model(CB3)
++
++
++def smooth_platforms(t, windows, values):
++    # F historical run_slow.slow_center: constant platforms, C2 quintic connections.
++    b = np.full_like(t, values[0])
++    bd = np.zeros_like(t)
++    bdd = np.zeros_like(t)
++    for (_, lo), (hi, _), a, z in zip(windows[:-1], windows[1:], values[:-1], values[1:], strict=True):
++        inside = (t >= lo) & (t <= hi)
++        span = hi - lo
++        u = (t[inside] - lo) / span
++        b[inside] = a + (z-a) * u**3 * (10 - 15*u + 6*u*u)
++        bd[inside] = (z-a) * 30*u*u*(1-u)**2 / span
++        bdd[inside] = (z-a) * (60*u - 180*u*u + 120*u**3) / span**2
++        b[t > hi] = z
++    return b, bd, bdd
++
++
++def correction(t, windows, levels, direction):
++    b, d, dd = smooth_platforms(t, windows, levels)
++    return dict(common_delta_q=(-1e-6*b[:, None])*direction,
++                common_delta_q_dot=(-1e-6*d[:, None])*direction,
++                common_delta_q_ddot=(-1e-6*dd[:, None])*direction,
++                common_baseline_um=b, common_delta_y_m=-1e-6*b)
++
++
++class PulseCoordinator(core.Coordinator):
++    def __init__(self, ctx, case, sensor, pulse):
++        super().__init__(ctx, case, sensor)
++        self.pulse = pulse
++
++    def command(self, i, env, command, out, actuation):
++        if 800 <= i < 856:
++            actuation.apply_requested_torque(env, self.pulse * env.jacp()[1])
++            command = command + actuation.delta
++        return super().command(i, env, command, out, actuation)
++
++
++def run_case(sweep, folder, ctx, case, force, pulse=0.):
++    folder.mkdir(parents=True)
++    t = ctx["c"]["t"]
++    p = ctx["parameters"]
++    sensor = Measurement(core.CONFIG, case, core.aconfig.Y_NOMINAL,
++                         ctx["pressure"], np.zeros(int(np.ceil((t[-1]+.001)*PLAN["camera_hz"]))+1))
++    ext = PulseCoordinator(ctx, case, sensor, pulse) if pulse else core.Coordinator(ctx, case, sensor)
++    channel = core.CommandChannel(case["execution_delay_ms"], case["command_ms"], ext)
++    logger = core.Logger(folder / "trace.npz", ctx, case, sensor, channel)
++    force_sha = sha256(force.tobytes()).hexdigest()
++    fd = disturbance.FrozenDisturbance(Path("G_equivalent_force"), t, force, {"frozen":{"sha256":force_sha}})
++    save(folder/"case.json", dict(case=case, parameters=p | {"B0":p["B0"]*case["linear_multiplier"]},
++                                 diagnostic_pulse_N=pulse, plan=PLAN, compiled=ctx["compiled"],
++                                 nominal_y_m=core.aconfig.Y_NOMINAL, force_sha256=force_sha,
++                                 input_hashes={k: sha256(np.asarray(v).tobytes()).hexdigest() for k, v in
++                                               (ctx["scaled"] | ctx["corr"] | {"pressure":ctx["pressure"]}).items()}))
++    row = sweep.run_case(folder.name, core.MODES[case["law"]], p["K"], p["B0"]*case["linear_multiplier"],
++                         p["n"], p["mu"], p["r"], p["v_ref"], fd, ctx["c"]["along"], ctx["c"]["q"],
++                         phase_code=ctx["c"]["phase"], c_input=ctx["scaled"], execution_mode=POSITION_EQUIV,
++                         control_update_steps=case["command_ms"], precise_logger=logger,
++                         common_position_correction=ctx["corr"]["common_delta_q"], e_extension=ext,
++                         measurement_adapter=sensor, final_command_hold=True, command_channel=channel)
++    save(folder/"row.json", row)
++    save(folder/"guard.json", ext.rejection)
++    save(folder/"frames.json", core.as_frames(sensor))
++    save(folder/"command_events.json", channel.events)
++    trace = core.data_arrays(folder/"trace.npz")
++    size = len(trace["t"])
++    step = np.arange(size)
++    check = dict(status=row["status"], planned_steps=len(t), retained_steps=size,
++                 full=bool(row["status"]=="OK" and size==len(t)), held=bool(np.array_equal(
++                 trace["final_ctrl"][step % 8 != 0], trace["final_ctrl"][step[step % 8 != 0]-1])),
++                 external_only=bool(np.array_equal(trace["qfrc_applied"], trace["qfrc_disturbance"])),
++                 no_future=all(item["c_available"] <= item["compute"] and item["q_available"] <= item["compute"]
++                               for item in channel.events))
++    save(folder/"validation.json", check)
++    assert check["held"] and check["external_only"] and check["no_future"]
++    print(folder.name, row["status"], size, row.get("note"), flush=True)
++    return trace, check
++
++
++def axial_timing(trace, src, grid, nominal_pose, receipt):
++    t = trace["t"]
++    if len(t) < 2:
++        return {"pass": False}
++    x = trace["physical_xyz_m"][:, 0]
++    v = np.gradient(x, t)*1000
++    actual_host = src["host_time_s"]
++    actual_v = src["actual_tcp_speed"][:, 0]*1000
++    turn_source = receipt["turn_actual_xmax_s"]
++    near_turn = (t >= turn_source-.3) & (t <= turn_source+.3)
++    half = receipt["speed_mm_s"] / 2
++    start = t[(t > .75) & (v > half)]
++    return_v = t[(t >= turn_source-.15) & (v < -half)]
++    source_return_v = actual_host[(actual_host >= turn_source-.15) & (actual_v < -half)]
++    if not len(start) or not near_turn.any() or not len(return_v) or not len(source_return_v):
++        return {"pass": False, "reason": "retained prefix has no paired start, turn or return"}
++    model_turn = t[near_turn][np.argmax(x[near_turn])]
++    shifts = dict(start_speed_s=float(start[0]-receipt["first_half_speed_s"]),
++                  turn_xmax_s=float(model_turn-turn_source), return_speed_s=float(return_v[0]-source_return_v[0]))
++    actual_x = np.interp(t, actual_host, src["actual_tcp_pose"][:, 0])
++    speeds = {k: float(np.median(v[(t >= receipt["windows_s"][k][0]) &
++                                  (t <= receipt["windows_s"][k][1])])) for k in ("outbound", "return_straight")}
++    return dict(shifts, along_speed_model_mm_s=speeds, rmse_x_model_vs_A_um=float(np.sqrt(np.mean((x-actual_x)**2))*1e6),
++                rmse_x_model_vs_nominal_um=float(np.sqrt(np.mean((x-nominal_pose[:len(t), 0])**2))*1e6),
++                **{"pass": max(abs(x) for x in shifts.values()) <= PLAN["event_timing_tolerance_s"]})
++
++
++def inverse(target, plant):
++    pad = 2000
++    padded = np.pad(target, (pad, pad), mode="edge")
++    return disturbance.invert_series(padded, plant, PLAN["pass_hz"], PLAN["stop_hz"])[pad:-pad]
++
++
++def reconstruct_trial(sweep, out, src_root, prepared_root, trial, frozen):
++    if src_root is not None:
++        src, receipt, t = load_source(src_root, trial)
++    else:
++        src = core.data_arrays(prepared_root/trial/"A_source.npz")
++        receipt = core.read(prepared_root/trial/"source.json")
++        t = np.arange(int(np.ceil(src["frame_host_time_s"][-1]*1000))+1)*.001
++    out.mkdir()
++    save(out/"source.json", receipt)
++    kin, diagnostics = nominal(CB3, src, t)
++    print(trial, "IK", diagnostics, flush=True)
++    q = kin["nominal_q_rad"]
++    xyz = kin["nominal_tcp_m_rotvec_rad"][:, :3]
++    core.aconfig.Y_NOMINAL = float(xyz[0, 1])
++    c = dict(t=t, q=q, along=(xyz[:,0]-xyz[0,0])*1000,
++             phase=np.zeros(len(t),dtype=int))
++    for i, (lo, hi) in enumerate(receipt["phase_host_bounds_s"].values(), 1):
++        c["phase"][(t >= lo) & (t <= hi)] = i
++    fields = ("dq","dqd","remaining","remaining_dot")
++    n_old = len(frozen["scaled"]["remaining"])
++    if len(t) > n_old:
++        raise ValueError("This run exceeds the frozen C background length")
++    scaled = c | {k:frozen["scaled"][k][:len(t)].copy() for k in fields}
++    pressure = core.pressure(PLAN["encoder_pressure"])
++    if len(t[::8]) > len(pressure):
++        raise ValueError("Use the original source B repeat/join construction for a longer pressure record")
++    env = model()
++    env.reset(q[0])
++    J = env.jacp()
++    direction = J.T @ np.linalg.solve(J @ J.T, [0.,1.,0.])
++    mapping = compiled_mapping(env.model)
++    mapping["gravity_m_s2"] = env.model.opt.gravity.copy()
++    # The numerical probe runs on its own MjData and does not set the live state.
++    original_q = core.aconfig.INIT_Q
++    dc = disturbance.measure_dc_compliance
++    try:
++        core.aconfig.INIT_Q = q[len(t)//2].copy()
++        disturbance.measure_dc_compliance = lambda: dc(model())
++        plant = disturbance.measure_plant(model())
++    finally:
++        disturbance.measure_dc_compliance = dc
++        core.aconfig.INIT_Q = original_q
++    disturbance.save_plant(plant, out/"plant.npz")
++    sweep.SimEnv = model
++    windows = [receipt["windows_s"][k] for k in receipt["platform_names"]]
++    ft = src["frame_host_time_s"]
++    valid = src["frame_valid"]
++    a = src["A_centered_um"]
++    picks = [(lo <= ft) & (ft <= hi) & valid for lo, hi in windows]
++    a_levels = [float(np.median(a[mask])) for mask in picks]
++    trend = smooth_platforms(t, windows, a_levels)[0]
++    ctx = dict(c=c, scaled=scaled, pressure=pressure, nominal_xyz=xyz, compiled=mapping,
++               parameters=frozen["parameters"], input_id=sha256(q.tobytes()).hexdigest(),
++               corr=correction(t, windows, np.zeros(4), direction))
++    n_case = core.read(PROJECT/"evidence/D_N_o1_fraw_r1_gain1_seed1001_d0.json")
++    force = np.zeros(len(t))
++    pre, check = run_case(sweep, out/"N_without_common", ctx, n_case, force)
++    if not check["full"]:
++        raise RuntimeError("N with frozen background and zero common correction stopped")
++    total = pre["physical_e_um"] + pre["remaining"]*1e6
++    levels = [float(np.median(np.interp(ft[mask], t, total)-a[mask])) for mask in picks]
++    ctx["corr"] = correction(t, windows, levels, direction)
++    baseline, check = run_case(sweep, out/"N_common_only", ctx, n_case, force)
++    if not check["full"]:
++        raise RuntimeError("N with new public table and zero external force stopped")
++    force_best = force.copy()
++    trace_best = baseline
++    best = -np.inf
++    attempts = []
++    timing = axial_timing(baseline, src, t, kin["nominal_tcp_m_rotvec_rad"], receipt)
++    for number, relaxation in enumerate([0.] + PLAN["iterations"]):
++        if number:
++            total = baseline["physical_e_um"] + baseline["remaining"]*1e6
++            residual = np.interp(t, ft[valid], a[valid]) - total
++            force = force + relaxation*inverse(residual, plant)
++            baseline, check = run_case(sweep, out/f"N_fit_{number}", ctx, n_case, force)
++        else:
++            check = {"full": True}
++        scores = evaluate(t, baseline, src, receipt, trend, PLAN["flat_reference_um"])
++        required = [scores[k][layer].get("fit") for k in ("full","start","turn") for layer in ("raw","oscillation")]
++        complete = check["full"] and all(scores[k]["complete"] for k in ("full","start","turn"))
++        finite = [x for x in required if x is not None]
++        minimum = min(finite, default=-np.inf)
++        fairness = [{"layer_fit":scores[k]["physical_oscillation"].get("fit"), "label":k}
++                    for k in ("full","start","turn")]
++        physical_good = all(x["layer_fit"] is not None and x["layer_fit"] >= PLAN["fit_min"] for x in fairness)
++        attempts.append(dict(attempt=number, complete=complete, scores=scores,
++                             assessment_min=float(minimum) if np.isfinite(minimum) else None,
++                             physical_80=physical_good,
++                             pressure_sha256=sha256(pressure.tobytes()).hexdigest(),
++                             force_max_N=float(np.max(abs(force))), force_sha256=sha256(force.tobytes()).hexdigest()))
++        save(out/"attempts.json", attempts)
++        if complete and minimum > best:
++            best, best_attempt, force_best, trace_best = minimum, number, force.copy(), baseline
++            timing = axial_timing(baseline, src, t, kin["nominal_tcp_m_rotvec_rad"], receipt)
++        if not complete or (minimum >= PLAN["fit_target"] and physical_good and timing["pass"]):
++            break
++    if not np.isfinite(best):
++        raise RuntimeError("All candidate observations lacked comparable complete windows")
++    fit = attempts[best_attempt]
++    status = dict(best_attempt=best_attempt, best_min_fit=best, source_timing=timing,
++                  reconstruction_pass=bool(best >= PLAN["fit_min"] and fit["physical_80"] and timing["pass"]),
++                  ik=diagnostics, common_plateau_residual_um=levels, A_drift_levels_um=a_levels,
++                  common_effect_rms_um=float(np.sqrt(np.mean((pre["physical_y"] -
++                                   core.data_arrays(out/"N_common_only/trace.npz")["physical_y"])**2))*1e6),
++                  remaining_rms_um=float(np.sqrt(np.mean(scaled["remaining"]**2))*1e6),
++                  initial_nominal_q_rad=q[0].tolist(), initial_qdot_rad_s=[0.]*6,
++                  initial_source_q_rad=src["actual_q_rad"][int(np.argmin(abs(src["host_time_s"])))].tolist(),
++                  compiled=mapping, parameters=ctx["parameters"])
++    np.savez_compressed(out/"locked_inputs.npz", **(scaled | ctx["corr"]),
++                        pressure=pressure, Fd=force_best, nominal_xyz=xyz, A_trend_um=trend)
++    np.savez_compressed(out/"original_A.npz", **src)
++    save(out/"status.json", status)
++    print(trial, "best FIT", best, "timing", timing, "status", status["reconstruction_pass"], flush=True)
++    return status
++
++
++def run_controls(sweep, folder, status, frozen):
++    src = core.data_arrays(folder/"original_A.npz")
++    source = core.read(folder/"source.json")
++    locked = core.data_arrays(folder/"locked_inputs.npz")
++    current = {name: locked[name] for name in ("t","q","along","phase")}
++    corr = {k:v for k,v in locked.items() if k.startswith("common_")}
++    core.aconfig.Y_NOMINAL = float(locked["nominal_xyz"][0,1])
++    ctx = dict(c=current, scaled=current | {k:locked[k] for k in ("dq","dqd","remaining","remaining_dot")},
++               corr=corr, pressure=locked["pressure"], compiled=status["compiled"],
++               nominal_xyz=locked["nominal_xyz"], parameters=frozen["parameters"],
++               input_id=sha256(current["q"].tobytes()).hexdigest())
++    index = status["best_attempt"]
++    n_path = folder/("N_common_only" if index == 0 else f"N_fit_{index}")
++    n_trace = core.data_arrays(n_path/"trace.npz")
++    n_case = core.read(PROJECT/"evidence/D_N_o1_fraw_r1_gain1_seed1001_d0.json")
++    probe = {}
++    for label, pulse in (("positive", 1.), ("negative", -1.)):
++        a, check = run_case(sweep, folder/f"pulse_{label}", ctx, n_case, locked["Fd"], pulse)
++        if not check["full"]:
++            save(folder/"pulse_gate.json", dict(passed=False, reason=f"{label} pulse stopped"))
++            return {"ran_controls":False, "reason":"pulse stopped"}
++        probe[label] = a["physical_e_um"]-n_trace["physical_e_um"]
++    positive, negative = probe["positive"], probe["negative"]
++    causal = bool(np.array_equal(positive[:801], np.zeros(801)) and
++                  np.array_equal(negative[:801], np.zeros(801)))
++    passed = bool(causal and positive[801] > 0 > negative[801])
++    save(folder/"pulse_gate.json", dict(passed=passed, causal=causal,
++                                       positive_peak_um=float(positive.max()),
++                                       negative_peak_um=float(negative.min())))
++    if not passed:
++        return {"ran_controls":False, "reason":"micro-command pulse gate failed"}
++    summary = {}
++    for cutoff in PLAN["cutoffs_hz"]:
++        for law, gain in (("L",1), ("L",4), ("S",1)):
++            key = f"L{gain}_{cutoff}Hz" if law == "L" else f"SFC_{cutoff}Hz"
++            template = ("D_L_o1_f5_r0_gain4_seed1001_d0" if law=="L" else "D_S_o1_f5_r0_gain1_seed1001_d0")
++            case = core.read(PROJECT/f"evidence/{template}.json")
++            case.update(id=key, fc=cutoff, linear_multiplier=gain)
++            trace, check = run_case(sweep,folder/key,ctx,case,locked["Fd"])
++            comparison = {}
++            for name,(lo,hi) in source["windows_s"].items():
++                span = (current["t"] >= lo) & (current["t"] <= hi)
++                if not np.all(np.flatnonzero(span) < len(trace["t"])):
++                    comparison[name] = {"complete":False}
++                    continue
++                y = trace["physical_e_um"][span[:len(trace["t"])]] - locked["A_trend_um"][span]
++                n = n_trace["physical_e_um"][span] - locked["A_trend_um"][span]
++                comparison[name] = dict(complete=True, physical_rms_um=float(np.sqrt(np.mean(y*y))),
++                                        N_physical_rms_um=float(np.sqrt(np.mean(n*n))),
++                                        rms_ratio=float(np.linalg.norm(y)/np.linalg.norm(n)) if np.linalg.norm(n) else None)
++            summary[key] = {"status":check, "relative_to_N":comparison,
++                            "observation":evaluate(current["t"],trace,src,source,locked["A_trend_um"],PLAN["flat_reference_um"])}
++            save(folder/"control_results.json",summary)
++    return {"ran_controls":True, "case_ids":list(summary)}
++
++
++def main():
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--source-root", type=Path)
++    parser.add_argument("--prepared-root", type=Path, default=PROJECT/"prepared_A")
++    parser.add_argument("--out", type=Path, required=True)
++    import csv
++    with (PROJECT/"instructions/04_A_registered_candidates.csv").open(encoding="utf-8-sig") as source:
++        registered = [c["segment_base"].split("_B05_",1)[1] for c in csv.DictReader(source)]
++    parser.add_argument("--trials", nargs="+", choices=registered, default=TRIALS)
++    parser.add_argument("--with-controls", action="store_true")
++    parser.add_argument("--historical-regression-receipt", type=Path,
++                        default=PROJECT/"evidence/regression_receipt.json")
++    options = parser.parse_args()
++    if len(set(options.trials)) != len(options.trials):
++        parser.error("Each trial must be independent")
++    reg = core.read(options.historical_regression_receipt)
++    if len(reg) != 3 or not all(r["all_arrays_equal"] and r["pinned_by_history"] and
++                                 r["inputs_equal"] and r["old_guard"]==r["new_guard"] for r in reg.values()):
++        raise RuntimeError("V02 regression receipt has not passed")
++    options.out.mkdir(parents=True, exist_ok=False)
++    frozen = core.context()
++    print("V02 effective controller", frozen["parameters"], flush=True)
++    expected = dict(K=5000., B0=400., n=1.5, mu=70879.56438014314)
++    assert all(frozen["parameters"][k] == v for k,v in expected.items())
++    integration_folder = options.out/"source"
++    integration_folder.mkdir()
++    sweep = core.integration_module(integration_folder)
++    receipt = {}
++    for trial in options.trials:
++        try:
++            status = reconstruct_trial(sweep, options.out/trial, options.source_root, options.prepared_root, trial, frozen)
++            receipt[trial] = status
++        except (AssertionError, ValueError, RuntimeError, FileNotFoundError, StopIteration) as ex:
++            receipt[trial] = dict(reconstruction_pass=False, error=str(ex))
++            save(options.out/"receipt.json", receipt)
++            import traceback
++            traceback.print_exc()
++    eligible = [trial for trial, status in receipt.items() if status["reconstruction_pass"]]
++    coverage = len(set(map(speed, eligible))) >= 2
++    gate = dict(eligible=eligible, multi_speed_event_coverage=coverage, control_requested=options.with_controls,
++                controls={})
++    if options.with_controls and coverage:
++        for trial in eligible:
++            gate["controls"][trial] = run_controls(sweep, options.out/trial, receipt[trial], frozen)
++    save(options.out/"control_gate.json", gate)
++    save(options.out/"receipt.json", receipt)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/G/20261116_A_multispeed/score_g.py b/G/20261116_A_multispeed/score_g.py
+new file mode 100644
+index 0000000..e12f7d7
+--- /dev/null
++++ b/G/20261116_A_multispeed/score_g.py
+@@ -0,0 +1,55 @@
++"""Metrics on original valid A frame timestamps; FFT is supplemental only."""
++import numpy as np
++
++BANDS = ((0.5, 5), (5, 15), (15, 30), (30, 45), (45, 60))
++
++
++def band_power(t, x):
++    dt = 1 / 132
++    tt = np.arange(t[0], t[-1], dt)
++    if len(tt) < 20:
++        return {}
++    xx = np.interp(tt, t, x)
++    w = np.hanning(len(tt))
++    bins = np.fft.rfftfreq(len(tt), dt)
++    power = 2 * abs(np.fft.rfft(w * (xx - xx.mean())))**2 / (len(xx) * np.dot(w,w))
++    return {f"{lo:g}-{hi:g}": float(sum(power[(bins >= lo) & (bins < hi)])) for lo, hi in BANDS}
++
++
++def metrics(t, target, model, resolution):
++    if len(t) < 12:
++        return dict(samples=len(t), fit=None, reason="fewer than 12 valid frames")
++    reference_rms = float(np.std(target))
++    error = model - target
++    rmse = float(np.sqrt(np.mean(error**2)))
++    return dict(samples=len(t), fit=float(100*(1-rmse/reference_rms)) if reference_rms > resolution else None,
++                target_centered_rms_um=reference_rms, rmse_um=rmse, model_rms_um=float(np.sqrt(np.mean(model**2))),
++                target_rms_um=float(np.sqrt(np.mean(target**2))), target_pp_um=float(np.ptp(target)),
++                model_pp_um=float(np.ptp(model)), bias_um=float(np.mean(error)),
++                correlation=float(np.corrcoef(target, model)[0, 1]) if min(reference_rms, np.std(model)) > 0 else None,
++                dominant_peak_time_delta_s=float(t[np.argmax(abs(model - model.mean()))] -
++                                                t[np.argmax(abs(target - target.mean()))]),
++                band_target_um2=band_power(t, target), band_model_um2=band_power(t, model))
++
++
++def evaluate(t, trace, src, record, trend, flat_um):
++    ft = src["frame_host_time_s"]
++    fit = {}
++    for label, (lo, hi) in record["windows_s"].items():
++        if not len(trace["t"]):
++            fit[label] = dict(complete=False, raw={}, oscillation={}, physical_oscillation={})
++            continue
++        mask = (ft >= lo) & (ft <= hi) & src["frame_valid"] & (ft <= trace["t"][-1])
++        complete = not np.any((ft >= lo) & (ft <= hi) & src["frame_valid"] & (ft > trace["t"][-1]))
++        stamps = ft[mask]
++        y = trace["physical_e_um"]
++        physical = np.interp(stamps, trace["t"], y)
++        observed = np.interp(stamps, trace["t"], y + trace["remaining"] * 1e6)
++        drift = np.interp(stamps, t, trend)
++        target = src["A_centered_um"][mask]
++        zero = record["raw_visual_zero_um"]
++        fit[label] = dict(complete=bool(complete),
++                          raw=metrics(stamps, target + zero, observed + zero, flat_um),
++                          oscillation=metrics(stamps, target-drift, observed-drift, flat_um),
++                          physical_oscillation=metrics(stamps, target-drift, physical-drift, flat_um))
++    return fit
+diff --git a/G/20261116_A_multispeed/source_a.py b/G/20261116_A_multispeed/source_a.py
+new file mode 100644
+index 0000000..20e2db6
+--- /dev/null
++++ b/G/20261116_A_multispeed/source_a.py
+@@ -0,0 +1,176 @@
++"""Bind A source rows to one CB3 trial on the original host-time clock."""
++import json
++import numpy as np
++from audit_inputs import read_trial, csv_rows, json_rows, POSE_FIELDS
++from increment_model import reconstruct
++from run_campaign import sha
++
++TRIALS = ("X_P05_R01", "X_P05_R02", "X_P10_R01")
++
++
++def speed(trial):
++    return float(int(trial.split("_")[1][1:]))
++
++
++def archived_source(root, trial):
++    """Join the archived per-frame export to independent original sidecar and cabinet rows."""
++    original = root/"data/original"/trial
++    archive = root/"data/analysis_20260902"
++    stem = f"20260901_184044_B05_{trial}"
++    cabinet = original/(stem+"_UR10.txt")
++    sidecar = original/(stem+"_FRAME_TIMESTAMPS.csv")
++    meta = original/(stem+"_META.json")
++    inventory = archive/"inventory.csv"
++    derived = archive/(stem+"_derived.csv")
++    phase_path = archive/"phase_summary.csv"
++    mapping = archive/"axis_mapping.json"
++    registration = {row["file_role"]:row for row in csv_rows(inventory) if row["detected_segment_base"] == stem}
++    if sha(cabinet) != registration["UR10"]["sha256"]:
++        raise ValueError("Original cabinet SHA-256 differs from the archived analysis input")
++    seen = {}
++    conflicts = []
++    robot = []
++    duplicate_rows = 0
++    for row in json_rows(cabinet):
++        if row["kind"] != "ROBOT":
++            continue
++        assert not any("target_q" in k.lower() for k in row)
++        stamp = row["robot_timestamp_s"]
++        payload = tuple(tuple(row[k]) for k in POSE_FIELDS)
++        old = seen.setdefault(stamp, [])
++        if payload in old:
++            duplicate_rows += 1
++            continue
++        if old:
++            conflicts.append({"cabinet_s":stamp, "host_ns":row["host_ns"],
++                              "changed_fields":[k for k,a,b in zip(POSE_FIELDS,old[-1],payload,strict=True) if a!=b]})
++        old.append(payload)
++        robot.append(row)
++    t_raw, mapped = csv_rows(sidecar), csv_rows(derived)
++    fields = ("frame_id","host_ns","camera_timestamp_raw")
++    keys = np.array([[int(r[k]) for k in fields] for r in t_raw],dtype=np.int64)
++    np.testing.assert_array_equal(keys, [[int(r[k]) for k in fields] for r in mapped])
++    np.testing.assert_array_equal([int(r["segment_frame_index"]) for r in t_raw],
++                                  [int(r["capture_index"]) for r in mapped])
++    origin = keys[0,1]
++    host_ns = np.array([r["host_ns"] for r in robot],dtype=np.int64)
++    cabinet_time = np.array([r["robot_timestamp_s"] for r in robot])
++    assert np.all(np.diff(keys,axis=0)>0) and np.all(np.diff(host_ns)>0) and np.all(np.diff(cabinet_time)>=0)
++    data = {key:np.array([r[key] for r in robot]) for key in POSE_FIELDS}
++    assert all(x.shape==(len(robot),6) and np.isfinite(x).all() for x in data.values())
++    data.update(host_time_s=(host_ns-origin)*1e-9, host_ns=host_ns, cabinet_time_s=cabinet_time,
++                frame_id=keys[:,0], frame_host_time_s=(keys[:,1]-origin)*1e-9, frame_host_ns=keys[:,1],
++                camera_raw_tick=keys[:,2],
++                checker_valid=np.array([r["checker_is_valid_original"] == "1" for r in mapped]))
++    phase = np.full(len(keys),"",dtype="<U12")
++    for row in csv_rows(phase_path):
++        if row["segment_base"] != stem:
++            continue
++        lo,hi = int(row["start_index"]),int(row["end_index"])
++        assert keys[lo,1] == int(row["start_host_ns"]) and keys[hi,1] == int(row["end_host_ns"])
++        assert np.all(phase[lo:hi+1]=="")
++        phase[lo:hi+1] = row["phase"]
++    assert np.all(phase!="")
++    record = dict(source_kind="archived_per_frame_with_original_cabinet_and_sidecar",
++                  identity={p.name:dict(path=p.relative_to(root).as_posix(),sha256=sha(p))
++                            for p in (cabinet,sidecar,meta,inventory,derived,phase_path,mapping,archive/"run_manifest.json")},
++                  recorded_originals={k:{"filename":v["filename"],"source_path":v["absolute_path"],"sha256":v["sha256"]}
++                                      for k,v in registration.items()},
++                  original_vision_txt_and_runlog_locally_available=False,
++                  exact_frame_identity_rows=len(keys), frame_identity_fields=list(fields),
++                  clock={"distinct_cabinet_times":len(seen),"retained_host_rows":len(robot),"target_q_rows":0,
++                         "identical_repeated_payload_rows_removed":duplicate_rows,
++                         "equal_cabinet_distinct_payload_rows_retained":conflicts})
++    return data,record,mapped,phase,mapping
++
++
++def load_source(root, trial):
++    inputs = root/"data/original"/trial
++    if list(inputs.glob("*_VISION.txt")) and (root/"data/B_reference"/f"A_{trial}.csv").is_file():
++        data, record, mapped, phase, mapping, visual = handoff_source(root,trial)
++    else:
++        data, record, mapped, phase, mapping = archived_source(root,trial)
++        visual = None
++    return align_source(data,record,mapped,phase,mapping,visual,trial)
++
++
++def handoff_source(root,trial):
++    data, record = read_trial(root, trial)
++    record["source_kind"] = "original_vision_cabinet_runlog_and_sidecar"
++    batch = root / "data/batch"
++    mapping = batch / "axis_mapping.json"
++    derived = next((root / "data/derived").glob(f"*_{trial}_derived.csv"))
++    reference = root / "data/B_reference" / f"A_{trial}.csv"
++    phases = batch / "phase_summary.csv"
++    for path in (mapping, derived, reference, phases):
++        record["identity"][path.stem] = dict(path=path.relative_to(root).as_posix(), sha256=sha(path))
++    visual = csv_rows(reference)
++    mapped = csv_rows(derived)
++    np.testing.assert_array_equal(data["frame_id"], [int(r["frame_id"]) for r in visual])
++    return data,record,mapped,np.array([r["phase"] for r in visual]),mapping,visual
++
++
++def align_source(data,record,mapped,phase,mapping,visual,trial):
++    inverse = np.array(json.loads(mapping.read_text(encoding="utf-8"))["J_inverse_mm_per_px"])
++    frame_t = data["frame_host_time_s"]
++    np.testing.assert_array_equal(data["frame_id"], [int(r["frame_id"]) for r in mapped])
++    np.testing.assert_array_equal(data["frame_host_ns"], [int(r["host_ns"]) for r in mapped])
++    uv = np.array([[float(r[f"image_{axis}_px_robust_reference"]) for axis in ("u", "v")] for r in mapped])
++    raw = (uv @ inverse.T)[:, 1] * 1000
++    valid = data["checker_valid"] & np.isfinite(raw)
++    zero = float(np.median(raw[valid & (phase == "pre_motion")]))
++    if visual is not None:
++        np.testing.assert_allclose(raw - zero, [float(r["cross_track_um"]) for r in visual], rtol=0, atol=1e-8)
++    host = data["host_time_s"]
++    tcp = data["target_tcp_pose"]
++    vx = data["actual_tcp_speed"][:, 0] * 1000
++    assert np.max(abs(tcp[:, 1:] - tcp[0, 1:])) < 1e-8
++    assert np.linalg.norm(data["actual_tcp_speed"][np.argmin(abs(host)), :3]) < .00005
++    grid = np.arange(int(np.ceil(frame_t[-1] * 1000)) + 1) * .001
++    gaps = np.flatnonzero(np.diff(host) > .020)
++    gap_dx = abs(np.diff(tcp[:, 0])[gaps]) * 1000
++    if np.any(gap_dx > .002):
++        raise ValueError("A long host bracket spans material change in the nominal X")
++    events = {name: [float(frame_t[phase == name][0]), float(frame_t[phase == name][-1])]
++              for name in ("pre_motion", "X_outbound", "far_end_turn", "X_return", "post_stop")}
++    setting = speed(trial)
++    onset = float(host[np.flatnonzero((host > .75) & (vx > setting/2))[0]])
++    turn0, turn1 = events["far_end_turn"]
++    turn_samples = (host >= turn0) & (host <= turn1)
++    turn = float(host[turn_samples][np.argmax(data["actual_tcp_pose"][turn_samples, 0])])
++    stop = float(host[(host > turn) & (vx < -.9*setting)][-1])
++    start_window = [events["X_outbound"][0] - .035, onset + .27]
++    turn_window = [turn0 - .15, turn1 + .23]
++    post = [7.15, min(7.55,float(frame_t[-1]))] if setting==5. else [frame_t[-1]-.5, frame_t[-1]-.12]
++    windows = dict(full=[0., float(frame_t[-1])], start=start_window, turn=turn_window,
++                   outbound=[start_window[1] + .12, turn_window[0] - .08],
++                   return_straight=[turn_window[1] + .08, stop - .12],
++                   pre_static=[.70, .96], post_static=post)
++    record.update(speed_mm_s=setting, raw_visual_zero_um=zero, phase_host_bounds_s=events, windows_s=windows,
++                  platform_names=["pre_static", "outbound", "return_straight", "post_static"],
++                  first_half_speed_s=onset, turn_actual_xmax_s=turn,
++                  last_return_90_percent_speed_s=stop,
++                  host_gap_evidence=[[float(host[i]), float(host[i+1]), float(dx)]
++                                     for i, dx in zip(gaps, gap_dx, strict=True)],
++                  missing_frame_count=int(np.sum(np.diff(data["frame_id"])-1)),
++                  source_clock_origin_ns=int(data["frame_host_ns"][0]),
++                  pre_stationary_axial_speed_mm_s=float(vx[np.argmin(abs(host))]),
++                  source_median_vx_mm_s={k: float(np.median(vx[(host >= windows[k][0]) & (host <= windows[k][1])]))
++                                        for k in ("outbound", "return_straight")})
++    for label in ("start", "turn", "outbound", "return_straight"):
++        lo, hi = windows[label]
++        if any(host[i] < hi and host[i + 1] > lo for i in gaps if host[i+1]-host[i] > .05):
++            raise ValueError(f"Long host gap intersects the scored {label} window")
++    data.update(frame_phase=phase, frame_valid=valid, A_raw_um=raw, A_centered_um=raw-zero)
++    return data, record, grid
++
++
++def nominal(cfg, data, grid):
++    host = data["host_time_s"]
++    cabinet = data["cabinet_time_s"]
++    large = (np.diff(cabinet) > .03201) & (np.diff(host) > .020)
++    if np.any(abs(np.diff(data["target_tcp_pose"][:, 0])[large]) > .002e-3):
++        raise ValueError("Large cabinet gap intersects a material nominal displacement")
++    aligned = dict(cfg, max_source_host_bracket_ms=float(np.max(np.diff(host))*1000 + 1e-6),
++                   max_source_cabinet_gap_ms=float(np.max(np.diff(cabinet))*1000 + 1e-6))
++    return reconstruct(aligned, data, grid, gravity_support=False)
+diff --git a/simulation/engineering_baseline_v2/cb3/turning/increment_model.py b/simulation/engineering_baseline_v2/cb3/turning/increment_model.py
+index c03b6cf..5e98421 100644
+--- a/simulation/engineering_baseline_v2/cb3/turning/increment_model.py
++++ b/simulation/engineering_baseline_v2/cb3/turning/increment_model.py
+@@ -88,7 +88,7 @@ def stationary(cfg, q):
+                         positive_at_500ms_um=float(plus[-1]*1e6), position_external_max_diff_m=equivalence)
+ 
+ 
+-def reconstruct(cfg, obs, t):
++def reconstruct(cfg, obs, t, *, gravity_support=True):
+     env = aligned_model(cfg)
+     host = obs["host_time_s"]
+     i0 = np.searchsorted(host, t[0], side="right") - 1
+@@ -117,8 +117,10 @@ def reconstruct(cfg, obs, t):
+     if np.max(abs(target[:, 3:]-target[0, 3:])) > 1e-8:
+         raise ValueError("This B05 entry requires the recorded constant target orientation")
+     nominal_tcp = np.stack([np.interp(t, source_t, col) for col in target.T], axis=1)
+-    support = GravitySupport(env)
+-    offset = np.stack([support.offset(q) for q in nominal_q])
++    offset = np.zeros_like(nominal_q)
++    if gravity_support:
++        support = GravitySupport(env)
++        offset = np.stack([support.offset(q) for q in nominal_q])
+     back = np.array([pose_error(flange(env, q), recorded_pose(p)) for q, p in zip(nominal_q, nominal_tcp)])
+     max_pos = float(np.linalg.norm(back[:, :3], axis=1).max())
+     max_angle = float(np.linalg.norm(back[:, 3:], axis=1).max())

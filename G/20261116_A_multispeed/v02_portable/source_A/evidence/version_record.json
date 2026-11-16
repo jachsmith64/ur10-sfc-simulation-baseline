@@ -1,0 +1,18 @@
+{
+  "project": "C:\\Users\\kinli\\Documents\\Codex\\2026-10-14\\new-chat\\outputs\\E组_132Hz测量耦合仿真_V1_20261015",
+  "baseline_tag": "e-132hz-copy-baseline-complete",
+  "baseline_commit": "1782e4c53839fb287420f32ed27d93476b1cf5b7",
+  "source_tag": "e-132hz-measurement-coupling-reviewed",
+  "source_commit": "61a583dff4becbf7273c1398756fc4511e90b7b6",
+  "visual_url": "https://github.com/jachsmith64/ur10-vision-132fps-checkpoint",
+  "visual_tag": "e-vision-132fps-effective-20261015",
+  "visual_archive_commit": "b7681e43c571e5cf532e425292ec259670c83840",
+  "visual_branch": "archive/vision132-20261015",
+  "visual_remote_verified": true,
+  "simulation_remote_uploaded": false,
+  "simulation_remote": "",
+  "visual_local_archive": "C:\\Users\\kinli\\Documents\\Codex\\2026-10-14\\new-chat\\outputs\\E组_132fps有效视觉方案_归档_20261015",
+  "visual_local_postverification_head": "6e0e9e19e812340cd2fcc5a61056d78eacfc10b3",
+  "visual_local_metadata_commit_not_pushed": true,
+  "predictor_pause_head": "3f22c3d08643ba9a78e199257d7de0933566c999"
+}

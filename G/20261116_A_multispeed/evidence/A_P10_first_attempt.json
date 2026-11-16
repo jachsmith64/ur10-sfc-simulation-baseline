@@ -1,0 +1,7 @@
+{
+  "X_P10_R01": {
+    "reconstruction_pass": false,
+    "error": "Original P05-style deduplication was rejected at source_a.archived_source: identical cabinet timestamp can have different target or actual data. No physics steps in this attempt.",
+    "resolution": "Retain distinct payloads at each original host timestamp; remove repeat identical payloads. See prepared_A/X_P10_R01/source.json for full differing-field receipt."
+  }
+}

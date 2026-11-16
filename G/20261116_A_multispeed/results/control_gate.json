@@ -1,0 +1,16 @@
+{
+  "eligible": [],
+  "multi_speed_event_coverage": false,
+  "control_requested": true,
+  "controls": {},
+  "source_trials": [
+    "X_P05_R01",
+    "X_P05_R02",
+    "X_P10_R01"
+  ],
+  "distinct_real_source_speed_mm_s": [
+    5,
+    10
+  ],
+  "eligible_speed_mm_s": []
+}

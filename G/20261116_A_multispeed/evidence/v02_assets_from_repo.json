@@ -1,0 +1,112 @@
+{
+  "source_A/01_工程/assets_ur10e/assets/base_0.obj": {
+    "bytes": 593901,
+    "sha256": "b1e061f76549c4624a1b02a318f3f89abf433bacf8db87df4bc78600bf638891",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/base_0.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/base_1.obj": {
+    "bytes": 674883,
+    "sha256": "b2f4490c8ff87b96e3aefd8213aa099b1a670148c91015df30a41a18f8711077",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/base_1.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/forearm_0.obj": {
+    "bytes": 3136795,
+    "sha256": "ef05ffb2e6a09328fead79fbae4d410bb793204783b51088d7b055e1611a734c",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/forearm_0.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/forearm_1.obj": {
+    "bytes": 1185944,
+    "sha256": "c973553e7c12433f6f127f82ebd4ba374969076dfc316d2b64f6cad8bbdef3e3",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/forearm_1.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/forearm_2.obj": {
+    "bytes": 308758,
+    "sha256": "52e02d8be43c41ae1555ff8449fd8b8f2c74b9a3e875942942fdc48f239dbb7d",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/forearm_2.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/forearm_3.obj": {
+    "bytes": 118019,
+    "sha256": "31de39bff4cf4f50445ccb11757a92fa4cdc3480e7040d93fc436169fad88512",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/forearm_3.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/shoulder_0.obj": {
+    "bytes": 3585906,
+    "sha256": "1d1e3aa2be2547f8a78e7e859ba56b2d79dd82ddb3814fd74fdc8c503fcfdf88",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/shoulder_0.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/shoulder_1.obj": {
+    "bytes": 567609,
+    "sha256": "8c30affd9055c9dcd9fdc512fe90e5c38ed27f0e694405e087a7f161145fb2fb",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/shoulder_1.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/shoulder_2.obj": {
+    "bytes": 3792111,
+    "sha256": "6489b10352f0bf4eb06cbe23dcced4d2166e99286a52e4aa7b5c66ef1b9cdc51",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/shoulder_2.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/upperarm_0.obj": {
+    "bytes": 1005546,
+    "sha256": "53da85c35182317d322643e9ce3d5060f0285cf73b4017683f2d6053fc4772ec",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/upperarm_0.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/upperarm_1.obj": {
+    "bytes": 4025412,
+    "sha256": "b375f3dc3af32111cffba49e369a61b98004b53af9130bc3947b04c4c13a2f76",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/upperarm_1.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/upperarm_2.obj": {
+    "bytes": 5687950,
+    "sha256": "b5fdf68606eff08425ab8ff581771bfa047f6a6bff873b661ab8b11b06348af2",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/upperarm_2.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/upperarm_3.obj": {
+    "bytes": 133646,
+    "sha256": "42c853cafcadf17273389ae1c1adf6f61bd656d394f8e79dbbef045feed8decd",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/upperarm_3.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/wrist1_0.obj": {
+    "bytes": 575606,
+    "sha256": "af471f7a9146acc809edcec1ca8b9320a5f82e9ace13721c75d3a30f4d87fe7a",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/wrist1_0.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/wrist1_1.obj": {
+    "bytes": 3435406,
+    "sha256": "20ac04504ab2f29f2bf1cd3f54365ada3c2e197e6a8a69e0284b5881621cd2c2",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/wrist1_1.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/wrist1_2.obj": {
+    "bytes": 247828,
+    "sha256": "10d5ce19fead54d498eca570401b400dd50446a08c0f9b4dcf8bc054d33c717d",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/wrist1_2.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/wrist2_0.obj": {
+    "bytes": 890873,
+    "sha256": "06fee5fab4dfe411884bc4b088951ef89fa77a4f086fd289daaf1a9ba23f5223",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/wrist2_0.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/wrist2_1.obj": {
+    "bytes": 3715113,
+    "sha256": "df67f86532ccb11da7a75276bc3f467e52ecdf44a14bd80c60eefb5399a99c1e",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/wrist2_1.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/wrist2_2.obj": {
+    "bytes": 275684,
+    "sha256": "92ed9c1f6f9fc6cd4c81bf5a59c98bb90fe57229e4b0fc83a22bde41704d2509",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/wrist2_2.obj"
+  },
+  "source_A/01_工程/assets_ur10e/assets/wrist3.obj": {
+    "bytes": 237170,
+    "sha256": "5fc54a2ef7a41b587a4161c0295a0dad2d6583d2d83dbf9ff7f18b72982deb81",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/assets/wrist3.obj"
+  },
+  "source_A/01_工程/assets_ur10e/scene.xml": {
+    "bytes": 888,
+    "sha256": "e47dc8e4089ee52930cece593abd5cf8f99d34a68aeb7a2d77917ff0e891c688",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/scene.xml"
+  },
+  "source_A/01_工程/assets_ur10e/ur10e.xml": {
+    "bytes": 7083,
+    "sha256": "0767e3d3ec93c3db811fd411dc3ae7c78e26b5aae93cc87abd6e7ccd178086b0",
+    "repo_path": "simulation/engineering_baseline_v2/assets_ur10e/ur10e.xml"
+  }
+}

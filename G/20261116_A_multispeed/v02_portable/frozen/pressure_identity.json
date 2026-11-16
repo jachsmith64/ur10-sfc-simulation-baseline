@@ -1,0 +1,56 @@
+{
+  "config_sha256": "ba1b97624f9e8841776e7893ecf42b94a1d8988734746382a1230aa4716796d9",
+  "scenarios": {
+    "path-six-v1-r1": {
+      "trial": "path-six-v1-r1",
+      "source_scope": "return_straight_y",
+      "origin_host_ns": 1101784677564500,
+      "bounds_s": [
+        29.9248444,
+        34.4369046
+      ],
+      "source_samples": 565,
+      "camera_age_max_ms": 7.533800000000923,
+      "raw_static_mean_um": -11.275418151906656,
+      "dynamic_rms_um": 11.35781826045325,
+      "pressure_source_series_sha256": "a92bd30df4dcc4495ff60c54013bf903c969ecb37ef118c97f3d553cfd8b6269",
+      "native_rtde_sha256": "9e07956f6f99a07867f0aabc89d76e4e9d427bca748f83342fd39e02ca521ace",
+      "sensor_alignment": "Causal as-of camera position on recorded native host clock; no time shift fit",
+      "original_span_s": 4.512060199999997,
+      "repetition_s": 4.544060199999997,
+      "bridge_ms": 32,
+      "bridge_start_times_s": [
+        4.512060199999997,
+        9.056120399999994
+      ],
+      "runtime_rule": "8 ms encoder sample takes latest prior native pressure event; no pressure resampling on control ticks",
+      "sha256": "84921d2c409fa0ced2da9a9d933f1730bc48e9728b06210c73620af17ddac940"
+    },
+    "path-six-v3-r1": {
+      "trial": "path-six-v3-r1",
+      "source_scope": "return_straight_y",
+      "origin_host_ns": 1102610646257500,
+      "bounds_s": [
+        20.6526251,
+        25.1404218
+      ],
+      "source_samples": 562,
+      "camera_age_max_ms": 7.712899999997802,
+      "raw_static_mean_um": -12.845532559202056,
+      "dynamic_rms_um": 12.985519412997338,
+      "pressure_source_series_sha256": "7aa08d96b9234d61ee5693580bcd14674dfc5485b7c171dc673c462575617fbd",
+      "native_rtde_sha256": "4ed1d95e3262af1b3b70d13c937b77bd9f93164bd0feefad30e2c5ecfdc0255a",
+      "sensor_alignment": "Causal as-of camera position on recorded native host clock; no time shift fit",
+      "original_span_s": 4.487796699999997,
+      "repetition_s": 4.519796699999997,
+      "bridge_ms": 32,
+      "bridge_start_times_s": [
+        4.487796699999997,
+        9.007593399999994
+      ],
+      "runtime_rule": "8 ms encoder sample takes latest prior native pressure event; no pressure resampling on control ticks",
+      "sha256": "0b28e76aea82ae2af262bf66e9056e689e128f07320336d7758192bef697af81"
+    }
+  },
+  "scope": "near-Z real difference injected along simulated Y; deterministic exogenous observation stress"
+}

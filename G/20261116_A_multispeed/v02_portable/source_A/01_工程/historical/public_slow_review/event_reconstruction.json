@@ -1,0 +1,87 @@
+{
+  "history": [
+    {
+      "relative_rms_error": 0.08703271426041935,
+      "rmse_um": 2.0942887609806453,
+      "cold_initial_max_um": 77.78853370829508,
+      "target_pre_event_max_um": 0.0,
+      "last100ms_max_um": 6.916155785491318,
+      "events": [
+        {
+          "event": "start",
+          "target_min_um": -26.27314409015274,
+          "target_max_um": 104.72006489626048,
+          "response_min_um": -22.510330128205915,
+          "response_max_um": 102.38127628153792,
+          "core_rmse_um": 3.483305235884837
+        },
+        {
+          "event": "turn",
+          "target_min_um": -112.14075854806272,
+          "target_max_um": 43.17546827697832,
+          "response_min_um": -111.60468804541357,
+          "response_max_um": 33.76949641384353,
+          "core_rmse_um": 3.7553157450595958
+        },
+        {
+          "event": "stop",
+          "target_min_um": -31.00475383276868,
+          "target_max_um": 21.863329267253683,
+          "response_min_um": -29.5331359653761,
+          "response_max_um": 18.409765776383757,
+          "core_rmse_um": 2.8038021538820654
+        }
+      ],
+      "attempt": 1,
+      "Fd_abs_peak_N": 4.178806266601198,
+      "log": "outputs\\full_1ms\\event_validation_1__A0.npz"
+    }
+  ],
+  "final_check": {
+    "relative_rms_error": 0.08703271426041935,
+    "rmse_um": 2.0942887609806453,
+    "cold_initial_max_um": 77.78853370829508,
+    "target_pre_event_max_um": 0.0,
+    "last100ms_max_um": 6.916155785491318,
+    "events": [
+      {
+        "event": "start",
+        "target_min_um": -26.27314409015274,
+        "target_max_um": 104.72006489626048,
+        "response_min_um": -22.510330128205915,
+        "response_max_um": 102.38127628153792,
+        "core_rmse_um": 3.483305235884837
+      },
+      {
+        "event": "turn",
+        "target_min_um": -112.14075854806272,
+        "target_max_um": 43.17546827697832,
+        "response_min_um": -111.60468804541357,
+        "response_max_um": 33.76949641384353,
+        "core_rmse_um": 3.7553157450595958
+      },
+      {
+        "event": "stop",
+        "target_min_um": -31.00475383276868,
+        "target_max_um": 21.863329267253683,
+        "response_min_um": -29.5331359653761,
+        "response_max_um": 18.409765776383757,
+        "core_rmse_um": 2.8038021538820654
+      }
+    ],
+    "attempt": 1,
+    "Fd_abs_peak_N": 4.178806266601198,
+    "log": "outputs\\full_1ms\\event_validation_1__A0.npz"
+  },
+  "plant_sha256": "b8ec70e16b1c3ddc3b32c673fa0f8f5bad12f0167fcecc0b304b8a37394fef40",
+  "final_fd_sha256": "21e79ac207c85924b64cfee628390f7f5483ec975f075ef94ace69a6a5385796",
+  "settings": {
+    "pass_hz": 30.0,
+    "stop_hz": 45.0,
+    "zero_padding_each_side_s": 2.0,
+    "residual_learning_rate": 0.7,
+    "max_A0_validations": 3
+  },
+  "finite_memory_note": "Zero-padded inverse suppresses periodic wrap; trimmed tails and cold-start causal response are explicitly checked. Source core e_vib amplitudes are unchanged; output is an approximate plant response, not fresh physical measurement.",
+  "sufficient_for_approximate_comparison": true
+}

@@ -1,0 +1,1046 @@
+{
+  "D_N_o1_fraw_r1_gain1_seed1001_d0": {
+    "completed": true,
+    "old_sha": "8998f60cbcad14b29fd1136a00ed16270abcd0c5250bc8f87c7306c0a72507ac",
+    "new_sha": "8998f60cbcad14b29fd1136a00ed16270abcd0c5250bc8f87c7306c0a72507ac",
+    "all_arrays_equal": true,
+    "old_guard": null,
+    "new_guard": null,
+    "deltas": {
+      "F_linear": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_requested": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_shear": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_spring": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "Fd": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "actual_micro_q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "actuator_force": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_cam_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_enc_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_force": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_source_compute": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_ctrl_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_force_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_joint_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_qfrc_actuator": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_e": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_ef": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_id": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_vf": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_baseline_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q_ddot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q_dot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_ddot_m_s2": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_dot_m_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_filtered_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_raw_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_ready": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "ctrl_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "delta_u": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "dq_C": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_e_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_e": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_ef": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_id": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_vf": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "exec_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "final_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "force_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "hold_until_exclusive": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "joint_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "model_time_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "nominal_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "original_base_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "phase": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_e_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_xyz_error_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_xyz_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "prehold_tau": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "q_nominal": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qdot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_actuator": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_applied": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_disturbance": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "remaining": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "remaining_dot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "sample_e_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "sample_v_m_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "t": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "tau_realized_increment": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "tau_requested": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "updated": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      }
+    },
+    "inputs_equal": true,
+    "pinned_by_history": true
+  },
+  "D_L_o1_f5_r0_gain4_seed1001_d0": {
+    "completed": true,
+    "old_sha": "8d66e4f0d6eaac13f161c529012206d043f76e9e1841ebf31c3730a101b055b1",
+    "new_sha": "8d66e4f0d6eaac13f161c529012206d043f76e9e1841ebf31c3730a101b055b1",
+    "all_arrays_equal": true,
+    "old_guard": null,
+    "new_guard": null,
+    "deltas": {
+      "F_linear": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_requested": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_shear": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_spring": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "Fd": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "actual_micro_q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "actuator_force": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_cam_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_enc_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_force": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_source_compute": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_ctrl_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_force_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_joint_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_qfrc_actuator": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_e": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_ef": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_id": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_vf": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_baseline_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q_ddot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q_dot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_ddot_m_s2": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_dot_m_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_filtered_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_raw_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_ready": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "ctrl_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "delta_u": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "dq_C": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_e_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_e": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_ef": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_id": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_vf": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "exec_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "final_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "force_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "hold_until_exclusive": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "joint_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "model_time_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "nominal_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "original_base_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "phase": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_e_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_xyz_error_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_xyz_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "prehold_tau": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "q_nominal": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qdot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_actuator": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_applied": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_disturbance": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "remaining": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "remaining_dot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "sample_e_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "sample_v_m_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "t": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "tau_realized_increment": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "tau_requested": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "updated": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      }
+    },
+    "inputs_equal": true,
+    "pinned_by_history": true
+  },
+  "D_S_o1_f5_r0_gain1_seed1001_d0": {
+    "completed": true,
+    "old_sha": "f58243c7fd13ea80600ea0b8b310545cd8cc1268930a82a077929d227ed2c1a1",
+    "new_sha": "f58243c7fd13ea80600ea0b8b310545cd8cc1268930a82a077929d227ed2c1a1",
+    "all_arrays_equal": true,
+    "old_guard": null,
+    "new_guard": null,
+    "deltas": {
+      "F_linear": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_requested": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_shear": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "F_spring": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "Fd": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "actual_micro_q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "actuator_force": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_cam_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_enc_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_force": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "applied_source_compute": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_ctrl_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_force_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_joint_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "base_qfrc_actuator": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_e": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_ef": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_id": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "cam_vf": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_baseline_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q_ddot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_q_dot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_ddot_m_s2": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_dot_m_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "common_delta_y_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_cam_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_age_ms": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_enc_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_filtered_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_raw_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "compute_ready": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "ctrl_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "delta_u": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "dq_C": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_e_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "effective_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_available": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_e": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_ef": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_id": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_sample": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "enc_vf": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "exec_event": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "final_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "force_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "hold_until_exclusive": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "joint_saturation": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "model_time_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "nominal_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "original_base_ctrl": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "phase": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_e_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_v": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_xyz_error_um": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_xyz_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "physical_y": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "prehold_tau": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "q": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "q_nominal": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qdot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_actuator": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_applied": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "qfrc_disturbance": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "remaining": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "remaining_dot": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "sample_e_m": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "sample_v_m_s": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "t": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "tau_realized_increment": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "tau_requested": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      },
+      "updated": {
+        "equal": true,
+        "max_abs_finite": 0.0
+      }
+    },
+    "inputs_equal": true,
+    "pinned_by_history": true
+  }
+}

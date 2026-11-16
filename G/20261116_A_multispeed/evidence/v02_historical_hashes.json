@@ -1,0 +1,84 @@
+{
+  "V02X_P0": [
+    {
+      "law": "N",
+      "trace": "filter_sfc_20261110/results_valid/runs/P1_N-N_V_fraw_r1_g1_b1_s0/trace.npz",
+      "sha256": "41bc462c84afbd07e1bec760fc1dde8b2ae0557d03d27beb0b65286fa59c337c"
+    },
+    {
+      "law": "S",
+      "trace": "strong_sfc_20261110/results/runs/A_S_o1_f5_r0_gain1_seed11010_d0/trace.npz",
+      "sha256": "5d3b9931b113437a8d8ec2085688eefc42b9ed25047345dd74dfa0d784dd6768"
+    },
+    {
+      "law": "L",
+      "trace": "strong_sfc_20261110/results/runs/A_L_o1_f5_r0_gain4_seed11010_d0/trace.npz",
+      "sha256": "15f02836dc40e42aec0ad42af92d99cf197ab1d5771fd8818bd5c5c4074bfa5a"
+    }
+  ],
+  "V03A_reference": [
+    {
+      "law": "N",
+      "trace": "strong_sfc_20261110/results/runs/D_N_o1_fraw_r1_gain1_seed1001_d0/trace.npz",
+      "sha256": "8998f60cbcad14b29fd1136a00ed16270abcd0c5250bc8f87c7306c0a72507ac",
+      "metadata": [
+        "case.json",
+        "inputs.json"
+      ]
+    },
+    {
+      "law": "L",
+      "trace": "strong_sfc_20261110/results/runs/D_L_o1_f5_r0_gain4_seed1001_d0/trace.npz",
+      "sha256": "8d66e4f0d6eaac13f161c529012206d043f76e9e1841ebf31c3730a101b055b1",
+      "metadata": [
+        "case.json",
+        "inputs.json"
+      ]
+    },
+    {
+      "law": "S",
+      "trace": "strong_sfc_20261110/results/runs/D_S_o1_f5_r0_gain1_seed1001_d0/trace.npz",
+      "sha256": "f58243c7fd13ea80600ea0b8b310545cd8cc1268930a82a077929d227ed2c1a1",
+      "metadata": [
+        "case.json",
+        "inputs.json"
+      ]
+    }
+  ],
+  "V04_baseline": [
+    {
+      "law": "N",
+      "trace": "A_measured_minimal_20261111/results/runs/formal_measured_A_N_seed1001/trace.npz",
+      "sha256": "e4279a1e2da557f86ce792b097fb64f5b079d432b2cd41825efaa26845253af7",
+      "metadata": [
+        "case.json",
+        "inputs.json",
+        "row.json",
+        "validation.json"
+      ]
+    },
+    {
+      "law": "L",
+      "trace": "A_measured_minimal_20261111/results/runs/formal_measured_A_L_seed1001/trace.npz",
+      "sha256": "ab7567445fec1840a3a1615984b7b7438355a88a55b42f13781b15171d04c0e2",
+      "metadata": [
+        "case.json",
+        "inputs.json",
+        "row.json",
+        "validation.json"
+      ]
+    },
+    {
+      "law": "S",
+      "trace": "A_measured_minimal_20261111/results/runs/formal_measured_A_S_seed1001/trace.npz",
+      "sha256": "a4998f31bd2144c6eac1704b91942d6aa9a349169deaafbd46cb1a70974faba8",
+      "metadata": [
+        "case.json",
+        "inputs.json",
+        "row.json",
+        "validation.json",
+        "frames.json"
+      ]
+    }
+  ]
+}
